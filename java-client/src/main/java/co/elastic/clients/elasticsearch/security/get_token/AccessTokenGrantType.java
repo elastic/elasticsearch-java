@@ -81,6 +81,21 @@ public enum AccessTokenGrantType implements JsonEnum {
 	 */
 	RefreshToken("refresh_token"),
 
+	/**
+	 * This grant type is supported internally and exchanges a user-managed service
+	 * account token for an access token that represents that service account. The
+	 * request must be made by an authenticated caller with the
+	 * <code>manage_token</code> cluster privilege, on behalf of the service account
+	 * whose token is passed in the <code>service_account_token</code> parameter.
+	 * The service account token is authenticated on every exchange, so a disabled
+	 * account or an invalidated token is rejected. Tokens that belong to built-in
+	 * (<code>elastic/*</code>) service accounts are rejected. It generates only
+	 * access tokens that cannot be refreshed. The
+	 * <code>_user_managed_service_account</code> grant type may change from version
+	 * to version.
+	 */
+	UserManagedServiceAccount("_user_managed_service_account"),
+
 	;
 
 	private final String jsonValue;

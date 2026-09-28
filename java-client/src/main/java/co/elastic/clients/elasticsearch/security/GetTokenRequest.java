@@ -101,6 +101,9 @@ public class GetTokenRequest extends RequestBase implements JsonpSerializable {
 	private final String scope;
 
 	@Nullable
+	private final String serviceAccountToken;
+
+	@Nullable
 	private final String username;
 
 	// ---------------------------------------------------------------------------------------------
@@ -112,6 +115,7 @@ public class GetTokenRequest extends RequestBase implements JsonpSerializable {
 		this.password = builder.password;
 		this.refreshToken = builder.refreshToken;
 		this.scope = builder.scope;
+		this.serviceAccountToken = builder.serviceAccountToken;
 		this.username = builder.username;
 
 	}
@@ -122,8 +126,8 @@ public class GetTokenRequest extends RequestBase implements JsonpSerializable {
 
 	/**
 	 * The type of grant. Supported grant types are: <code>password</code>,
-	 * <code>_kerberos</code>, <code>client_credentials</code>, and
-	 * <code>refresh_token</code>.
+	 * <code>_kerberos</code>, <code>client_credentials</code>,
+	 * <code>refresh_token</code>, and <code>_user_managed_service_account</code>.
 	 * <p>
 	 * API name: {@code grant_type}
 	 */
@@ -181,6 +185,19 @@ public class GetTokenRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The service account token of a user-managed service account, as returned by
+	 * the create service account token API. If you specify the
+	 * <code>_user_managed_service_account</code> grant type, this parameter is
+	 * required. This parameter is not valid with any other supported grant type.
+	 * <p>
+	 * API name: {@code service_account_token}
+	 */
+	@Nullable
+	public final String serviceAccountToken() {
+		return this.serviceAccountToken;
+	}
+
+	/**
 	 * The username that identifies the user. If you specify the
 	 * <code>password</code> grant type, this parameter is required. This parameter
 	 * is not valid with any other supported grant type.
@@ -227,6 +244,11 @@ public class GetTokenRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.scope);
 
 		}
+		if (this.serviceAccountToken != null) {
+			generator.writeKey("service_account_token");
+			generator.write(this.serviceAccountToken);
+
+		}
 		if (this.username != null) {
 			generator.writeKey("username");
 			generator.write(this.username);
@@ -258,6 +280,9 @@ public class GetTokenRequest extends RequestBase implements JsonpSerializable {
 		private String scope;
 
 		@Nullable
+		private String serviceAccountToken;
+
+		@Nullable
 		private String username;
 
 		public Builder() {
@@ -268,13 +293,14 @@ public class GetTokenRequest extends RequestBase implements JsonpSerializable {
 			this.password = instance.password;
 			this.refreshToken = instance.refreshToken;
 			this.scope = instance.scope;
+			this.serviceAccountToken = instance.serviceAccountToken;
 			this.username = instance.username;
 
 		}
 		/**
 		 * The type of grant. Supported grant types are: <code>password</code>,
-		 * <code>_kerberos</code>, <code>client_credentials</code>, and
-		 * <code>refresh_token</code>.
+		 * <code>_kerberos</code>, <code>client_credentials</code>,
+		 * <code>refresh_token</code>, and <code>_user_managed_service_account</code>.
 		 * <p>
 		 * API name: {@code grant_type}
 		 */
@@ -332,6 +358,19 @@ public class GetTokenRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The service account token of a user-managed service account, as returned by
+		 * the create service account token API. If you specify the
+		 * <code>_user_managed_service_account</code> grant type, this parameter is
+		 * required. This parameter is not valid with any other supported grant type.
+		 * <p>
+		 * API name: {@code service_account_token}
+		 */
+		public final Builder serviceAccountToken(@Nullable String value) {
+			this.serviceAccountToken = value;
+			return this;
+		}
+
+		/**
 		 * The username that identifies the user. If you specify the
 		 * <code>password</code> grant type, this parameter is required. This parameter
 		 * is not valid with any other supported grant type.
@@ -382,6 +421,7 @@ public class GetTokenRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
 		op.add(Builder::refreshToken, JsonpDeserializer.stringDeserializer(), "refresh_token");
 		op.add(Builder::scope, JsonpDeserializer.stringDeserializer(), "scope");
+		op.add(Builder::serviceAccountToken, JsonpDeserializer.stringDeserializer(), "service_account_token");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 
 	}

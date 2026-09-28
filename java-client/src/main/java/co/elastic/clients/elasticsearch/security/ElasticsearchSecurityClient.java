@@ -866,7 +866,10 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * Create a service account token.
 	 * <p>
 	 * Create a service accounts token for access without requiring basic
-	 * authentication.
+	 * authentication. This route serves both kinds of service account, but the
+	 * privileges differ: <code>manage_service_account</code> authorizes tokens of
+	 * built-in accounts in the <code>elastic</code> namespace only, and tokens of a
+	 * user-managed account require <code>manage_security</code>.
 	 * <p>
 	 * NOTE: Service account tokens never expire. You must actively delete them if
 	 * they are no longer needed.
@@ -893,7 +896,10 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * Create a service account token.
 	 * <p>
 	 * Create a service accounts token for access without requiring basic
-	 * authentication.
+	 * authentication. This route serves both kinds of service account, but the
+	 * privileges differ: <code>manage_service_account</code> authorizes tokens of
+	 * built-in accounts in the <code>elastic</code> namespace only, and tokens of a
+	 * user-managed account require <code>manage_security</code>.
 	 * <p>
 	 * NOTE: Service account tokens never expire. You must actively delete them if
 	 * they are no longer needed.
@@ -1129,7 +1135,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	/**
 	 * Delete service account tokens.
 	 * <p>
-	 * Delete service account tokens for a service in a specified namespace.
+	 * Delete service account tokens for a service in a specified namespace. This
+	 * route serves both kinds of service account, but the privileges differ:
+	 * <code>manage_service_account</code> authorizes tokens of built-in accounts in
+	 * the <code>elastic</code> namespace only, and tokens of a user-managed account
+	 * require <code>manage_security</code>.
 	 * <p>
 	 * IMPORTANT: On Serverless, non-operator users can delete tokens for only
 	 * <code>elastic/fleet-server</code> and
@@ -1152,7 +1162,11 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	/**
 	 * Delete service account tokens.
 	 * <p>
-	 * Delete service account tokens for a service in a specified namespace.
+	 * Delete service account tokens for a service in a specified namespace. This
+	 * route serves both kinds of service account, but the privileges differ:
+	 * <code>manage_service_account</code> authorizes tokens of built-in accounts in
+	 * the <code>elastic</code> namespace only, and tokens of a user-managed account
+	 * require <code>manage_security</code>.
 	 * <p>
 	 * IMPORTANT: On Serverless, non-operator users can delete tokens for only
 	 * <code>elastic/fleet-server</code> and
@@ -1208,6 +1222,65 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	public final DeleteUserResponse deleteUser(Function<DeleteUserRequest.Builder, ObjectBuilder<DeleteUserRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return deleteUser(fn.apply(new DeleteUserRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: security.delete_user_managed_service_account
+
+	/**
+	 * Delete user-managed service accounts.
+	 * <p>
+	 * Delete a service account from a namespace of your own.
+	 * <p>
+	 * Deleting an account that still has service tokens is rejected unless
+	 * <code>force</code> is <code>true</code>. A forced delete leaves the tokens
+	 * behind: they cannot authenticate while no account of that name exists, and
+	 * recreating the account is rejected until they are deleted.
+	 * <p>
+	 * NOTE: The <code>elastic</code> namespace is reserved for the built-in service
+	 * accounts that ship with Elasticsearch. A name that no user-managed service
+	 * account could have is rejected rather than reported as not found. The
+	 * <code>manage_service_account</code> privilege does not authorize this API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-user-managed-service-account">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DeleteUserManagedServiceAccountResponse deleteUserManagedServiceAccount(
+			DeleteUserManagedServiceAccountRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteUserManagedServiceAccountRequest, DeleteUserManagedServiceAccountResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteUserManagedServiceAccountRequest, DeleteUserManagedServiceAccountResponse, ErrorResponse>) DeleteUserManagedServiceAccountRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Delete user-managed service accounts.
+	 * <p>
+	 * Delete a service account from a namespace of your own.
+	 * <p>
+	 * Deleting an account that still has service tokens is rejected unless
+	 * <code>force</code> is <code>true</code>. A forced delete leaves the tokens
+	 * behind: they cannot authenticate while no account of that name exists, and
+	 * recreating the account is rejected until they are deleted.
+	 * <p>
+	 * NOTE: The <code>elastic</code> namespace is reserved for the built-in service
+	 * accounts that ship with Elasticsearch. A name that no user-managed service
+	 * account could have is rejected rather than reported as not found. The
+	 * <code>manage_service_account</code> privilege does not authorize this API.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteUserManagedServiceAccountRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-user-managed-service-account">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DeleteUserManagedServiceAccountResponse deleteUserManagedServiceAccount(
+			Function<DeleteUserManagedServiceAccountRequest.Builder, ObjectBuilder<DeleteUserManagedServiceAccountRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteUserManagedServiceAccount(fn.apply(new DeleteUserManagedServiceAccountRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.disable_user
@@ -1736,9 +1809,14 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * Get service accounts.
 	 * <p>
 	 * Get a list of service accounts that match the provided path parameters.
+	 * Built-in service accounts ship with Elasticsearch in the <code>elastic</code>
+	 * namespace; user-managed service accounts are created with the put
+	 * user-managed service account API.
 	 * <p>
-	 * NOTE: Currently, only the <code>elastic/fleet-server</code> service account
-	 * is available.
+	 * NOTE: When <code>type</code> is omitted, a request without a namespace
+	 * reports built-in accounts only, which preserves the response of a
+	 * whole-cluster listing. A request scoped to a namespace reports both kinds, so
+	 * an account you created is found without naming its kind.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-service-accounts">Documentation
@@ -1757,9 +1835,14 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * Get service accounts.
 	 * <p>
 	 * Get a list of service accounts that match the provided path parameters.
+	 * Built-in service accounts ship with Elasticsearch in the <code>elastic</code>
+	 * namespace; user-managed service accounts are created with the put
+	 * user-managed service account API.
 	 * <p>
-	 * NOTE: Currently, only the <code>elastic/fleet-server</code> service account
-	 * is available.
+	 * NOTE: When <code>type</code> is omitted, a request without a namespace
+	 * reports built-in accounts only, which preserves the response of a
+	 * whole-cluster listing. A request scoped to a namespace reports both kinds, so
+	 * an account you created is found without naming its kind.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1779,9 +1862,14 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * Get service accounts.
 	 * <p>
 	 * Get a list of service accounts that match the provided path parameters.
+	 * Built-in service accounts ship with Elasticsearch in the <code>elastic</code>
+	 * namespace; user-managed service accounts are created with the put
+	 * user-managed service account API.
 	 * <p>
-	 * NOTE: Currently, only the <code>elastic/fleet-server</code> service account
-	 * is available.
+	 * NOTE: When <code>type</code> is omitted, a request without a namespace
+	 * reports built-in accounts only, which preserves the response of a
+	 * whole-cluster listing. A request scoped to a namespace reports both kinds, so
+	 * an account you created is found without naming its kind.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-service-accounts">Documentation
@@ -3114,6 +3202,65 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	public final PutUserResponse putUser(Function<PutUserRequest.Builder, ObjectBuilder<PutUserRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return putUser(fn.apply(new PutUserRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: security.put_user_managed_service_account
+
+	/**
+	 * Create user-managed service accounts.
+	 * <p>
+	 * Create a service account in a namespace of your own, or replace one that
+	 * already exists. A replacement is not a partial update: every write applies
+	 * the defaults, so an account that was disabled and is then written again
+	 * without <code>enabled</code> comes back enabled.
+	 * <p>
+	 * Creating an account whose name still has leftover service tokens is rejected.
+	 * Delete those tokens first.
+	 * <p>
+	 * NOTE: The <code>elastic</code> namespace is reserved for the built-in service
+	 * accounts that ship with Elasticsearch. The
+	 * <code>manage_service_account</code> privilege does not authorize this API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-user-managed-service-account">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutUserManagedServiceAccountResponse putUserManagedServiceAccount(
+			PutUserManagedServiceAccountRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutUserManagedServiceAccountRequest, PutUserManagedServiceAccountResponse, ErrorResponse> endpoint = (JsonEndpoint<PutUserManagedServiceAccountRequest, PutUserManagedServiceAccountResponse, ErrorResponse>) PutUserManagedServiceAccountRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create user-managed service accounts.
+	 * <p>
+	 * Create a service account in a namespace of your own, or replace one that
+	 * already exists. A replacement is not a partial update: every write applies
+	 * the defaults, so an account that was disabled and is then written again
+	 * without <code>enabled</code> comes back enabled.
+	 * <p>
+	 * Creating an account whose name still has leftover service tokens is rejected.
+	 * Delete those tokens first.
+	 * <p>
+	 * NOTE: The <code>elastic</code> namespace is reserved for the built-in service
+	 * accounts that ship with Elasticsearch. The
+	 * <code>manage_service_account</code> privilege does not authorize this API.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutUserManagedServiceAccountRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-user-managed-service-account">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutUserManagedServiceAccountResponse putUserManagedServiceAccount(
+			Function<PutUserManagedServiceAccountRequest.Builder, ObjectBuilder<PutUserManagedServiceAccountRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putUserManagedServiceAccount(fn.apply(new PutUserManagedServiceAccountRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.query_api_keys

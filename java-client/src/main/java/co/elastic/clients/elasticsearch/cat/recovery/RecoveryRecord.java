@@ -31,7 +31,6 @@ import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
@@ -90,10 +89,16 @@ public class RecoveryRecord implements JsonpSerializable {
 	private final String stage;
 
 	@Nullable
-	private final Integer localRetries;
+	private final String localRetries;
 
 	@Nullable
 	private final String priority;
+
+	@Nullable
+	private final String gate;
+
+	@Nullable
+	private final String blockedForMillis;
 
 	@Nullable
 	private final String sourceHost;
@@ -161,6 +166,8 @@ public class RecoveryRecord implements JsonpSerializable {
 		this.stage = builder.stage;
 		this.localRetries = builder.localRetries;
 		this.priority = builder.priority;
+		this.gate = builder.gate;
+		this.blockedForMillis = builder.blockedForMillis;
 		this.sourceHost = builder.sourceHost;
 		this.sourceNode = builder.sourceNode;
 		this.targetHost = builder.targetHost;
@@ -287,7 +294,7 @@ public class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code local_retries}
 	 */
 	@Nullable
-	public final Integer localRetries() {
+	public final String localRetries() {
 		return this.localRetries;
 	}
 
@@ -299,6 +306,32 @@ public class RecoveryRecord implements JsonpSerializable {
 	@Nullable
 	public final String priority() {
 		return this.priority;
+	}
+
+	/**
+	 * The name of the recovery gate that blocked recovery on the target node.
+	 * <p>
+	 * The value is <code>n/a</code> unless the recovery is queued in the
+	 * <code>created</code> stage and blocked by a recovery gate.
+	 * <p>
+	 * API name: {@code gate}
+	 */
+	@Nullable
+	public final String gate() {
+		return this.gate;
+	}
+
+	/**
+	 * The elapsed time in milliseconds recovery is blocked for.
+	 * <p>
+	 * The value is <code>n/a</code> when the recovery is not blocked by a recovery
+	 * gate.
+	 * <p>
+	 * API name: {@code blocked_for_millis}
+	 */
+	@Nullable
+	public final String blockedForMillis() {
+		return this.blockedForMillis;
 	}
 
 	/**
@@ -535,6 +568,16 @@ public class RecoveryRecord implements JsonpSerializable {
 			generator.write(this.priority);
 
 		}
+		if (this.gate != null) {
+			generator.writeKey("gate");
+			generator.write(this.gate);
+
+		}
+		if (this.blockedForMillis != null) {
+			generator.writeKey("blocked_for_millis");
+			generator.write(this.blockedForMillis);
+
+		}
 		if (this.sourceHost != null) {
 			generator.writeKey("source_host");
 			generator.write(this.sourceHost);
@@ -663,10 +706,16 @@ public class RecoveryRecord implements JsonpSerializable {
 		private String stage;
 
 		@Nullable
-		private Integer localRetries;
+		private String localRetries;
 
 		@Nullable
 		private String priority;
+
+		@Nullable
+		private String gate;
+
+		@Nullable
+		private String blockedForMillis;
 
 		@Nullable
 		private String sourceHost;
@@ -733,6 +782,8 @@ public class RecoveryRecord implements JsonpSerializable {
 			this.stage = instance.stage;
 			this.localRetries = instance.localRetries;
 			this.priority = instance.priority;
+			this.gate = instance.gate;
+			this.blockedForMillis = instance.blockedForMillis;
 			this.sourceHost = instance.sourceHost;
 			this.sourceNode = instance.sourceNode;
 			this.targetHost = instance.targetHost;
@@ -863,7 +914,7 @@ public class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code local_retries}
 		 */
-		public final Builder localRetries(@Nullable Integer value) {
+		public final Builder localRetries(@Nullable String value) {
 			this.localRetries = value;
 			return this;
 		}
@@ -875,6 +926,32 @@ public class RecoveryRecord implements JsonpSerializable {
 		 */
 		public final Builder priority(@Nullable String value) {
 			this.priority = value;
+			return this;
+		}
+
+		/**
+		 * The name of the recovery gate that blocked recovery on the target node.
+		 * <p>
+		 * The value is <code>n/a</code> unless the recovery is queued in the
+		 * <code>created</code> stage and blocked by a recovery gate.
+		 * <p>
+		 * API name: {@code gate}
+		 */
+		public final Builder gate(@Nullable String value) {
+			this.gate = value;
+			return this;
+		}
+
+		/**
+		 * The elapsed time in milliseconds recovery is blocked for.
+		 * <p>
+		 * The value is <code>n/a</code> when the recovery is not blocked by a recovery
+		 * gate.
+		 * <p>
+		 * API name: {@code blocked_for_millis}
+		 */
+		public final Builder blockedForMillis(@Nullable String value) {
+			this.blockedForMillis = value;
 			return this;
 		}
 
@@ -1091,8 +1168,10 @@ public class RecoveryRecord implements JsonpSerializable {
 		op.add(Builder::time, Time._DESERIALIZER, "time", "t", "ti");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type", "ty");
 		op.add(Builder::stage, JsonpDeserializer.stringDeserializer(), "stage", "st");
-		op.add(Builder::localRetries, JsonpDeserializer.integerDeserializer(), "local_retries", "lr");
+		op.add(Builder::localRetries, JsonpDeserializer.stringDeserializer(), "local_retries", "lr");
 		op.add(Builder::priority, JsonpDeserializer.stringDeserializer(), "priority", "pr");
+		op.add(Builder::gate, JsonpDeserializer.stringDeserializer(), "gate", "g");
+		op.add(Builder::blockedForMillis, JsonpDeserializer.stringDeserializer(), "blocked_for_millis", "bf");
 		op.add(Builder::sourceHost, JsonpDeserializer.stringDeserializer(), "source_host", "shost");
 		op.add(Builder::sourceNode, JsonpDeserializer.stringDeserializer(), "source_node", "snode");
 		op.add(Builder::targetHost, JsonpDeserializer.stringDeserializer(), "target_host", "thost");

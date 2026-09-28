@@ -59,6 +59,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GlobalPrivilege implements JsonpSerializable {
+	@Nullable
 	private final ApplicationGlobalUserPrivileges application;
 
 	private final List<DataSourcePrivileges> dataSource;
@@ -67,7 +68,7 @@ public class GlobalPrivilege implements JsonpSerializable {
 
 	private GlobalPrivilege(Builder builder) {
 
-		this.application = ApiTypeHelper.requireNonNull(builder.application, this, "application");
+		this.application = builder.application;
 		this.dataSource = ApiTypeHelper.unmodifiable(builder.dataSource);
 
 	}
@@ -77,8 +78,9 @@ public class GlobalPrivilege implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code application}
+	 * API name: {@code application}
 	 */
+	@Nullable
 	public final ApplicationGlobalUserPrivileges application() {
 		return this.application;
 	}
@@ -104,9 +106,11 @@ public class GlobalPrivilege implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("application");
-		this.application.serialize(generator, mapper);
+		if (this.application != null) {
+			generator.writeKey("application");
+			this.application.serialize(generator, mapper);
 
+		}
 		if (ApiTypeHelper.isDefined(this.dataSource)) {
 			generator.writeKey("data_source");
 			generator.writeStartArray();
@@ -132,6 +136,7 @@ public class GlobalPrivilege implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GlobalPrivilege> {
+		@Nullable
 		private ApplicationGlobalUserPrivileges application;
 
 		@Nullable
@@ -145,15 +150,15 @@ public class GlobalPrivilege implements JsonpSerializable {
 
 		}
 		/**
-		 * Required - API name: {@code application}
+		 * API name: {@code application}
 		 */
-		public final Builder application(ApplicationGlobalUserPrivileges value) {
+		public final Builder application(@Nullable ApplicationGlobalUserPrivileges value) {
 			this.application = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code application}
+		 * API name: {@code application}
 		 */
 		public final Builder application(
 				Function<ApplicationGlobalUserPrivileges.Builder, ObjectBuilder<ApplicationGlobalUserPrivileges>> fn) {

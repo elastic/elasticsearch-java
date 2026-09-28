@@ -230,6 +230,16 @@ public abstract class ResponseBody<TDocument> implements JsonpSerializable {
 	}
 
 	/**
+	 * An updated identifier for the point-in-time that was searched.
+	 * <p>
+	 * IMPORTANT: Each search request against a PIT returns in its response a
+	 * <code>pit_id</code> field which may be different from the identifier you
+	 * originally supplied. Always use the most recently-received PIT identifier for
+	 * the next request. If you make concurrent search requests against the same
+	 * PIT, Elasticsearch can return several different <code>pit_id</code> values in
+	 * its responses. In that case, use any of these values for later requests,
+	 * preferring more recently-received values whenever possible.
+	 * <p>
 	 * API name: {@code pit_id}
 	 */
 	@Nullable
@@ -568,6 +578,16 @@ public abstract class ResponseBody<TDocument> implements JsonpSerializable {
 		}
 
 		/**
+		 * An updated identifier for the point-in-time that was searched.
+		 * <p>
+		 * IMPORTANT: Each search request against a PIT returns in its response a
+		 * <code>pit_id</code> field which may be different from the identifier you
+		 * originally supplied. Always use the most recently-received PIT identifier for
+		 * the next request. If you make concurrent search requests against the same
+		 * PIT, Elasticsearch can return several different <code>pit_id</code> values in
+		 * its responses. In that case, use any of these values for later requests,
+		 * preferring more recently-received values whenever possible.
+		 * <p>
 		 * API name: {@code pit_id}
 		 */
 		public final BuilderT pitId(@Nullable String value) {

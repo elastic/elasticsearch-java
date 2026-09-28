@@ -59,7 +59,10 @@ import javax.annotation.Nullable;
  * Create a service account token.
  * <p>
  * Create a service accounts token for access without requiring basic
- * authentication.
+ * authentication. This route serves both kinds of service account, but the
+ * privileges differ: <code>manage_service_account</code> authorizes tokens of
+ * built-in accounts in the <code>elastic</code> namespace only, and tokens of a
+ * user-managed account require <code>manage_security</code>.
  * <p>
  * NOTE: Service account tokens never expire. You must actively delete them if
  * they are no longer needed.

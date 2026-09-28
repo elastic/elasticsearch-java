@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -81,6 +82,12 @@ public class ShardRecovery implements JsonpSerializable {
 	private final RecoveryPriority priority;
 
 	@Nullable
+	private final String gate;
+
+	@Nullable
+	private final Long blockedForMillis;
+
+	@Nullable
 	private final RecoveryStartStatus start;
 
 	@Nullable
@@ -118,6 +125,8 @@ public class ShardRecovery implements JsonpSerializable {
 		this.stage = ApiTypeHelper.requireNonNull(builder.stage, this, "stage");
 		this.localRetries = builder.localRetries;
 		this.priority = builder.priority;
+		this.gate = builder.gate;
+		this.blockedForMillis = builder.blockedForMillis;
 		this.start = builder.start;
 		this.startTime = builder.startTime;
 		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis", 0);
@@ -192,6 +201,31 @@ public class ShardRecovery implements JsonpSerializable {
 	@Nullable
 	public final RecoveryPriority priority() {
 		return this.priority;
+	}
+
+	/**
+	 * The name of the recovery gate that blocked recovery on the target node.
+	 * <p>
+	 * Only present for queued recoveries in the <code>CREATED</code> stage that are
+	 * blocked by a recovery gate.
+	 * <p>
+	 * API name: {@code gate}
+	 */
+	@Nullable
+	public final String gate() {
+		return this.gate;
+	}
+
+	/**
+	 * The elapsed time in milliseconds recovery is blocked for.
+	 * <p>
+	 * Only present with <code>gate</code>.
+	 * <p>
+	 * API name: {@code blocked_for_millis}
+	 */
+	@Nullable
+	public final Long blockedForMillis() {
+		return this.blockedForMillis;
 	}
 
 	/**
@@ -329,6 +363,16 @@ public class ShardRecovery implements JsonpSerializable {
 			generator.writeKey("priority");
 			this.priority.serialize(generator, mapper);
 		}
+		if (this.gate != null) {
+			generator.writeKey("gate");
+			generator.write(this.gate);
+
+		}
+		if (this.blockedForMillis != null) {
+			generator.writeKey("blocked_for_millis");
+			generator.write(this.blockedForMillis);
+
+		}
 		if (this.start != null) {
 			generator.writeKey("start");
 			this.start.serialize(generator, mapper);
@@ -400,6 +444,12 @@ public class ShardRecovery implements JsonpSerializable {
 		private RecoveryPriority priority;
 
 		@Nullable
+		private String gate;
+
+		@Nullable
+		private Long blockedForMillis;
+
+		@Nullable
 		private RecoveryStartStatus start;
 
 		@Nullable
@@ -436,6 +486,8 @@ public class ShardRecovery implements JsonpSerializable {
 			this.stage = instance.stage;
 			this.localRetries = instance.localRetries;
 			this.priority = instance.priority;
+			this.gate = instance.gate;
+			this.blockedForMillis = instance.blockedForMillis;
 			this.start = instance.start;
 			this.startTime = instance.startTime;
 			this.startTimeInMillis = instance.startTimeInMillis;
@@ -523,6 +575,31 @@ public class ShardRecovery implements JsonpSerializable {
 		 */
 		public final Builder priority(@Nullable RecoveryPriority value) {
 			this.priority = value;
+			return this;
+		}
+
+		/**
+		 * The name of the recovery gate that blocked recovery on the target node.
+		 * <p>
+		 * Only present for queued recoveries in the <code>CREATED</code> stage that are
+		 * blocked by a recovery gate.
+		 * <p>
+		 * API name: {@code gate}
+		 */
+		public final Builder gate(@Nullable String value) {
+			this.gate = value;
+			return this;
+		}
+
+		/**
+		 * The elapsed time in milliseconds recovery is blocked for.
+		 * <p>
+		 * Only present with <code>gate</code>.
+		 * <p>
+		 * API name: {@code blocked_for_millis}
+		 */
+		public final Builder blockedForMillis(@Nullable Long value) {
+			this.blockedForMillis = value;
 			return this;
 		}
 
@@ -709,6 +786,8 @@ public class ShardRecovery implements JsonpSerializable {
 		op.add(Builder::stage, RecoveryStage._DESERIALIZER, "stage");
 		op.add(Builder::localRetries, JsonpDeserializer.integerDeserializer(), "local_retries");
 		op.add(Builder::priority, RecoveryPriority._DESERIALIZER, "priority");
+		op.add(Builder::gate, JsonpDeserializer.stringDeserializer(), "gate");
+		op.add(Builder::blockedForMillis, JsonpDeserializer.longDeserializer(), "blocked_for_millis");
 		op.add(Builder::start, RecoveryStartStatus._DESERIALIZER, "start");
 		op.add(Builder::startTime, DateTime._DESERIALIZER, "start_time");
 		op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");

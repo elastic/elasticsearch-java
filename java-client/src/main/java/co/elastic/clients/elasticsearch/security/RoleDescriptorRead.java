@@ -738,8 +738,7 @@ public class RoleDescriptorRead implements JsonpSerializable {
 
 		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"cluster");
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges._DESERIALIZER), "indices",
-				"index");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges._DESERIALIZER), "indices");
 		op.add(Builder::remoteIndices, JsonpDeserializer.arrayDeserializer(RemoteIndicesPrivileges._DESERIALIZER),
 				"remote_indices");
 		op.add(Builder::remoteCluster, JsonpDeserializer.arrayDeserializer(RemoteClusterPrivileges._DESERIALIZER),

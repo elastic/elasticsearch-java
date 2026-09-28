@@ -21,20 +21,23 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch.security.get_service_accounts.ServiceAccountType;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -58,9 +61,14 @@ import javax.annotation.Nullable;
  * Get service accounts.
  * <p>
  * Get a list of service accounts that match the provided path parameters.
+ * Built-in service accounts ship with Elasticsearch in the <code>elastic</code>
+ * namespace; user-managed service accounts are created with the put
+ * user-managed service account API.
  * <p>
- * NOTE: Currently, only the <code>elastic/fleet-server</code> service account
- * is available.
+ * NOTE: When <code>type</code> is omitted, a request without a namespace
+ * reports built-in accounts only, which preserves the response of a
+ * whole-cluster listing. A request scoped to a namespace reports both kinds, so
+ * an account you created is found without naming its kind.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.get_service_accounts.Request">API
@@ -74,12 +82,15 @@ public class GetServiceAccountsRequest extends RequestBase {
 	@Nullable
 	private final String service;
 
+	private final List<ServiceAccountType> type;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GetServiceAccountsRequest(Builder builder) {
 
 		this.namespace = builder.namespace;
 		this.service = builder.service;
+		this.type = ApiTypeHelper.unmodifiable(builder.type);
 
 	}
 
@@ -110,6 +121,17 @@ public class GetServiceAccountsRequest extends RequestBase {
 		return this.service;
 	}
 
+	/**
+	 * A comma-separated list of the kinds of service account to return. If it is
+	 * omitted, it defaults to <code>built_in</code> when no namespace is given and
+	 * to <code>built_in,user_managed</code> otherwise.
+	 * <p>
+	 * API name: {@code type}
+	 */
+	public final List<ServiceAccountType> type() {
+		return this.type;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -125,11 +147,15 @@ public class GetServiceAccountsRequest extends RequestBase {
 		@Nullable
 		private String service;
 
+		@Nullable
+		private List<ServiceAccountType> type;
+
 		public Builder() {
 		}
 		private Builder(GetServiceAccountsRequest instance) {
 			this.namespace = instance.namespace;
 			this.service = instance.service;
+			this.type = instance.type;
 
 		}
 		/**
@@ -152,6 +178,34 @@ public class GetServiceAccountsRequest extends RequestBase {
 		 */
 		public final Builder service(@Nullable String value) {
 			this.service = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of the kinds of service account to return. If it is
+		 * omitted, it defaults to <code>built_in</code> when no namespace is given and
+		 * to <code>built_in,user_managed</code> otherwise.
+		 * <p>
+		 * API name: {@code type}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>type</code>.
+		 */
+		public final Builder type(List<ServiceAccountType> list) {
+			this.type = _listAddAll(this.type, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of the kinds of service account to return. If it is
+		 * omitted, it defaults to <code>built_in</code> when no namespace is given and
+		 * to <code>built_in,user_managed</code> otherwise.
+		 * <p>
+		 * API name: {@code type}
+		 * <p>
+		 * Adds one or more values to <code>type</code>.
+		 */
+		public final Builder type(ServiceAccountType value, ServiceAccountType... values) {
+			this.type = _listAdd(this.type, value, values);
 			return this;
 		}
 
@@ -260,7 +314,12 @@ public class GetServiceAccountsRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (ApiTypeHelper.isDefined(request.type)) {
+					params.put("type", request.type.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, GetServiceAccountsResponse._DESERIALIZER);
 }

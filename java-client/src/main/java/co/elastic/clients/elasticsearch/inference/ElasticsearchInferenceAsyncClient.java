@@ -71,20 +71,19 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.chat_completion_unified
 
 	/**
-	 * Perform chat completion inference on the service.
+	 * Perform streaming chat completion inference on the service.
 	 * <p>
 	 * The chat completion inference API enables real-time responses for chat
 	 * completion tasks by delivering answers incrementally, reducing response times
 	 * during computation. It only works with the <code>chat_completion</code> task
 	 * type.
 	 * <p>
-	 * NOTE: The <code>chat_completion</code> task type is only available within the
-	 * _stream API and only supports streaming. The Chat completion inference API
-	 * and the Stream inference API differ in their response structure and
-	 * capabilities. The Chat completion inference API provides more comprehensive
-	 * customization options through more fields and function calling support. To
-	 * determine whether a given inference service supports this task type, please
-	 * see the page for that service.
+	 * NOTE: The <code>chat_completion</code> task type supports both streaming and
+	 * non-streaming. The Chat completion inference API and the Stream inference API
+	 * differ in their response structure and capabilities. The Chat completion
+	 * inference API provides more comprehensive customization options through more
+	 * fields and function calling support. To determine whether a given inference
+	 * service supports this task type, please see the page for that service.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-unified-inference">Documentation
@@ -99,20 +98,19 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Perform chat completion inference on the service.
+	 * Perform streaming chat completion inference on the service.
 	 * <p>
 	 * The chat completion inference API enables real-time responses for chat
 	 * completion tasks by delivering answers incrementally, reducing response times
 	 * during computation. It only works with the <code>chat_completion</code> task
 	 * type.
 	 * <p>
-	 * NOTE: The <code>chat_completion</code> task type is only available within the
-	 * _stream API and only supports streaming. The Chat completion inference API
-	 * and the Stream inference API differ in their response structure and
-	 * capabilities. The Chat completion inference API provides more comprehensive
-	 * customization options through more fields and function calling support. To
-	 * determine whether a given inference service supports this task type, please
-	 * see the page for that service.
+	 * NOTE: The <code>chat_completion</code> task type supports both streaming and
+	 * non-streaming. The Chat completion inference API and the Stream inference API
+	 * differ in their response structure and capabilities. The Chat completion
+	 * inference API provides more comprehensive customization options through more
+	 * fields and function calling support. To determine whether a given inference
+	 * service supports this task type, please see the page for that service.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -423,6 +421,92 @@ public class ElasticsearchInferenceAsyncClient
 	public final CompletableFuture<InferenceResponse> inference(
 			Function<InferenceRequest.Builder, ObjectBuilder<InferenceRequest>> fn) {
 		return inference(fn.apply(new InferenceRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.non_streaming_chat_completion
+
+	/**
+	 * Perform non-streaming chat completion inference on the service.
+	 * <p>
+	 * The chat completion inference API enables rich responses for chat completion
+	 * tasks. It only works with the <code>chat_completion</code> task type.
+	 * <p>
+	 * NOTE: The <code>chat_completion</code> task type supports both streaming and
+	 * non-streaming. The Chat completion inference API provides more comprehensive
+	 * customization options through more fields and function calling support. To
+	 * determine whether a given inference service supports this task type, please
+	 * see the page for that service.
+	 * <p>
+	 * These services support non-streaming chat completion inference:
+	 * <ul>
+	 * <li>AI21</li>
+	 * <li>Azure OpenAI</li>
+	 * <li>Deepseek</li>
+	 * <li>Elastic</li>
+	 * <li>FireworksAI</li>
+	 * <li>Groq</li>
+	 * <li>Huggingface</li>
+	 * <li>IBMWatsonX</li>
+	 * <li>Llama</li>
+	 * <li>Mistral</li>
+	 * <li>NVIDIA</li>
+	 * <li>OpenAI</li>
+	 * <li>OpenShiftAI</li>
+	 * </ul>
+	 *
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-non-streaming-chat-completion">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<NonStreamingChatCompletionResponse> nonStreamingChatCompletion(
+			NonStreamingChatCompletionRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<NonStreamingChatCompletionRequest, NonStreamingChatCompletionResponse, ErrorResponse> endpoint = (JsonEndpoint<NonStreamingChatCompletionRequest, NonStreamingChatCompletionResponse, ErrorResponse>) NonStreamingChatCompletionRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Perform non-streaming chat completion inference on the service.
+	 * <p>
+	 * The chat completion inference API enables rich responses for chat completion
+	 * tasks. It only works with the <code>chat_completion</code> task type.
+	 * <p>
+	 * NOTE: The <code>chat_completion</code> task type supports both streaming and
+	 * non-streaming. The Chat completion inference API provides more comprehensive
+	 * customization options through more fields and function calling support. To
+	 * determine whether a given inference service supports this task type, please
+	 * see the page for that service.
+	 * <p>
+	 * These services support non-streaming chat completion inference:
+	 * <ul>
+	 * <li>AI21</li>
+	 * <li>Azure OpenAI</li>
+	 * <li>Deepseek</li>
+	 * <li>Elastic</li>
+	 * <li>FireworksAI</li>
+	 * <li>Groq</li>
+	 * <li>Huggingface</li>
+	 * <li>IBMWatsonX</li>
+	 * <li>Llama</li>
+	 * <li>Mistral</li>
+	 * <li>NVIDIA</li>
+	 * <li>OpenAI</li>
+	 * <li>OpenShiftAI</li>
+	 * </ul>
+	 *
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link NonStreamingChatCompletionRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-non-streaming-chat-completion">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<NonStreamingChatCompletionResponse> nonStreamingChatCompletion(
+			Function<NonStreamingChatCompletionRequest.Builder, ObjectBuilder<NonStreamingChatCompletionRequest>> fn) {
+		return nonStreamingChatCompletion(fn.apply(new NonStreamingChatCompletionRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: inference.put

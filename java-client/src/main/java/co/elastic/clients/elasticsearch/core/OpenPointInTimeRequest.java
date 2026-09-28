@@ -88,9 +88,13 @@ import javax.annotation.Nullable;
  * first 10,000 hits. If you want to retrieve more hits, use PIT with
  * <code>search_after</code>.
  * <p>
- * IMPORTANT: The open point in time request and each subsequent search request
- * can return different identifiers; always use the most recently received ID
- * for the next search request.
+ * IMPORTANT: Each search request against a PIT returns in its response a
+ * <code>pit_id</code> field which may be different from the identifier you
+ * originally supplied. Always use the most recently-received PIT identifier for
+ * the next request. If you make concurrent search requests against the same
+ * PIT, Elasticsearch can return several different <code>pit_id</code> values in
+ * its responses. In that case, use any of these values for later requests,
+ * preferring more recently-received values whenever possible.
  * <p>
  * When a PIT that contains shard failures is used in a search request, the
  * missing are always reported in the search response as a

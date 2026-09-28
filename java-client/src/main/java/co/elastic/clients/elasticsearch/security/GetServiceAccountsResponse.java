@@ -19,7 +19,7 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.elasticsearch.security.get_service_accounts.RoleDescriptorWrapper;
+import co.elastic.clients.elasticsearch.security.get_service_accounts.ServiceAccountInfo;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -64,13 +64,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GetServiceAccountsResponse implements JsonpSerializable {
-	private final Map<String, RoleDescriptorWrapper> serviceAccoutns;
+	private final Map<String, ServiceAccountInfo> serviceAccounts;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetServiceAccountsResponse(Builder builder) {
 
-		this.serviceAccoutns = ApiTypeHelper.unmodifiableRequired(builder.serviceAccoutns, this, "serviceAccoutns");
+		this.serviceAccounts = ApiTypeHelper.unmodifiableRequired(builder.serviceAccounts, this, "serviceAccounts");
 
 	}
 
@@ -81,15 +81,15 @@ public class GetServiceAccountsResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final Map<String, RoleDescriptorWrapper> serviceAccoutns() {
-		return this.serviceAccoutns;
+	public final Map<String, ServiceAccountInfo> serviceAccounts() {
+		return this.serviceAccounts;
 	}
 
 	/**
-	 * Get an element of {@code serviceAccoutns}.
+	 * Get an element of {@code serviceAccounts}.
 	 */
-	public final @Nullable RoleDescriptorWrapper get(String key) {
-		return this.serviceAccoutns.get(key);
+	public final @Nullable ServiceAccountInfo get(String key) {
+		return this.serviceAccounts.get(key);
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class GetServiceAccountsResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		for (Map.Entry<String, RoleDescriptorWrapper> item0 : this.serviceAccoutns.entrySet()) {
+		for (Map.Entry<String, ServiceAccountInfo> item0 : this.serviceAccounts.entrySet()) {
 			generator.writeKey(item0.getKey());
 			item0.getValue().serialize(generator, mapper);
 
@@ -120,45 +120,45 @@ public class GetServiceAccountsResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<GetServiceAccountsResponse> {
-		private Map<String, RoleDescriptorWrapper> serviceAccoutns = new HashMap<>();
+		private Map<String, ServiceAccountInfo> serviceAccounts = new HashMap<>();
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>serviceAccoutns</code>.
+		 * Adds all entries of <code>map</code> to <code>serviceAccounts</code>.
 		 */
-		public final Builder serviceAccoutns(Map<String, RoleDescriptorWrapper> map) {
-			this.serviceAccoutns = _mapPutAll(this.serviceAccoutns, map);
+		public final Builder serviceAccounts(Map<String, ServiceAccountInfo> map) {
+			this.serviceAccounts = _mapPutAll(this.serviceAccounts, map);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>serviceAccoutns</code>.
+		 * Adds an entry to <code>serviceAccounts</code>.
 		 */
-		public final Builder serviceAccoutns(String key, RoleDescriptorWrapper value) {
-			this.serviceAccoutns = _mapPut(this.serviceAccoutns, key, value);
+		public final Builder serviceAccounts(String key, ServiceAccountInfo value) {
+			this.serviceAccounts = _mapPut(this.serviceAccounts, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>serviceAccoutns</code> using a builder lambda.
+		 * Adds an entry to <code>serviceAccounts</code> using a builder lambda.
 		 */
-		public final Builder serviceAccoutns(String key,
-				Function<RoleDescriptorWrapper.Builder, ObjectBuilder<RoleDescriptorWrapper>> fn) {
-			return serviceAccoutns(key, fn.apply(new RoleDescriptorWrapper.Builder()).build());
+		public final Builder serviceAccounts(String key,
+				Function<ServiceAccountInfo.Builder, ObjectBuilder<ServiceAccountInfo>> fn) {
+			return serviceAccounts(key, fn.apply(new ServiceAccountInfo.Builder()).build());
 		}
 
 		@Override
 		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
 
 			@SuppressWarnings("unchecked")
-			Map<String, RoleDescriptorWrapper> value = (Map<String, RoleDescriptorWrapper>) JsonpDeserializer
-					.stringMapDeserializer(RoleDescriptorWrapper._DESERIALIZER).deserialize(parser, mapper);
-			return this.serviceAccoutns(value);
+			Map<String, ServiceAccountInfo> value = (Map<String, ServiceAccountInfo>) JsonpDeserializer
+					.stringMapDeserializer(ServiceAccountInfo._DESERIALIZER).deserialize(parser, mapper);
+			return this.serviceAccounts(value);
 		}
 
 		@Override
@@ -182,11 +182,11 @@ public class GetServiceAccountsResponse implements JsonpSerializable {
 	public static final JsonpDeserializer<GetServiceAccountsResponse> _DESERIALIZER = createGetServiceAccountsResponseDeserializer();
 	protected static JsonpDeserializer<GetServiceAccountsResponse> createGetServiceAccountsResponseDeserializer() {
 
-		JsonpDeserializer<Map<String, RoleDescriptorWrapper>> valueDeserializer = JsonpDeserializer
-				.stringMapDeserializer(RoleDescriptorWrapper._DESERIALIZER);
+		JsonpDeserializer<Map<String, ServiceAccountInfo>> valueDeserializer = JsonpDeserializer
+				.stringMapDeserializer(ServiceAccountInfo._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.serviceAccoutns(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.serviceAccounts(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }
