@@ -102,6 +102,22 @@ public enum CatRecoveryColumn implements JsonEnum {
 	Priority("priority", "pr"),
 
 	/**
+	 * The name of the recovery gate that blocked recovery on the target node.
+	 * <p>
+	 * The value is <code>n/a</code> unless the recovery is queued in the
+	 * <code>created</code> stage and blocked by a recovery gate.
+	 */
+	Gate("gate", "g"),
+
+	/**
+	 * The elapsed time in milliseconds recovery is blocked for.
+	 * <p>
+	 * The value is <code>n/a</code> when the recovery is not blocked by a recovery
+	 * gate.
+	 */
+	BlockedForMillis("blocked_for_millis", "bf"),
+
+	/**
 	 * The source host.
 	 */
 	SourceHost("source_host", "shost"),

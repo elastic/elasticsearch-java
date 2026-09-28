@@ -562,6 +562,52 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 		return query(fn.apply(new QueryRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: esql.test_data_source_connection
+
+	/**
+	 * Test an ES|QL data source connection.
+	 * <p>
+	 * Tests whether the supplied data source configuration can establish a live
+	 * connection. The data source does not need to exist in cluster state: this
+	 * endpoint is intended for validating a new configuration before saving it. The
+	 * request body accepts the same <code>type</code> and <code>settings</code>
+	 * fields as the create or update data source API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-data-source-test-connection">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<TestDataSourceConnectionResponse> testDataSourceConnection(
+			TestDataSourceConnectionRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<TestDataSourceConnectionRequest, TestDataSourceConnectionResponse, ErrorResponse> endpoint = (JsonEndpoint<TestDataSourceConnectionRequest, TestDataSourceConnectionResponse, ErrorResponse>) TestDataSourceConnectionRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Test an ES|QL data source connection.
+	 * <p>
+	 * Tests whether the supplied data source configuration can establish a live
+	 * connection. The data source does not need to exist in cluster state: this
+	 * endpoint is intended for validating a new configuration before saving it. The
+	 * request body accepts the same <code>type</code> and <code>settings</code>
+	 * fields as the create or update data source API.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link TestDataSourceConnectionRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-data-source-test-connection">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<TestDataSourceConnectionResponse> testDataSourceConnection(
+			Function<TestDataSourceConnectionRequest.Builder, ObjectBuilder<TestDataSourceConnectionRequest>> fn) {
+		return testDataSourceConnection(fn.apply(new TestDataSourceConnectionRequest.Builder()).build());
+	}
+
 	/**
 	 * Executes an ES|QL request and adapts its result to a target type.
 	 *

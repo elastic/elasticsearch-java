@@ -128,6 +128,9 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 	private final String jobId;
 
 	@Nullable
+	private final Integer maxConsecutiveExtractionFailures;
+
+	@Nullable
 	private final Integer maxEmptySearches;
 
 	@Nullable
@@ -163,6 +166,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.indicesOptions = builder.indicesOptions;
 		this.jobId = builder.jobId;
+		this.maxConsecutiveExtractionFailures = builder.maxConsecutiveExtractionFailures;
 		this.maxEmptySearches = builder.maxEmptySearches;
 		this.projectRouting = builder.projectRouting;
 		this.query = builder.query;
@@ -337,6 +341,23 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * The maximum number of consecutive real-time data extraction failures the
+	 * datafeed tolerates before it automatically stops itself, leaving the
+	 * associated job open. The consecutive-failure counter resets on any cycle that
+	 * extracts successfully, including empty-data cycles. If not set, the threshold
+	 * defaults to roughly one day's worth of searches based on the datafeed
+	 * <code>frequency</code> (floored at 1). Set to <code>-1</code> to disable
+	 * auto-stop and retry indefinitely. Values of <code>0</code> or less than
+	 * <code>-1</code> are rejected.
+	 * <p>
+	 * API name: {@code max_consecutive_extraction_failures}
+	 */
+	@Nullable
+	public final Integer maxConsecutiveExtractionFailures() {
+		return this.maxConsecutiveExtractionFailures;
+	}
+
+	/**
 	 * If a real-time datafeed has never seen any data (including during any initial
 	 * training period), it automatically stops and closes the associated job after
 	 * this many real-time searches return no documents. In other words, it stops
@@ -501,6 +522,11 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 			generator.write(this.jobId);
 
 		}
+		if (this.maxConsecutiveExtractionFailures != null) {
+			generator.writeKey("max_consecutive_extraction_failures");
+			generator.write(this.maxConsecutiveExtractionFailures);
+
+		}
 		if (this.maxEmptySearches != null) {
 			generator.writeKey("max_empty_searches");
 			generator.write(this.maxEmptySearches);
@@ -599,6 +625,9 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		private String jobId;
 
 		@Nullable
+		private Integer maxConsecutiveExtractionFailures;
+
+		@Nullable
 		private Integer maxEmptySearches;
 
 		@Nullable
@@ -635,6 +664,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 			this.indices = instance.indices;
 			this.indicesOptions = instance.indicesOptions;
 			this.jobId = instance.jobId;
+			this.maxConsecutiveExtractionFailures = instance.maxConsecutiveExtractionFailures;
 			this.maxEmptySearches = instance.maxEmptySearches;
 			this.projectRouting = instance.projectRouting;
 			this.query = instance.query;
@@ -946,6 +976,23 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * The maximum number of consecutive real-time data extraction failures the
+		 * datafeed tolerates before it automatically stops itself, leaving the
+		 * associated job open. The consecutive-failure counter resets on any cycle that
+		 * extracts successfully, including empty-data cycles. If not set, the threshold
+		 * defaults to roughly one day's worth of searches based on the datafeed
+		 * <code>frequency</code> (floored at 1). Set to <code>-1</code> to disable
+		 * auto-stop and retry indefinitely. Values of <code>0</code> or less than
+		 * <code>-1</code> are rejected.
+		 * <p>
+		 * API name: {@code max_consecutive_extraction_failures}
+		 */
+		public final Builder maxConsecutiveExtractionFailures(@Nullable Integer value) {
+			this.maxConsecutiveExtractionFailures = value;
+			return this;
+		}
+
+		/**
 		 * If a real-time datafeed has never seen any data (including during any initial
 		 * training period), it automatically stops and closes the associated job after
 		 * this many real-time searches return no documents. In other words, it stops
@@ -1176,6 +1223,8 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 				"indexes");
 		op.add(Builder::indicesOptions, IndicesOptions._DESERIALIZER, "indices_options");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
+		op.add(Builder::maxConsecutiveExtractionFailures, JsonpDeserializer.integerDeserializer(),
+				"max_consecutive_extraction_failures");
 		op.add(Builder::maxEmptySearches, JsonpDeserializer.integerDeserializer(), "max_empty_searches");
 		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 		op.add(Builder::query, Query._DESERIALIZER, "query");

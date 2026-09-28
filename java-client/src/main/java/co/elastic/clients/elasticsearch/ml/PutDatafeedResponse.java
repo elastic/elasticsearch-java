@@ -95,6 +95,9 @@ public class PutDatafeedResponse implements JsonpSerializable {
 	@Nullable
 	private final Integer maxEmptySearches;
 
+	@Nullable
+	private final Integer maxConsecutiveExtractionFailures;
+
 	private final Query query;
 
 	private final Time queryDelay;
@@ -122,6 +125,7 @@ public class PutDatafeedResponse implements JsonpSerializable {
 		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.indicesOptions = builder.indicesOptions;
 		this.maxEmptySearches = builder.maxEmptySearches;
+		this.maxConsecutiveExtractionFailures = builder.maxConsecutiveExtractionFailures;
 		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.queryDelay = ApiTypeHelper.requireNonNull(builder.queryDelay, this, "queryDelay");
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
@@ -208,6 +212,14 @@ public class PutDatafeedResponse implements JsonpSerializable {
 	@Nullable
 	public final Integer maxEmptySearches() {
 		return this.maxEmptySearches;
+	}
+
+	/**
+	 * API name: {@code max_consecutive_extraction_failures}
+	 */
+	@Nullable
+	public final Integer maxConsecutiveExtractionFailures() {
+		return this.maxConsecutiveExtractionFailures;
 	}
 
 	/**
@@ -325,6 +337,11 @@ public class PutDatafeedResponse implements JsonpSerializable {
 			generator.write(this.maxEmptySearches);
 
 		}
+		if (this.maxConsecutiveExtractionFailures != null) {
+			generator.writeKey("max_consecutive_extraction_failures");
+			generator.write(this.maxConsecutiveExtractionFailures);
+
+		}
 		generator.writeKey("query");
 		this.query.serialize(generator, mapper);
 
@@ -403,6 +420,9 @@ public class PutDatafeedResponse implements JsonpSerializable {
 
 		@Nullable
 		private Integer maxEmptySearches;
+
+		@Nullable
+		private Integer maxConsecutiveExtractionFailures;
 
 		private Query query;
 
@@ -580,6 +600,14 @@ public class PutDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code max_consecutive_extraction_failures}
+		 */
+		public final Builder maxConsecutiveExtractionFailures(@Nullable Integer value) {
+			this.maxConsecutiveExtractionFailures = value;
+			return this;
+		}
+
+		/**
 		 * Required - API name: {@code query}
 		 */
 		public final Builder query(Query value) {
@@ -738,6 +766,8 @@ public class PutDatafeedResponse implements JsonpSerializable {
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::indicesOptions, IndicesOptions._DESERIALIZER, "indices_options");
 		op.add(Builder::maxEmptySearches, JsonpDeserializer.integerDeserializer(), "max_empty_searches");
+		op.add(Builder::maxConsecutiveExtractionFailures, JsonpDeserializer.integerDeserializer(),
+				"max_consecutive_extraction_failures");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::queryDelay, Time._DESERIALIZER, "query_delay");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),

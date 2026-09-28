@@ -88,6 +88,14 @@ public class ClosePointInTimeRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Required - The ID of the point-in-time.
 	 * <p>
+	 * IMPORTANT: Each search request against a PIT returns in its response a
+	 * <code>pit_id</code> field which may be different from the identifier you
+	 * originally supplied. Always use the most recently-received PIT identifier for
+	 * the next request. If you make concurrent search requests against the same
+	 * PIT, Elasticsearch can return several different <code>pit_id</code> values in
+	 * its responses. In that case, use any of these values for later requests,
+	 * preferring more recently-received values whenever possible.
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public final String id() {
@@ -129,6 +137,14 @@ public class ClosePointInTimeRequest extends RequestBase implements JsonpSeriali
 		}
 		/**
 		 * Required - The ID of the point-in-time.
+		 * <p>
+		 * IMPORTANT: Each search request against a PIT returns in its response a
+		 * <code>pit_id</code> field which may be different from the identifier you
+		 * originally supplied. Always use the most recently-received PIT identifier for
+		 * the next request. If you make concurrent search requests against the same
+		 * PIT, Elasticsearch can return several different <code>pit_id</code> values in
+		 * its responses. In that case, use any of these values for later requests,
+		 * preferring more recently-received values whenever possible.
 		 * <p>
 		 * API name: {@code id}
 		 */

@@ -58,7 +58,8 @@ public class ElasticsearchException extends RuntimeException {
 			message.append("; caused by: [").append(cause.type()).append("] ").append(cause.reason());
 		}
 
-		// Root causes carry the actual error for generic errors such "all shards failed"
+		// Root causes carry the actual error for generic errors such "all shards
+		// failed"
 		for (ErrorCause rootCause : error.rootCause()) {
 			// Avoid repeating same message
 			if (Objects.equals(rootCause.type(), error.type()) && Objects.equals(rootCause.reason(), error.reason())) {

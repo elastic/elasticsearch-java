@@ -58,7 +58,11 @@ import javax.annotation.Nullable;
 /**
  * Delete service account tokens.
  * <p>
- * Delete service account tokens for a service in a specified namespace.
+ * Delete service account tokens for a service in a specified namespace. This
+ * route serves both kinds of service account, but the privileges differ:
+ * <code>manage_service_account</code> authorizes tokens of built-in accounts in
+ * the <code>elastic</code> namespace only, and tokens of a user-managed account
+ * require <code>manage_security</code>.
  * <p>
  * IMPORTANT: On Serverless, non-operator users can delete tokens for only
  * <code>elastic/fleet-server</code> and

@@ -88,6 +88,9 @@ public class Indicators implements JsonpSerializable {
 	@Nullable
 	private final ProjectEncryptionKeyIndicator projectEncryptionKey;
 
+	@Nullable
+	private final DlmFrozenTransitionsIndicator dlmFrozenTransitions;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private Indicators(Builder builder) {
@@ -102,6 +105,7 @@ public class Indicators implements JsonpSerializable {
 		this.shardsCapacity = builder.shardsCapacity;
 		this.fileSettings = builder.fileSettings;
 		this.projectEncryptionKey = builder.projectEncryptionKey;
+		this.dlmFrozenTransitions = builder.dlmFrozenTransitions;
 
 	}
 
@@ -190,6 +194,14 @@ public class Indicators implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code dlm_frozen_transitions}
+	 */
+	@Nullable
+	public final DlmFrozenTransitionsIndicator dlmFrozenTransitions() {
+		return this.dlmFrozenTransitions;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -250,6 +262,11 @@ public class Indicators implements JsonpSerializable {
 			this.projectEncryptionKey.serialize(generator, mapper);
 
 		}
+		if (this.dlmFrozenTransitions != null) {
+			generator.writeKey("dlm_frozen_transitions");
+			this.dlmFrozenTransitions.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -295,6 +312,9 @@ public class Indicators implements JsonpSerializable {
 		@Nullable
 		private ProjectEncryptionKeyIndicator projectEncryptionKey;
 
+		@Nullable
+		private DlmFrozenTransitionsIndicator dlmFrozenTransitions;
+
 		public Builder() {
 		}
 		private Builder(Indicators instance) {
@@ -308,6 +328,7 @@ public class Indicators implements JsonpSerializable {
 			this.shardsCapacity = instance.shardsCapacity;
 			this.fileSettings = instance.fileSettings;
 			this.projectEncryptionKey = instance.projectEncryptionKey;
+			this.dlmFrozenTransitions = instance.dlmFrozenTransitions;
 
 		}
 		/**
@@ -467,6 +488,22 @@ public class Indicators implements JsonpSerializable {
 			return this.projectEncryptionKey(fn.apply(new ProjectEncryptionKeyIndicator.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code dlm_frozen_transitions}
+		 */
+		public final Builder dlmFrozenTransitions(@Nullable DlmFrozenTransitionsIndicator value) {
+			this.dlmFrozenTransitions = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code dlm_frozen_transitions}
+		 */
+		public final Builder dlmFrozenTransitions(
+				Function<DlmFrozenTransitionsIndicator.Builder, ObjectBuilder<DlmFrozenTransitionsIndicator>> fn) {
+			return this.dlmFrozenTransitions(fn.apply(new DlmFrozenTransitionsIndicator.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -511,6 +548,7 @@ public class Indicators implements JsonpSerializable {
 		op.add(Builder::shardsCapacity, ShardsCapacityIndicator._DESERIALIZER, "shards_capacity");
 		op.add(Builder::fileSettings, FileSettingsIndicator._DESERIALIZER, "file_settings");
 		op.add(Builder::projectEncryptionKey, ProjectEncryptionKeyIndicator._DESERIALIZER, "project_encryption_key");
+		op.add(Builder::dlmFrozenTransitions, DlmFrozenTransitionsIndicator._DESERIALIZER, "dlm_frozen_transitions");
 
 	}
 
