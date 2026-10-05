@@ -968,9 +968,9 @@
 '_types.query_dsl.BoolQuery': '_types/query_dsl/compound.ts#L29-L56',
 '_types.query_dsl.BoostingQuery': '_types/query_dsl/compound.ts#L58-L74',
 '_types.query_dsl.ChildScoreMode': '_types/query_dsl/joining.ts#L25-L39',
-'_types.query_dsl.CombinedFieldsOperator': '_types/query_dsl/abstractions.ts#L513-L516',
-'_types.query_dsl.CombinedFieldsQuery': '_types/query_dsl/abstractions.ts#L466-L500',
-'_types.query_dsl.CombinedFieldsZeroTerms': '_types/query_dsl/abstractions.ts#L518-L527',
+'_types.query_dsl.CombinedFieldsOperator': '_types/query_dsl/abstractions.ts#L522-L525',
+'_types.query_dsl.CombinedFieldsQuery': '_types/query_dsl/abstractions.ts#L475-L509',
+'_types.query_dsl.CombinedFieldsZeroTerms': '_types/query_dsl/abstractions.ts#L527-L536',
 '_types.query_dsl.CommonTermsQuery': '_types/query_dsl/fulltext.ts#L34-L44',
 '_types.query_dsl.ConstantScoreQuery': '_types/query_dsl/compound.ts#L76-L86',
 '_types.query_dsl.DateDecayFunction': '_types/query_dsl/compound.ts#L211-L211',
@@ -983,8 +983,8 @@
 '_types.query_dsl.DistanceFeatureQuery': '_types/query_dsl/specialized.ts#L76-L85',
 '_types.query_dsl.DistanceFeatureQueryBase': '_types/query_dsl/specialized.ts#L39-L59',
 '_types.query_dsl.ExistsQuery': '_types/query_dsl/term.ts#L37-L45',
-'_types.query_dsl.FieldAndFormat': '_types/query_dsl/abstractions.ts#L529-L543',
-'_types.query_dsl.FieldLookup': '_types/query_dsl/abstractions.ts#L430-L447',
+'_types.query_dsl.FieldAndFormat': '_types/query_dsl/abstractions.ts#L538-L552',
+'_types.query_dsl.FieldLookup': '_types/query_dsl/abstractions.ts#L439-L456',
 '_types.query_dsl.FieldValueFactorModifier': '_types/query_dsl/compound.ts#L331-L374',
 '_types.query_dsl.FieldValueFactorScoreFunction': '_types/query_dsl/compound.ts#L151-L170',
 '_types.query_dsl.FunctionBoostMode': '_types/query_dsl/compound.ts#L303-L329',
@@ -1017,6 +1017,7 @@
 '_types.query_dsl.IntervalsRange': '_types/query_dsl/fulltext.ts#L237-L264',
 '_types.query_dsl.IntervalsRegexp': '_types/query_dsl/fulltext.ts#L266-L281',
 '_types.query_dsl.IntervalsWildcard': '_types/query_dsl/fulltext.ts#L319-L334',
+'_types.query_dsl.KqlQuery': '_types/query_dsl/KqlQuery.ts#L24-L48',
 '_types.query_dsl.Like': '_types/query_dsl/specialized.ts#L198-L203',
 '_types.query_dsl.LikeDocument': '_types/query_dsl/specialized.ts#L174-L196',
 '_types.query_dsl.LongNumberRangeQuery': '_types/query_dsl/term.ts#L170-L170',
@@ -1038,8 +1039,8 @@
 '_types.query_dsl.PinnedDoc': '_types/query_dsl/specialized.ts#L269-L278',
 '_types.query_dsl.PinnedQuery': '_types/query_dsl/specialized.ts#L247-L267',
 '_types.query_dsl.PrefixQuery': '_types/query_dsl/term.ts#L98-L120',
-'_types.query_dsl.QueryBase': '_types/query_dsl/abstractions.ts#L453-L464',
-'_types.query_dsl.QueryContainer': '_types/query_dsl/abstractions.ts#L97-L428',
+'_types.query_dsl.QueryBase': '_types/query_dsl/abstractions.ts#L462-L473',
+'_types.query_dsl.QueryContainer': '_types/query_dsl/abstractions.ts#L98-L437',
 '_types.query_dsl.QueryStringQuery': '_types/query_dsl/fulltext.ts#L650-L773',
 '_types.query_dsl.RandomScoreFunction': '_types/query_dsl/compound.ts#L145-L149',
 '_types.query_dsl.RangeQuery': '_types/query_dsl/term.ts#L174-L185',
@@ -1086,7 +1087,7 @@
 '_types.query_dsl.UntypedRangeQuery': '_types/query_dsl/term.ts#L146-L155',
 '_types.query_dsl.WeightedTokensQuery': '_types/query_dsl/WeightedTokensQuery.ts#L25-L33',
 '_types.query_dsl.WildcardQuery': '_types/query_dsl/term.ts#L304-L324',
-'_types.query_dsl.WrapperQuery': '_types/query_dsl/abstractions.ts#L502-L511',
+'_types.query_dsl.WrapperQuery': '_types/query_dsl/abstractions.ts#L511-L520',
 '_types.query_dsl.ZeroTermsQuery': '_types/query_dsl/fulltext.ts#L639-L648',
 'async_search._types.AsyncSearch': 'async_search/_types/AsyncSearch.ts#L30-L56',
 'async_search._types.AsyncSearchDocumentResponseBase': 'async_search/_types/AsyncSearchResponseBase.ts#L54-L58',
@@ -3570,10 +3571,10 @@
         if (hash.length > 1) {
             hash = hash.substring(1);
         }
-        window.location = "https://github.com/elastic/elasticsearch-specification/tree/ad07e24d224fcd526ebde387edfa4d9975684a21/specification/" + (paths[hash] || "");
+        window.location = "https://github.com/elastic/elasticsearch-specification/tree/1fd90d0d3bddf481cce98d9127fa0f0718fbc5bb/specification/" + (paths[hash] || "");
     </script>
 </head>
 <body>
-    Please see the <a href="https://github.com/elastic/elasticsearch-specification/tree/ad07e24d224fcd526ebde387edfa4d9975684a21/specification/">Elasticsearch API specification</a>.
+    Please see the <a href="https://github.com/elastic/elasticsearch-specification/tree/1fd90d0d3bddf481cce98d9127fa0f0718fbc5bb/specification/">Elasticsearch API specification</a>.
 </body>
 </html>
