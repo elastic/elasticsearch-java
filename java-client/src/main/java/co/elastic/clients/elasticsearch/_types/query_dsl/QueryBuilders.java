@@ -390,6 +390,22 @@ public class QueryBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link KqlQuery kql} {@code Query} variant.
+	 */
+	public static KqlQuery.Builder kql() {
+		return new KqlQuery.Builder();
+	}
+
+	/**
+	 * Creates a Query of the {@link KqlQuery kql} {@code Query} variant.
+	 */
+	public static Query kql(Function<KqlQuery.Builder, ObjectBuilder<KqlQuery>> fn) {
+		Query.Builder builder = new Query.Builder();
+		builder.kql(fn.apply(new KqlQuery.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link MatchQuery match} {@code Query} variant.
 	 */
 	public static MatchQuery.Builder match() {
