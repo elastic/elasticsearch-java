@@ -119,6 +119,8 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 
 		Knn("knn"),
 
+		Kql("kql"),
+
 		Match("match"),
 
 		MatchAll("match_all"),
@@ -600,6 +602,23 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 	 */
 	public KnnQuery knn() {
 		return TaggedUnionUtils.get(this, Kind.Knn);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code kql}?
+	 */
+	public boolean isKql() {
+		return _kind == Kind.Kql;
+	}
+
+	/**
+	 * Get the {@code kql} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code kql} kind.
+	 */
+	public KqlQuery kql() {
+		return TaggedUnionUtils.get(this, Kind.Kql);
 	}
 
 	/**
@@ -1569,6 +1588,16 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 			return this.knn(fn.apply(new KnnQuery.Builder()).build());
 		}
 
+		public ObjectBuilder<Query> kql(KqlQuery v) {
+			this._kind = Kind.Kql;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Query> kql(Function<KqlQuery.Builder, ObjectBuilder<KqlQuery>> fn) {
+			return this.kql(fn.apply(new KqlQuery.Builder()).build());
+		}
+
 		public ObjectBuilder<Query> match(MatchQuery v) {
 			this._kind = Kind.Match;
 			this._value = v;
@@ -2038,6 +2067,7 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		op.add(Builder::ids, IdsQuery._DESERIALIZER, "ids");
 		op.add(Builder::intervals, IntervalsQuery._DESERIALIZER, "intervals");
 		op.add(Builder::knn, KnnQuery._DESERIALIZER, "knn");
+		op.add(Builder::kql, KqlQuery._DESERIALIZER, "kql");
 		op.add(Builder::match, MatchQuery._DESERIALIZER, "match");
 		op.add(Builder::matchAll, MatchAllQuery._DESERIALIZER, "match_all");
 		op.add(Builder::matchBoolPrefix, MatchBoolPrefixQuery._DESERIALIZER, "match_bool_prefix");
