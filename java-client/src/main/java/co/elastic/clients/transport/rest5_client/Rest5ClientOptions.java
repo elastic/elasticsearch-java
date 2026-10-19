@@ -61,7 +61,7 @@ public class Rest5ClientOptions implements TransportOptions {
             return (Rest5ClientOptions) options;
         }
 
-        final Builder builder = new Builder(RequestOptions.DEFAULT.toBuilder());
+        final Builder builder = new Builder(SafeResponseConsumer.DEFAULT_REQUEST_OPTIONS.toBuilder());
         options.headers().forEach(h -> builder.addHeader(h.getKey(), h.getValue()));
         options.queryParameters().forEach(builder::setParameter);
         builder.onWarnings(options.onWarnings());

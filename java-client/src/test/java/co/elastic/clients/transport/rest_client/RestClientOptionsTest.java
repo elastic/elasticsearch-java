@@ -199,4 +199,20 @@ class RestClientOptionsTest extends Assertions {
         // overriding user-agent is ok
         checkUserAgent(id, "FooBarAgent/1.0");
     }
+
+    @Test
+    void testConvertedOptionsUseSafeResponseConsumer() throws Exception {
+        // Transport options set on the client builder are converted from DefaultTransportOptions
+        ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
+            .host("http://example.com")
+            .useLegacyTransport(true)
+            .transportOptions(o -> o.addHeader("Foo", "bar"))
+        );
+
+        RestClientOptions options = (RestClientOptions) esClient._transportOptions();
+        assertSame(SafeResponseConsumer.DEFAULT_FACTORY,
+            options.restClientRequestOptions().getHttpAsyncResponseConsumerFactory());
+
+        esClient._transport().close();
+    }
 }

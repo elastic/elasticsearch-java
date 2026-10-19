@@ -61,7 +61,7 @@ public class RestClientOptions implements TransportOptions {
             return (RestClientOptions)options;
         }
 
-        final Builder builder = new Builder(RequestOptions.DEFAULT.toBuilder());
+        final Builder builder = new Builder(SafeResponseConsumer.DEFAULT_REQUEST_OPTIONS.toBuilder());
         options.headers().forEach(h -> builder.addHeader(h.getKey(), h.getValue()));
         options.queryParameters().forEach(builder::setParameter);
         builder.onWarnings(options.onWarnings());
