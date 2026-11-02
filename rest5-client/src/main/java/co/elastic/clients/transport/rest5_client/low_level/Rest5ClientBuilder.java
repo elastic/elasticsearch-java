@@ -462,7 +462,9 @@ public final class Rest5ClientBuilder {
                 .setConnectionManager(connectionManagerBuilder.build())
                 .setUserAgent(USER_AGENT_HEADER_VALUE)
                 .setTargetAuthenticationStrategy(new DefaultAuthenticationStrategy())
-                .setThreadFactory(new RestClientThreadFactory());
+                .setThreadFactory(new RestClientThreadFactory())
+                // Avoid automatically enabling gzip for all responses
+                .disableContentCompression();
 
             if (this.proxy != null) {
                 httpClientBuilder.setProxy(this.proxy);
