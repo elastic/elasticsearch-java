@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
 // typedef: cat.tasks.Request
 
 /**
- * Get task information.
+ * Get a compact list of running tasks.
  * <p>
  * Get information about tasks currently running in the cluster. IMPORTANT: cat
  * APIs are only intended for human consumption using the command line or Kibana

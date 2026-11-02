@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
 // typedef: cat.nodes.Request
 
 /**
- * Get node information.
+ * Get a compact list of nodes.
  * <p>
  * Get information about the nodes in a cluster. IMPORTANT: cat APIs are only
  * intended for human consumption using the command line or Kibana console. They

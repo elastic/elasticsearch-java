@@ -120,8 +120,10 @@ public class ElasticsearchSearchableSnapshotsClient
 	// ----- Endpoint: searchable_snapshots.clear_cache
 
 	/**
-	 * Clear the cache. Clear indices and data streams from the shared cache for
-	 * partially mounted indices.
+	 * Clear the searchable snapshots shared cache.
+	 * <p>
+	 * Clear indices and data streams from the shared cache for partially mounted
+	 * indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/searchable-snapshots-api-clear-cache.html">Documentation
@@ -136,8 +138,10 @@ public class ElasticsearchSearchableSnapshotsClient
 	}
 
 	/**
-	 * Clear the cache. Clear indices and data streams from the shared cache for
-	 * partially mounted indices.
+	 * Clear the searchable snapshots shared cache.
+	 * <p>
+	 * Clear indices and data streams from the shared cache for partially mounted
+	 * indices.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -153,8 +157,10 @@ public class ElasticsearchSearchableSnapshotsClient
 	}
 
 	/**
-	 * Clear the cache. Clear indices and data streams from the shared cache for
-	 * partially mounted indices.
+	 * Clear the searchable snapshots shared cache.
+	 * <p>
+	 * Clear indices and data streams from the shared cache for partially mounted
+	 * indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/searchable-snapshots-api-clear-cache.html">Documentation

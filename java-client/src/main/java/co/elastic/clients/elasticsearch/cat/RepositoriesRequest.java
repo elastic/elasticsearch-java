@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
 // typedef: cat.repositories.Request
 
 /**
- * Get snapshot repository information.
+ * Get a compact list of snapshot repositories.
  * <p>
  * Get a list of snapshot repositories for a cluster. IMPORTANT: cat APIs are
  * only intended for human consumption using the command line or Kibana console.

@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
 // typedef: cat.component_templates.Request
 
 /**
- * Get component templates.
+ * Get a compact list of component templates.
  * <p>
  * Get information about component templates in a cluster. Component templates
  * are building blocks for constructing index templates that specify index
