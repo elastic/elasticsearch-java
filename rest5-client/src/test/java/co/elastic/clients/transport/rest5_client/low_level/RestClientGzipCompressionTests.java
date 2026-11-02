@@ -130,6 +130,8 @@ public class RestClientGzipCompressionTests extends RestClientTestCase {
         return bos.toByteArray();
     }
 
+    // Rest5ClientBuilder disables HC5's content compression, so these tests exercise
+    // Rest5Client's own gzip handling.
     private Rest5Client createClient(boolean enableCompression) {
         InetSocketAddress address = httpServer.getAddress();
         return Rest5Client.builder(new HttpHost("http", address.getHostString(), address.getPort()))
