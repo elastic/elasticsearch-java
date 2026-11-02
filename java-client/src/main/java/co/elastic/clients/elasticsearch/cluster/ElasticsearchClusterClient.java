@@ -449,7 +449,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: cluster.info
 
 	/**
-	 * Get cluster info. Returns basic information about the cluster.
+	 * Get cluster subsystem info.
+	 * <p>
+	 * Returns basic information about the cluster.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/cluster-info.html">Documentation
@@ -464,7 +466,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get cluster info. Returns basic information about the cluster.
+	 * Get cluster subsystem info.
+	 * <p>
+	 * Returns basic information about the cluster.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

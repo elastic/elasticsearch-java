@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: cat.health.Request
 
 /**
- * Get the cluster health status.
+ * Get a compact cluster health summary.
  * <p>
  * IMPORTANT: CAT APIs are only intended for human consumption using the command
  * line or Kibana console. They are not intended for use by applications. For

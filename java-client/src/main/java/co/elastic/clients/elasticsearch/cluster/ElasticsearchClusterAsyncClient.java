@@ -441,7 +441,9 @@ public class ElasticsearchClusterAsyncClient
 	// ----- Endpoint: cluster.info
 
 	/**
-	 * Get cluster info. Returns basic information about the cluster.
+	 * Get cluster subsystem info.
+	 * <p>
+	 * Returns basic information about the cluster.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/cluster-info.html">Documentation
@@ -456,7 +458,9 @@ public class ElasticsearchClusterAsyncClient
 	}
 
 	/**
-	 * Get cluster info. Returns basic information about the cluster.
+	 * Get cluster subsystem info.
+	 * <p>
+	 * Returns basic information about the cluster.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

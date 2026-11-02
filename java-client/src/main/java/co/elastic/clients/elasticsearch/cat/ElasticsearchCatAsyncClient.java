@@ -67,7 +67,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: cat.aliases
 
 	/**
-	 * Get aliases.
+	 * Get a compact list of aliases.
 	 * <p>
 	 * Get the cluster's index aliases, including filter and routing information.
 	 * This API does not return data stream aliases.
@@ -89,7 +89,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get aliases.
+	 * Get a compact list of aliases.
 	 * <p>
 	 * Get the cluster's index aliases, including filter and routing information.
 	 * This API does not return data stream aliases.
@@ -112,7 +112,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get aliases.
+	 * Get a compact list of aliases.
 	 * <p>
 	 * Get the cluster's index aliases, including filter and routing information.
 	 * This API does not return data stream aliases.
@@ -198,7 +198,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: cat.component_templates
 
 	/**
-	 * Get component templates.
+	 * Get a compact list of component templates.
 	 * <p>
 	 * Get information about component templates in a cluster. Component templates
 	 * are building blocks for constructing index templates that specify index
@@ -221,7 +221,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get component templates.
+	 * Get a compact list of component templates.
 	 * <p>
 	 * Get information about component templates in a cluster. Component templates
 	 * are building blocks for constructing index templates that specify index
@@ -245,7 +245,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get component templates.
+	 * Get a compact list of component templates.
 	 * <p>
 	 * Get information about component templates in a cluster. Component templates
 	 * are building blocks for constructing index templates that specify index
@@ -405,7 +405,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: cat.health
 
 	/**
-	 * Get the cluster health status.
+	 * Get a compact cluster health summary.
 	 * <p>
 	 * IMPORTANT: CAT APIs are only intended for human consumption using the command
 	 * line or Kibana console. They are not intended for use by applications. For
@@ -432,7 +432,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get the cluster health status.
+	 * Get a compact cluster health summary.
 	 * <p>
 	 * IMPORTANT: CAT APIs are only intended for human consumption using the command
 	 * line or Kibana console. They are not intended for use by applications. For
@@ -460,7 +460,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get the cluster health status.
+	 * Get a compact cluster health summary.
 	 * <p>
 	 * IMPORTANT: CAT APIs are only intended for human consumption using the command
 	 * line or Kibana console. They are not intended for use by applications. For
@@ -502,7 +502,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: cat.indices
 
 	/**
-	 * Get index information.
+	 * Get a compact list of indices.
 	 * <p>
 	 * Get high-level information about indices in a cluster, including backing
 	 * indices for data streams.
@@ -539,7 +539,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get index information.
+	 * Get a compact list of indices.
 	 * <p>
 	 * Get high-level information about indices in a cluster, including backing
 	 * indices for data streams.
@@ -577,7 +577,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get index information.
+	 * Get a compact list of indices.
 	 * <p>
 	 * Get high-level information about indices in a cluster, including backing
 	 * indices for data streams.
@@ -1025,7 +1025,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: cat.nodes
 
 	/**
-	 * Get node information.
+	 * Get a compact list of nodes.
 	 * <p>
 	 * Get information about the nodes in a cluster. IMPORTANT: cat APIs are only
 	 * intended for human consumption using the command line or Kibana console. They
@@ -1045,7 +1045,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get node information.
+	 * Get a compact list of nodes.
 	 * <p>
 	 * Get information about the nodes in a cluster. IMPORTANT: cat APIs are only
 	 * intended for human consumption using the command line or Kibana console. They
@@ -1066,7 +1066,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get node information.
+	 * Get a compact list of nodes.
 	 * <p>
 	 * Get information about the nodes in a cluster. IMPORTANT: cat APIs are only
 	 * intended for human consumption using the command line or Kibana console. They
@@ -1281,7 +1281,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: cat.repositories
 
 	/**
-	 * Get snapshot repository information.
+	 * Get a compact list of snapshot repositories.
 	 * <p>
 	 * Get a list of snapshot repositories for a cluster. IMPORTANT: cat APIs are
 	 * only intended for human consumption using the command line or Kibana console.
@@ -1301,7 +1301,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get snapshot repository information.
+	 * Get a compact list of snapshot repositories.
 	 * <p>
 	 * Get a list of snapshot repositories for a cluster. IMPORTANT: cat APIs are
 	 * only intended for human consumption using the command line or Kibana console.
@@ -1322,7 +1322,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get snapshot repository information.
+	 * Get a compact list of snapshot repositories.
 	 * <p>
 	 * Get a list of snapshot repositories for a cluster. IMPORTANT: cat APIs are
 	 * only intended for human consumption using the command line or Kibana console.
@@ -1467,7 +1467,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: cat.snapshots
 
 	/**
-	 * Get snapshot information.
+	 * Get a compact list of snapshots.
 	 * <p>
 	 * Get information about the snapshots stored in one or more repositories. A
 	 * snapshot is a backup of an index or running Elasticsearch cluster. IMPORTANT:
@@ -1488,7 +1488,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get snapshot information.
+	 * Get a compact list of snapshots.
 	 * <p>
 	 * Get information about the snapshots stored in one or more repositories. A
 	 * snapshot is a backup of an index or running Elasticsearch cluster. IMPORTANT:
@@ -1510,7 +1510,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get snapshot information.
+	 * Get a compact list of snapshots.
 	 * <p>
 	 * Get information about the snapshots stored in one or more repositories. A
 	 * snapshot is a backup of an index or running Elasticsearch cluster. IMPORTANT:
@@ -1531,7 +1531,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: cat.tasks
 
 	/**
-	 * Get task information.
+	 * Get a compact list of running tasks.
 	 * <p>
 	 * Get information about tasks currently running in the cluster. IMPORTANT: cat
 	 * APIs are only intended for human consumption using the command line or Kibana
@@ -1551,7 +1551,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get task information.
+	 * Get a compact list of running tasks.
 	 * <p>
 	 * Get information about tasks currently running in the cluster. IMPORTANT: cat
 	 * APIs are only intended for human consumption using the command line or Kibana
@@ -1572,7 +1572,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get task information.
+	 * Get a compact list of running tasks.
 	 * <p>
 	 * Get information about tasks currently running in the cluster. IMPORTANT: cat
 	 * APIs are only intended for human consumption using the command line or Kibana

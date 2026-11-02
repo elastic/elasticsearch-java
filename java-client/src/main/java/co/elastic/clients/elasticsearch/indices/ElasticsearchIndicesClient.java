@@ -2021,9 +2021,10 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.get_field_mapping
 
 	/**
-	 * Get mapping definitions. Retrieves mapping definitions for one or more
-	 * fields. For data streams, the API retrieves field mappings for the stream’s
-	 * backing indices.
+	 * Get field mapping definitions.
+	 * <p>
+	 * Retrieves mapping definitions for one or more fields. For data streams, the
+	 * API retrieves field mappings for the stream’s backing indices.
 	 * <p>
 	 * This API is useful if you don't need a complete mapping or if an index
 	 * mapping contains a large number of fields.
@@ -2042,9 +2043,10 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get mapping definitions. Retrieves mapping definitions for one or more
-	 * fields. For data streams, the API retrieves field mappings for the stream’s
-	 * backing indices.
+	 * Get field mapping definitions.
+	 * <p>
+	 * Retrieves mapping definitions for one or more fields. For data streams, the
+	 * API retrieves field mappings for the stream’s backing indices.
 	 * <p>
 	 * This API is useful if you don't need a complete mapping or if an index
 	 * mapping contains a large number of fields.
@@ -4777,7 +4779,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.update_aliases
 
 	/**
-	 * Create or update an alias. Adds a data stream or index to an alias.
+	 * Update aliases and delete indices atomically.
+	 * <p>
+	 * Adds a data stream or index to an alias.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-update-aliases">Documentation
@@ -4793,7 +4797,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Create or update an alias. Adds a data stream or index to an alias.
+	 * Update aliases and delete indices atomically.
+	 * <p>
+	 * Adds a data stream or index to an alias.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -4810,7 +4816,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Create or update an alias. Adds a data stream or index to an alias.
+	 * Update aliases and delete indices atomically.
+	 * <p>
+	 * Adds a data stream or index to an alias.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-update-aliases">Documentation
