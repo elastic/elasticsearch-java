@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
 // typedef: cat.aliases.Request
 
 /**
- * Get aliases.
+ * Get a compact list of aliases.
  * <p>
  * Get the cluster's index aliases, including filter and routing information.
  * This API does not return data stream aliases.

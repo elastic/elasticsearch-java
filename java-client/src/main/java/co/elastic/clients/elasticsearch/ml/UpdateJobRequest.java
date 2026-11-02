@@ -229,7 +229,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * An array of detector update objects.
+	 * A detector update object or an array of detector update objects.
 	 * <p>
 	 * API name: {@code detectors}
 	 */
@@ -647,7 +647,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of detector update objects.
+		 * A detector update object or an array of detector update objects.
 		 * <p>
 		 * API name: {@code detectors}
 		 * <p>
@@ -659,7 +659,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of detector update objects.
+		 * A detector update object or an array of detector update objects.
 		 * <p>
 		 * API name: {@code detectors}
 		 * <p>
@@ -671,7 +671,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of detector update objects.
+		 * A detector update object or an array of detector update objects.
 		 * <p>
 		 * API name: {@code detectors}
 		 * <p>

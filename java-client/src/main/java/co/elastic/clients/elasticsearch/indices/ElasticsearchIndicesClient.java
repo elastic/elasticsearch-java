@@ -2169,7 +2169,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.get_field_mapping
 
 	/**
-	 * Get mapping definitions.
+	 * Get field mapping definitions.
 	 * <p>
 	 * Retrieves mapping definitions for one or more fields. For data streams, the
 	 * API retrieves field mappings for the stream’s backing indices.
@@ -2191,7 +2191,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get mapping definitions.
+	 * Get field mapping definitions.
 	 * <p>
 	 * Retrieves mapping definitions for one or more fields. For data streams, the
 	 * API retrieves field mappings for the stream’s backing indices.
@@ -5082,7 +5082,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.update_aliases
 
 	/**
-	 * Create or update an alias.
+	 * Update aliases and delete indices atomically.
 	 * <p>
 	 * Adds a data stream or index to an alias.
 	 * 
@@ -5100,7 +5100,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Create or update an alias.
+	 * Update aliases and delete indices atomically.
 	 * <p>
 	 * Adds a data stream or index to an alias.
 	 * 
@@ -5119,7 +5119,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Create or update an alias.
+	 * Update aliases and delete indices atomically.
 	 * <p>
 	 * Adds a data stream or index to an alias.
 	 * 

@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
 // typedef: indices.update_aliases.Request
 
 /**
- * Create or update an alias.
+ * Update aliases and delete indices atomically.
  * <p>
  * Adds a data stream or index to an alias.
  * 
