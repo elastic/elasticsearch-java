@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
 // typedef: cat.indices.Request
 
 /**
- * Get index information.
+ * Get a compact list of indices.
  * <p>
  * Get high-level information about indices in a cluster, including backing
  * indices for data streams.

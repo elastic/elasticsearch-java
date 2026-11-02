@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
 // typedef: cat.snapshots.Request
 
 /**
- * Get snapshot information.
+ * Get a compact list of snapshots.
  * <p>
  * Get information about the snapshots stored in one or more repositories. A
  * snapshot is a backup of an index or running Elasticsearch cluster. IMPORTANT:
