@@ -40,12 +40,9 @@ import java.util.concurrent.atomic.AtomicReference;
 class MultiBufferEntity extends AbstractHttpEntity implements AsyncEntityProducer {
 
     /**
-     * Size of the buffer small input buffers are coalesced into before being handed to the channel.
-     * <p>
-     * Each {@link DataStreamChannel#write} becomes at most one HTTP/2 DATA frame, and httpcore5's
-     * multiplexer emits a single frame per output event, so the frame payload size (16 KiB by default,
-     * RFC 9113 §4.2) is the largest write that can be fully used. Over HTTP/1.1 it also amortizes the
-     * per-write chunk header and session buffer maintenance.
+     * Small input buffers are coalesced up to this size before writing. Matches the default HTTP/2
+     * frame payload size (RFC 9113 §4.2), since each {@link DataStreamChannel#write} becomes one frame.
+     * The staging buffer is never allocated for single-buffer bodies, such as most non-bulk requests.
      */
     static final int STAGING_BUFFER_SIZE = 16 * 1024;
 
@@ -144,7 +141,7 @@ class MultiBufferEntity extends AbstractHttpEntity implements AsyncEntityProduce
         // The input is typically many small buffers (e.g. one per NDJSON line of a bulk request). Each
         // write() below is at most one HTTP/2 DATA frame and, over HTTP/1.1, one chunk, so writing
         // them one by one is very expensive (issue #1339). Coalesce them into a staging buffer and
-        // write that instead; input buffers that are already large are written directly.
+        // write that instead; input buffers that are already large, or the last one, are written directly.
         //
         // Keep going as long as the channel accepts everything: over HTTP/1.1 the encoder buffers up
         // to the socket send buffer, over HTTP/2 the multiplexer takes exactly one frame per output
@@ -157,7 +154,7 @@ class MultiBufferEntity extends AbstractHttpEntity implements AsyncEntityProduce
             } else if (currentBuffer == null) {
                 channel.endStream();
                 return;
-            } else if (currentBuffer.remaining() >= STAGING_BUFFER_SIZE) {
+            } else if (currentBuffer.remaining() >= STAGING_BUFFER_SIZE || !iterator.hasNext()) {
                 out = currentBuffer;
             } else {
                 out = fillStaging();
