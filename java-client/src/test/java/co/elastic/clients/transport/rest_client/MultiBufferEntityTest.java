@@ -25,14 +25,22 @@ import co.elastic.clients.transport.endpoints.BinaryResponse;
 import com.sun.net.httpserver.HttpServer;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.nio.ContentEncoder;
 import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class MultiBufferEntityTest {
 
@@ -95,5 +103,166 @@ public class MultiBufferEntityTest {
             "{\"doc\":\"gh-doc\",\"doc_as_upsert\":true}\n",
             str
         );
+    }
+
+    // Scenario 1: a buffer partially accepted by the encoder is resumed from where it stopped.
+    @Test
+    public void testPartiallyWrittenBufferIsResumed() throws IOException {
+        List<ByteBuffer> body = bulkBody(2000);
+        drain(entity(body), new FakeEncoder(7), body);
+        assertUntouched(body);
+    }
+
+    // Scenario 2: the encoder is completed once, and only after the whole body has been written.
+    @Test
+    public void testEndOfStream() throws IOException {
+        for (List<ByteBuffer> body : Arrays.asList(
+            Collections.<ByteBuffer>emptyList(),
+            Arrays.asList(piece(0, 0), piece(0, 1))
+        )) {
+            FakeEncoder encoder = new FakeEncoder(Integer.MAX_VALUE);
+            entity(body).produceContent(encoder, null);
+            Assertions.assertEquals(1, encoder.completeCount);
+            Assertions.assertEquals(0, encoder.received.size());
+        }
+
+        List<ByteBuffer> body = bulkBody(2000);
+        drain(entity(body), new FakeEncoder(1000), body);
+    }
+
+    // Scenario 3: buffers are written in a single call as long as the encoder accepts them.
+    @Test
+    public void testWritesAllBuffersWhileEncoderAccepts() throws IOException {
+        List<ByteBuffer> body = bulkBody(2000);
+        Assertions.assertEquals(1, drain(entity(body), new FakeEncoder(Integer.MAX_VALUE), body));
+        assertUntouched(body);
+    }
+
+    // Scenario 4: writing stops when the encoder is full, and every output event fills it.
+    @Test
+    public void testStopsWhenEncoderIsFull() throws IOException {
+        List<ByteBuffer> body = bulkBody(2000);
+        int total = concat(body).length;
+        Assertions.assertEquals((total + 999) / 1000, drain(entity(body), new FakeEncoder(1000), body));
+    }
+
+    @Test
+    public void testRetryResendsFullBody() throws IOException {
+        List<ByteBuffer> body = bulkBody(2000);
+        MultiBufferEntity entity = entity(body);
+
+        FakeEncoder failed = new FakeEncoder(1000);
+        for (int i = 0; i < 3; i++) {
+            failed.newEvent();
+            entity.produceContent(failed, null);
+        }
+        entity.close();
+
+        drain(entity, new FakeEncoder(1000), body);
+        assertUntouched(body);
+    }
+
+    //---------------------------------------------------------------------------------------------
+
+    private static final ByteBuffer SEPARATOR = ByteBuffer.wrap(new byte[]{'\n'});
+
+    /**
+     * Items of varying size, each followed by the same shared separator, like a bulk request body. Empty
+     * buffers are added at the start, in the middle and at the end, and must be skipped.
+     */
+    private static List<ByteBuffer> bulkBody(int items) {
+        List<ByteBuffer> body = new ArrayList<>();
+        for (int i = 0; i < items; i++) {
+            if (i % 500 == 0) {
+                body.add(piece(0, 0));
+            }
+            body.add(piece(20 + i % 100, i));
+            body.add(SEPARATOR);
+        }
+        body.add(piece(0, 0));
+        return body;
+    }
+
+    private static ByteBuffer piece(int size, int seed) {
+        byte[] bytes = new byte[size];
+        for (int i = 0; i < size; i++) {
+            bytes[i] = (byte) (seed + i);
+        }
+        return ByteBuffer.wrap(bytes);
+    }
+
+    private static byte[] concat(List<ByteBuffer> body) {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        for (ByteBuffer buffer : body) {
+            out.write(buffer.array(), buffer.arrayOffset() + buffer.position(), buffer.remaining());
+        }
+        return out.toByteArray();
+    }
+
+    private static MultiBufferEntity entity(List<ByteBuffer> body) {
+        return new MultiBufferEntity(body, ContentType.APPLICATION_JSON);
+    }
+
+    /** Input buffers must not be consumed, as they are shared (separator) and reused on retries. */
+    private static void assertUntouched(List<ByteBuffer> body) {
+        for (ByteBuffer buffer : body) {
+            Assertions.assertEquals(0, buffer.position());
+            Assertions.assertEquals(buffer.capacity(), buffer.limit());
+        }
+    }
+
+    /**
+     * Calls {@code produceContent()} once per output event until the encoder is completed, checks that the
+     * received bytes are the body, and returns the number of output events.
+     */
+    private static int drain(MultiBufferEntity entity, FakeEncoder encoder, List<ByteBuffer> body) throws IOException {
+        int events = 0;
+        while (!encoder.isCompleted()) {
+            Assertions.assertTrue(++events < 1_000_000, "no progress");
+            encoder.newEvent();
+            entity.produceContent(encoder, null);
+        }
+        Assertions.assertEquals(1, encoder.completeCount);
+        Assertions.assertArrayEquals(concat(body), encoder.received.toByteArray());
+        Assertions.assertArrayEquals(concat(body), IOUtils.toByteArray(entity.getContent()));
+        return events;
+    }
+
+    /** An encoder accepting at most {@code bytesPerEvent} bytes per output event, like a socket that fills up. */
+    private static class FakeEncoder implements ContentEncoder {
+        private final int bytesPerEvent;
+        private int bytesLeft;
+
+        final ByteArrayOutputStream received = new ByteArrayOutputStream();
+        int completeCount;
+
+        FakeEncoder(int bytesPerEvent) {
+            this.bytesPerEvent = bytesPerEvent;
+            newEvent();
+        }
+
+        void newEvent() {
+            bytesLeft = bytesPerEvent;
+        }
+
+        @Override
+        public int write(ByteBuffer src) {
+            Assertions.assertEquals(0, completeCount, "write after completion");
+            int n = Math.min(src.remaining(), bytesLeft);
+            bytesLeft -= n;
+            received.write(src.array(), src.arrayOffset() + src.position(), n);
+            src.position(src.position() + n);
+            return n;
+        }
+
+        @Override
+        public void complete() {
+            completeCount++;
+        }
+
+        @Override
+        public boolean isCompleted() {
+            return completeCount > 0;
+        }
     }
 }
