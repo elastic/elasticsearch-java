@@ -164,8 +164,10 @@ public class DateRangeQuery extends RangeQueryBase<String> implements RangeQuery
 		public Builder() {
 		}
 		private Builder(DateRangeQuery instance) {
+			super(instance);
 			this.format = instance.format;
 			this.timeZone = instance.timeZone;
+			this.field = instance.field;
 
 		}
 		/**

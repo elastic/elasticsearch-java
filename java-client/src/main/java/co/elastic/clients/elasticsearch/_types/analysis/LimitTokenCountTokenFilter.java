@@ -143,6 +143,7 @@ public class LimitTokenCountTokenFilter extends TokenFilterBase implements Token
 		public Builder() {
 		}
 		private Builder(LimitTokenCountTokenFilter instance) {
+			super(instance);
 			this.consumeAllTokens = instance.consumeAllTokens;
 			this.maxTokenCount = instance.maxTokenCount;
 

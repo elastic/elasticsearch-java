@@ -84,6 +84,7 @@ public class SumBucketAggregation extends PipelineAggregationBase implements Agg
 		public Builder() {
 		}
 		private Builder(SumBucketAggregation instance) {
+			super(instance);
 
 		}
 		@Override

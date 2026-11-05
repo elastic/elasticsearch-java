@@ -113,6 +113,7 @@ public class LinearMovingAverageAggregation extends MovingAverageAggregationBase
 		public Builder() {
 		}
 		private Builder(LinearMovingAverageAggregation instance) {
+			super(instance);
 			this.settings = instance.settings;
 
 		}

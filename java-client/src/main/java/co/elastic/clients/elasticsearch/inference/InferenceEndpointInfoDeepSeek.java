@@ -127,6 +127,16 @@ public abstract class InferenceEndpointInfoDeepSeek extends InferenceEndpoint {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(InferenceEndpointInfoDeepSeek instance) {
+			super(instance);
+			this.inferenceId = instance.inferenceId;
+			this.taskType = instance.taskType;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

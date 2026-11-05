@@ -84,6 +84,7 @@ public class HistogramAggregate extends MultiBucketAggregateBase<HistogramBucket
 		public Builder() {
 		}
 		private Builder(HistogramAggregate instance) {
+			super(instance);
 
 		}
 		@Override

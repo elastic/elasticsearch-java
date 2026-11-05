@@ -152,6 +152,7 @@ public class MultiTermsBucket extends MultiBucketBase {
 		public Builder() {
 		}
 		private Builder(MultiTermsBucket instance) {
+			super(instance);
 			this.key = instance.key;
 			this.keyAsString = instance.keyAsString;
 			this.docCountErrorUpperBound = instance.docCountErrorUpperBound;

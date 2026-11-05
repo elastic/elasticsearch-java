@@ -100,6 +100,7 @@ public class UnmappedTermsAggregate extends TermsAggregateBase<Void>
 		public Builder() {
 		}
 		private Builder(UnmappedTermsAggregate instance) {
+			super(instance);
 
 		}
 		@Override

@@ -113,6 +113,7 @@ public class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetricBase {
 		public Builder() {
 		}
 		private Builder(RankEvalMetricDiscountedCumulativeGain instance) {
+			super(instance);
 			this.normalize = instance.normalize;
 
 		}

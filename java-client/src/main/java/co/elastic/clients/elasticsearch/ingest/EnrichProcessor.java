@@ -246,6 +246,7 @@ public class EnrichProcessor extends ProcessorBase implements ProcessorVariant {
 		public Builder() {
 		}
 		private Builder(EnrichProcessor instance) {
+			super(instance);
 			this.field = instance.field;
 			this.ignoreMissing = instance.ignoreMissing;
 			this.maxMatches = instance.maxMatches;

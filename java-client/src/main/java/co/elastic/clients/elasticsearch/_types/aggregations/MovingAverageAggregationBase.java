@@ -158,6 +158,17 @@ public abstract class MovingAverageAggregationBase extends PipelineAggregationBa
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(MovingAverageAggregationBase instance) {
+			super(instance);
+			this.minimize = instance.minimize;
+			this.predict = instance.predict;
+			this.window = instance.window;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

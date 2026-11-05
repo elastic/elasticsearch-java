@@ -326,6 +326,7 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 		public Builder() {
 		}
 		private Builder(FlattenedProperty instance) {
+			super(instance);
 			this.boost = instance.boost;
 			this.depthLimit = instance.depthLimit;
 			this.docValues = instance.docValues;

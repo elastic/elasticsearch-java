@@ -88,6 +88,7 @@ public class SignificantLongTermsAggregate extends SignificantTermsAggregateBase
 		public Builder() {
 		}
 		private Builder(SignificantLongTermsAggregate instance) {
+			super(instance);
 
 		}
 		@Override

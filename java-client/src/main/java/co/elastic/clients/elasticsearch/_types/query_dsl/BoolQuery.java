@@ -265,6 +265,7 @@ public class BoolQuery extends QueryBase
 		public Builder() {
 		}
 		private Builder(BoolQuery instance) {
+			super(instance);
 			this.filter = instance.filter;
 			this.minimumShouldMatch = instance.minimumShouldMatch;
 			this.must = instance.must;

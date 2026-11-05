@@ -94,6 +94,7 @@ public class PredicateDecisionQuestion extends DecisionQuestionBase implements D
 		public Builder() {
 		}
 		private Builder(PredicateDecisionQuestion instance) {
+			super(instance);
 
 		}
 		@Override

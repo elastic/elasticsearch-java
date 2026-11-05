@@ -114,6 +114,7 @@ public class NormalizeAggregation extends PipelineAggregationBase implements Agg
 		public Builder() {
 		}
 		private Builder(NormalizeAggregation instance) {
+			super(instance);
 			this.method = instance.method;
 
 		}

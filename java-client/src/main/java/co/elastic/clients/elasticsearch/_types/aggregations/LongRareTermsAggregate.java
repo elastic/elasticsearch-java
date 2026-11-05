@@ -86,6 +86,7 @@ public class LongRareTermsAggregate extends MultiBucketAggregateBase<LongRareTer
 		public Builder() {
 		}
 		private Builder(LongRareTermsAggregate instance) {
+			super(instance);
 
 		}
 		@Override

@@ -92,6 +92,7 @@ public class PorterStemTokenFilter extends TokenFilterBase implements TokenFilte
 		public Builder() {
 		}
 		private Builder(PorterStemTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

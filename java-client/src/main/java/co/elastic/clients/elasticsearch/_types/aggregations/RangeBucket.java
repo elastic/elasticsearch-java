@@ -187,6 +187,7 @@ public class RangeBucket extends MultiBucketBase {
 		public Builder() {
 		}
 		private Builder(RangeBucket instance) {
+			super(instance);
 			this.from = instance.from;
 			this.to = instance.to;
 			this.fromAsString = instance.fromAsString;

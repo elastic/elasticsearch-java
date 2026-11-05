@@ -123,6 +123,7 @@ public class Eql extends Base {
 		public Builder() {
 		}
 		private Builder(Eql instance) {
+			super(instance);
 			this.features = instance.features;
 			this.queries = instance.queries;
 

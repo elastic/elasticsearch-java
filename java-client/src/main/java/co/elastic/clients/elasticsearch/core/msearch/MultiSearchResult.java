@@ -183,6 +183,16 @@ public abstract class MultiSearchResult<TDocument> implements JsonpSerializable 
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(MultiSearchResult<TDocument> instance) {
+			this.took = instance.took;
+			this.responses = instance.responses;
+			this.tDocumentSerializer = instance.tDocumentSerializer;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

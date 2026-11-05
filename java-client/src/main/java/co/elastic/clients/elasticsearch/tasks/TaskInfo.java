@@ -614,6 +614,29 @@ public class TaskInfo implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(TaskInfo instance) {
+			this.action = instance.action;
+			this.cancelled = instance.cancelled;
+			this.cancellable = instance.cancellable;
+			this.description = instance.description;
+			this.headers = instance.headers;
+			this.id = instance.id;
+			this.node = instance.node;
+			this.runningTime = instance.runningTime;
+			this.runningTimeInNanos = instance.runningTimeInNanos;
+			this.startTimeInMillis = instance.startTimeInMillis;
+			this.status = instance.status;
+			this.type = instance.type;
+			this.parentTaskId = instance.parentTaskId;
+			this.originalTaskId = instance.originalTaskId;
+			this.originalStartTimeInMillis = instance.originalStartTimeInMillis;
+			this.originalStartTime = instance.originalStartTime;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

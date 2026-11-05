@@ -108,6 +108,15 @@ public abstract class DocValuesPropertyBase extends CorePropertyBase {
 			return this.docValues(fn.apply(new DocValues.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(DocValuesPropertyBase instance) {
+			super(instance);
+			this.docValues = instance.docValues;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

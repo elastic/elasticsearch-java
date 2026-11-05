@@ -158,6 +158,7 @@ public class IndexAndDataStreamAction implements ActionVariant, JsonpSerializabl
 		private Builder(IndexAndDataStreamAction instance) {
 			this.dataStream = instance.dataStream;
 			this.index = instance.index;
+			this._actionKind = instance._actionKind;
 
 		}
 		/**

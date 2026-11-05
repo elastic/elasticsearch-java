@@ -473,6 +473,7 @@ public class S3RepositorySettings extends RepositorySettingsBase {
 		public Builder() {
 		}
 		private Builder(S3RepositorySettings instance) {
+			super(instance);
 			this.bucket = instance.bucket;
 			this.basePath = instance.basePath;
 			this.bufferSize = instance.bufferSize;

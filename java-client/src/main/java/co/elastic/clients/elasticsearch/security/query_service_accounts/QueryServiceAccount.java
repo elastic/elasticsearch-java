@@ -134,6 +134,7 @@ public class QueryServiceAccount extends UserManagedServiceAccount {
 		public Builder() {
 		}
 		private Builder(QueryServiceAccount instance) {
+			super(instance);
 			this.username = instance.username;
 			this.sort = instance.sort;
 

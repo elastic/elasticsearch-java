@@ -132,6 +132,7 @@ public class KnnEvalReportedSettings extends KnnEvalSettings {
 		public Builder() {
 		}
 		private Builder(KnnEvalReportedSettings instance) {
+			super(instance);
 			this.rescoreWindowCapped = instance.rescoreWindowCapped;
 			this.quantizedScores = instance.quantizedScores;
 

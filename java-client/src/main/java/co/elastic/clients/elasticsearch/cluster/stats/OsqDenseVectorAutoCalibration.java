@@ -119,6 +119,7 @@ public class OsqDenseVectorAutoCalibration extends DenseVectorAutoCalibrationBas
 		public Builder() {
 		}
 		private Builder(OsqDenseVectorAutoCalibration instance) {
+			super(instance);
 			this.parameters = instance.parameters;
 
 		}

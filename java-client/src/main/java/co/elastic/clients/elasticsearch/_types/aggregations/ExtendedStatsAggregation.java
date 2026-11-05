@@ -116,6 +116,7 @@ public class ExtendedStatsAggregation extends FormatMetricAggregationBase implem
 		public Builder() {
 		}
 		private Builder(ExtendedStatsAggregation instance) {
+			super(instance);
 			this.sigma = instance.sigma;
 
 		}

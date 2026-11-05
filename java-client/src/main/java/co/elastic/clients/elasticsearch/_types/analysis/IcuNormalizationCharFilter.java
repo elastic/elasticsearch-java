@@ -153,6 +153,7 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
 		public Builder() {
 		}
 		private Builder(IcuNormalizationCharFilter instance) {
+			super(instance);
 			this.mode = instance.mode;
 			this.name = instance.name;
 			this.unicodeSetFilter = instance.unicodeSetFilter;

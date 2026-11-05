@@ -191,6 +191,7 @@ public class ReadOnlyUrlRepositorySettings extends RepositorySettingsBase {
 		public Builder() {
 		}
 		private Builder(ReadOnlyUrlRepositorySettings instance) {
+			super(instance);
 			this.httpMaxRetries = instance.httpMaxRetries;
 			this.httpSocketTimeout = instance.httpSocketTimeout;
 			this.maxNumberOfSnapshots = instance.maxNumberOfSnapshots;

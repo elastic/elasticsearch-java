@@ -115,6 +115,7 @@ public class MatrixStatsAggregation extends MatrixAggregation implements Aggrega
 		public Builder() {
 		}
 		private Builder(MatrixStatsAggregation instance) {
+			super(instance);
 			this.mode = instance.mode;
 
 		}

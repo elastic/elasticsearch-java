@@ -154,6 +154,7 @@ public class ExistsQuery extends QueryBase
 		public Builder() {
 		}
 		private Builder(ExistsQuery instance) {
+			super(instance);
 			this.field = instance.field;
 
 		}

@@ -874,6 +874,34 @@ public class TrainedModelConfig implements JsonpSerializable {
 			return this.prefixStrings(fn.apply(new TrainedModelPrefixStrings.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(TrainedModelConfig instance) {
+			this.modelId = instance.modelId;
+			this.modelType = instance.modelType;
+			this.tags = instance.tags;
+			this.version = instance.version;
+			this.compressedDefinition = instance.compressedDefinition;
+			this.createdBy = instance.createdBy;
+			this.createTime = instance.createTime;
+			this.defaultFieldMap = instance.defaultFieldMap;
+			this.description = instance.description;
+			this.estimatedHeapMemoryUsageBytes = instance.estimatedHeapMemoryUsageBytes;
+			this.estimatedOperations = instance.estimatedOperations;
+			this.fullyDefined = instance.fullyDefined;
+			this.inferenceConfig = instance.inferenceConfig;
+			this.input = instance.input;
+			this.licenseLevel = instance.licenseLevel;
+			this.metadata = instance.metadata;
+			this.modelSizeBytes = instance.modelSizeBytes;
+			this.modelPackage = instance.modelPackage;
+			this.location = instance.location;
+			this.platformArchitecture = instance.platformArchitecture;
+			this.prefixStrings = instance.prefixStrings;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

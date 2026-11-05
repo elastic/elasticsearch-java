@@ -112,6 +112,7 @@ public class ScriptRescoreProfile extends RescoreProfileBase implements RescoreP
 		public Builder() {
 		}
 		private Builder(ScriptRescoreProfile instance) {
+			super(instance);
 			this.breakdown = instance.breakdown;
 
 		}

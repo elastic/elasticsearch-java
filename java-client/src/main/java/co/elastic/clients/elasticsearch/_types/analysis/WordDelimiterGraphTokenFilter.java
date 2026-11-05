@@ -144,6 +144,7 @@ public class WordDelimiterGraphTokenFilter extends WordDelimiterTokenFilterBase
 		public Builder() {
 		}
 		private Builder(WordDelimiterGraphTokenFilter instance) {
+			super(instance);
 			this.adjustOffsets = instance.adjustOffsets;
 			this.ignoreKeywords = instance.ignoreKeywords;
 

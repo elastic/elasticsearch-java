@@ -200,6 +200,17 @@ public abstract class SegmentAutoCalibrationBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(SegmentAutoCalibrationBase instance) {
+			this.calibrated = instance.calibrated;
+			this.numberOfVectors = instance.numberOfVectors;
+			this.size = instance.size;
+			this.sizeInBytes = instance.sizeInBytes;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

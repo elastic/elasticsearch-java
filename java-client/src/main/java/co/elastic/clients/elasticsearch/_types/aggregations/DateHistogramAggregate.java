@@ -84,6 +84,7 @@ public class DateHistogramAggregate extends MultiBucketAggregateBase<DateHistogr
 		public Builder() {
 		}
 		private Builder(DateHistogramAggregate instance) {
+			super(instance);
 
 		}
 		@Override

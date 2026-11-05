@@ -84,6 +84,7 @@ public class CartesianBoundsAggregation extends MetricAggregationBase implements
 		public Builder() {
 		}
 		private Builder(CartesianBoundsAggregation instance) {
+			super(instance);
 
 		}
 		@Override

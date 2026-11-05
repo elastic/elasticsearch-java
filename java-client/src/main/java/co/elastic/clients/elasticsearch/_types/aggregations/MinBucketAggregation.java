@@ -84,6 +84,7 @@ public class MinBucketAggregation extends PipelineAggregationBase implements Agg
 		public Builder() {
 		}
 		private Builder(MinBucketAggregation instance) {
+			super(instance);
 
 		}
 		@Override

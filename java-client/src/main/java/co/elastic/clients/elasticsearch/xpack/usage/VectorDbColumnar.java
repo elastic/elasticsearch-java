@@ -121,6 +121,7 @@ public class VectorDbColumnar extends Base {
 		public Builder() {
 		}
 		private Builder(VectorDbColumnar instance) {
+			super(instance);
 			this.indicesCount = instance.indicesCount;
 			this.numDocs = instance.numDocs;
 

@@ -606,6 +606,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 			this.primaryTerm = instance.primaryTerm;
 			this.version = instance.version;
 			this.sort = instance.sort;
+			this.tDocumentSerializer = instance.tDocumentSerializer;
 
 		}
 		/**

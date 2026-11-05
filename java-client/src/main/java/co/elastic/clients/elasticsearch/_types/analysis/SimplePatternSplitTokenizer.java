@@ -115,6 +115,7 @@ public class SimplePatternSplitTokenizer extends TokenizerBase implements Tokeni
 		public Builder() {
 		}
 		private Builder(SimplePatternSplitTokenizer instance) {
+			super(instance);
 			this.pattern = instance.pattern;
 
 		}

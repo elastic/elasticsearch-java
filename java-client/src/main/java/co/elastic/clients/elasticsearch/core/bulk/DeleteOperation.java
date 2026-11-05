@@ -83,6 +83,7 @@ public class DeleteOperation extends BulkOperationBase implements BulkOperationV
 		public Builder() {
 		}
 		private Builder(DeleteOperation instance) {
+			super(instance);
 
 		}
 		@Override

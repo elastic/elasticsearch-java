@@ -199,6 +199,7 @@ public class AuthenticatedUser extends User {
 		public Builder() {
 		}
 		private Builder(AuthenticatedUser instance) {
+			super(instance);
 			this.authenticationRealm = instance.authenticationRealm;
 			this.lookupRealm = instance.lookupRealm;
 			this.authenticationProvider = instance.authenticationProvider;

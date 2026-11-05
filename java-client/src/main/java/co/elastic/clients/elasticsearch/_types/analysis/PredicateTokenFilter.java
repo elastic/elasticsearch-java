@@ -113,6 +113,7 @@ public class PredicateTokenFilter extends TokenFilterBase implements TokenFilter
 		public Builder() {
 		}
 		private Builder(PredicateTokenFilter instance) {
+			super(instance);
 			this.script = instance.script;
 
 		}

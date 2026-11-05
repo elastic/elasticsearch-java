@@ -136,6 +136,7 @@ public class Vector extends Base {
 		public Builder() {
 		}
 		private Builder(Vector instance) {
+			super(instance);
 			this.denseVectorDimsAvgCount = instance.denseVectorDimsAvgCount;
 			this.denseVectorFieldsCount = instance.denseVectorFieldsCount;
 			this.sparseVectorFieldsCount = instance.sparseVectorFieldsCount;

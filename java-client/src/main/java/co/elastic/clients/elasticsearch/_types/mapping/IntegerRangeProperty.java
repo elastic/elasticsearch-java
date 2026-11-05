@@ -92,6 +92,7 @@ public class IntegerRangeProperty extends RangePropertyBase implements PropertyV
 		public Builder() {
 		}
 		private Builder(IntegerRangeProperty instance) {
+			super(instance);
 
 		}
 		@Override

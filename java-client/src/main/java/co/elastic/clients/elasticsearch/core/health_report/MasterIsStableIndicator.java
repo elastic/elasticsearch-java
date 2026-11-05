@@ -106,6 +106,7 @@ public class MasterIsStableIndicator extends BaseIndicator {
 		public Builder() {
 		}
 		private Builder(MasterIsStableIndicator instance) {
+			super(instance);
 			this.details = instance.details;
 
 		}

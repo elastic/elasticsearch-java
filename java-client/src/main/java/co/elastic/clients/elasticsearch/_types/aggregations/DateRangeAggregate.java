@@ -98,6 +98,7 @@ public class DateRangeAggregate extends RangeAggregate implements AggregateVaria
 		public Builder() {
 		}
 		private Builder(DateRangeAggregate instance) {
+			super(instance);
 
 		}
 		@Override

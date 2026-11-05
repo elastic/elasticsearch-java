@@ -84,6 +84,7 @@ public class MaxBucketAggregation extends PipelineAggregationBase implements Agg
 		public Builder() {
 		}
 		private Builder(MaxBucketAggregation instance) {
+			super(instance);
 
 		}
 		@Override

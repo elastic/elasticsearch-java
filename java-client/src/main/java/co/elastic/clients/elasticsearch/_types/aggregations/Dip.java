@@ -81,6 +81,7 @@ public class Dip extends AbstractChangePoint implements ChangeTypeVariant {
 		public Builder() {
 		}
 		private Builder(Dip instance) {
+			super(instance);
 
 		}
 		@Override

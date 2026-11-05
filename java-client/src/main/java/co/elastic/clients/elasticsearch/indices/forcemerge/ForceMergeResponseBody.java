@@ -108,6 +108,15 @@ public abstract class ForceMergeResponseBody extends ShardsOperationResponseBase
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(ForceMergeResponseBody instance) {
+			super(instance);
+			this.task = instance.task;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

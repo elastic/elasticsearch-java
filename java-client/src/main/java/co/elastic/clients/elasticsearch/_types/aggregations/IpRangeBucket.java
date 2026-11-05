@@ -146,6 +146,7 @@ public class IpRangeBucket extends MultiBucketBase {
 		public Builder() {
 		}
 		private Builder(IpRangeBucket instance) {
+			super(instance);
 			this.key = instance.key;
 			this.from = instance.from;
 			this.to = instance.to;

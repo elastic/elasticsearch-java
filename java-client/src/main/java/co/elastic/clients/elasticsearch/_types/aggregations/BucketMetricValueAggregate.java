@@ -118,6 +118,7 @@ public class BucketMetricValueAggregate extends SingleMetricAggregateBase implem
 		public Builder() {
 		}
 		private Builder(BucketMetricValueAggregate instance) {
+			super(instance);
 			this.keys = instance.keys;
 
 		}

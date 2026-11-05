@@ -144,6 +144,14 @@ public abstract class DocumentExtractionInferenceResult implements JsonpSerializ
 			return documentExtraction(fn.apply(new DocumentExtractionResult.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(DocumentExtractionInferenceResult instance) {
+			this.documentExtraction = instance.documentExtraction;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

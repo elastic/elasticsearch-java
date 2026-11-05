@@ -258,6 +258,17 @@ public abstract class RescoreProfileBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(RescoreProfileBase instance) {
+			this.description = instance.description;
+			this.timeInNanos = instance.timeInNanos;
+			this.time = instance.time;
+			this.debug = instance.debug;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

@@ -123,6 +123,7 @@ public class ScoreDecisionQuestion extends DecisionQuestionBase implements Decis
 		public Builder() {
 		}
 		private Builder(ScoreDecisionQuestion instance) {
+			super(instance);
 			this.levels = instance.levels;
 
 		}

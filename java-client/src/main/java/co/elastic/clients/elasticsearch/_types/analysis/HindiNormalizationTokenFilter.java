@@ -92,6 +92,7 @@ public class HindiNormalizationTokenFilter extends TokenFilterBase implements To
 		public Builder() {
 		}
 		private Builder(HindiNormalizationTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

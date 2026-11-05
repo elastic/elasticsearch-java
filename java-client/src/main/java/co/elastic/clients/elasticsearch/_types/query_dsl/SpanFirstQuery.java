@@ -134,6 +134,7 @@ public class SpanFirstQuery extends QueryBase implements SpanQueryVariant, Query
 		public Builder() {
 		}
 		private Builder(SpanFirstQuery instance) {
+			super(instance);
 			this.end = instance.end;
 			this.match = instance.match;
 

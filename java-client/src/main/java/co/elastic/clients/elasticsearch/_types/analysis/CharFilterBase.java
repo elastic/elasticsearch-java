@@ -115,6 +115,14 @@ public abstract class CharFilterBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(CharFilterBase instance) {
+			this.version = instance.version;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

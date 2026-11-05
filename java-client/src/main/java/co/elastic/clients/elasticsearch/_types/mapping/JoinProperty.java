@@ -147,6 +147,7 @@ public class JoinProperty extends PropertyBase implements PropertyVariant {
 		public Builder() {
 		}
 		private Builder(JoinProperty instance) {
+			super(instance);
 			this.relations = instance.relations;
 			this.eagerGlobalOrdinals = instance.eagerGlobalOrdinals;
 

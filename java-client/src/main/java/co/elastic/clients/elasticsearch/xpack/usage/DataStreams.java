@@ -112,6 +112,7 @@ public class DataStreams extends Base {
 		public Builder() {
 		}
 		private Builder(DataStreams instance) {
+			super(instance);
 			this.dataStreams = instance.dataStreams;
 			this.indicesCount = instance.indicesCount;
 

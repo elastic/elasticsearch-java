@@ -84,6 +84,7 @@ public class ChangePointAggregation extends PipelineAggregationBase implements A
 		public Builder() {
 		}
 		private Builder(ChangePointAggregation instance) {
+			super(instance);
 
 		}
 		@Override

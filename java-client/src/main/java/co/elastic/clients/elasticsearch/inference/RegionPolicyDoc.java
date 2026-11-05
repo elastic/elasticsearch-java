@@ -250,6 +250,18 @@ public abstract class RegionPolicyDoc implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(RegionPolicyDoc instance) {
+			this.regionPolicy = instance.regionPolicy;
+			this.createdAt = instance.createdAt;
+			this.createdBy = instance.createdBy;
+			this.updatedAt = instance.updatedAt;
+			this.updatedBy = instance.updatedBy;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

@@ -528,6 +528,25 @@ public class GetResult<TDocument> implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(GetResult<TDocument> instance) {
+			this.index = instance.index;
+			this.fields = instance.fields;
+			this.ignored = instance.ignored;
+			this.found = instance.found;
+			this.id = instance.id;
+			this.primaryTerm = instance.primaryTerm;
+			this.routing = instance.routing;
+			this.slice = instance.slice;
+			this.seqNo = instance.seqNo;
+			this.source = instance.source;
+			this.version = instance.version;
+			this.tDocumentSerializer = instance.tDocumentSerializer;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

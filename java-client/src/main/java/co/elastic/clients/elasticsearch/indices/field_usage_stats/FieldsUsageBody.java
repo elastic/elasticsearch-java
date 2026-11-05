@@ -170,6 +170,15 @@ public abstract class FieldsUsageBody implements JsonpSerializable {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(FieldsUsageBody instance) {
+			this.shards = instance.shards;
+			this.stats = instance.stats;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

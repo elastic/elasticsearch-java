@@ -115,6 +115,7 @@ public class KeywordTokenizer extends TokenizerBase implements TokenizerDefiniti
 		public Builder() {
 		}
 		private Builder(KeywordTokenizer instance) {
+			super(instance);
 			this.bufferSize = instance.bufferSize;
 
 		}

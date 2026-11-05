@@ -141,6 +141,7 @@ public class GeoLineAggregate extends AggregateBase implements AggregateVariant 
 		public Builder() {
 		}
 		private Builder(GeoLineAggregate instance) {
+			super(instance);
 			this.type = instance.type;
 			this.geometry = instance.geometry;
 			this.properties = instance.properties;

@@ -208,6 +208,7 @@ public class IndexModeUsage extends Base {
 		public Builder() {
 		}
 		private Builder(IndexModeUsage instance) {
+			super(instance);
 			this.indicesCount = instance.indicesCount;
 			this.indicesWithSyntheticSource = instance.indicesWithSyntheticSource;
 			this.numDocs = instance.numDocs;

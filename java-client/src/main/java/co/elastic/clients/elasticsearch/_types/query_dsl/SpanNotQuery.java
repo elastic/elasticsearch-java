@@ -205,6 +205,7 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 		public Builder() {
 		}
 		private Builder(SpanNotQuery instance) {
+			super(instance);
 			this.dist = instance.dist;
 			this.exclude = instance.exclude;
 			this.include = instance.include;

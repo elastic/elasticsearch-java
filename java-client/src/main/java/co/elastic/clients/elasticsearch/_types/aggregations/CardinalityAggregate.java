@@ -118,6 +118,7 @@ public class CardinalityAggregate extends AggregateBase implements AggregateVari
 		public Builder() {
 		}
 		private Builder(CardinalityAggregate instance) {
+			super(instance);
 			this.value = instance.value;
 
 		}

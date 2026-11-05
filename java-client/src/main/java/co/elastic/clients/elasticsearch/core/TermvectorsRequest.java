@@ -572,6 +572,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 			this.termStatistics = instance.termStatistics;
 			this.version = instance.version;
 			this.versionType = instance.versionType;
+			this.tDocumentSerializer = instance.tDocumentSerializer;
 
 		}
 		/**

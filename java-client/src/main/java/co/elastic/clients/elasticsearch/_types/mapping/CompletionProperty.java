@@ -222,6 +222,7 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
 		public Builder() {
 		}
 		private Builder(CompletionProperty instance) {
+			super(instance);
 			this.analyzer = instance.analyzer;
 			this.contexts = instance.contexts;
 			this.maxInputLength = instance.maxInputLength;

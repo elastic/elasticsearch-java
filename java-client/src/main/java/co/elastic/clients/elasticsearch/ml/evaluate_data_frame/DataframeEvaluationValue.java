@@ -142,6 +142,14 @@ public class DataframeEvaluationValue implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(DataframeEvaluationValue instance) {
+			this.value = instance.value;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

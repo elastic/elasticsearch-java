@@ -138,6 +138,7 @@ public class SparseVectorProperty extends PropertyBase implements PropertyVarian
 		public Builder() {
 		}
 		private Builder(SparseVectorProperty instance) {
+			super(instance);
 			this.store = instance.store;
 			this.indexOptions = instance.indexOptions;
 

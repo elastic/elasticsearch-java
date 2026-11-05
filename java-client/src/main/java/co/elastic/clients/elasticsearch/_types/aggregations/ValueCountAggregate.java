@@ -95,6 +95,7 @@ public class ValueCountAggregate extends SingleMetricAggregateBase implements Ag
 		public Builder() {
 		}
 		private Builder(ValueCountAggregate instance) {
+			super(instance);
 
 		}
 		@Override

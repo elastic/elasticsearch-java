@@ -92,6 +92,7 @@ public class GermanStemTokenFilter extends TokenFilterBase implements TokenFilte
 		public Builder() {
 		}
 		private Builder(GermanStemTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

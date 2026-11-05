@@ -115,6 +115,7 @@ public class TermSuggest extends SuggestBase implements SuggestionVariant {
 		public Builder() {
 		}
 		private Builder(TermSuggest instance) {
+			super(instance);
 			this.options = instance.options;
 
 		}

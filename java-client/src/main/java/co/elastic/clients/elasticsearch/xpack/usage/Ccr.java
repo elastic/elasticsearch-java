@@ -114,6 +114,7 @@ public class Ccr extends Base {
 		public Builder() {
 		}
 		private Builder(Ccr instance) {
+			super(instance);
 			this.autoFollowPatternsCount = instance.autoFollowPatternsCount;
 			this.followerIndicesCount = instance.followerIndicesCount;
 

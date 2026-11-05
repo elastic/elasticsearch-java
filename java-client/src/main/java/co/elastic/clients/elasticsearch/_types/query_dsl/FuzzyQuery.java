@@ -246,12 +246,14 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(FuzzyQuery instance) {
+			super(instance);
 			this.maxExpansions = instance.maxExpansions;
 			this.prefixLength = instance.prefixLength;
 			this.rewrite = instance.rewrite;
 			this.transpositions = instance.transpositions;
 			this.fuzziness = instance.fuzziness;
 			this.value = instance.value;
+			this.field = instance.field;
 
 		}
 		/**

@@ -108,6 +108,15 @@ public abstract class AliasesResponseBody extends AcknowledgedResponseBase {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(AliasesResponseBody instance) {
+			super(instance);
+			this.errors = instance.errors;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

@@ -81,6 +81,7 @@ public class DropProcessor extends ProcessorBase implements ProcessorVariant {
 		public Builder() {
 		}
 		private Builder(DropProcessor instance) {
+			super(instance);
 
 		}
 		@Override

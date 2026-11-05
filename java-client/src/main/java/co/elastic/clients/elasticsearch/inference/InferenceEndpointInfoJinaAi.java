@@ -127,6 +127,16 @@ public abstract class InferenceEndpointInfoJinaAi extends InferenceEndpoint {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(InferenceEndpointInfoJinaAi instance) {
+			super(instance);
+			this.inferenceId = instance.inferenceId;
+			this.taskType = instance.taskType;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

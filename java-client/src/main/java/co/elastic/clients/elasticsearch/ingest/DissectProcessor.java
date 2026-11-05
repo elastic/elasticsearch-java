@@ -174,6 +174,7 @@ public class DissectProcessor extends ProcessorBase implements ProcessorVariant 
 		public Builder() {
 		}
 		private Builder(DissectProcessor instance) {
+			super(instance);
 			this.appendSeparator = instance.appendSeparator;
 			this.field = instance.field;
 			this.ignoreMissing = instance.ignoreMissing;

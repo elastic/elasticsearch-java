@@ -226,6 +226,7 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 			this.source = instance.source;
 			this.missing = instance.missing;
 			this.fields = instance.fields;
+			this.tEventSerializer = instance.tEventSerializer;
 
 		}
 		/**

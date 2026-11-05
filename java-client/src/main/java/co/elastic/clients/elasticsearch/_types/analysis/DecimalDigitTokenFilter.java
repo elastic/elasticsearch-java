@@ -92,6 +92,7 @@ public class DecimalDigitTokenFilter extends TokenFilterBase implements TokenFil
 		public Builder() {
 		}
 		private Builder(DecimalDigitTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

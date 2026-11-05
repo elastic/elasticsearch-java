@@ -127,6 +127,16 @@ public abstract class InferenceEndpointInfoGroq extends InferenceEndpoint {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(InferenceEndpointInfoGroq instance) {
+			super(instance);
+			this.inferenceId = instance.inferenceId;
+			this.taskType = instance.taskType;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
