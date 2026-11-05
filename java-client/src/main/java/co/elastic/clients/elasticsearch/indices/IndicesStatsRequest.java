@@ -98,6 +98,9 @@ public class IndicesStatsRequest extends RequestBase {
 	private final List<String> groups;
 
 	@Nullable
+	private final Boolean includeAutoCalibration;
+
+	@Nullable
 	private final Boolean includeSegmentFileSizes;
 
 	@Nullable
@@ -120,6 +123,7 @@ public class IndicesStatsRequest extends RequestBase {
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.forbidClosedIndices = builder.forbidClosedIndices;
 		this.groups = ApiTypeHelper.unmodifiable(builder.groups);
+		this.includeAutoCalibration = builder.includeAutoCalibration;
 		this.includeSegmentFileSizes = builder.includeSegmentFileSizes;
 		this.includeUnloadedSegments = builder.includeUnloadedSegments;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
@@ -191,6 +195,18 @@ public class IndicesStatsRequest extends RequestBase {
 	 */
 	public final List<String> groups() {
 		return this.groups;
+	}
+
+	/**
+	 * If <code>true</code>, the response includes the auto-calibration information
+	 * of each <code>dense_vector</code> field that supports auto-calibration. Only
+	 * applies at the <code>indices</code> and <code>shards</code> levels.
+	 * <p>
+	 * API name: {@code include_auto_calibration}
+	 */
+	@Nullable
+	public final Boolean includeAutoCalibration() {
+		return this.includeAutoCalibration;
 	}
 
 	/**
@@ -273,6 +289,9 @@ public class IndicesStatsRequest extends RequestBase {
 		private List<String> groups;
 
 		@Nullable
+		private Boolean includeAutoCalibration;
+
+		@Nullable
 		private Boolean includeSegmentFileSizes;
 
 		@Nullable
@@ -296,6 +315,7 @@ public class IndicesStatsRequest extends RequestBase {
 			this.fields = instance.fields;
 			this.forbidClosedIndices = instance.forbidClosedIndices;
 			this.groups = instance.groups;
+			this.includeAutoCalibration = instance.includeAutoCalibration;
 			this.includeSegmentFileSizes = instance.includeSegmentFileSizes;
 			this.includeUnloadedSegments = instance.includeUnloadedSegments;
 			this.index = instance.index;
@@ -442,6 +462,18 @@ public class IndicesStatsRequest extends RequestBase {
 		 */
 		public final Builder groups(String value, String... values) {
 			this.groups = _listAdd(this.groups, value, values);
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, the response includes the auto-calibration information
+		 * of each <code>dense_vector</code> field that supports auto-calibration. Only
+		 * applies at the <code>indices</code> and <code>shards</code> levels.
+		 * <p>
+		 * API name: {@code include_auto_calibration}
+		 */
+		public final Builder includeAutoCalibration(@Nullable Boolean value) {
+			this.includeAutoCalibration = value;
 			return this;
 		}
 
@@ -680,6 +712,9 @@ public class IndicesStatsRequest extends RequestBase {
 				}
 				if (request.includeSegmentFileSizes != null) {
 					params.put("include_segment_file_sizes", String.valueOf(request.includeSegmentFileSizes));
+				}
+				if (request.includeAutoCalibration != null) {
+					params.put("include_auto_calibration", String.valueOf(request.includeAutoCalibration));
 				}
 				return params;
 

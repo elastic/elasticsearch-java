@@ -106,8 +106,9 @@ public class GetRecoveryPointsRequest extends RequestBase {
 	}
 
 	/**
-	 * The period to wait for a connection to the master node. If no response is
-	 * received before the timeout expires, the request fails and returns an error.
+	 * The period to wait for the master node. If the master node is not available
+	 * before the timeout expires, the request fails and returns an error. To
+	 * indicate that the request should never timeout, set it to <code>-1</code>.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -166,8 +167,9 @@ public class GetRecoveryPointsRequest extends RequestBase {
 		}
 
 		/**
-		 * The period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
+		 * The period to wait for the master node. If the master node is not available
+		 * before the timeout expires, the request fails and returns an error. To
+		 * indicate that the request should never timeout, set it to <code>-1</code>.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -177,8 +179,9 @@ public class GetRecoveryPointsRequest extends RequestBase {
 		}
 
 		/**
-		 * The period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
+		 * The period to wait for the master node. If the master node is not available
+		 * before the timeout expires, the request fails and returns an error. To
+		 * indicate that the request should never timeout, set it to <code>-1</code>.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */

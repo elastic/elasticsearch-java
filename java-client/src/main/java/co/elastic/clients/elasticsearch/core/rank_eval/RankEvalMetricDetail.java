@@ -32,6 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
+import java.lang.Long;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -66,6 +67,8 @@ import javax.annotation.Nullable;
 public class RankEvalMetricDetail implements JsonpSerializable {
 	private final double metricScore;
 
+	private final long took;
+
 	private final List<UnratedDocument> unratedDocs;
 
 	private final List<RankEvalHitItem> hits;
@@ -77,6 +80,7 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 	private RankEvalMetricDetail(Builder builder) {
 
 		this.metricScore = ApiTypeHelper.requireNonNull(builder.metricScore, this, "metricScore", 0);
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took", 0);
 		this.unratedDocs = ApiTypeHelper.unmodifiableRequired(builder.unratedDocs, this, "unratedDocs");
 		this.hits = ApiTypeHelper.unmodifiableRequired(builder.hits, this, "hits");
 		this.metricDetails = ApiTypeHelper.unmodifiableRequired(builder.metricDetails, this, "metricDetails");
@@ -95,6 +99,16 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 	 */
 	public final double metricScore() {
 		return this.metricScore;
+	}
+
+	/**
+	 * Required - The time in milliseconds it took to execute the search request for
+	 * this query
+	 * <p>
+	 * API name: {@code took}
+	 */
+	public final long took() {
+		return this.took;
 	}
 
 	/**
@@ -143,6 +157,9 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 
 		generator.writeKey("metric_score");
 		generator.write(this.metricScore);
+
+		generator.writeKey("took");
+		generator.write(this.took);
 
 		if (ApiTypeHelper.isDefined(this.unratedDocs)) {
 			generator.writeKey("unrated_docs");
@@ -202,6 +219,8 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 				ObjectBuilder<RankEvalMetricDetail> {
 		private Double metricScore;
 
+		private Long took;
+
 		private List<UnratedDocument> unratedDocs;
 
 		private List<RankEvalHitItem> hits;
@@ -212,6 +231,7 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		}
 		private Builder(RankEvalMetricDetail instance) {
 			this.metricScore = instance.metricScore;
+			this.took = instance.took;
 			this.unratedDocs = instance.unratedDocs;
 			this.hits = instance.hits;
 			this.metricDetails = instance.metricDetails;
@@ -225,6 +245,17 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		 */
 		public final Builder metricScore(double value) {
 			this.metricScore = value;
+			return this;
+		}
+
+		/**
+		 * Required - The time in milliseconds it took to execute the search request for
+		 * this query
+		 * <p>
+		 * API name: {@code took}
+		 */
+		public final Builder took(long value) {
+			this.took = value;
 			return this;
 		}
 
@@ -372,6 +403,7 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 	protected static void setupRankEvalMetricDetailDeserializer(ObjectDeserializer<RankEvalMetricDetail.Builder> op) {
 
 		op.add(Builder::metricScore, JsonpDeserializer.doubleDeserializer(), "metric_score");
+		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");
 		op.add(Builder::unratedDocs, JsonpDeserializer.arrayDeserializer(UnratedDocument._DESERIALIZER),
 				"unrated_docs");
 		op.add(Builder::hits, JsonpDeserializer.arrayDeserializer(RankEvalHitItem._DESERIALIZER), "hits");

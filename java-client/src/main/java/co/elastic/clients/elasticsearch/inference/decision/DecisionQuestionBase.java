@@ -17,18 +17,20 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.indices.delete_alias;
+package co.elastic.clients.elasticsearch.inference.decision;
 
-import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
+import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
@@ -47,68 +49,80 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: indices.delete_alias.IndicesAliasesResponseBody
+// typedef: inference.decision.DecisionQuestionBase
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#indices.delete_alias.IndicesAliasesResponseBody">API
+ *      "../../doc-files/api-spec.html#inference.decision.DecisionQuestionBase">API
  *      specification</a>
  */
 
-public abstract class IndicesAliasesResponseBody extends AcknowledgedResponseBase {
-	@Nullable
-	private final Boolean errors;
+public abstract class DecisionQuestionBase implements JsonpSerializable {
+	private final String instructions;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndicesAliasesResponseBody(AbstractBuilder<?> builder) {
-		super(builder);
+	protected DecisionQuestionBase(AbstractBuilder<?> builder) {
 
-		this.errors = builder.errors;
+		this.instructions = ApiTypeHelper.requireNonNull(builder.instructions, this, "instructions");
 
 	}
 
 	/**
-	 * API name: {@code errors}
+	 * Required - A description of what to decide. It must not be empty.
+	 * <p>
+	 * API name: {@code instructions}
 	 */
-	@Nullable
-	public final Boolean errors() {
-		return this.errors;
+	public final String instructions() {
+		return this.instructions;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.errors != null) {
-			generator.writeKey("errors");
-			generator.write(this.errors);
+		generator.writeKey("instructions");
+		generator.write(this.instructions);
 
-		}
+	}
 
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
-				AcknowledgedResponseBase.AbstractBuilder<BuilderT> {
-		@Nullable
-		private Boolean errors;
+				WithJsonObjectBuilderBase<BuilderT> {
+		private String instructions;
 
 		/**
-		 * API name: {@code errors}
+		 * Required - A description of what to decide. It must not be empty.
+		 * <p>
+		 * API name: {@code instructions}
 		 */
-		public final BuilderT errors(@Nullable Boolean value) {
-			this.errors = value;
+		public final BuilderT instructions(String value) {
+			this.instructions = value;
 			return self();
 		}
+
+		protected abstract BuilderT self();
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupIndicesAliasesResponseBodyDeserializer(
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDecisionQuestionBaseDeserializer(
 			ObjectDeserializer<BuilderT> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-		op.add(AbstractBuilder::errors, JsonpDeserializer.booleanDeserializer(), "errors");
+
+		op.add(AbstractBuilder::instructions, JsonpDeserializer.stringDeserializer(), "instructions");
 
 	}
 

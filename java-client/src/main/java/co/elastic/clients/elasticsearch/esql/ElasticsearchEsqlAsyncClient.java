@@ -152,10 +152,10 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	/**
 	 * Delete an ES|QL view.
 	 * <p>
-	 * Deletes a stored ES|QL view.
+	 * Deletes a stored ES|QL view. Deleting a reserved view fails.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-delete-view">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -169,13 +169,13 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	/**
 	 * Delete an ES|QL view.
 	 * <p>
-	 * Deletes a stored ES|QL view.
+	 * Deletes a stored ES|QL view. Deleting a reserved view fails.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteViewRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-delete-view">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -342,10 +342,11 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	/**
 	 * Get an ES|QL view.
 	 * <p>
-	 * Returns a stored ES|QL view.
+	 * Returns one or more stored views. A reserved view includes
+	 * <code>reserved</code> set to <code>true</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-get-view">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -359,13 +360,14 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	/**
 	 * Get an ES|QL view.
 	 * <p>
-	 * Returns a stored ES|QL view.
+	 * Returns one or more stored views. A reserved view includes
+	 * <code>reserved</code> set to <code>true</code>.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetViewRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-get-view">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -377,10 +379,11 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	/**
 	 * Get an ES|QL view.
 	 * <p>
-	 * Returns a stored ES|QL view.
+	 * Returns one or more stored views. A reserved view includes
+	 * <code>reserved</code> set to <code>true</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-get-view">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -496,9 +499,12 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 
 	/**
 	 * Create or update an ES|QL view.
+	 * <p>
+	 * Stores an ES|QL query that runs whenever the view is referenced. A query that
+	 * cannot be parsed is rejected. Replacing a reserved view fails.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-put-view">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -511,12 +517,15 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 
 	/**
 	 * Create or update an ES|QL view.
+	 * <p>
+	 * Stores an ES|QL query that runs whenever the view is referenced. A query that
+	 * cannot be parsed is rejected. Replacing a reserved view fails.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutViewRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-put-view">Documentation
 	 *      on elastic.co</a>
 	 */
 

@@ -32,8 +32,8 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -59,6 +59,9 @@ import javax.annotation.Nullable;
 
 /**
  * Create or update an ES|QL view.
+ * <p>
+ * Stores an ES|QL query that runs whenever the view is referenced. A query that
+ * cannot be parsed is rejected. Replacing a reserved view fails.
  * 
  * @see <a href="../doc-files/api-spec.html#esql.put_view.Request">API
  *      specification</a>
@@ -72,6 +75,9 @@ public class PutViewRequest extends RequestBase implements JsonpSerializable {
 
 	private final String query;
 
+	@Nullable
+	private final Boolean validate;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private PutViewRequest(Builder builder) {
@@ -79,6 +85,7 @@ public class PutViewRequest extends RequestBase implements JsonpSerializable {
 		this.description = builder.description;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.validate = builder.validate;
 
 	}
 
@@ -106,12 +113,28 @@ public class PutViewRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The ES|QL query string from which to create a view.
+	 * Required - The ES|QL query string that defines the view. A query that cannot
+	 * be parsed is rejected.
 	 * <p>
 	 * API name: {@code query}
 	 */
 	public final String query() {
 		return this.query;
+	}
+
+	/**
+	 * Whether to analyze the view query and return a warning when validation fails.
+	 * <p>
+	 * Validation reports an unknown index or column, including an index the caller
+	 * cannot read. The view is saved even when validation reports a problem.
+	 * Failures unrelated to the query, such as an overloaded cluster, produce no
+	 * warning.
+	 * <p>
+	 * API name: {@code validate}
+	 */
+	@Nullable
+	public final Boolean validate() {
+		return this.validate;
 	}
 
 	/**
@@ -149,12 +172,16 @@ public class PutViewRequest extends RequestBase implements JsonpSerializable {
 
 		private String query;
 
+		@Nullable
+		private Boolean validate;
+
 		public Builder() {
 		}
 		private Builder(PutViewRequest instance) {
 			this.description = instance.description;
 			this.name = instance.name;
 			this.query = instance.query;
+			this.validate = instance.validate;
 
 		}
 		/**
@@ -178,12 +205,28 @@ public class PutViewRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The ES|QL query string from which to create a view.
+		 * Required - The ES|QL query string that defines the view. A query that cannot
+		 * be parsed is rejected.
 		 * <p>
 		 * API name: {@code query}
 		 */
 		public final Builder query(String value) {
 			this.query = value;
+			return this;
+		}
+
+		/**
+		 * Whether to analyze the view query and return a warning when validation fails.
+		 * <p>
+		 * Validation reports an unknown index or column, including an index the caller
+		 * cannot read. The view is saved even when validation reports a problem.
+		 * Failures unrelated to the query, such as an overloaded cluster, produce no
+		 * warning.
+		 * <p>
+		 * API name: {@code validate}
+		 */
+		public final Builder validate(@Nullable Boolean value) {
+			this.validate = value;
 			return this;
 		}
 
@@ -277,7 +320,11 @@ public class PutViewRequest extends RequestBase implements JsonpSerializable {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.validate != null) {
+					params.put("validate", String.valueOf(request.validate));
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, PutViewResponse._DESERIALIZER);
 }

@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.security.get_role;
 
 import co.elastic.clients.elasticsearch.security.ApplicationPrivileges;
 import co.elastic.clients.elasticsearch.security.ClusterPrivilege;
+import co.elastic.clients.elasticsearch.security.GlobalPrivilege;
 import co.elastic.clients.elasticsearch.security.RemoteClusterPrivileges;
 import co.elastic.clients.elasticsearch.security.RemoteIndicesPrivileges;
 import co.elastic.clients.elasticsearch.security.RoleTemplate;
@@ -89,7 +90,8 @@ public class Role implements JsonpSerializable {
 
 	private final List<RoleTemplate> roleTemplates;
 
-	private final Map<String, Map<String, Map<String, List<String>>>> global;
+	@Nullable
+	private final GlobalPrivilege global;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -105,7 +107,7 @@ public class Role implements JsonpSerializable {
 		this.transientMetadata = ApiTypeHelper.unmodifiable(builder.transientMetadata);
 		this.applications = ApiTypeHelper.unmodifiableRequired(builder.applications, this, "applications");
 		this.roleTemplates = ApiTypeHelper.unmodifiable(builder.roleTemplates);
-		this.global = ApiTypeHelper.unmodifiable(builder.global);
+		this.global = builder.global;
 
 	}
 
@@ -187,7 +189,8 @@ public class Role implements JsonpSerializable {
 	/**
 	 * API name: {@code global}
 	 */
-	public final Map<String, Map<String, Map<String, List<String>>>> global() {
+	@Nullable
+	public final GlobalPrivilege global() {
 		return this.global;
 	}
 
@@ -299,38 +302,9 @@ public class Role implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ApiTypeHelper.isDefined(this.global)) {
+		if (this.global != null) {
 			generator.writeKey("global");
-			generator.writeStartObject();
-			for (Map.Entry<String, Map<String, Map<String, List<String>>>> item0 : this.global.entrySet()) {
-				generator.writeKey(item0.getKey());
-				generator.writeStartObject();
-				if (item0.getValue() != null) {
-					for (Map.Entry<String, Map<String, List<String>>> item1 : item0.getValue().entrySet()) {
-						generator.writeKey(item1.getKey());
-						generator.writeStartObject();
-						if (item1.getValue() != null) {
-							for (Map.Entry<String, List<String>> item2 : item1.getValue().entrySet()) {
-								generator.writeKey(item2.getKey());
-								generator.writeStartArray();
-								if (item2.getValue() != null) {
-									for (String item3 : item2.getValue()) {
-										generator.write(item3);
-
-									}
-								}
-								generator.writeEnd();
-
-							}
-						}
-						generator.writeEnd();
-
-					}
-				}
-				generator.writeEnd();
-
-			}
-			generator.writeEnd();
+			this.global.serialize(generator, mapper);
 
 		}
 
@@ -375,7 +349,7 @@ public class Role implements JsonpSerializable {
 		private List<RoleTemplate> roleTemplates;
 
 		@Nullable
-		private Map<String, Map<String, Map<String, List<String>>>> global;
+		private GlobalPrivilege global;
 
 		public Builder() {
 		}
@@ -642,22 +616,17 @@ public class Role implements JsonpSerializable {
 
 		/**
 		 * API name: {@code global}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>global</code>.
 		 */
-		public final Builder global(Map<String, Map<String, Map<String, List<String>>>> map) {
-			this.global = _mapPutAll(this.global, map);
+		public final Builder global(@Nullable GlobalPrivilege value) {
+			this.global = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code global}
-		 * <p>
-		 * Adds an entry to <code>global</code>.
 		 */
-		public final Builder global(String key, Map<String, Map<String, List<String>>> value) {
-			this.global = _mapPut(this.global, key, value);
-			return this;
+		public final Builder global(Function<GlobalPrivilege.Builder, ObjectBuilder<GlobalPrivilege>> fn) {
+			return this.global(fn.apply(new GlobalPrivilege.Builder()).build());
 		}
 
 		@Override
@@ -710,11 +679,7 @@ public class Role implements JsonpSerializable {
 				"applications");
 		op.add(Builder::roleTemplates, JsonpDeserializer.arrayDeserializer(RoleTemplate._DESERIALIZER),
 				"role_templates");
-		op.add(Builder::global,
-				JsonpDeserializer.stringMapDeserializer(
-						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(
-								JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())))),
-				"global");
+		op.add(Builder::global, GlobalPrivilege._DESERIALIZER, "global");
 
 	}
 

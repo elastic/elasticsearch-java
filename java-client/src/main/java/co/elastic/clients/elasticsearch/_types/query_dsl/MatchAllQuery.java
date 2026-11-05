@@ -23,6 +23,8 @@ import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyQuery;
 import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyQueryVariant;
 import co.elastic.clients.elasticsearch.security.query_role.RoleQuery;
 import co.elastic.clients.elasticsearch.security.query_role.RoleQueryVariant;
+import co.elastic.clients.elasticsearch.security.query_service_accounts.ServiceAccountQuery;
+import co.elastic.clients.elasticsearch.security.query_service_accounts.ServiceAccountQueryVariant;
 import co.elastic.clients.elasticsearch.security.query_user.UserQuery;
 import co.elastic.clients.elasticsearch.security.query_user.UserQueryVariant;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -62,6 +64,7 @@ public class MatchAllQuery extends QueryBase
 		implements
 			ApiKeyQueryVariant,
 			QueryVariant,
+			ServiceAccountQueryVariant,
 			RoleQueryVariant,
 			UserQueryVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -89,6 +92,14 @@ public class MatchAllQuery extends QueryBase
 	@Override
 	public Query.Kind _queryKind() {
 		return Query.Kind.MatchAll;
+	}
+
+	/**
+	 * ServiceAccountQuery variant kind.
+	 */
+	@Override
+	public ServiceAccountQuery.Kind _serviceAccountQueryKind() {
+		return ServiceAccountQuery.Kind.MatchAll;
 	}
 
 	/**

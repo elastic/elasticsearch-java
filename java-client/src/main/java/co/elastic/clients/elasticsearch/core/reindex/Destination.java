@@ -148,11 +148,12 @@ public class Destination implements JsonpSerializable {
 
 	/**
 	 * The slice identifier used to route the reindexed documents to a specific
-	 * slice of the destination index. Use the special value <code>_all</code> to
-	 * target all slices without restricting to a routing value. Required when
-	 * <code>index.slice.enabled</code> is <code>true</code> for the destination
-	 * index; not allowed when <code>index.slice.enabled</code> is
-	 * <code>false</code>.
+	 * slice of the destination index. Not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code> for the destination
+	 * index. When <code>index.slice.enabled</code> is <code>true</code>, it is
+	 * required unless the source is read with <code>_slice</code>, in which case
+	 * each document keeps its source slice, or a script sets
+	 * <code>ctx._slice</code>.
 	 * <p>
 	 * API name: {@code _slice}
 	 */
@@ -305,11 +306,12 @@ public class Destination implements JsonpSerializable {
 
 		/**
 		 * The slice identifier used to route the reindexed documents to a specific
-		 * slice of the destination index. Use the special value <code>_all</code> to
-		 * target all slices without restricting to a routing value. Required when
-		 * <code>index.slice.enabled</code> is <code>true</code> for the destination
-		 * index; not allowed when <code>index.slice.enabled</code> is
-		 * <code>false</code>.
+		 * slice of the destination index. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code> for the destination
+		 * index. When <code>index.slice.enabled</code> is <code>true</code>, it is
+		 * required unless the source is read with <code>_slice</code>, in which case
+		 * each document keeps its source slice, or a script sets
+		 * <code>ctx._slice</code>.
 		 * <p>
 		 * API name: {@code _slice}
 		 */

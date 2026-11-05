@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.ThreadSortOrder;
 import co.elastic.clients.elasticsearch._types.ThreadType;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -85,7 +86,7 @@ public class HotThreadsRequest extends RequestBase {
 	private final Long snapshots;
 
 	@Nullable
-	private final ThreadType sort;
+	private final ThreadSortOrder sort;
 
 	@Nullable
 	private final Long threads;
@@ -161,7 +162,7 @@ public class HotThreadsRequest extends RequestBase {
 	 * API name: {@code sort}
 	 */
 	@Nullable
-	public final ThreadType sort() {
+	public final ThreadSortOrder sort() {
 		return this.sort;
 	}
 
@@ -218,7 +219,7 @@ public class HotThreadsRequest extends RequestBase {
 		private Long snapshots;
 
 		@Nullable
-		private ThreadType sort;
+		private ThreadSortOrder sort;
 
 		@Nullable
 		private Long threads;
@@ -311,7 +312,7 @@ public class HotThreadsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code sort}
 		 */
-		public final Builder sort(@Nullable ThreadType value) {
+		public final Builder sort(@Nullable ThreadSortOrder value) {
 			this.sort = value;
 			return this;
 		}

@@ -89,6 +89,12 @@ public class DataStreamLifecycleExplain implements JsonpSerializable {
 	@Nullable
 	private final String error;
 
+	@Nullable
+	private final String frozenTransitionStatus;
+
+	@Nullable
+	private final String unmanagedReason;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DataStreamLifecycleExplain(Builder builder) {
@@ -103,6 +109,8 @@ public class DataStreamLifecycleExplain implements JsonpSerializable {
 		this.lifecycle = builder.lifecycle;
 		this.generationTime = builder.generationTime;
 		this.error = builder.error;
+		this.frozenTransitionStatus = builder.frozenTransitionStatus;
+		this.unmanagedReason = builder.unmanagedReason;
 
 	}
 
@@ -181,6 +189,22 @@ public class DataStreamLifecycleExplain implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code frozen_transition_status}
+	 */
+	@Nullable
+	public final String frozenTransitionStatus() {
+		return this.frozenTransitionStatus;
+	}
+
+	/**
+	 * API name: {@code unmanaged_reason}
+	 */
+	@Nullable
+	public final String unmanagedReason() {
+		return this.unmanagedReason;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -232,6 +256,16 @@ public class DataStreamLifecycleExplain implements JsonpSerializable {
 			generator.write(this.error);
 
 		}
+		if (this.frozenTransitionStatus != null) {
+			generator.writeKey("frozen_transition_status");
+			generator.write(this.frozenTransitionStatus);
+
+		}
+		if (this.unmanagedReason != null) {
+			generator.writeKey("unmanaged_reason");
+			generator.write(this.unmanagedReason);
+
+		}
 
 	}
 
@@ -274,6 +308,12 @@ public class DataStreamLifecycleExplain implements JsonpSerializable {
 		@Nullable
 		private String error;
 
+		@Nullable
+		private String frozenTransitionStatus;
+
+		@Nullable
+		private String unmanagedReason;
+
 		public Builder() {
 		}
 		private Builder(DataStreamLifecycleExplain instance) {
@@ -286,6 +326,8 @@ public class DataStreamLifecycleExplain implements JsonpSerializable {
 			this.lifecycle = instance.lifecycle;
 			this.generationTime = instance.generationTime;
 			this.error = instance.error;
+			this.frozenTransitionStatus = instance.frozenTransitionStatus;
+			this.unmanagedReason = instance.unmanagedReason;
 
 		}
 		/**
@@ -389,6 +431,22 @@ public class DataStreamLifecycleExplain implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code frozen_transition_status}
+		 */
+		public final Builder frozenTransitionStatus(@Nullable String value) {
+			this.frozenTransitionStatus = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code unmanaged_reason}
+		 */
+		public final Builder unmanagedReason(@Nullable String value) {
+			this.unmanagedReason = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -433,6 +491,8 @@ public class DataStreamLifecycleExplain implements JsonpSerializable {
 		op.add(Builder::lifecycle, DataStreamLifecycleWithRollover._DESERIALIZER, "lifecycle");
 		op.add(Builder::generationTime, Time._DESERIALIZER, "generation_time");
 		op.add(Builder::error, JsonpDeserializer.stringDeserializer(), "error");
+		op.add(Builder::frozenTransitionStatus, JsonpDeserializer.stringDeserializer(), "frozen_transition_status");
+		op.add(Builder::unmanagedReason, JsonpDeserializer.stringDeserializer(), "unmanaged_reason");
 
 	}
 

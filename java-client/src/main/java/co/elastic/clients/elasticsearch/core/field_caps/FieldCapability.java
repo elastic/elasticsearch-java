@@ -85,6 +85,11 @@ public class FieldCapability implements JsonpSerializable {
 	private final List<String> nonInferenceIndices;
 
 	@Nullable
+	private final Boolean passthrough;
+
+	private final List<String> nonPassthroughIndices;
+
+	@Nullable
 	private final Boolean metadataField;
 
 	@Nullable
@@ -110,6 +115,8 @@ public class FieldCapability implements JsonpSerializable {
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.inference = builder.inference;
 		this.nonInferenceIndices = ApiTypeHelper.unmodifiable(builder.nonInferenceIndices);
+		this.passthrough = builder.passthrough;
+		this.nonPassthroughIndices = ApiTypeHelper.unmodifiable(builder.nonPassthroughIndices);
 		this.metadataField = builder.metadataField;
 		this.timeSeriesDimension = builder.timeSeriesDimension;
 		this.timeSeriesMetric = builder.timeSeriesMetric;
@@ -209,6 +216,27 @@ public class FieldCapability implements JsonpSerializable {
 	 */
 	public final List<String> nonInferenceIndices() {
 		return this.nonInferenceIndices;
+	}
+
+	/**
+	 * Whether this field is a passthrough source on all indices. This property is
+	 * present only for field types that support passthrough.
+	 * <p>
+	 * API name: {@code passthrough}
+	 */
+	@Nullable
+	public final Boolean passthrough() {
+		return this.passthrough;
+	}
+
+	/**
+	 * The list of indices where this field is not a passthrough source, or null if
+	 * all indices have the same definition for the field.
+	 * <p>
+	 * API name: {@code non_passthrough_indices}
+	 */
+	public final List<String> nonPassthroughIndices() {
+		return this.nonPassthroughIndices;
 	}
 
 	/**
@@ -338,6 +366,21 @@ public class FieldCapability implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.passthrough != null) {
+			generator.writeKey("passthrough");
+			generator.write(this.passthrough);
+
+		}
+		if (ApiTypeHelper.isDefined(this.nonPassthroughIndices)) {
+			generator.writeKey("non_passthrough_indices");
+			generator.writeStartArray();
+			for (String item0 : this.nonPassthroughIndices) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.metadataField != null) {
 			generator.writeKey("metadata_field");
 			generator.write(this.metadataField);
@@ -412,6 +455,12 @@ public class FieldCapability implements JsonpSerializable {
 		private List<String> nonInferenceIndices;
 
 		@Nullable
+		private Boolean passthrough;
+
+		@Nullable
+		private List<String> nonPassthroughIndices;
+
+		@Nullable
 		private Boolean metadataField;
 
 		@Nullable
@@ -438,6 +487,8 @@ public class FieldCapability implements JsonpSerializable {
 			this.type = instance.type;
 			this.inference = instance.inference;
 			this.nonInferenceIndices = instance.nonInferenceIndices;
+			this.passthrough = instance.passthrough;
+			this.nonPassthroughIndices = instance.nonPassthroughIndices;
 			this.metadataField = instance.metadataField;
 			this.timeSeriesDimension = instance.timeSeriesDimension;
 			this.timeSeriesMetric = instance.timeSeriesMetric;
@@ -621,6 +672,43 @@ public class FieldCapability implements JsonpSerializable {
 		}
 
 		/**
+		 * Whether this field is a passthrough source on all indices. This property is
+		 * present only for field types that support passthrough.
+		 * <p>
+		 * API name: {@code passthrough}
+		 */
+		public final Builder passthrough(@Nullable Boolean value) {
+			this.passthrough = value;
+			return this;
+		}
+
+		/**
+		 * The list of indices where this field is not a passthrough source, or null if
+		 * all indices have the same definition for the field.
+		 * <p>
+		 * API name: {@code non_passthrough_indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nonPassthroughIndices</code>.
+		 */
+		public final Builder nonPassthroughIndices(List<String> list) {
+			this.nonPassthroughIndices = _listAddAll(this.nonPassthroughIndices, list);
+			return this;
+		}
+
+		/**
+		 * The list of indices where this field is not a passthrough source, or null if
+		 * all indices have the same definition for the field.
+		 * <p>
+		 * API name: {@code non_passthrough_indices}
+		 * <p>
+		 * Adds one or more values to <code>nonPassthroughIndices</code>.
+		 */
+		public final Builder nonPassthroughIndices(String value, String... values) {
+			this.nonPassthroughIndices = _listAdd(this.nonPassthroughIndices, value, values);
+			return this;
+		}
+
+		/**
 		 * Whether this field is registered as a metadata field.
 		 * <p>
 		 * API name: {@code metadata_field}
@@ -752,6 +840,9 @@ public class FieldCapability implements JsonpSerializable {
 		op.add(Builder::inference, JsonpDeserializer.booleanDeserializer(), "inference");
 		op.add(Builder::nonInferenceIndices,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "non_inference_indices");
+		op.add(Builder::passthrough, JsonpDeserializer.booleanDeserializer(), "passthrough");
+		op.add(Builder::nonPassthroughIndices,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "non_passthrough_indices");
 		op.add(Builder::metadataField, JsonpDeserializer.booleanDeserializer(), "metadata_field");
 		op.add(Builder::timeSeriesDimension, JsonpDeserializer.booleanDeserializer(), "time_series_dimension");
 		op.add(Builder::timeSeriesMetric, TimeSeriesMetricType._DESERIALIZER, "time_series_metric");

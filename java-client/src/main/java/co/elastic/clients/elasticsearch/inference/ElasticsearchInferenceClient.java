@@ -190,6 +190,61 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 		return completion(fn.apply(new CompletionRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: inference.decision
+
+	/**
+	 * Perform decision inference on the service.
+	 * <p>
+	 * Answer a set of named questions about an input, such as whether a customer is
+	 * complaining, which team should handle a request, or how angry a customer is.
+	 * The questions are defined in the task settings of the inference endpoint, and
+	 * can be replaced for a single request through <code>task_settings</code>.
+	 * <blockquote>
+	 * <p>
+	 * info Only the <code>elastic</code> service currently supports the
+	 * <code>decision</code> task.
+	 * </p>
+	 * </blockquote>
+	 *
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DecisionResponse decision(DecisionRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DecisionRequest, DecisionResponse, ErrorResponse> endpoint = (JsonEndpoint<DecisionRequest, DecisionResponse, ErrorResponse>) DecisionRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Perform decision inference on the service.
+	 * <p>
+	 * Answer a set of named questions about an input, such as whether a customer is
+	 * complaining, which team should handle a request, or how angry a customer is.
+	 * The questions are defined in the task settings of the inference endpoint, and
+	 * can be replaced for a single request through <code>task_settings</code>.
+	 * <blockquote>
+	 * <p>
+	 * info Only the <code>elastic</code> service currently supports the
+	 * <code>decision</code> task.
+	 * </p>
+	 * </blockquote>
+	 *
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DecisionRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DecisionResponse decision(Function<DecisionRequest.Builder, ObjectBuilder<DecisionRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return decision(fn.apply(new DecisionRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: inference.delete
 
 	/**
@@ -242,6 +297,47 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	public DeleteRegionPolicyResponse deleteRegionPolicy() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(DeleteRegionPolicyRequest._INSTANCE, DeleteRegionPolicyRequest._ENDPOINT,
 				this.transportOptions);
+	}
+
+	// ----- Endpoint: inference.document_extraction
+
+	/**
+	 * Perform document extraction inference on the service.
+	 * <p>
+	 * Extract the content of documents, such as PDFs or images of documents, into a
+	 * textual format.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DocumentExtractionResponse documentExtraction(DocumentExtractionRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DocumentExtractionRequest, DocumentExtractionResponse, ErrorResponse> endpoint = (JsonEndpoint<DocumentExtractionRequest, DocumentExtractionResponse, ErrorResponse>) DocumentExtractionRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Perform document extraction inference on the service.
+	 * <p>
+	 * Extract the content of documents, such as PDFs or images of documents, into a
+	 * textual format.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DocumentExtractionRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DocumentExtractionResponse documentExtraction(
+			Function<DocumentExtractionRequest.Builder, ObjectBuilder<DocumentExtractionRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return documentExtraction(fn.apply(new DocumentExtractionRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: inference.embedding

@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.Script;
+import co.elastic.clients.elasticsearch.indices.FielddataFrequencyFilter;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -86,10 +87,19 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 	private final TimeSeriesMetricType timeSeriesMetric;
 
 	@Nullable
+	private final Boolean timeSeriesDimension;
+
+	@Nullable
 	private final String analyzer;
 
 	@Nullable
 	private final Boolean eagerGlobalOrdinals;
+
+	@Nullable
+	private final Boolean fielddata;
+
+	@Nullable
+	private final FielddataFrequencyFilter fielddataFrequencyFilter;
 
 	@Nullable
 	private final Boolean index;
@@ -116,6 +126,9 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 	private final String searchQuoteAnalyzer;
 
 	@Nullable
+	private final String similarity;
+
+	@Nullable
 	private final TermVectorOption termVector;
 
 	@Nullable
@@ -126,6 +139,9 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 
 	@Nullable
 	private final String locale;
+
+	@Nullable
+	private final Subobjects subobjects;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -140,8 +156,11 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 		this.onScriptError = builder.onScriptError;
 		this.ignoreMalformed = builder.ignoreMalformed;
 		this.timeSeriesMetric = builder.timeSeriesMetric;
+		this.timeSeriesDimension = builder.timeSeriesDimension;
 		this.analyzer = builder.analyzer;
 		this.eagerGlobalOrdinals = builder.eagerGlobalOrdinals;
+		this.fielddata = builder.fielddata;
+		this.fielddataFrequencyFilter = builder.fielddataFrequencyFilter;
 		this.index = builder.index;
 		this.indexOptions = builder.indexOptions;
 		this.indexPhrases = builder.indexPhrases;
@@ -150,10 +169,12 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 		this.positionIncrementGap = builder.positionIncrementGap;
 		this.searchAnalyzer = builder.searchAnalyzer;
 		this.searchQuoteAnalyzer = builder.searchQuoteAnalyzer;
+		this.similarity = builder.similarity;
 		this.termVector = builder.termVector;
 		this.format = builder.format;
 		this.precisionStep = builder.precisionStep;
 		this.locale = builder.locale;
+		this.subobjects = builder.subobjects;
 
 	}
 
@@ -234,6 +255,14 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 	}
 
 	/**
+	 * API name: {@code time_series_dimension}
+	 */
+	@Nullable
+	public final Boolean timeSeriesDimension() {
+		return this.timeSeriesDimension;
+	}
+
+	/**
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
@@ -247,6 +276,22 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 	@Nullable
 	public final Boolean eagerGlobalOrdinals() {
 		return this.eagerGlobalOrdinals;
+	}
+
+	/**
+	 * API name: {@code fielddata}
+	 */
+	@Nullable
+	public final Boolean fielddata() {
+		return this.fielddata;
+	}
+
+	/**
+	 * API name: {@code fielddata_frequency_filter}
+	 */
+	@Nullable
+	public final FielddataFrequencyFilter fielddataFrequencyFilter() {
+		return this.fielddataFrequencyFilter;
 	}
 
 	/**
@@ -314,6 +359,14 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 	}
 
 	/**
+	 * API name: {@code similarity}
+	 */
+	@Nullable
+	public final String similarity() {
+		return this.similarity;
+	}
+
+	/**
 	 * API name: {@code term_vector}
 	 */
 	@Nullable
@@ -343,6 +396,14 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 	@Nullable
 	public final String locale() {
 		return this.locale;
+	}
+
+	/**
+	 * API name: {@code subobjects}
+	 */
+	@Nullable
+	public final Subobjects subobjects() {
+		return this.subobjects;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -387,6 +448,11 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 			generator.writeKey("time_series_metric");
 			this.timeSeriesMetric.serialize(generator, mapper);
 		}
+		if (this.timeSeriesDimension != null) {
+			generator.writeKey("time_series_dimension");
+			generator.write(this.timeSeriesDimension);
+
+		}
 		if (this.analyzer != null) {
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
@@ -395,6 +461,16 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 		if (this.eagerGlobalOrdinals != null) {
 			generator.writeKey("eager_global_ordinals");
 			generator.write(this.eagerGlobalOrdinals);
+
+		}
+		if (this.fielddata != null) {
+			generator.writeKey("fielddata");
+			generator.write(this.fielddata);
+
+		}
+		if (this.fielddataFrequencyFilter != null) {
+			generator.writeKey("fielddata_frequency_filter");
+			this.fielddataFrequencyFilter.serialize(generator, mapper);
 
 		}
 		if (this.index != null) {
@@ -436,6 +512,11 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 			generator.write(this.searchQuoteAnalyzer);
 
 		}
+		if (this.similarity != null) {
+			generator.writeKey("similarity");
+			generator.write(this.similarity);
+
+		}
 		if (this.termVector != null) {
 			generator.writeKey("term_vector");
 			this.termVector.serialize(generator, mapper);
@@ -454,6 +535,10 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 			generator.writeKey("locale");
 			generator.write(this.locale);
 
+		}
+		if (this.subobjects != null) {
+			generator.writeKey("subobjects");
+			this.subobjects.serialize(generator, mapper);
 		}
 
 	}
@@ -492,10 +577,19 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 		private TimeSeriesMetricType timeSeriesMetric;
 
 		@Nullable
+		private Boolean timeSeriesDimension;
+
+		@Nullable
 		private String analyzer;
 
 		@Nullable
 		private Boolean eagerGlobalOrdinals;
+
+		@Nullable
+		private Boolean fielddata;
+
+		@Nullable
+		private FielddataFrequencyFilter fielddataFrequencyFilter;
 
 		@Nullable
 		private Boolean index;
@@ -522,6 +616,9 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 		private String searchQuoteAnalyzer;
 
 		@Nullable
+		private String similarity;
+
+		@Nullable
 		private TermVectorOption termVector;
 
 		@Nullable
@@ -532,6 +629,9 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 
 		@Nullable
 		private String locale;
+
+		@Nullable
+		private Subobjects subobjects;
 
 		public Builder() {
 		}
@@ -544,8 +644,11 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 			this.onScriptError = instance.onScriptError;
 			this.ignoreMalformed = instance.ignoreMalformed;
 			this.timeSeriesMetric = instance.timeSeriesMetric;
+			this.timeSeriesDimension = instance.timeSeriesDimension;
 			this.analyzer = instance.analyzer;
 			this.eagerGlobalOrdinals = instance.eagerGlobalOrdinals;
+			this.fielddata = instance.fielddata;
+			this.fielddataFrequencyFilter = instance.fielddataFrequencyFilter;
 			this.index = instance.index;
 			this.indexOptions = instance.indexOptions;
 			this.indexPhrases = instance.indexPhrases;
@@ -554,10 +657,12 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 			this.positionIncrementGap = instance.positionIncrementGap;
 			this.searchAnalyzer = instance.searchAnalyzer;
 			this.searchQuoteAnalyzer = instance.searchQuoteAnalyzer;
+			this.similarity = instance.similarity;
 			this.termVector = instance.termVector;
 			this.format = instance.format;
 			this.precisionStep = instance.precisionStep;
 			this.locale = instance.locale;
+			this.subobjects = instance.subobjects;
 
 		}
 		/**
@@ -671,6 +776,14 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 		}
 
 		/**
+		 * API name: {@code time_series_dimension}
+		 */
+		public final Builder timeSeriesDimension(@Nullable Boolean value) {
+			this.timeSeriesDimension = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code analyzer}
 		 */
 		public final Builder analyzer(@Nullable String value) {
@@ -684,6 +797,30 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 		public final Builder eagerGlobalOrdinals(@Nullable Boolean value) {
 			this.eagerGlobalOrdinals = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code fielddata}
+		 */
+		public final Builder fielddata(@Nullable Boolean value) {
+			this.fielddata = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code fielddata_frequency_filter}
+		 */
+		public final Builder fielddataFrequencyFilter(@Nullable FielddataFrequencyFilter value) {
+			this.fielddataFrequencyFilter = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code fielddata_frequency_filter}
+		 */
+		public final Builder fielddataFrequencyFilter(
+				Function<FielddataFrequencyFilter.Builder, ObjectBuilder<FielddataFrequencyFilter>> fn) {
+			return this.fielddataFrequencyFilter(fn.apply(new FielddataFrequencyFilter.Builder()).build());
 		}
 
 		/**
@@ -758,6 +895,14 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 		}
 
 		/**
+		 * API name: {@code similarity}
+		 */
+		public final Builder similarity(@Nullable String value) {
+			this.similarity = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code term_vector}
 		 */
 		public final Builder termVector(@Nullable TermVectorOption value) {
@@ -786,6 +931,14 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 		 */
 		public final Builder locale(@Nullable String value) {
 			this.locale = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code subobjects}
+		 */
+		public final Builder subobjects(@Nullable Subobjects value) {
+			this.subobjects = value;
 			return this;
 		}
 
@@ -831,8 +984,11 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 		op.add(Builder::onScriptError, OnScriptError._DESERIALIZER, "on_script_error");
 		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
 		op.add(Builder::timeSeriesMetric, TimeSeriesMetricType._DESERIALIZER, "time_series_metric");
+		op.add(Builder::timeSeriesDimension, JsonpDeserializer.booleanDeserializer(), "time_series_dimension");
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::eagerGlobalOrdinals, JsonpDeserializer.booleanDeserializer(), "eager_global_ordinals");
+		op.add(Builder::fielddata, JsonpDeserializer.booleanDeserializer(), "fielddata");
+		op.add(Builder::fielddataFrequencyFilter, FielddataFrequencyFilter._DESERIALIZER, "fielddata_frequency_filter");
 		op.add(Builder::index, JsonpDeserializer.booleanDeserializer(), "index");
 		op.add(Builder::indexOptions, IndexOptions._DESERIALIZER, "index_options");
 		op.add(Builder::indexPhrases, JsonpDeserializer.booleanDeserializer(), "index_phrases");
@@ -841,10 +997,12 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 		op.add(Builder::positionIncrementGap, JsonpDeserializer.integerDeserializer(), "position_increment_gap");
 		op.add(Builder::searchAnalyzer, JsonpDeserializer.stringDeserializer(), "search_analyzer");
 		op.add(Builder::searchQuoteAnalyzer, JsonpDeserializer.stringDeserializer(), "search_quote_analyzer");
+		op.add(Builder::similarity, JsonpDeserializer.stringDeserializer(), "similarity");
 		op.add(Builder::termVector, TermVectorOption._DESERIALIZER, "term_vector");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(Builder::precisionStep, JsonpDeserializer.integerDeserializer(), "precision_step");
 		op.add(Builder::locale, JsonpDeserializer.stringDeserializer(), "locale");
+		op.add(Builder::subobjects, Subobjects._DESERIALIZER, "subobjects");
 
 		op.ignore("type");
 	}

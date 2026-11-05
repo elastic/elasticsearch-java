@@ -30,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -67,6 +68,9 @@ public class ESQLView implements JsonpSerializable {
 	@Nullable
 	private final String description;
 
+	@Nullable
+	private final Boolean reserved;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ESQLView(Builder builder) {
@@ -74,6 +78,7 @@ public class ESQLView implements JsonpSerializable {
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.description = builder.description;
+		this.reserved = builder.reserved;
 
 	}
 
@@ -110,6 +115,21 @@ public class ESQLView implements JsonpSerializable {
 	}
 
 	/**
+	 * Whether this view is reserved.
+	 * <p>
+	 * Elasticsearch creates reserved views. They can be queried and read like any
+	 * other view. They cannot be created, updated, or deleted through the views
+	 * API. The response includes this field only when the value is
+	 * <code>true</code>.
+	 * <p>
+	 * API name: {@code reserved}
+	 */
+	@Nullable
+	public final Boolean reserved() {
+		return this.reserved;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -129,6 +149,11 @@ public class ESQLView implements JsonpSerializable {
 		if (this.description != null) {
 			generator.writeKey("description");
 			generator.write(this.description);
+
+		}
+		if (this.reserved != null) {
+			generator.writeKey("reserved");
+			generator.write(this.reserved);
 
 		}
 
@@ -153,12 +178,16 @@ public class ESQLView implements JsonpSerializable {
 		@Nullable
 		private String description;
 
+		@Nullable
+		private Boolean reserved;
+
 		public Builder() {
 		}
 		private Builder(ESQLView instance) {
 			this.name = instance.name;
 			this.query = instance.query;
 			this.description = instance.description;
+			this.reserved = instance.reserved;
 
 		}
 		/**
@@ -188,6 +217,21 @@ public class ESQLView implements JsonpSerializable {
 		 */
 		public final Builder description(@Nullable String value) {
 			this.description = value;
+			return this;
+		}
+
+		/**
+		 * Whether this view is reserved.
+		 * <p>
+		 * Elasticsearch creates reserved views. They can be queried and read like any
+		 * other view. They cannot be created, updated, or deleted through the views
+		 * API. The response includes this field only when the value is
+		 * <code>true</code>.
+		 * <p>
+		 * API name: {@code reserved}
+		 */
+		public final Builder reserved(@Nullable Boolean value) {
+			this.reserved = value;
 			return this;
 		}
 
@@ -228,6 +272,7 @@ public class ESQLView implements JsonpSerializable {
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::reserved, JsonpDeserializer.booleanDeserializer(), "reserved");
 
 	}
 

@@ -106,6 +106,9 @@ public class Hit<TDocument> implements JsonpSerializable {
 	private final String routing;
 
 	@Nullable
+	private final String slice;
+
+	@Nullable
 	private final TDocument source;
 
 	@Nullable
@@ -143,6 +146,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 		this.shard = builder.shard;
 		this.node = builder.node;
 		this.routing = builder.routing;
+		this.slice = builder.slice;
 		this.source = builder.source;
 		this.rank = builder.rank;
 		this.seqNo = builder.seqNo;
@@ -260,6 +264,17 @@ public class Hit<TDocument> implements JsonpSerializable {
 	@Nullable
 	public final String routing() {
 		return this.routing;
+	}
+
+	/**
+	 * The slice the document belongs to, for a slice-enabled index
+	 * (<code>index.slice.enabled</code> set to <code>true</code>).
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String slice() {
+		return this.slice;
 	}
 
 	/**
@@ -445,6 +460,11 @@ public class Hit<TDocument> implements JsonpSerializable {
 			generator.write(this.routing);
 
 		}
+		if (this.slice != null) {
+			generator.writeKey("_slice");
+			generator.write(this.slice);
+
+		}
 		if (this.source != null) {
 			generator.writeKey("_source");
 			JsonpUtils.serialize(this.source, generator, tDocumentSerializer, mapper);
@@ -539,6 +559,9 @@ public class Hit<TDocument> implements JsonpSerializable {
 		private String routing;
 
 		@Nullable
+		private String slice;
+
+		@Nullable
 		private TDocument source;
 
 		@Nullable
@@ -576,6 +599,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 			this.shard = instance.shard;
 			this.node = instance.node;
 			this.routing = instance.routing;
+			this.slice = instance.slice;
 			this.source = instance.source;
 			this.rank = instance.rank;
 			this.seqNo = instance.seqNo;
@@ -793,6 +817,17 @@ public class Hit<TDocument> implements JsonpSerializable {
 		}
 
 		/**
+		 * The slice the document belongs to, for a slice-enabled index
+		 * (<code>index.slice.enabled</code> set to <code>true</code>).
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder<TDocument> slice(@Nullable String value) {
+			this.slice = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code _source}
 		 */
 		public final Builder<TDocument> source(@Nullable TDocument value) {
@@ -989,6 +1024,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 		op.add(Builder::shard, JsonpDeserializer.stringDeserializer(), "_shard");
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "_node");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
+		op.add(Builder::slice, JsonpDeserializer.stringDeserializer(), "_slice");
 		op.add(Builder::source, tDocumentDeserializer, "_source");
 		op.add(Builder::rank, JsonpDeserializer.integerDeserializer(), "_rank");
 		op.add(Builder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");

@@ -26,9 +26,13 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -64,6 +68,8 @@ public class IndexRoutingAllocation implements JsonpSerializable {
 	@Nullable
 	private final IndexRoutingAllocationInclude include;
 
+	private final Map<String, List<String>> require;
+
 	@Nullable
 	private final IndexRoutingAllocationInitialRecovery initialRecovery;
 
@@ -76,6 +82,7 @@ public class IndexRoutingAllocation implements JsonpSerializable {
 
 		this.enable = builder.enable;
 		this.include = builder.include;
+		this.require = ApiTypeHelper.unmodifiable(builder.require);
 		this.initialRecovery = builder.initialRecovery;
 		this.disk = builder.disk;
 
@@ -99,6 +106,20 @@ public class IndexRoutingAllocation implements JsonpSerializable {
 	@Nullable
 	public final IndexRoutingAllocationInclude include() {
 		return this.include;
+	}
+
+	/**
+	 * Assign the index to a node whose attribute has all of the given values. Each
+	 * key is a node attribute: one of the built-in attributes <code>_name</code>,
+	 * <code>_host_ip</code>, <code>_publish_ip</code>, <code>_ip</code>,
+	 * <code>_host</code>, <code>_id</code> and <code>_tier</code>, or a custom node
+	 * attribute. Each value is a comma-separated string or an array of strings, and
+	 * can use wildcards.
+	 * <p>
+	 * API name: {@code require}
+	 */
+	public final Map<String, List<String>> require() {
+		return this.require;
 	}
 
 	/**
@@ -137,6 +158,24 @@ public class IndexRoutingAllocation implements JsonpSerializable {
 			this.include.serialize(generator, mapper);
 
 		}
+		if (ApiTypeHelper.isDefined(this.require)) {
+			generator.writeKey("require");
+			generator.writeStartObject();
+			for (Map.Entry<String, List<String>> item0 : this.require.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartArray();
+				if (item0.getValue() != null) {
+					for (String item1 : item0.getValue()) {
+						generator.write(item1);
+
+					}
+				}
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.initialRecovery != null) {
 			generator.writeKey("initial_recovery");
 			this.initialRecovery.serialize(generator, mapper);
@@ -171,6 +210,9 @@ public class IndexRoutingAllocation implements JsonpSerializable {
 		private IndexRoutingAllocationInclude include;
 
 		@Nullable
+		private Map<String, List<String>> require;
+
+		@Nullable
 		private IndexRoutingAllocationInitialRecovery initialRecovery;
 
 		@Nullable
@@ -181,6 +223,7 @@ public class IndexRoutingAllocation implements JsonpSerializable {
 		private Builder(IndexRoutingAllocation instance) {
 			this.enable = instance.enable;
 			this.include = instance.include;
+			this.require = instance.require;
 			this.initialRecovery = instance.initialRecovery;
 			this.disk = instance.disk;
 
@@ -207,6 +250,40 @@ public class IndexRoutingAllocation implements JsonpSerializable {
 		public final Builder include(
 				Function<IndexRoutingAllocationInclude.Builder, ObjectBuilder<IndexRoutingAllocationInclude>> fn) {
 			return this.include(fn.apply(new IndexRoutingAllocationInclude.Builder()).build());
+		}
+
+		/**
+		 * Assign the index to a node whose attribute has all of the given values. Each
+		 * key is a node attribute: one of the built-in attributes <code>_name</code>,
+		 * <code>_host_ip</code>, <code>_publish_ip</code>, <code>_ip</code>,
+		 * <code>_host</code>, <code>_id</code> and <code>_tier</code>, or a custom node
+		 * attribute. Each value is a comma-separated string or an array of strings, and
+		 * can use wildcards.
+		 * <p>
+		 * API name: {@code require}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>require</code>.
+		 */
+		public final Builder require(Map<String, List<String>> map) {
+			this.require = _mapPutAll(this.require, map);
+			return this;
+		}
+
+		/**
+		 * Assign the index to a node whose attribute has all of the given values. Each
+		 * key is a node attribute: one of the built-in attributes <code>_name</code>,
+		 * <code>_host_ip</code>, <code>_publish_ip</code>, <code>_ip</code>,
+		 * <code>_host</code>, <code>_id</code> and <code>_tier</code>, or a custom node
+		 * attribute. Each value is a comma-separated string or an array of strings, and
+		 * can use wildcards.
+		 * <p>
+		 * API name: {@code require}
+		 * <p>
+		 * Adds an entry to <code>require</code>.
+		 */
+		public final Builder require(String key, List<String> value) {
+			this.require = _mapPut(this.require, key, value);
+			return this;
 		}
 
 		/**
@@ -278,6 +355,8 @@ public class IndexRoutingAllocation implements JsonpSerializable {
 
 		op.add(Builder::enable, IndexRoutingAllocationOptions._DESERIALIZER, "enable");
 		op.add(Builder::include, IndexRoutingAllocationInclude._DESERIALIZER, "include");
+		op.add(Builder::require, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "require");
 		op.add(Builder::initialRecovery, IndexRoutingAllocationInitialRecovery._DESERIALIZER, "initial_recovery");
 		op.add(Builder::disk, IndexRoutingAllocationDisk._DESERIALIZER, "disk");
 

@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.data_recovery.get_recovery_points;
+package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -27,10 +27,11 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Double;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,49 +51,49 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: data_recovery.get_recovery_points.RecoveryPoint
+// typedef: inference._types.ChoiceDecisionProbability
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#data_recovery.get_recovery_points.RecoveryPoint">API
+ *      "../doc-files/api-spec.html#inference._types.ChoiceDecisionProbability">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class RecoveryPoint implements JsonpSerializable {
-	private final DateTime startTime;
+public class ChoiceDecisionProbability implements JsonpSerializable {
+	private final String value;
 
-	private final DateTime endTime;
+	private final double probability;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private RecoveryPoint(Builder builder) {
+	private ChoiceDecisionProbability(Builder builder) {
 
-		this.startTime = ApiTypeHelper.requireNonNull(builder.startTime, this, "startTime");
-		this.endTime = ApiTypeHelper.requireNonNull(builder.endTime, this, "endTime");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+		this.probability = ApiTypeHelper.requireNonNull(builder.probability, this, "probability", 0);
 
 	}
 
-	public static RecoveryPoint of(Function<Builder, ObjectBuilder<RecoveryPoint>> fn) {
+	public static ChoiceDecisionProbability of(Function<Builder, ObjectBuilder<ChoiceDecisionProbability>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The time when creation of the recovery point started.
+	 * Required - The option.
 	 * <p>
-	 * API name: {@code start_time}
+	 * API name: {@code value}
 	 */
-	public final DateTime startTime() {
-		return this.startTime;
+	public final String value() {
+		return this.value;
 	}
 
 	/**
-	 * Required - The time when creation of the recovery point completed.
+	 * Required - The probability of the option.
 	 * <p>
-	 * API name: {@code end_time}
+	 * API name: {@code probability}
 	 */
-	public final DateTime endTime() {
-		return this.endTime;
+	public final double probability() {
+		return this.probability;
 	}
 
 	/**
@@ -106,10 +107,11 @@ public class RecoveryPoint implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("start_time");
-		this.startTime.serialize(generator, mapper);
-		generator.writeKey("end_time");
-		this.endTime.serialize(generator, mapper);
+		generator.writeKey("value");
+		generator.write(this.value);
+
+		generator.writeKey("probability");
+		generator.write(this.probability);
 
 	}
 
@@ -121,38 +123,40 @@ public class RecoveryPoint implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link RecoveryPoint}.
+	 * Builder for {@link ChoiceDecisionProbability}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RecoveryPoint> {
-		private DateTime startTime;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ChoiceDecisionProbability> {
+		private String value;
 
-		private DateTime endTime;
+		private Double probability;
 
 		public Builder() {
 		}
-		private Builder(RecoveryPoint instance) {
-			this.startTime = instance.startTime;
-			this.endTime = instance.endTime;
+		private Builder(ChoiceDecisionProbability instance) {
+			this.value = instance.value;
+			this.probability = instance.probability;
 
 		}
 		/**
-		 * Required - The time when creation of the recovery point started.
+		 * Required - The option.
 		 * <p>
-		 * API name: {@code start_time}
+		 * API name: {@code value}
 		 */
-		public final Builder startTime(DateTime value) {
-			this.startTime = value;
+		public final Builder value(String value) {
+			this.value = value;
 			return this;
 		}
 
 		/**
-		 * Required - The time when creation of the recovery point completed.
+		 * Required - The probability of the option.
 		 * <p>
-		 * API name: {@code end_time}
+		 * API name: {@code probability}
 		 */
-		public final Builder endTime(DateTime value) {
-			this.endTime = value;
+		public final Builder probability(double value) {
+			this.probability = value;
 			return this;
 		}
 
@@ -162,15 +166,15 @@ public class RecoveryPoint implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link RecoveryPoint}.
+		 * Builds a {@link ChoiceDecisionProbability}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public RecoveryPoint build() {
+		public ChoiceDecisionProbability build() {
 			_checkSingleUse();
 
-			return new RecoveryPoint(this);
+			return new ChoiceDecisionProbability(this);
 		}
 	}
 
@@ -183,15 +187,16 @@ public class RecoveryPoint implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link RecoveryPoint}
+	 * Json deserializer for {@link ChoiceDecisionProbability}
 	 */
-	public static final JsonpDeserializer<RecoveryPoint> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RecoveryPoint::setupRecoveryPointDeserializer);
+	public static final JsonpDeserializer<ChoiceDecisionProbability> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ChoiceDecisionProbability::setupChoiceDecisionProbabilityDeserializer);
 
-	protected static void setupRecoveryPointDeserializer(ObjectDeserializer<RecoveryPoint.Builder> op) {
+	protected static void setupChoiceDecisionProbabilityDeserializer(
+			ObjectDeserializer<ChoiceDecisionProbability.Builder> op) {
 
-		op.add(Builder::startTime, DateTime._DESERIALIZER, "start_time");
-		op.add(Builder::endTime, DateTime._DESERIALIZER, "end_time");
+		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
+		op.add(Builder::probability, JsonpDeserializer.doubleDeserializer(), "probability");
 
 	}
 

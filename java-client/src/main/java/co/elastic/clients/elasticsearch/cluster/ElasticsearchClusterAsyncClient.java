@@ -472,7 +472,7 @@ public class ElasticsearchClusterAsyncClient
 	// ----- Endpoint: cluster.info
 
 	/**
-	 * Get cluster info.
+	 * Get cluster subsystem info.
 	 * <p>
 	 * Returns basic information about the cluster.
 	 * 
@@ -489,7 +489,7 @@ public class ElasticsearchClusterAsyncClient
 	}
 
 	/**
-	 * Get cluster info.
+	 * Get cluster subsystem info.
 	 * <p>
 	 * Returns basic information about the cluster.
 	 * 

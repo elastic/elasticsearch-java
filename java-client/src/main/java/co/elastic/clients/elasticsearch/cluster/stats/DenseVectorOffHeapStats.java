@@ -97,7 +97,7 @@ public class DenseVectorOffHeapStats implements JsonpSerializable {
 	@Nullable
 	private final String totalClivfSize;
 
-	private final Map<String, Map<String, Long>> fielddata;
+	private final Map<String, DenseVectorFieldOffHeapStats> fielddata;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -235,7 +235,7 @@ public class DenseVectorOffHeapStats implements JsonpSerializable {
 	/**
 	 * API name: {@code fielddata}
 	 */
-	public final Map<String, Map<String, Long>> fielddata() {
+	public final Map<String, DenseVectorFieldOffHeapStats> fielddata() {
 		return this.fielddata;
 	}
 
@@ -309,17 +309,9 @@ public class DenseVectorOffHeapStats implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.fielddata)) {
 			generator.writeKey("fielddata");
 			generator.writeStartObject();
-			for (Map.Entry<String, Map<String, Long>> item0 : this.fielddata.entrySet()) {
+			for (Map.Entry<String, DenseVectorFieldOffHeapStats> item0 : this.fielddata.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.writeStartObject();
-				if (item0.getValue() != null) {
-					for (Map.Entry<String, Long> item1 : item0.getValue().entrySet()) {
-						generator.writeKey(item1.getKey());
-						generator.write(item1.getValue());
-
-					}
-				}
-				generator.writeEnd();
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -378,7 +370,7 @@ public class DenseVectorOffHeapStats implements JsonpSerializable {
 		private String totalClivfSize;
 
 		@Nullable
-		private Map<String, Map<String, Long>> fielddata;
+		private Map<String, DenseVectorFieldOffHeapStats> fielddata;
 
 		public Builder() {
 		}
@@ -517,7 +509,7 @@ public class DenseVectorOffHeapStats implements JsonpSerializable {
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>fielddata</code>.
 		 */
-		public final Builder fielddata(Map<String, Map<String, Long>> map) {
+		public final Builder fielddata(Map<String, DenseVectorFieldOffHeapStats> map) {
 			this.fielddata = _mapPutAll(this.fielddata, map);
 			return this;
 		}
@@ -527,9 +519,19 @@ public class DenseVectorOffHeapStats implements JsonpSerializable {
 		 * <p>
 		 * Adds an entry to <code>fielddata</code>.
 		 */
-		public final Builder fielddata(String key, Map<String, Long> value) {
+		public final Builder fielddata(String key, DenseVectorFieldOffHeapStats value) {
 			this.fielddata = _mapPut(this.fielddata, key, value);
 			return this;
+		}
+
+		/**
+		 * API name: {@code fielddata}
+		 * <p>
+		 * Adds an entry to <code>fielddata</code> using a builder lambda.
+		 */
+		public final Builder fielddata(String key,
+				Function<DenseVectorFieldOffHeapStats.Builder, ObjectBuilder<DenseVectorFieldOffHeapStats>> fn) {
+			return fielddata(key, fn.apply(new DenseVectorFieldOffHeapStats.Builder()).build());
 		}
 
 		@Override
@@ -581,8 +583,8 @@ public class DenseVectorOffHeapStats implements JsonpSerializable {
 		op.add(Builder::totalCenivfSize, JsonpDeserializer.stringDeserializer(), "total_cenivf_size");
 		op.add(Builder::totalClivfSizeBytes, JsonpDeserializer.longDeserializer(), "total_clivf_size_bytes");
 		op.add(Builder::totalClivfSize, JsonpDeserializer.stringDeserializer(), "total_clivf_size");
-		op.add(Builder::fielddata, JsonpDeserializer.stringMapDeserializer(
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.longDeserializer())), "fielddata");
+		op.add(Builder::fielddata, JsonpDeserializer.stringMapDeserializer(DenseVectorFieldOffHeapStats._DESERIALIZER),
+				"fielddata");
 
 	}
 

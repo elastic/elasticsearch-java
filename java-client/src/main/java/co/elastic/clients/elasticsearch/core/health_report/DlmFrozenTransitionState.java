@@ -46,12 +46,27 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum DlmFrozenTransitionState implements JsonEnum {
+	/**
+	 * The index is eligible for a frozen-tier transition but the data stream
+	 * lifecycle has not marked it for conversion.
+	 */
 	Unmarked("unmarked"),
 
+	/**
+	 * The index is marked for conversion but has not been submitted to the
+	 * transition executor.
+	 */
 	Marked("marked"),
 
+	/**
+	 * The index has been submitted to the transition executor and is waiting in its
+	 * queue for a thread.
+	 */
 	Queued("queued"),
 
+	/**
+	 * The transition of the index is in progress.
+	 */
 	Running("running"),
 
 	;

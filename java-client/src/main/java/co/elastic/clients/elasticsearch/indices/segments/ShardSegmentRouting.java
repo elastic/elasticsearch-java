@@ -63,6 +63,9 @@ import javax.annotation.Nullable;
 public class ShardSegmentRouting implements JsonpSerializable {
 	private final String node;
 
+	@Nullable
+	private final String relocatingNode;
+
 	private final boolean primary;
 
 	private final String state;
@@ -72,6 +75,7 @@ public class ShardSegmentRouting implements JsonpSerializable {
 	private ShardSegmentRouting(Builder builder) {
 
 		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.relocatingNode = builder.relocatingNode;
 		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary", false);
 		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 
@@ -88,6 +92,17 @@ public class ShardSegmentRouting implements JsonpSerializable {
 	 */
 	public final String node() {
 		return this.node;
+	}
+
+	/**
+	 * The node ID of the node the shard is relocating to. Only returned while the
+	 * shard is relocating.
+	 * <p>
+	 * API name: {@code relocating_node}
+	 */
+	@Nullable
+	public final String relocatingNode() {
+		return this.relocatingNode;
 	}
 
 	/**
@@ -123,6 +138,11 @@ public class ShardSegmentRouting implements JsonpSerializable {
 		generator.writeKey("node");
 		generator.write(this.node);
 
+		if (this.relocatingNode != null) {
+			generator.writeKey("relocating_node");
+			generator.write(this.relocatingNode);
+
+		}
 		generator.writeKey("primary");
 		generator.write(this.primary);
 
@@ -147,6 +167,9 @@ public class ShardSegmentRouting implements JsonpSerializable {
 				ObjectBuilder<ShardSegmentRouting> {
 		private String node;
 
+		@Nullable
+		private String relocatingNode;
+
 		private Boolean primary;
 
 		private String state;
@@ -155,6 +178,7 @@ public class ShardSegmentRouting implements JsonpSerializable {
 		}
 		private Builder(ShardSegmentRouting instance) {
 			this.node = instance.node;
+			this.relocatingNode = instance.relocatingNode;
 			this.primary = instance.primary;
 			this.state = instance.state;
 
@@ -166,6 +190,17 @@ public class ShardSegmentRouting implements JsonpSerializable {
 		 */
 		public final Builder node(String value) {
 			this.node = value;
+			return this;
+		}
+
+		/**
+		 * The node ID of the node the shard is relocating to. Only returned while the
+		 * shard is relocating.
+		 * <p>
+		 * API name: {@code relocating_node}
+		 */
+		public final Builder relocatingNode(@Nullable String value) {
+			this.relocatingNode = value;
 			return this;
 		}
 
@@ -225,6 +260,7 @@ public class ShardSegmentRouting implements JsonpSerializable {
 	protected static void setupShardSegmentRoutingDeserializer(ObjectDeserializer<ShardSegmentRouting.Builder> op) {
 
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(Builder::relocatingNode, JsonpDeserializer.stringDeserializer(), "relocating_node");
 		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
 		op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state");
 
