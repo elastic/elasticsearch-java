@@ -105,11 +105,16 @@ public class MultiBufferEntityTest {
         );
     }
 
-    // Scenario 1: a buffer partially accepted by the encoder is resumed from where it stopped.
+    // Scenario 1: bytes left in staging by a partial write are sent before anything else.
     @Test
-    public void testPartiallyWrittenBufferIsResumed() throws IOException {
+    public void testUnsentStagedBytesAreSentFirst() throws IOException {
         List<ByteBuffer> body = bulkBody(2000);
+        int total = concat(body).length;
+
         drain(entity(body), new FakeEncoder(7), body);
+        // Every output event fills the encoder
+        Assertions.assertEquals((total + 999) / 1000, drain(entity(body), new FakeEncoder(1000), body));
+
         assertUntouched(body);
     }
 
@@ -130,20 +135,49 @@ public class MultiBufferEntityTest {
         drain(entity(body), new FakeEncoder(1000), body);
     }
 
-    // Scenario 3: buffers are written in a single call as long as the encoder accepts them.
+    // Scenario 3: large buffers and the last buffer are written directly, without copying.
     @Test
-    public void testWritesAllBuffersWhileEncoderAccepts() throws IOException {
-        List<ByteBuffer> body = bulkBody(2000);
-        Assertions.assertEquals(1, drain(entity(body), new FakeEncoder(Integer.MAX_VALUE), body));
+    public void testLargeAndLastBuffersAreWrittenDirectly() throws IOException {
+        ByteBuffer large = piece(20_000, 0);
+        ByteBuffer last = piece(100, 1);
+        List<ByteBuffer> body = Arrays.asList(large, last);
+
+        FakeEncoder encoder = new FakeEncoder(Integer.MAX_VALUE);
+        drain(entity(body), encoder, body);
+        Assertions.assertEquals(Arrays.asList(20_000, 100), encoder.writeSizes);
+        Assertions.assertSame(large.array(), encoder.writtenArrays.get(0));
+        Assertions.assertSame(last.array(), encoder.writtenArrays.get(1));
+
+        // The large buffer is only partially accepted, and resumed on the next event
+        drain(entity(body), new FakeEncoder(1000), body);
+
+        // A single small buffer never goes through staging
+        ByteBuffer single = piece(200, 2);
+        body = Collections.singletonList(single);
+        encoder = new FakeEncoder(Integer.MAX_VALUE);
+        drain(entity(body), encoder, body);
+        Assertions.assertEquals(Collections.singletonList(200), encoder.writeSizes);
+        Assertions.assertSame(single.array(), encoder.writtenArrays.get(0));
+
         assertUntouched(body);
     }
 
-    // Scenario 4: writing stops when the encoder is full, and every output event fills it.
+    // Scenario 4: small buffers are coalesced into full staging-size writes, in a single call while the encoder
+    // accepts them.
     @Test
-    public void testStopsWhenEncoderIsFull() throws IOException {
+    public void testSmallBuffersAreCoalesced() throws IOException {
         List<ByteBuffer> body = bulkBody(2000);
         int total = concat(body).length;
-        Assertions.assertEquals((total + 999) / 1000, drain(entity(body), new FakeEncoder(1000), body));
+        int expectedWrites = (total + MultiBufferEntity.STAGING_BUFFER_SIZE - 1) / MultiBufferEntity.STAGING_BUFFER_SIZE;
+
+        FakeEncoder encoder = new FakeEncoder(Integer.MAX_VALUE);
+        Assertions.assertEquals(1, drain(entity(body), encoder, body));
+        Assertions.assertEquals(expectedWrites, encoder.writeSizes.size());
+        for (int i = 0; i < expectedWrites - 1; i++) {
+            Assertions.assertEquals(MultiBufferEntity.STAGING_BUFFER_SIZE, encoder.writeSizes.get(i));
+        }
+
+        assertUntouched(body);
     }
 
     @Test
@@ -234,6 +268,8 @@ public class MultiBufferEntityTest {
         private int bytesLeft;
 
         final ByteArrayOutputStream received = new ByteArrayOutputStream();
+        final List<Integer> writeSizes = new ArrayList<>();
+        final List<byte[]> writtenArrays = new ArrayList<>();
         int completeCount;
 
         FakeEncoder(int bytesPerEvent) {
@@ -249,7 +285,12 @@ public class MultiBufferEntityTest {
         public int write(ByteBuffer src) {
             Assertions.assertEquals(0, completeCount, "write after completion");
             int n = Math.min(src.remaining(), bytesLeft);
+            if (n == 0) {
+                return 0;
+            }
             bytesLeft -= n;
+            writeSizes.add(n);
+            writtenArrays.add(src.array());
             received.write(src.array(), src.arrayOffset() + src.position(), n);
             src.position(src.position() + n);
             return n;
