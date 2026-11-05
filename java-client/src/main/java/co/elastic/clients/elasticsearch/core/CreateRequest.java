@@ -513,6 +513,7 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 			this.versionType = instance.versionType;
 			this.waitForActiveShards = instance.waitForActiveShards;
 			this.document = instance.document;
+			this.tDocumentSerializer = instance.tDocumentSerializer;
 
 		}
 		/**

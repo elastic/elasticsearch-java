@@ -117,6 +117,7 @@ public class GeoBoundsAggregation extends MetricAggregationBase implements Aggre
 		public Builder() {
 		}
 		private Builder(GeoBoundsAggregation instance) {
+			super(instance);
 			this.wrapLongitude = instance.wrapLongitude;
 
 		}

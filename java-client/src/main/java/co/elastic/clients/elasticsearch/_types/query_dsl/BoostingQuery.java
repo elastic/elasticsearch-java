@@ -144,6 +144,7 @@ public class BoostingQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(BoostingQuery instance) {
+			super(instance);
 			this.negativeBoost = instance.negativeBoost;
 			this.negative = instance.negative;
 			this.positive = instance.positive;

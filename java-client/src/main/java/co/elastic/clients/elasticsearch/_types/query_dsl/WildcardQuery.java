@@ -245,10 +245,12 @@ public class WildcardQuery extends QueryBase
 		public Builder() {
 		}
 		private Builder(WildcardQuery instance) {
+			super(instance);
 			this.caseInsensitive = instance.caseInsensitive;
 			this.rewrite = instance.rewrite;
 			this.value = instance.value;
 			this.wildcard = instance.wildcard;
+			this.field = instance.field;
 
 		}
 		/**

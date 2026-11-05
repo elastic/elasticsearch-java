@@ -144,6 +144,7 @@ public class DataframeAnalysisClassification extends DataframeAnalysisBase imple
 		public Builder() {
 		}
 		private Builder(DataframeAnalysisClassification instance) {
+			super(instance);
 			this.classAssignmentObjective = instance.classAssignmentObjective;
 			this.numTopClasses = instance.numTopClasses;
 

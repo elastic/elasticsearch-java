@@ -124,6 +124,7 @@ public class ChoiceDecisionQuestion extends DecisionQuestionBase implements Deci
 		public Builder() {
 		}
 		private Builder(ChoiceDecisionQuestion instance) {
+			super(instance);
 			this.choices = instance.choices;
 
 		}

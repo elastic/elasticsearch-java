@@ -156,6 +156,7 @@ public class PassthroughObjectProperty extends CorePropertyBase implements Prope
 		public Builder() {
 		}
 		private Builder(PassthroughObjectProperty instance) {
+			super(instance);
 			this.enabled = instance.enabled;
 			this.priority = instance.priority;
 			this.timeSeriesDimension = instance.timeSeriesDimension;

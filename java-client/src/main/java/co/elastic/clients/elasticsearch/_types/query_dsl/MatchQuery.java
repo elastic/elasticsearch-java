@@ -440,6 +440,7 @@ public class MatchQuery extends QueryBase
 		public Builder() {
 		}
 		private Builder(MatchQuery instance) {
+			super(instance);
 			this.analyzer = instance.analyzer;
 			this.autoGenerateSynonymsPhraseQuery = instance.autoGenerateSynonymsPhraseQuery;
 			this.cutoffFrequency = instance.cutoffFrequency;
@@ -453,6 +454,7 @@ public class MatchQuery extends QueryBase
 			this.prefixLength = instance.prefixLength;
 			this.query = instance.query;
 			this.zeroTermsQuery = instance.zeroTermsQuery;
+			this.field = instance.field;
 
 		}
 		/**

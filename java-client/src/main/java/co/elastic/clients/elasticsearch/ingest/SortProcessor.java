@@ -155,6 +155,7 @@ public class SortProcessor extends ProcessorBase implements ProcessorVariant {
 		public Builder() {
 		}
 		private Builder(SortProcessor instance) {
+			super(instance);
 			this.field = instance.field;
 			this.order = instance.order;
 			this.targetField = instance.targetField;

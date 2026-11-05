@@ -189,6 +189,7 @@ public class EqlHits<TEvent> implements JsonpSerializable {
 			this.total = instance.total;
 			this.events = instance.events;
 			this.sequences = instance.sequences;
+			this.tEventSerializer = instance.tEventSerializer;
 
 		}
 		/**

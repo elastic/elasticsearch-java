@@ -149,6 +149,14 @@ public class WatchRecordQueuedStats implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(WatchRecordQueuedStats instance) {
+			this.executionTime = instance.executionTime;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

@@ -92,6 +92,7 @@ public class ReverseTokenFilter extends TokenFilterBase implements TokenFilterDe
 		public Builder() {
 		}
 		private Builder(ReverseTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

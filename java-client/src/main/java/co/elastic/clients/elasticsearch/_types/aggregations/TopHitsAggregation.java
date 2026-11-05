@@ -413,6 +413,7 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		public Builder() {
 		}
 		private Builder(TopHitsAggregation instance) {
+			super(instance);
 			this.docvalueFields = instance.docvalueFields;
 			this.explain = instance.explain;
 			this.fields = instance.fields;

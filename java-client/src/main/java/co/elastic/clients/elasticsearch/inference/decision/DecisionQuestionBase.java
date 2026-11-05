@@ -114,6 +114,14 @@ public abstract class DecisionQuestionBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(DecisionQuestionBase instance) {
+			this.instructions = instance.instructions;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

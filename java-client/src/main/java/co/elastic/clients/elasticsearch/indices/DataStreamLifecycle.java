@@ -430,6 +430,20 @@ public class DataStreamLifecycle implements JsonpSerializable {
 			return this.frozenAfter(fn.apply(new Time.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(DataStreamLifecycle instance) {
+			this.dataRetention = instance.dataRetention;
+			this.effectiveRetention = instance.effectiveRetention;
+			this.retentionDeterminedBy = instance.retentionDeterminedBy;
+			this.downsampling = instance.downsampling;
+			this.downsamplingMethod = instance.downsamplingMethod;
+			this.enabled = instance.enabled;
+			this.frozenAfter = instance.frozenAfter;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

@@ -144,6 +144,7 @@ public class MedianAbsoluteDeviationAggregation extends FormatMetricAggregationB
 		public Builder() {
 		}
 		private Builder(MedianAbsoluteDeviationAggregation instance) {
+			super(instance);
 			this.compression = instance.compression;
 			this.executionHint = instance.executionHint;
 

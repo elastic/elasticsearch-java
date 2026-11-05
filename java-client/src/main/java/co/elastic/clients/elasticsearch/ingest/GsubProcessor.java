@@ -191,6 +191,7 @@ public class GsubProcessor extends ProcessorBase implements ProcessorVariant {
 		public Builder() {
 		}
 		private Builder(GsubProcessor instance) {
+			super(instance);
 			this.field = instance.field;
 			this.ignoreMissing = instance.ignoreMissing;
 			this.pattern = instance.pattern;

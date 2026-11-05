@@ -84,6 +84,7 @@ public class StepChange extends AbstractChangePoint implements ChangeTypeVariant
 		public Builder() {
 		}
 		private Builder(StepChange instance) {
+			super(instance);
 
 		}
 		@Override

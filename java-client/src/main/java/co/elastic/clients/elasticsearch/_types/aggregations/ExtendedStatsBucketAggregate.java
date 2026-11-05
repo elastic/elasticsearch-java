@@ -84,6 +84,7 @@ public class ExtendedStatsBucketAggregate extends ExtendedStatsAggregate impleme
 		public Builder() {
 		}
 		private Builder(ExtendedStatsBucketAggregate instance) {
+			super(instance);
 
 		}
 		@Override

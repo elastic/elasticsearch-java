@@ -84,6 +84,7 @@ public class MaxAggregation extends FormatMetricAggregationBase implements Aggre
 		public Builder() {
 		}
 		private Builder(MaxAggregation instance) {
+			super(instance);
 
 		}
 		@Override

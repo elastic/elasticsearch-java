@@ -365,6 +365,22 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(WriteResponseBase instance) {
+			this.id = instance.id;
+			this.index = instance.index;
+			this.primaryTerm = instance.primaryTerm;
+			this.result = instance.result;
+			this.seqNo = instance.seqNo;
+			this.shards = instance.shards;
+			this.version = instance.version;
+			this.failureStore = instance.failureStore;
+			this.forcedRefresh = instance.forcedRefresh;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

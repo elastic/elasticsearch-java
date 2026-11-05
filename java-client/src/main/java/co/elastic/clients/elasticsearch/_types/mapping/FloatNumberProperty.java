@@ -115,6 +115,7 @@ public class FloatNumberProperty extends NumberPropertyBase implements PropertyV
 		public Builder() {
 		}
 		private Builder(FloatNumberProperty instance) {
+			super(instance);
 			this.nullValue = instance.nullValue;
 
 		}

@@ -231,6 +231,7 @@ public class UserAgentProcessor extends ProcessorBase implements ProcessorVarian
 		public Builder() {
 		}
 		private Builder(UserAgentProcessor instance) {
+			super(instance);
 			this.field = instance.field;
 			this.ignoreMissing = instance.ignoreMissing;
 			this.regexFile = instance.regexFile;

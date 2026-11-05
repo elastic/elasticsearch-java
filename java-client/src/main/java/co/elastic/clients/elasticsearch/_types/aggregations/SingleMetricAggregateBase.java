@@ -136,6 +136,16 @@ public abstract class SingleMetricAggregateBase extends AggregateBase {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(SingleMetricAggregateBase instance) {
+			super(instance);
+			this.value = instance.value;
+			this.valueAsString = instance.valueAsString;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

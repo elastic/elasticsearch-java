@@ -183,6 +183,7 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 		public Builder() {
 		}
 		private Builder(PatternReplaceTokenFilter instance) {
+			super(instance);
 			this.all = instance.all;
 			this.flags = instance.flags;
 			this.pattern = instance.pattern;

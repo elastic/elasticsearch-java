@@ -114,6 +114,7 @@ public class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold {
 		public Builder() {
 		}
 		private Builder(RankEvalMetricPrecision instance) {
+			super(instance);
 			this.ignoreUnlabeled = instance.ignoreUnlabeled;
 
 		}

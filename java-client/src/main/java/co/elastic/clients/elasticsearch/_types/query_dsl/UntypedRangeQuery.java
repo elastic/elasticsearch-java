@@ -165,8 +165,10 @@ public class UntypedRangeQuery extends RangeQueryBase<JsonData> implements Range
 		public Builder() {
 		}
 		private Builder(UntypedRangeQuery instance) {
+			super(instance);
 			this.format = instance.format;
 			this.timeZone = instance.timeZone;
+			this.field = instance.field;
 
 		}
 		/**

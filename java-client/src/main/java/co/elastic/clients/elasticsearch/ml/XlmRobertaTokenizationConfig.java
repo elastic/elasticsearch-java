@@ -84,6 +84,7 @@ public class XlmRobertaTokenizationConfig extends CommonTokenizationConfig imple
 		public Builder() {
 		}
 		private Builder(XlmRobertaTokenizationConfig instance) {
+			super(instance);
 
 		}
 		@Override

@@ -164,6 +164,7 @@ public class IdsQuery extends QueryBase
 		public Builder() {
 		}
 		private Builder(IdsQuery instance) {
+			super(instance);
 			this.values = instance.values;
 
 		}

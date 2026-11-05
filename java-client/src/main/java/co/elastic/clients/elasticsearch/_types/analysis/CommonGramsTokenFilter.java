@@ -202,6 +202,7 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 		public Builder() {
 		}
 		private Builder(CommonGramsTokenFilter instance) {
+			super(instance);
 			this.commonWords = instance.commonWords;
 			this.commonWordsPath = instance.commonWordsPath;
 			this.ignoreCase = instance.ignoreCase;

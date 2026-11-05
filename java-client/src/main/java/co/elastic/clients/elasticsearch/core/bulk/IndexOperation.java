@@ -123,6 +123,9 @@ public class IndexOperation<TDocument> extends WriteOperation implements NdJsonp
 		public Builder() {
 		}
 		private Builder(IndexOperation<TDocument> instance) {
+			super(instance);
+			this.tDocumentSerializer = instance.tDocumentSerializer;
+			this.document = instance.document;
 
 		}
 		/**

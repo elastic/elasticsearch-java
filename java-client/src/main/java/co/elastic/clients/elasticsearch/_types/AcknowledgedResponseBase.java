@@ -114,6 +114,14 @@ public abstract class AcknowledgedResponseBase implements AcknowledgedResponse, 
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(AcknowledgedResponseBase instance) {
+			this.acknowledged = instance.acknowledged;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

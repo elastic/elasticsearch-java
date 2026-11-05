@@ -115,6 +115,7 @@ public class DoubleNumberProperty extends NumberPropertyBase implements Property
 		public Builder() {
 		}
 		private Builder(DoubleNumberProperty instance) {
+			super(instance);
 			this.nullValue = instance.nullValue;
 
 		}

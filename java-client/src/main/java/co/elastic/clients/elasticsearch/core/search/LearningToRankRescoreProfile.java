@@ -109,6 +109,7 @@ public class LearningToRankRescoreProfile extends RescoreProfileBase implements 
 		public Builder() {
 		}
 		private Builder(LearningToRankRescoreProfile instance) {
+			super(instance);
 			this.breakdown = instance.breakdown;
 
 		}

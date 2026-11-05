@@ -81,6 +81,7 @@ public class Spike extends AbstractChangePoint implements ChangeTypeVariant {
 		public Builder() {
 		}
 		private Builder(Spike instance) {
+			super(instance);
 
 		}
 		@Override

@@ -140,6 +140,15 @@ public abstract class IndicesUpdateAliasesResponseBody extends AliasesResponseBo
 			return actionResults(fn.apply(new AliasActionResult.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(IndicesUpdateAliasesResponseBody instance) {
+			super(instance);
+			this.actionResults = instance.actionResults;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

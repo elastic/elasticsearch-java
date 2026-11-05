@@ -109,6 +109,7 @@ public class ScriptedMetricAggregate extends AggregateBase implements AggregateV
 		public Builder() {
 		}
 		private Builder(ScriptedMetricAggregate instance) {
+			super(instance);
 			this.value = instance.value;
 
 		}

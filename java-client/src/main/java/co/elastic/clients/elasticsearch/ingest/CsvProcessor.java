@@ -249,6 +249,7 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 		public Builder() {
 		}
 		private Builder(CsvProcessor instance) {
+			super(instance);
 			this.emptyValue = instance.emptyValue;
 			this.field = instance.field;
 			this.ignoreMissing = instance.ignoreMissing;

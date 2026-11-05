@@ -335,6 +335,7 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 		public Builder() {
 		}
 		private Builder(KeyValueProcessor instance) {
+			super(instance);
 			this.excludeKeys = instance.excludeKeys;
 			this.field = instance.field;
 			this.fieldSplit = instance.fieldSplit;

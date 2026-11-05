@@ -126,6 +126,7 @@ public class SemanticQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(SemanticQuery instance) {
+			super(instance);
 			this.field = instance.field;
 			this.query = instance.query;
 

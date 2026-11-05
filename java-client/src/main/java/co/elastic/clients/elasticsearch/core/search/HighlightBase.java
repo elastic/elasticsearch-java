@@ -903,6 +903,34 @@ public abstract class HighlightBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(HighlightBase instance) {
+			this.type = instance.type;
+			this.boundaryChars = instance.boundaryChars;
+			this.boundaryMaxScan = instance.boundaryMaxScan;
+			this.boundaryScanner = instance.boundaryScanner;
+			this.boundaryScannerLocale = instance.boundaryScannerLocale;
+			this.forceSource = instance.forceSource;
+			this.fragmenter = instance.fragmenter;
+			this.fragmentSize = instance.fragmentSize;
+			this.highlightFilter = instance.highlightFilter;
+			this.highlightQuery = instance.highlightQuery;
+			this.maxFragmentLength = instance.maxFragmentLength;
+			this.maxAnalyzedOffset = instance.maxAnalyzedOffset;
+			this.noMatchSize = instance.noMatchSize;
+			this.numberOfFragments = instance.numberOfFragments;
+			this.options = instance.options;
+			this.order = instance.order;
+			this.phraseLimit = instance.phraseLimit;
+			this.postTags = instance.postTags;
+			this.preTags = instance.preTags;
+			this.requireFieldMatch = instance.requireFieldMatch;
+			this.tagsSchema = instance.tagsSchema;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

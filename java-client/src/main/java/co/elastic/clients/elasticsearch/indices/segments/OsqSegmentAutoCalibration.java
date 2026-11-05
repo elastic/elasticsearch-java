@@ -116,6 +116,7 @@ public class OsqSegmentAutoCalibration extends SegmentAutoCalibrationBase implem
 		public Builder() {
 		}
 		private Builder(OsqSegmentAutoCalibration instance) {
+			super(instance);
 			this.parameters = instance.parameters;
 
 		}

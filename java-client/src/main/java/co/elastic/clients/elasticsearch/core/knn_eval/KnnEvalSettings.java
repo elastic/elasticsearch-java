@@ -267,6 +267,17 @@ public class KnnEvalSettings implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(KnnEvalSettings instance) {
+			this.visitPercentage = instance.visitPercentage;
+			this.numCandidates = instance.numCandidates;
+			this.rescoreVector = instance.rescoreVector;
+			this.exact = instance.exact;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

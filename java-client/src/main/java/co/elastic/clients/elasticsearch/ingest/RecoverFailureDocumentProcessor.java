@@ -85,6 +85,7 @@ public class RecoverFailureDocumentProcessor extends ProcessorBase implements Pr
 		public Builder() {
 		}
 		private Builder(RecoverFailureDocumentProcessor instance) {
+			super(instance);
 
 		}
 		@Override

@@ -636,6 +636,7 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 		public Builder() {
 		}
 		private Builder(DynamicProperty instance) {
+			super(instance);
 			this.enabled = instance.enabled;
 			this.nullValue = instance.nullValue;
 			this.boost = instance.boost;

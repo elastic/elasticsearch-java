@@ -100,6 +100,15 @@ public abstract class DenseVectorAutoCalibrationBase extends SegmentAutoCalibrat
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(DenseVectorAutoCalibrationBase instance) {
+			super(instance);
+			this.numberOfSegments = instance.numberOfSegments;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

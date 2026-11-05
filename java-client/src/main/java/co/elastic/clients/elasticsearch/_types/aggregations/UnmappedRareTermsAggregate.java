@@ -87,6 +87,7 @@ public class UnmappedRareTermsAggregate extends MultiBucketAggregateBase<Void> i
 		public Builder() {
 		}
 		private Builder(UnmappedRareTermsAggregate instance) {
+			super(instance);
 
 		}
 		@Override

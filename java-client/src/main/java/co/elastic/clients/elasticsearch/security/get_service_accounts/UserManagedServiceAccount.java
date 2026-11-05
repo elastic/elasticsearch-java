@@ -480,6 +480,22 @@ public class UserManagedServiceAccount implements ServiceAccountInfoVariant, Jso
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(UserManagedServiceAccount instance) {
+			this.roles = instance.roles;
+			this.enabled = instance.enabled;
+			this.description = instance.description;
+			this.createdBy = instance.createdBy;
+			this.createdAt = instance.createdAt;
+			this.createdByProfileUid = instance.createdByProfileUid;
+			this.updatedBy = instance.updatedBy;
+			this.updatedAt = instance.updatedAt;
+			this.updatedByProfileUid = instance.updatedByProfileUid;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

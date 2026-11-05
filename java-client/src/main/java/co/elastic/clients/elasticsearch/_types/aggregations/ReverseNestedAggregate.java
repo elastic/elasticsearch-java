@@ -84,6 +84,7 @@ public class ReverseNestedAggregate extends SingleBucketAggregateBase implements
 		public Builder() {
 		}
 		private Builder(ReverseNestedAggregate instance) {
+			super(instance);
 
 		}
 		@Override

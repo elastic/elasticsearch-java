@@ -117,6 +117,7 @@ public class ExtendedStatsBucketAggregation extends PipelineAggregationBase impl
 		public Builder() {
 		}
 		private Builder(ExtendedStatsBucketAggregation instance) {
+			super(instance);
 			this.sigma = instance.sigma;
 
 		}

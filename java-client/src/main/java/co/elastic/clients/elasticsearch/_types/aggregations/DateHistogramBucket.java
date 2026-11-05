@@ -122,6 +122,7 @@ public class DateHistogramBucket extends MultiBucketBase {
 		public Builder() {
 		}
 		private Builder(DateHistogramBucket instance) {
+			super(instance);
 			this.keyAsString = instance.keyAsString;
 			this.key = instance.key;
 

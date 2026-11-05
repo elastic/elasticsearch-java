@@ -84,6 +84,7 @@ public class NormalizeForStreamProcessor extends ProcessorBase implements Proces
 		public Builder() {
 		}
 		private Builder(NormalizeForStreamProcessor instance) {
+			super(instance);
 
 		}
 		@Override

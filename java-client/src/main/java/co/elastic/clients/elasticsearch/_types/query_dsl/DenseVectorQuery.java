@@ -219,6 +219,7 @@ public class DenseVectorQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(DenseVectorQuery instance) {
+			super(instance);
 			this.field = instance.field;
 			this.queryVector = instance.queryVector;
 			this.queryVectorBuilder = instance.queryVectorBuilder;

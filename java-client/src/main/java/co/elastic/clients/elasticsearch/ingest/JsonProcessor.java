@@ -205,6 +205,7 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 		public Builder() {
 		}
 		private Builder(JsonProcessor instance) {
+			super(instance);
 			this.addToRoot = instance.addToRoot;
 			this.addToRootConflictStrategy = instance.addToRootConflictStrategy;
 			this.allowDuplicateKeys = instance.allowDuplicateKeys;

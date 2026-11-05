@@ -542,6 +542,24 @@ public class Recovery implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(Recovery instance) {
+			this.recoveryId = instance.recoveryId;
+			this.status = instance.status;
+			this.recoveryPoint = instance.recoveryPoint;
+			this.destinationMode = instance.destinationMode;
+			this.sources = instance.sources;
+			this.metadata = instance.metadata;
+			this.startedAt = instance.startedAt;
+			this.completedAt = instance.completedAt;
+			this.progress = instance.progress;
+			this.failures = instance.failures;
+			this.totalFailureCount = instance.totalFailureCount;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

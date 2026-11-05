@@ -106,6 +106,7 @@ public class ShardsCapacityIndicator extends BaseIndicator {
 		public Builder() {
 		}
 		private Builder(ShardsCapacityIndicator instance) {
+			super(instance);
 			this.details = instance.details;
 
 		}

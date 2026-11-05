@@ -143,6 +143,14 @@ public class ProjectRoutingExpression implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(ProjectRoutingExpression instance) {
+			this.expression = instance.expression;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

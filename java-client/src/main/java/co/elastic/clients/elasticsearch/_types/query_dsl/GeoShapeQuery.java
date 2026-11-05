@@ -167,7 +167,10 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(GeoShapeQuery instance) {
+			super(instance);
 			this.ignoreUnmapped = instance.ignoreUnmapped;
+			this.field = instance.field;
+			this.shape = instance.shape;
 
 		}
 		/**

@@ -410,6 +410,24 @@ public class ReindexTask implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(ReindexTask instance) {
+			this.action = instance.action;
+			this.cancellable = instance.cancellable;
+			this.cancelled = instance.cancelled;
+			this.description = instance.description;
+			this.id = instance.id;
+			this.node = instance.node;
+			this.runningTimeInNanos = instance.runningTimeInNanos;
+			this.startTimeInMillis = instance.startTimeInMillis;
+			this.status = instance.status;
+			this.type = instance.type;
+			this.headers = instance.headers;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

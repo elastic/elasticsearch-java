@@ -92,6 +92,7 @@ public class PersianStemTokenFilter extends TokenFilterBase implements TokenFilt
 		public Builder() {
 		}
 		private Builder(PersianStemTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

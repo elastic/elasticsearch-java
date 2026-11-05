@@ -196,6 +196,17 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(StatusResponseBase instance) {
+			super(instance);
+			this.shards = instance.shards;
+			this.clusters = instance.clusters;
+			this.completionStatus = instance.completionStatus;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

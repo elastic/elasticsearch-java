@@ -142,6 +142,7 @@ public class DisMaxQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(DisMaxQuery instance) {
+			super(instance);
 			this.queries = instance.queries;
 			this.tieBreaker = instance.tieBreaker;
 

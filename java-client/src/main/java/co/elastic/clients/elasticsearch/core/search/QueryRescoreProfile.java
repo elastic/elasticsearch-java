@@ -112,6 +112,7 @@ public class QueryRescoreProfile extends RescoreProfileBase implements RescorePr
 		public Builder() {
 		}
 		private Builder(QueryRescoreProfile instance) {
+			super(instance);
 			this.breakdown = instance.breakdown;
 
 		}

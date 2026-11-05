@@ -133,6 +133,15 @@ public abstract class AbstractChangePoint implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(AbstractChangePoint instance) {
+			this.pValue = instance.pValue;
+			this.changePoint = instance.changePoint;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

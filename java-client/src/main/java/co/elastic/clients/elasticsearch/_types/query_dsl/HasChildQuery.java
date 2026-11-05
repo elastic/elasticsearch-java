@@ -247,6 +247,7 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(HasChildQuery instance) {
+			super(instance);
 			this.ignoreUnmapped = instance.ignoreUnmapped;
 			this.innerHits = instance.innerHits;
 			this.maxChildren = instance.maxChildren;

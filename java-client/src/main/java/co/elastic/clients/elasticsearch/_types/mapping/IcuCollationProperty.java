@@ -420,6 +420,7 @@ public class IcuCollationProperty extends DocValuesPropertyBase implements Prope
 		public Builder() {
 		}
 		private Builder(IcuCollationProperty instance) {
+			super(instance);
 			this.norms = instance.norms;
 			this.indexOptions = instance.indexOptions;
 			this.index = instance.index;

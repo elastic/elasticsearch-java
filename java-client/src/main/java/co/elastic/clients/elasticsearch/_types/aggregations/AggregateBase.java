@@ -134,6 +134,14 @@ public abstract class AggregateBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(AggregateBase instance) {
+			this.meta = instance.meta;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

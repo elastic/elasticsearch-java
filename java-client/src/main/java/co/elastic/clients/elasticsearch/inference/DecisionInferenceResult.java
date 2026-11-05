@@ -118,6 +118,14 @@ public abstract class DecisionInferenceResult implements JsonpSerializable {
 			return this.decision(fn.apply(new DecisionResult.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(DecisionInferenceResult instance) {
+			this.decision = instance.decision;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

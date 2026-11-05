@@ -110,6 +110,7 @@ public class WrapperQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(WrapperQuery instance) {
+			super(instance);
 			this.query = instance.query;
 
 		}

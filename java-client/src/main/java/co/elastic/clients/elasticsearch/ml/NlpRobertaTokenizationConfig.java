@@ -117,6 +117,7 @@ public class NlpRobertaTokenizationConfig extends CommonTokenizationConfig imple
 		public Builder() {
 		}
 		private Builder(NlpRobertaTokenizationConfig instance) {
+			super(instance);
 			this.addPrefixSpace = instance.addPrefixSpace;
 
 		}
