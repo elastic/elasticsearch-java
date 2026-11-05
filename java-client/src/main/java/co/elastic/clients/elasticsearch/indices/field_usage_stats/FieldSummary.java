@@ -74,6 +74,8 @@ public class FieldSummary implements JsonpSerializable {
 
 	private final Number knnVectors;
 
+	private final Number docValuesSkipper;
+
 	private final InvertedIndex invertedIndex;
 
 	// ---------------------------------------------------------------------------------------------
@@ -87,6 +89,7 @@ public class FieldSummary implements JsonpSerializable {
 		this.norms = ApiTypeHelper.requireNonNull(builder.norms, this, "norms");
 		this.termVectors = ApiTypeHelper.requireNonNull(builder.termVectors, this, "termVectors");
 		this.knnVectors = ApiTypeHelper.requireNonNull(builder.knnVectors, this, "knnVectors");
+		this.docValuesSkipper = ApiTypeHelper.requireNonNull(builder.docValuesSkipper, this, "docValuesSkipper");
 		this.invertedIndex = ApiTypeHelper.requireNonNull(builder.invertedIndex, this, "invertedIndex");
 
 	}
@@ -145,6 +148,13 @@ public class FieldSummary implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code doc_values_skipper}
+	 */
+	public final Number docValuesSkipper() {
+		return this.docValuesSkipper;
+	}
+
+	/**
 	 * Required - API name: {@code inverted_index}
 	 */
 	public final InvertedIndex invertedIndex() {
@@ -183,6 +193,9 @@ public class FieldSummary implements JsonpSerializable {
 		generator.writeKey("knn_vectors");
 		generator.write(this.knnVectors.doubleValue());
 
+		generator.writeKey("doc_values_skipper");
+		generator.write(this.docValuesSkipper.doubleValue());
+
 		generator.writeKey("inverted_index");
 		this.invertedIndex.serialize(generator, mapper);
 
@@ -214,6 +227,8 @@ public class FieldSummary implements JsonpSerializable {
 
 		private Number knnVectors;
 
+		private Number docValuesSkipper;
+
 		private InvertedIndex invertedIndex;
 
 		public Builder() {
@@ -226,6 +241,7 @@ public class FieldSummary implements JsonpSerializable {
 			this.norms = instance.norms;
 			this.termVectors = instance.termVectors;
 			this.knnVectors = instance.knnVectors;
+			this.docValuesSkipper = instance.docValuesSkipper;
 			this.invertedIndex = instance.invertedIndex;
 
 		}
@@ -286,6 +302,14 @@ public class FieldSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - API name: {@code doc_values_skipper}
+		 */
+		public final Builder docValuesSkipper(Number value) {
+			this.docValuesSkipper = value;
+			return this;
+		}
+
+		/**
 		 * Required - API name: {@code inverted_index}
 		 */
 		public final Builder invertedIndex(InvertedIndex value) {
@@ -341,6 +365,7 @@ public class FieldSummary implements JsonpSerializable {
 		op.add(Builder::norms, JsonpDeserializer.numberDeserializer(), "norms");
 		op.add(Builder::termVectors, JsonpDeserializer.numberDeserializer(), "term_vectors");
 		op.add(Builder::knnVectors, JsonpDeserializer.numberDeserializer(), "knn_vectors");
+		op.add(Builder::docValuesSkipper, JsonpDeserializer.numberDeserializer(), "doc_values_skipper");
 		op.add(Builder::invertedIndex, InvertedIndex._DESERIALIZER, "inverted_index");
 
 	}

@@ -71,6 +71,10 @@ public class QueryBreakdown implements JsonpSerializable {
 
 	private final long createWeightCount;
 
+	private final long intoBitSet;
+
+	private final long intoBitSetCount;
+
 	private final long match;
 
 	private final long matchCount;
@@ -109,6 +113,8 @@ public class QueryBreakdown implements JsonpSerializable {
 		this.buildScorerCount = ApiTypeHelper.requireNonNull(builder.buildScorerCount, this, "buildScorerCount", 0);
 		this.createWeight = ApiTypeHelper.requireNonNull(builder.createWeight, this, "createWeight", 0);
 		this.createWeightCount = ApiTypeHelper.requireNonNull(builder.createWeightCount, this, "createWeightCount", 0);
+		this.intoBitSet = ApiTypeHelper.requireNonNull(builder.intoBitSet, this, "intoBitSet", 0);
+		this.intoBitSetCount = ApiTypeHelper.requireNonNull(builder.intoBitSetCount, this, "intoBitSetCount", 0);
 		this.match = ApiTypeHelper.requireNonNull(builder.match, this, "match", 0);
 		this.matchCount = ApiTypeHelper.requireNonNull(builder.matchCount, this, "matchCount", 0);
 		this.shallowAdvance = ApiTypeHelper.requireNonNull(builder.shallowAdvance, this, "shallowAdvance", 0);
@@ -174,6 +180,20 @@ public class QueryBreakdown implements JsonpSerializable {
 	 */
 	public final long createWeightCount() {
 		return this.createWeightCount;
+	}
+
+	/**
+	 * Required - API name: {@code into_bit_set}
+	 */
+	public final long intoBitSet() {
+		return this.intoBitSet;
+	}
+
+	/**
+	 * Required - API name: {@code into_bit_set_count}
+	 */
+	public final long intoBitSetCount() {
+		return this.intoBitSetCount;
 	}
 
 	/**
@@ -303,6 +323,12 @@ public class QueryBreakdown implements JsonpSerializable {
 		generator.writeKey("create_weight_count");
 		generator.write(this.createWeightCount);
 
+		generator.writeKey("into_bit_set");
+		generator.write(this.intoBitSet);
+
+		generator.writeKey("into_bit_set_count");
+		generator.write(this.intoBitSetCount);
+
 		generator.writeKey("match");
 		generator.write(this.match);
 
@@ -371,6 +397,10 @@ public class QueryBreakdown implements JsonpSerializable {
 
 		private Long createWeightCount;
 
+		private Long intoBitSet;
+
+		private Long intoBitSetCount;
+
 		private Long match;
 
 		private Long matchCount;
@@ -408,6 +438,8 @@ public class QueryBreakdown implements JsonpSerializable {
 			this.buildScorerCount = instance.buildScorerCount;
 			this.createWeight = instance.createWeight;
 			this.createWeightCount = instance.createWeightCount;
+			this.intoBitSet = instance.intoBitSet;
+			this.intoBitSetCount = instance.intoBitSetCount;
 			this.match = instance.match;
 			this.matchCount = instance.matchCount;
 			this.shallowAdvance = instance.shallowAdvance;
@@ -469,6 +501,22 @@ public class QueryBreakdown implements JsonpSerializable {
 		 */
 		public final Builder createWeightCount(long value) {
 			this.createWeightCount = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code into_bit_set}
+		 */
+		public final Builder intoBitSet(long value) {
+			this.intoBitSet = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code into_bit_set_count}
+		 */
+		public final Builder intoBitSetCount(long value) {
+			this.intoBitSetCount = value;
 			return this;
 		}
 
@@ -624,6 +672,8 @@ public class QueryBreakdown implements JsonpSerializable {
 		op.add(Builder::buildScorerCount, JsonpDeserializer.longDeserializer(), "build_scorer_count");
 		op.add(Builder::createWeight, JsonpDeserializer.longDeserializer(), "create_weight");
 		op.add(Builder::createWeightCount, JsonpDeserializer.longDeserializer(), "create_weight_count");
+		op.add(Builder::intoBitSet, JsonpDeserializer.longDeserializer(), "into_bit_set");
+		op.add(Builder::intoBitSetCount, JsonpDeserializer.longDeserializer(), "into_bit_set_count");
 		op.add(Builder::match, JsonpDeserializer.longDeserializer(), "match");
 		op.add(Builder::matchCount, JsonpDeserializer.longDeserializer(), "match_count");
 		op.add(Builder::shallowAdvance, JsonpDeserializer.longDeserializer(), "shallow_advance");

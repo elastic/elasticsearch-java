@@ -50,6 +50,8 @@ public enum RerankInputFormat implements JsonEnum {
 
 	Base64("base64"),
 
+	Url("url"),
+
 	;
 
 	private final String jsonValue;

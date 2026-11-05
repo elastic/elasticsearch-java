@@ -126,6 +126,9 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 
 	private final String repository;
 
+	@Nullable
+	private final Boolean restoreOverExisting;
+
 	private final String snapshot;
 
 	@Nullable
@@ -147,6 +150,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		this.renamePattern = builder.renamePattern;
 		this.renameReplacement = builder.renameReplacement;
 		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.restoreOverExisting = builder.restoreOverExisting;
 		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 		this.waitForCompletion = builder.waitForCompletion;
 
@@ -337,6 +341,24 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>true</code>, the request can restore over destination indices and
+	 * data streams that already exist, without closing or deleting them first. An
+	 * open destination index is closed and restored over in a single step. A
+	 * destination data stream is deleted, together with its backing and failure
+	 * store indices, and recreated from the snapshot.
+	 * <p>
+	 * It can't be combined with <code>rename_pattern</code>,
+	 * <code>rename_replacement</code>, <code>include_global_state</code>, or
+	 * <code>partial</code>.
+	 * <p>
+	 * API name: {@code restore_over_existing}
+	 */
+	@Nullable
+	public final Boolean restoreOverExisting() {
+		return this.restoreOverExisting;
+	}
+
+	/**
 	 * Required - The name of the snapshot to restore.
 	 * <p>
 	 * API name: {@code snapshot}
@@ -437,6 +459,11 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.renameReplacement);
 
 		}
+		if (this.restoreOverExisting != null) {
+			generator.writeKey("restore_over_existing");
+			generator.write(this.restoreOverExisting);
+
+		}
 
 	}
 
@@ -482,6 +509,9 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 
 		private String repository;
 
+		@Nullable
+		private Boolean restoreOverExisting;
+
 		private String snapshot;
 
 		@Nullable
@@ -502,6 +532,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 			this.renamePattern = instance.renamePattern;
 			this.renameReplacement = instance.renameReplacement;
 			this.repository = instance.repository;
+			this.restoreOverExisting = instance.restoreOverExisting;
 			this.snapshot = instance.snapshot;
 			this.waitForCompletion = instance.waitForCompletion;
 
@@ -776,6 +807,24 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>true</code>, the request can restore over destination indices and
+		 * data streams that already exist, without closing or deleting them first. An
+		 * open destination index is closed and restored over in a single step. A
+		 * destination data stream is deleted, together with its backing and failure
+		 * store indices, and recreated from the snapshot.
+		 * <p>
+		 * It can't be combined with <code>rename_pattern</code>,
+		 * <code>rename_replacement</code>, <code>include_global_state</code>, or
+		 * <code>partial</code>.
+		 * <p>
+		 * API name: {@code restore_over_existing}
+		 */
+		public final Builder restoreOverExisting(@Nullable Boolean value) {
+			this.restoreOverExisting = value;
+			return this;
+		}
+
+		/**
 		 * Required - The name of the snapshot to restore.
 		 * <p>
 		 * API name: {@code snapshot}
@@ -848,6 +897,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::partial, JsonpDeserializer.booleanDeserializer(), "partial");
 		op.add(Builder::renamePattern, JsonpDeserializer.stringDeserializer(), "rename_pattern");
 		op.add(Builder::renameReplacement, JsonpDeserializer.stringDeserializer(), "rename_replacement");
+		op.add(Builder::restoreOverExisting, JsonpDeserializer.booleanDeserializer(), "restore_over_existing");
 
 	}
 

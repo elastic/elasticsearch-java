@@ -65,9 +65,9 @@ import javax.annotation.Nullable;
 /**
  * Roll over to a new index.
  * <p>
- * TIP: We recommend using the index lifecycle rollover action to automate
- * rollovers. However, Serverless does not support Index Lifecycle Management
- * (ILM), so don't use this approach in the Serverless context.
+ * TIP: To automate rollovers, use index lifecycle management (ILM) in
+ * deployments that support it. Serverless does not support ILM. For data
+ * streams in Serverless, use data stream lifecycle instead.
  * <p>
  * The rollover API creates a new index for a data stream or index alias. The
  * API behavior depends on the rollover target.

@@ -68,6 +68,9 @@ public class AzureRepositorySettings extends RepositorySettingsBase {
 	private final String container;
 
 	@Nullable
+	private final String dataAccessTier;
+
+	@Nullable
 	private final Integer deleteObjectsMaxSize;
 
 	@Nullable
@@ -75,6 +78,9 @@ public class AzureRepositorySettings extends RepositorySettingsBase {
 
 	@Nullable
 	private final Integer maxConcurrentBatchDeletes;
+
+	@Nullable
+	private final String metadataAccessTier;
 
 	@Nullable
 	private final Boolean readonly;
@@ -87,9 +93,11 @@ public class AzureRepositorySettings extends RepositorySettingsBase {
 		this.basePath = builder.basePath;
 		this.client = builder.client;
 		this.container = builder.container;
+		this.dataAccessTier = builder.dataAccessTier;
 		this.deleteObjectsMaxSize = builder.deleteObjectsMaxSize;
 		this.locationMode = builder.locationMode;
 		this.maxConcurrentBatchDeletes = builder.maxConcurrentBatchDeletes;
+		this.metadataAccessTier = builder.metadataAccessTier;
 		this.readonly = builder.readonly;
 
 	}
@@ -135,6 +143,20 @@ public class AzureRepositorySettings extends RepositorySettingsBase {
 	}
 
 	/**
+	 * The Azure access tier applied to the data blobs of the repository, which hold
+	 * the files that make up each snapshotted shard. Accepted values are
+	 * <code>hot</code>, <code>cool</code> and <code>cold</code>, in any letter
+	 * case. If not set, no access tier is requested and Azure applies the default
+	 * tier of the storage account.
+	 * <p>
+	 * API name: {@code data_access_tier}
+	 */
+	@Nullable
+	public final String dataAccessTier() {
+		return this.dataAccessTier;
+	}
+
+	/**
 	 * The maxmimum batch size, between 1 and 256, used for <code>BlobBatch</code>
 	 * requests. Defaults to 256 which is the maximum number supported by the Azure
 	 * blob batch API.
@@ -170,6 +192,21 @@ public class AzureRepositorySettings extends RepositorySettingsBase {
 	@Nullable
 	public final Integer maxConcurrentBatchDeletes() {
 		return this.maxConcurrentBatchDeletes;
+	}
+
+	/**
+	 * The Azure access tier applied to the metadata blobs of the repository. These
+	 * are generally smaller than the data blobs but can be read more often, for
+	 * example to list the repository contents or to take snapshots. Accepted values
+	 * are <code>hot</code>, <code>cool</code> and <code>cold</code>, in any letter
+	 * case. If not set, no access tier is requested and Azure applies the default
+	 * tier of the storage account.
+	 * <p>
+	 * API name: {@code metadata_access_tier}
+	 */
+	@Nullable
+	public final String metadataAccessTier() {
+		return this.metadataAccessTier;
 	}
 
 	/**
@@ -213,6 +250,11 @@ public class AzureRepositorySettings extends RepositorySettingsBase {
 			generator.write(this.container);
 
 		}
+		if (this.dataAccessTier != null) {
+			generator.writeKey("data_access_tier");
+			generator.write(this.dataAccessTier);
+
+		}
 		if (this.deleteObjectsMaxSize != null) {
 			generator.writeKey("delete_objects_max_size");
 			generator.write(this.deleteObjectsMaxSize);
@@ -226,6 +268,11 @@ public class AzureRepositorySettings extends RepositorySettingsBase {
 		if (this.maxConcurrentBatchDeletes != null) {
 			generator.writeKey("max_concurrent_batch_deletes");
 			generator.write(this.maxConcurrentBatchDeletes);
+
+		}
+		if (this.metadataAccessTier != null) {
+			generator.writeKey("metadata_access_tier");
+			generator.write(this.metadataAccessTier);
 
 		}
 		if (this.readonly != null) {
@@ -255,6 +302,9 @@ public class AzureRepositorySettings extends RepositorySettingsBase {
 		private String container;
 
 		@Nullable
+		private String dataAccessTier;
+
+		@Nullable
 		private Integer deleteObjectsMaxSize;
 
 		@Nullable
@@ -262,6 +312,9 @@ public class AzureRepositorySettings extends RepositorySettingsBase {
 
 		@Nullable
 		private Integer maxConcurrentBatchDeletes;
+
+		@Nullable
+		private String metadataAccessTier;
 
 		@Nullable
 		private Boolean readonly;
@@ -272,9 +325,11 @@ public class AzureRepositorySettings extends RepositorySettingsBase {
 			this.basePath = instance.basePath;
 			this.client = instance.client;
 			this.container = instance.container;
+			this.dataAccessTier = instance.dataAccessTier;
 			this.deleteObjectsMaxSize = instance.deleteObjectsMaxSize;
 			this.locationMode = instance.locationMode;
 			this.maxConcurrentBatchDeletes = instance.maxConcurrentBatchDeletes;
+			this.metadataAccessTier = instance.metadataAccessTier;
 			this.readonly = instance.readonly;
 
 		}
@@ -315,6 +370,20 @@ public class AzureRepositorySettings extends RepositorySettingsBase {
 		}
 
 		/**
+		 * The Azure access tier applied to the data blobs of the repository, which hold
+		 * the files that make up each snapshotted shard. Accepted values are
+		 * <code>hot</code>, <code>cool</code> and <code>cold</code>, in any letter
+		 * case. If not set, no access tier is requested and Azure applies the default
+		 * tier of the storage account.
+		 * <p>
+		 * API name: {@code data_access_tier}
+		 */
+		public final Builder dataAccessTier(@Nullable String value) {
+			this.dataAccessTier = value;
+			return this;
+		}
+
+		/**
 		 * The maxmimum batch size, between 1 and 256, used for <code>BlobBatch</code>
 		 * requests. Defaults to 256 which is the maximum number supported by the Azure
 		 * blob batch API.
@@ -349,6 +418,21 @@ public class AzureRepositorySettings extends RepositorySettingsBase {
 		 */
 		public final Builder maxConcurrentBatchDeletes(@Nullable Integer value) {
 			this.maxConcurrentBatchDeletes = value;
+			return this;
+		}
+
+		/**
+		 * The Azure access tier applied to the metadata blobs of the repository. These
+		 * are generally smaller than the data blobs but can be read more often, for
+		 * example to list the repository contents or to take snapshots. Accepted values
+		 * are <code>hot</code>, <code>cool</code> and <code>cold</code>, in any letter
+		 * case. If not set, no access tier is requested and Azure applies the default
+		 * tier of the storage account.
+		 * <p>
+		 * API name: {@code metadata_access_tier}
+		 */
+		public final Builder metadataAccessTier(@Nullable String value) {
+			this.metadataAccessTier = value;
 			return this;
 		}
 
@@ -413,10 +497,12 @@ public class AzureRepositorySettings extends RepositorySettingsBase {
 		op.add(Builder::basePath, JsonpDeserializer.stringDeserializer(), "base_path");
 		op.add(Builder::client, JsonpDeserializer.stringDeserializer(), "client");
 		op.add(Builder::container, JsonpDeserializer.stringDeserializer(), "container");
+		op.add(Builder::dataAccessTier, JsonpDeserializer.stringDeserializer(), "data_access_tier");
 		op.add(Builder::deleteObjectsMaxSize, JsonpDeserializer.integerDeserializer(), "delete_objects_max_size");
 		op.add(Builder::locationMode, JsonpDeserializer.stringDeserializer(), "location_mode");
 		op.add(Builder::maxConcurrentBatchDeletes, JsonpDeserializer.integerDeserializer(),
 				"max_concurrent_batch_deletes");
+		op.add(Builder::metadataAccessTier, JsonpDeserializer.stringDeserializer(), "metadata_access_tier");
 		op.add(Builder::readonly, JsonpDeserializer.booleanDeserializer(), "readonly");
 
 	}

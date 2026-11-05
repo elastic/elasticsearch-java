@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 // typedef: searchable_snapshots.clear_cache.Request
 
 /**
- * Clear the cache.
+ * Clear the searchable snapshots shared cache.
  * <p>
  * Clear indices and data streams from the shared cache for partially mounted
  * indices.

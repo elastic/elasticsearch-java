@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -70,6 +72,8 @@ public class QueryProfile implements JsonpSerializable {
 
 	private final String type;
 
+	private final Map<String, JsonData> debug;
+
 	private final List<QueryProfile> children;
 
 	// ---------------------------------------------------------------------------------------------
@@ -80,6 +84,7 @@ public class QueryProfile implements JsonpSerializable {
 		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
 		this.timeInNanos = ApiTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos", 0);
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.debug = ApiTypeHelper.unmodifiable(builder.debug);
 		this.children = ApiTypeHelper.unmodifiable(builder.children);
 
 	}
@@ -117,6 +122,18 @@ public class QueryProfile implements JsonpSerializable {
 	}
 
 	/**
+	 * Extra details about the query.
+	 * <p>
+	 * Queries run by a rescorer include a <code>rescorer</code> key with the
+	 * position of that rescorer in the shard's <code>rescore</code> array.
+	 * <p>
+	 * API name: {@code debug}
+	 */
+	public final Map<String, JsonData> debug() {
+		return this.debug;
+	}
+
+	/**
 	 * API name: {@code children}
 	 */
 	public final List<QueryProfile> children() {
@@ -146,6 +163,17 @@ public class QueryProfile implements JsonpSerializable {
 		generator.writeKey("type");
 		generator.write(this.type);
 
+		if (ApiTypeHelper.isDefined(this.debug)) {
+			generator.writeKey("debug");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.debug.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (ApiTypeHelper.isDefined(this.children)) {
 			generator.writeKey("children");
 			generator.writeStartArray();
@@ -180,6 +208,9 @@ public class QueryProfile implements JsonpSerializable {
 		private String type;
 
 		@Nullable
+		private Map<String, JsonData> debug;
+
+		@Nullable
 		private List<QueryProfile> children;
 
 		public Builder() {
@@ -189,6 +220,7 @@ public class QueryProfile implements JsonpSerializable {
 			this.description = instance.description;
 			this.timeInNanos = instance.timeInNanos;
 			this.type = instance.type;
+			this.debug = instance.debug;
 			this.children = instance.children;
 
 		}
@@ -228,6 +260,36 @@ public class QueryProfile implements JsonpSerializable {
 		 */
 		public final Builder type(String value) {
 			this.type = value;
+			return this;
+		}
+
+		/**
+		 * Extra details about the query.
+		 * <p>
+		 * Queries run by a rescorer include a <code>rescorer</code> key with the
+		 * position of that rescorer in the shard's <code>rescore</code> array.
+		 * <p>
+		 * API name: {@code debug}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>debug</code>.
+		 */
+		public final Builder debug(Map<String, JsonData> map) {
+			this.debug = _mapPutAll(this.debug, map);
+			return this;
+		}
+
+		/**
+		 * Extra details about the query.
+		 * <p>
+		 * Queries run by a rescorer include a <code>rescorer</code> key with the
+		 * position of that rescorer in the shard's <code>rescore</code> array.
+		 * <p>
+		 * API name: {@code debug}
+		 * <p>
+		 * Adds an entry to <code>debug</code>.
+		 */
+		public final Builder debug(String key, JsonData value) {
+			this.debug = _mapPut(this.debug, key, value);
 			return this;
 		}
 
@@ -298,6 +360,7 @@ public class QueryProfile implements JsonpSerializable {
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::timeInNanos, JsonpDeserializer.longDeserializer(), "time_in_nanos");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(Builder::debug, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "debug");
 		op.add(Builder::children, JsonpDeserializer.arrayDeserializer(QueryProfile._DESERIALIZER), "children");
 
 	}

@@ -112,6 +112,9 @@ public class ExistsRequest extends RequestBase {
 	@Nullable
 	private final Boolean refresh;
 
+	@Nullable
+	private final String routeSlice;
+
 	private final List<String> routing;
 
 	private final List<String> storedFields;
@@ -134,6 +137,7 @@ public class ExistsRequest extends RequestBase {
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
 		this.refresh = builder.refresh;
+		this.routeSlice = builder.routeSlice;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 		this.version = builder.version;
@@ -242,7 +246,23 @@ public class ExistsRequest extends RequestBase {
 	}
 
 	/**
-	 * A custom value used to route operations to a specific shard.
+	 * The slice identifier for a slice-enabled index
+	 * (<code>index.slice.enabled</code> set to <code>true</code>), which scopes the
+	 * operation to that slice. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
+	}
+
+	/**
+	 * A custom value used to route operations to a specific shard. Not allowed when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+	 * use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -313,6 +333,9 @@ public class ExistsRequest extends RequestBase {
 		private Boolean refresh;
 
 		@Nullable
+		private String routeSlice;
+
+		@Nullable
 		private List<String> routing;
 
 		@Nullable
@@ -335,6 +358,7 @@ public class ExistsRequest extends RequestBase {
 			this.preference = instance.preference;
 			this.realtime = instance.realtime;
 			this.refresh = instance.refresh;
+			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
 			this.storedFields = instance.storedFields;
 			this.version = instance.version;
@@ -487,7 +511,23 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * The slice identifier for a slice-enabled index
+		 * (<code>index.slice.enabled</code> set to <code>true</code>), which scopes the
+		 * operation to that slice. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder routeSlice(@Nullable String value) {
+			this.routeSlice = value;
+			return this;
+		}
+
+		/**
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -499,7 +539,9 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -603,16 +645,30 @@ public class ExistsRequest extends RequestBase {
 			request -> {
 				final int _index = 1 << 0;
 				final int _id = 1 << 1;
+				final int _routeSlice = 1 << 2;
 
 				int propsSet = 0;
 
 				propsSet |= _index;
 				propsSet |= _id;
+				if (request.routeSlice() != null)
+					propsSet |= _routeSlice;
 
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index, buf);
+					buf.append("/_doc");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.id, buf);
+					return buf.toString();
+				}
+				if (propsSet == (_index | _routeSlice | _id)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index, buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.routeSlice, buf);
 					buf.append("/_doc");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.id, buf);
@@ -627,14 +683,22 @@ public class ExistsRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				final int _index = 1 << 0;
 				final int _id = 1 << 1;
+				final int _routeSlice = 1 << 2;
 
 				int propsSet = 0;
 
 				propsSet |= _index;
 				propsSet |= _id;
+				if (request.routeSlice() != null)
+					propsSet |= _routeSlice;
 
 				if (propsSet == (_index | _id)) {
 					params.put("index", request.index);
+					params.put("id", request.id);
+				}
+				if (propsSet == (_index | _routeSlice | _id)) {
+					params.put("index", request.index);
+					params.put("routeSlice", request.routeSlice);
 					params.put("id", request.id);
 				}
 				return params;

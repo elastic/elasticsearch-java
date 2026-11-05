@@ -71,6 +71,8 @@ import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
 import co.elastic.clients.elasticsearch.core.InfoRequest;
 import co.elastic.clients.elasticsearch.core.InfoResponse;
+import co.elastic.clients.elasticsearch.core.KnnEvalRequest;
+import co.elastic.clients.elasticsearch.core.KnnEvalResponse;
 import co.elastic.clients.elasticsearch.core.ListReindexRequest;
 import co.elastic.clients.elasticsearch.core.ListReindexResponse;
 import co.elastic.clients.elasticsearch.core.MgetRequest;
@@ -3554,6 +3556,83 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 */
 	public CompletableFuture<InfoResponse> info() {
 		return this.transport.performRequestAsync(InfoRequest._INSTANCE, InfoRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: knn_eval
+
+	/**
+	 * Evaluate kNN search settings.
+	 * <p>
+	 * Estimate the recall and cost of approximate kNN search configurations on a
+	 * <code>dense_vector</code> field against a more thorough baseline. The field
+	 * must use the <code>bbq_disk</code> index type, and must not be inside a
+	 * nested object.
+	 * <p>
+	 * Each <code>knn_settings</code> entry reports the mean recall of the
+	 * baseline's top <code>k</code>, not of relevance judgments, plus included and
+	 * excluded query counts and cost totals. A query is excluded from the mean
+	 * recall when the candidate finds a document scoring above the baseline's
+	 * lowest top <code>k</code> score. A baseline returning fewer than
+	 * <code>k</code> hits fails that query, because recall at <code>k</code> is
+	 * undefined. All configurations run against one point in time.
+	 * <p>
+	 * The default baseline uses a <code>visit_percentage</code> of 20 and a
+	 * <code>rescore_vector.oversample</code> of 100. An exact full-precision
+	 * baseline must be requested explicitly with <code>allow_exact_baseline</code>,
+	 * and is limited to 100 million vector-by-query comparisons.
+	 * <p>
+	 * The request is refused when the <code>search.knn_eval.enabled</code> cluster
+	 * setting or the <code>index.knn_eval.enabled</code> index setting is
+	 * <code>false</code>.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-knn-eval">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<KnnEvalResponse> knnEval(KnnEvalRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<KnnEvalRequest, KnnEvalResponse, ErrorResponse> endpoint = (JsonEndpoint<KnnEvalRequest, KnnEvalResponse, ErrorResponse>) KnnEvalRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Evaluate kNN search settings.
+	 * <p>
+	 * Estimate the recall and cost of approximate kNN search configurations on a
+	 * <code>dense_vector</code> field against a more thorough baseline. The field
+	 * must use the <code>bbq_disk</code> index type, and must not be inside a
+	 * nested object.
+	 * <p>
+	 * Each <code>knn_settings</code> entry reports the mean recall of the
+	 * baseline's top <code>k</code>, not of relevance judgments, plus included and
+	 * excluded query counts and cost totals. A query is excluded from the mean
+	 * recall when the candidate finds a document scoring above the baseline's
+	 * lowest top <code>k</code> score. A baseline returning fewer than
+	 * <code>k</code> hits fails that query, because recall at <code>k</code> is
+	 * undefined. All configurations run against one point in time.
+	 * <p>
+	 * The default baseline uses a <code>visit_percentage</code> of 20 and a
+	 * <code>rescore_vector.oversample</code> of 100. An exact full-precision
+	 * baseline must be requested explicitly with <code>allow_exact_baseline</code>,
+	 * and is limited to 100 million vector-by-query comparisons.
+	 * <p>
+	 * The request is refused when the <code>search.knn_eval.enabled</code> cluster
+	 * setting or the <code>index.knn_eval.enabled</code> index setting is
+	 * <code>false</code>.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link KnnEvalRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-knn-eval">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<KnnEvalResponse> knnEval(
+			Function<KnnEvalRequest.Builder, ObjectBuilder<KnnEvalRequest>> fn) {
+		return knnEval(fn.apply(new KnnEvalRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: list_reindex

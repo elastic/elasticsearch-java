@@ -29,6 +29,7 @@ import co.elastic.clients.elasticsearch._types.SlicedScroll;
 import co.elastic.clients.elasticsearch._types.Slices;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
+import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
@@ -269,10 +270,11 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final Float requestsPerSecond;
 
-	@Nullable
-	private final String routeSlice;
+	private final List<String> routeSlice;
 
 	private final List<String> routing;
+
+	private final Map<String, RuntimeField> runtimeMappings;
 
 	@Nullable
 	private final Script script;
@@ -340,8 +342,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		this.refresh = builder.refresh;
 		this.requestCache = builder.requestCache;
 		this.requestsPerSecond = builder.requestsPerSecond;
-		this.routeSlice = builder.routeSlice;
+		this.routeSlice = ApiTypeHelper.unmodifiable(builder.routeSlice);
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
+		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.script = builder.script;
 		this.scroll = builder.scroll;
 		this.scrollSize = builder.scrollSize;
@@ -589,16 +592,14 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * The slice identifier used to route the operation to a specific slice. Use the
-	 * special value <code>_all</code> to target all slices without restricting to a
-	 * routing value. Required when <code>index.slice.enabled</code> is
-	 * <code>true</code> for the target index; not allowed when
-	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * The slice identifiers for a slice-enabled index
+	 * (<code>index.slice.enabled</code> set to <code>true</code>): a single slice,
+	 * a comma-separated list such as <code>tenant-a,tenant-b</code>, or
+	 * <code>_all</code> to target all slices.
 	 * <p>
 	 * API name: {@code _slice}
 	 */
-	@Nullable
-	public final String routeSlice() {
+	public final List<String> routeSlice() {
 		return this.routeSlice;
 	}
 
@@ -611,6 +612,16 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	 */
 	public final List<String> routing() {
 		return this.routing;
+	}
+
+	/**
+	 * One or more runtime fields in the search request. These fields take
+	 * precedence over mapped fields with the same name.
+	 * <p>
+	 * API name: {@code runtime_mappings}
+	 */
+	public final Map<String, RuntimeField> runtimeMappings() {
+		return this.runtimeMappings;
 	}
 
 	/**
@@ -811,6 +822,17 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 			this.query.serialize(generator, mapper);
 
 		}
+		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
+			generator.writeKey("runtime_mappings");
+			generator.writeStartObject();
+			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.script != null) {
 			generator.writeKey("script");
 			this.script.serialize(generator, mapper);
@@ -890,10 +912,13 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		private Float requestsPerSecond;
 
 		@Nullable
-		private String routeSlice;
+		private List<String> routeSlice;
 
 		@Nullable
 		private List<String> routing;
+
+		@Nullable
+		private Map<String, RuntimeField> runtimeMappings;
 
 		@Nullable
 		private Script script;
@@ -964,6 +989,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 			this.requestsPerSecond = instance.requestsPerSecond;
 			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
+			this.runtimeMappings = instance.runtimeMappings;
 			this.script = instance.script;
 			this.scroll = instance.scroll;
 			this.scrollSize = instance.scrollSize;
@@ -1260,16 +1286,32 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * The slice identifier used to route the operation to a specific slice. Use the
-		 * special value <code>_all</code> to target all slices without restricting to a
-		 * routing value. Required when <code>index.slice.enabled</code> is
-		 * <code>true</code> for the target index; not allowed when
-		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * The slice identifiers for a slice-enabled index
+		 * (<code>index.slice.enabled</code> set to <code>true</code>): a single slice,
+		 * a comma-separated list such as <code>tenant-a,tenant-b</code>, or
+		 * <code>_all</code> to target all slices.
 		 * <p>
 		 * API name: {@code _slice}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routeSlice</code>.
 		 */
-		public final Builder routeSlice(@Nullable String value) {
-			this.routeSlice = value;
+		public final Builder routeSlice(List<String> list) {
+			this.routeSlice = _listAddAll(this.routeSlice, list);
+			return this;
+		}
+
+		/**
+		 * The slice identifiers for a slice-enabled index
+		 * (<code>index.slice.enabled</code> set to <code>true</code>): a single slice,
+		 * a comma-separated list such as <code>tenant-a,tenant-b</code>, or
+		 * <code>_all</code> to target all slices.
+		 * <p>
+		 * API name: {@code _slice}
+		 * <p>
+		 * Adds one or more values to <code>routeSlice</code>.
+		 */
+		public final Builder routeSlice(String value, String... values) {
+			this.routeSlice = _listAdd(this.routeSlice, value, values);
 			return this;
 		}
 
@@ -1299,6 +1341,45 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		public final Builder routing(String value, String... values) {
 			this.routing = _listAdd(this.routing, value, values);
 			return this;
+		}
+
+		/**
+		 * One or more runtime fields in the search request. These fields take
+		 * precedence over mapped fields with the same name.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
+		 */
+		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
+			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
+			return this;
+		}
+
+		/**
+		 * One or more runtime fields in the search request. These fields take
+		 * precedence over mapped fields with the same name.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code>.
+		 */
+		public final Builder runtimeMappings(String key, RuntimeField value) {
+			this.runtimeMappings = _mapPut(this.runtimeMappings, key, value);
+			return this;
+		}
+
+		/**
+		 * One or more runtime fields in the search request. These fields take
+		 * precedence over mapped fields with the same name.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code> using a builder lambda.
+		 */
+		public final Builder runtimeMappings(String key,
+				Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return runtimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
 		}
 
 		/**
@@ -1617,6 +1698,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		op.add(Builder::conflicts, Conflicts._DESERIALIZER, "conflicts");
 		op.add(Builder::maxDocs, JsonpDeserializer.longDeserializer(), "max_docs");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
+				"runtime_mappings");
 		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::slice, SlicedScroll._DESERIALIZER, "slice");
 
@@ -1639,15 +1722,29 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
+				final int _routeSlice = 1 << 1;
 
 				int propsSet = 0;
 
 				propsSet |= _index;
+				if (ApiTypeHelper.isDefined(request.routeSlice()))
+					propsSet |= _routeSlice;
 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
+					buf.append("/_update_by_query");
+					return buf.toString();
+				}
+				if (propsSet == (_index | _routeSlice)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.routeSlice.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")), buf);
 					buf.append("/_update_by_query");
 					return buf.toString();
@@ -1660,13 +1757,22 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				final int _index = 1 << 0;
+				final int _routeSlice = 1 << 1;
 
 				int propsSet = 0;
 
 				propsSet |= _index;
+				if (ApiTypeHelper.isDefined(request.routeSlice()))
+					propsSet |= _routeSlice;
 
 				if (propsSet == (_index)) {
 					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+				}
+				if (propsSet == (_index | _routeSlice)) {
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+					params.put("routeSlice", request.routeSlice.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
 				}
 				return params;
@@ -1740,9 +1846,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 				}
 				if (request.refresh != null) {
 					params.put("refresh", String.valueOf(request.refresh));
-				}
-				if (request.routeSlice != null) {
-					params.put("_slice", request.routeSlice);
 				}
 				if (ApiTypeHelper.isDefined(request.sort)) {
 					params.put("sort", request.sort.stream().map(v -> v).filter(Objects::nonNull)

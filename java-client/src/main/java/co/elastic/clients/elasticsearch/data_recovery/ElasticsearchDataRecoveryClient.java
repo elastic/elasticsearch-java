@@ -68,6 +68,46 @@ public class ElasticsearchDataRecoveryClient
 		return new ElasticsearchDataRecoveryClient(this.transport, transportOptions);
 	}
 
+	// ----- Endpoint: data_recovery.get_recovery
+
+	/**
+	 * Get a recovery.
+	 * <p>
+	 * Get the status and details of a recovery that was started with the start
+	 * recovery API. This API is intended for internal operator use. The progress of
+	 * a running recovery is reported as a percentage, and the repository and audit
+	 * details of the recovery are not exposed.
+	 * 
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public GetRecoveryResponse getRecovery(GetRecoveryRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetRecoveryRequest, GetRecoveryResponse, ErrorResponse> endpoint = (JsonEndpoint<GetRecoveryRequest, GetRecoveryResponse, ErrorResponse>) GetRecoveryRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get a recovery.
+	 * <p>
+	 * Get the status and details of a recovery that was started with the start
+	 * recovery API. This API is intended for internal operator use. The progress of
+	 * a running recovery is reported as a percentage, and the repository and audit
+	 * details of the recovery are not exposed.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetRecoveryRequest}
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public final GetRecoveryResponse getRecovery(
+			Function<GetRecoveryRequest.Builder, ObjectBuilder<GetRecoveryRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getRecovery(fn.apply(new GetRecoveryRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: data_recovery.get_recovery_points
 
 	/**
@@ -123,6 +163,212 @@ public class ElasticsearchDataRecoveryClient
 	public GetRecoveryPointsResponse getRecoveryPoints() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetRecoveryPointsRequest.Builder().build(),
 				GetRecoveryPointsRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: data_recovery.get_recovery_sources
+
+	/**
+	 * Get recovery sources.
+	 * <p>
+	 * Get the logical sources captured at an exact recovery point in the
+	 * platform-managed data recovery repository. This API is intended for internal
+	 * operator use. Repository, snapshot, and policy identifiers are not exposed.
+	 * 
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public GetRecoverySourcesResponse getRecoverySources(GetRecoverySourcesRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetRecoverySourcesRequest, GetRecoverySourcesResponse, ErrorResponse> endpoint = (JsonEndpoint<GetRecoverySourcesRequest, GetRecoverySourcesResponse, ErrorResponse>) GetRecoverySourcesRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get recovery sources.
+	 * <p>
+	 * Get the logical sources captured at an exact recovery point in the
+	 * platform-managed data recovery repository. This API is intended for internal
+	 * operator use. Repository, snapshot, and policy identifiers are not exposed.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetRecoverySourcesRequest}
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public final GetRecoverySourcesResponse getRecoverySources(
+			Function<GetRecoverySourcesRequest.Builder, ObjectBuilder<GetRecoverySourcesRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getRecoverySources(fn.apply(new GetRecoverySourcesRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: data_recovery.get_rpo_series
+
+	/**
+	 * Get the recovery point objective series.
+	 * <p>
+	 * Get, for each bucket in the half-open range <code>[start, end)</code>, the
+	 * maximum age that the newest recoverable state reached during that bucket.
+	 * This API is intended for internal operator use. The range is divided into at
+	 * most 1,000 buckets. A bucket has no value if no retained recovery point
+	 * covers its start.
+	 * 
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public GetRpoSeriesResponse getRpoSeries(GetRpoSeriesRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetRpoSeriesRequest, GetRpoSeriesResponse, ErrorResponse> endpoint = (JsonEndpoint<GetRpoSeriesRequest, GetRpoSeriesResponse, ErrorResponse>) GetRpoSeriesRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get the recovery point objective series.
+	 * <p>
+	 * Get, for each bucket in the half-open range <code>[start, end)</code>, the
+	 * maximum age that the newest recoverable state reached during that bucket.
+	 * This API is intended for internal operator use. The range is divided into at
+	 * most 1,000 buckets. A bucket has no value if no retained recovery point
+	 * covers its start.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetRpoSeriesRequest}
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public final GetRpoSeriesResponse getRpoSeries(
+			Function<GetRpoSeriesRequest.Builder, ObjectBuilder<GetRpoSeriesRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getRpoSeries(fn.apply(new GetRpoSeriesRequest.Builder()).build());
+	}
+
+	/**
+	 * Get the recovery point objective series.
+	 * <p>
+	 * Get, for each bucket in the half-open range <code>[start, end)</code>, the
+	 * maximum age that the newest recoverable state reached during that bucket.
+	 * This API is intended for internal operator use. The range is divided into at
+	 * most 1,000 buckets. A bucket has no value if no retained recovery point
+	 * covers its start.
+	 * 
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public GetRpoSeriesResponse getRpoSeries() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new GetRpoSeriesRequest.Builder().build(), GetRpoSeriesRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
+	// ----- Endpoint: data_recovery.list_recoveries
+
+	/**
+	 * List recoveries.
+	 * <p>
+	 * List the recoveries that were started with the start recovery API, including
+	 * those that have finished. This API is intended for internal operator use.
+	 * Recoveries are ordered by start time, and the most recent are returned first
+	 * by default. To retrieve further pages, pass the start time and identifier of
+	 * the last recovery of a page as <code>search_after_started_at</code> and
+	 * <code>search_after_recovery_id</code>.
+	 * 
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public ListRecoveriesResponse listRecoveries(ListRecoveriesRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ListRecoveriesRequest, ListRecoveriesResponse, ErrorResponse> endpoint = (JsonEndpoint<ListRecoveriesRequest, ListRecoveriesResponse, ErrorResponse>) ListRecoveriesRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * List recoveries.
+	 * <p>
+	 * List the recoveries that were started with the start recovery API, including
+	 * those that have finished. This API is intended for internal operator use.
+	 * Recoveries are ordered by start time, and the most recent are returned first
+	 * by default. To retrieve further pages, pass the start time and identifier of
+	 * the last recovery of a page as <code>search_after_started_at</code> and
+	 * <code>search_after_recovery_id</code>.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ListRecoveriesRequest}
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public final ListRecoveriesResponse listRecoveries(
+			Function<ListRecoveriesRequest.Builder, ObjectBuilder<ListRecoveriesRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return listRecoveries(fn.apply(new ListRecoveriesRequest.Builder()).build());
+	}
+
+	/**
+	 * List recoveries.
+	 * <p>
+	 * List the recoveries that were started with the start recovery API, including
+	 * those that have finished. This API is intended for internal operator use.
+	 * Recoveries are ordered by start time, and the most recent are returned first
+	 * by default. To retrieve further pages, pass the start time and identifier of
+	 * the last recovery of a page as <code>search_after_started_at</code> and
+	 * <code>search_after_recovery_id</code>.
+	 * 
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public ListRecoveriesResponse listRecoveries() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new ListRecoveriesRequest.Builder().build(),
+				ListRecoveriesRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: data_recovery.start_recovery
+
+	/**
+	 * Start a recovery.
+	 * <p>
+	 * Start recovering indices and data streams from a recovery point. This API is
+	 * intended for internal operator use. Depending on the mode, the sources are
+	 * either replaced with their state at the recovery point, over the data that
+	 * currently exists, or recovered under new names. The recovery runs in the
+	 * background, so the API returns with a <code>202 Accepted</code> status once
+	 * it has started.
+	 * 
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public StartRecoveryResponse startRecovery(StartRecoveryRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<StartRecoveryRequest, StartRecoveryResponse, ErrorResponse> endpoint = (JsonEndpoint<StartRecoveryRequest, StartRecoveryResponse, ErrorResponse>) StartRecoveryRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Start a recovery.
+	 * <p>
+	 * Start recovering indices and data streams from a recovery point. This API is
+	 * intended for internal operator use. Depending on the mode, the sources are
+	 * either replaced with their state at the recovery point, over the data that
+	 * currently exists, or recovered under new names. The recovery runs in the
+	 * background, so the API returns with a <code>202 Accepted</code> status once
+	 * it has started.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link StartRecoveryRequest}
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public final StartRecoveryResponse startRecovery(
+			Function<StartRecoveryRequest.Builder, ObjectBuilder<StartRecoveryRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return startRecovery(fn.apply(new StartRecoveryRequest.Builder()).build());
 	}
 
 }

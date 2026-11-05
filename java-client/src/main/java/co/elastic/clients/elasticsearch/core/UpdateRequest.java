@@ -340,9 +340,9 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	}
 
 	/**
-	 * The slice identifier used to route the operation to a specific slice. Use the
-	 * special value <code>_all</code> to target all slices without restricting to a
-	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * The slice identifier for a slice-enabled index
+	 * (<code>index.slice.enabled</code> set to <code>true</code>), which scopes the
+	 * operation to that slice. Required when <code>index.slice.enabled</code> is
 	 * <code>true</code> for the target index; not allowed when
 	 * <code>index.slice.enabled</code> is <code>false</code>.
 	 * <p>
@@ -721,9 +721,9 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * The slice identifier used to route the operation to a specific slice. Use the
-		 * special value <code>_all</code> to target all slices without restricting to a
-		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * The slice identifier for a slice-enabled index
+		 * (<code>index.slice.enabled</code> set to <code>true</code>), which scopes the
+		 * operation to that slice. Required when <code>index.slice.enabled</code> is
 		 * <code>true</code> for the target index; not allowed when
 		 * <code>index.slice.enabled</code> is <code>false</code>.
 		 * <p>
@@ -952,16 +952,30 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 			request -> {
 				final int _index = 1 << 0;
 				final int _id = 1 << 1;
+				final int _routeSlice = 1 << 2;
 
 				int propsSet = 0;
 
 				propsSet |= _index;
 				propsSet |= _id;
+				if (request.routeSlice() != null)
+					propsSet |= _routeSlice;
 
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index, buf);
+					buf.append("/_update");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.id, buf);
+					return buf.toString();
+				}
+				if (propsSet == (_index | _routeSlice | _id)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index, buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.routeSlice, buf);
 					buf.append("/_update");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.id, buf);
@@ -976,14 +990,22 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 				Map<String, String> params = new HashMap<>();
 				final int _index = 1 << 0;
 				final int _id = 1 << 1;
+				final int _routeSlice = 1 << 2;
 
 				int propsSet = 0;
 
 				propsSet |= _index;
 				propsSet |= _id;
+				if (request.routeSlice() != null)
+					propsSet |= _routeSlice;
 
 				if (propsSet == (_index | _id)) {
 					params.put("index", request.index);
+					params.put("id", request.id);
+				}
+				if (propsSet == (_index | _routeSlice | _id)) {
+					params.put("index", request.index);
+					params.put("routeSlice", request.routeSlice);
 					params.put("id", request.id);
 				}
 				return params;
@@ -997,9 +1019,6 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 				}
 				if (request.refresh != null) {
 					params.put("refresh", request.refresh.jsonValue());
-				}
-				if (request.routeSlice != null) {
-					params.put("_slice", request.routeSlice);
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());

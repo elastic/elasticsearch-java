@@ -105,6 +105,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	private final String projectRouting;
 
+	private final List<String> routeSlice;
+
 	private final List<String> routing;
 
 	@Nullable
@@ -132,6 +134,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		this.preference = builder.preference;
 		this.profile = builder.profile;
 		this.projectRouting = builder.projectRouting;
+		this.routeSlice = ApiTypeHelper.unmodifiable(builder.routeSlice);
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.scroll = builder.scroll;
 		this.searchType = builder.searchType;
@@ -288,7 +291,23 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * A custom value used to route operations to a specific shard.
+	 * The slice identifiers for a slice-enabled index
+	 * (<code>index.slice.enabled</code> set to <code>true</code>): a single slice,
+	 * a comma-separated list such as <code>tenant-a,tenant-b</code>, or
+	 * <code>_all</code> to target all slices. When omitted, all slices are
+	 * targeted. Indices that are not slice-enabled match no documents when a slice
+	 * is specified.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	public final List<String> routeSlice() {
+		return this.routeSlice;
+	}
+
+	/**
+	 * A custom value used to route operations to a specific shard. Not allowed when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+	 * use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -425,6 +444,9 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		private String projectRouting;
 
 		@Nullable
+		private List<String> routeSlice;
+
+		@Nullable
 		private List<String> routing;
 
 		@Nullable
@@ -451,6 +473,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 			this.preference = instance.preference;
 			this.profile = instance.profile;
 			this.projectRouting = instance.projectRouting;
+			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
 			this.scroll = instance.scroll;
 			this.searchType = instance.searchType;
@@ -652,7 +675,43 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * The slice identifiers for a slice-enabled index
+		 * (<code>index.slice.enabled</code> set to <code>true</code>): a single slice,
+		 * a comma-separated list such as <code>tenant-a,tenant-b</code>, or
+		 * <code>_all</code> to target all slices. When omitted, all slices are
+		 * targeted. Indices that are not slice-enabled match no documents when a slice
+		 * is specified.
+		 * <p>
+		 * API name: {@code _slice}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routeSlice</code>.
+		 */
+		public final Builder routeSlice(List<String> list) {
+			this.routeSlice = _listAddAll(this.routeSlice, list);
+			return this;
+		}
+
+		/**
+		 * The slice identifiers for a slice-enabled index
+		 * (<code>index.slice.enabled</code> set to <code>true</code>): a single slice,
+		 * a comma-separated list such as <code>tenant-a,tenant-b</code>, or
+		 * <code>_all</code> to target all slices. When omitted, all slices are
+		 * targeted. Indices that are not slice-enabled match no documents when a slice
+		 * is specified.
+		 * <p>
+		 * API name: {@code _slice}
+		 * <p>
+		 * Adds one or more values to <code>routeSlice</code>.
+		 */
+		public final Builder routeSlice(String value, String... values) {
+			this.routeSlice = _listAdd(this.routeSlice, value, values);
+			return this;
+		}
+
+		/**
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -664,7 +723,9 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -788,11 +849,14 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
+				final int _routeSlice = 1 << 1;
 
 				int propsSet = 0;
 
 				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
+				if (ApiTypeHelper.isDefined(request.routeSlice()))
+					propsSet |= _routeSlice;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -809,6 +873,18 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 					buf.append("/template");
 					return buf.toString();
 				}
+				if (propsSet == (_index | _routeSlice)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.routeSlice.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
+					buf.append("/_search");
+					buf.append("/template");
+					return buf.toString();
+				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
@@ -817,16 +893,25 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				final int _index = 1 << 0;
+				final int _routeSlice = 1 << 1;
 
 				int propsSet = 0;
 
 				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
+				if (ApiTypeHelper.isDefined(request.routeSlice()))
+					propsSet |= _routeSlice;
 
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_index)) {
 					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+				}
+				if (propsSet == (_index | _routeSlice)) {
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+					params.put("routeSlice", request.routeSlice.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
 				}
 				return params;

@@ -62,6 +62,9 @@ public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 	@Nullable
 	private final Boolean ignoreMissing;
 
+	@Nullable
+	private final Boolean override;
+
 	private final String targetField;
 
 	// ---------------------------------------------------------------------------------------------
@@ -71,6 +74,7 @@ public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
+		this.override = builder.override;
 		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
 
 	}
@@ -108,6 +112,18 @@ public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * If <code>true</code>, the processor overwrites <code>target_field</code> if
+	 * it already exists. If <code>false</code>, the processor fails when
+	 * <code>target_field</code> already exists.
+	 * <p>
+	 * API name: {@code override}
+	 */
+	@Nullable
+	public final Boolean override() {
+		return this.override;
+	}
+
+	/**
 	 * Required - The new name of the field. Supports template snippets.
 	 * <p>
 	 * API name: {@code target_field}
@@ -125,6 +141,11 @@ public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 		if (this.ignoreMissing != null) {
 			generator.writeKey("ignore_missing");
 			generator.write(this.ignoreMissing);
+
+		}
+		if (this.override != null) {
+			generator.writeKey("override");
+			generator.write(this.override);
 
 		}
 		generator.writeKey("target_field");
@@ -146,6 +167,9 @@ public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 		@Nullable
 		private Boolean ignoreMissing;
 
+		@Nullable
+		private Boolean override;
+
 		private String targetField;
 
 		public Builder() {
@@ -153,6 +177,7 @@ public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 		private Builder(RenameProcessor instance) {
 			this.field = instance.field;
 			this.ignoreMissing = instance.ignoreMissing;
+			this.override = instance.override;
 			this.targetField = instance.targetField;
 
 		}
@@ -174,6 +199,18 @@ public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 		 */
 		public final Builder ignoreMissing(@Nullable Boolean value) {
 			this.ignoreMissing = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, the processor overwrites <code>target_field</code> if
+		 * it already exists. If <code>false</code>, the processor fails when
+		 * <code>target_field</code> already exists.
+		 * <p>
+		 * API name: {@code override}
+		 */
+		public final Builder override(@Nullable Boolean value) {
+			this.override = value;
 			return this;
 		}
 
@@ -223,6 +260,7 @@ public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
+		op.add(Builder::override, JsonpDeserializer.booleanDeserializer(), "override");
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 
 	}

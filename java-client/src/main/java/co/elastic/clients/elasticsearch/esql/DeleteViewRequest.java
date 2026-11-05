@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 /**
  * Delete an ES|QL view.
  * <p>
- * Deletes a stored ES|QL view.
+ * Deletes a stored ES|QL view. Deleting a reserved view fails.
  * 
  * @see <a href="../doc-files/api-spec.html#esql.delete_view.Request">API
  *      specification</a>

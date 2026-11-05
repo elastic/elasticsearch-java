@@ -86,7 +86,7 @@ public class Indicators implements JsonpSerializable {
 	private final FileSettingsIndicator fileSettings;
 
 	@Nullable
-	private final ProjectEncryptionKeyIndicator projectEncryptionKey;
+	private final ProjectEncryptionKeyIndicator clusterStateEncryption;
 
 	@Nullable
 	private final DlmFrozenTransitionsIndicator dlmFrozenTransitions;
@@ -104,7 +104,7 @@ public class Indicators implements JsonpSerializable {
 		this.slm = builder.slm;
 		this.shardsCapacity = builder.shardsCapacity;
 		this.fileSettings = builder.fileSettings;
-		this.projectEncryptionKey = builder.projectEncryptionKey;
+		this.clusterStateEncryption = builder.clusterStateEncryption;
 		this.dlmFrozenTransitions = builder.dlmFrozenTransitions;
 
 	}
@@ -186,14 +186,17 @@ public class Indicators implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code project_encryption_key}
+	 * API name: {@code cluster_state_encryption}
 	 */
 	@Nullable
-	public final ProjectEncryptionKeyIndicator projectEncryptionKey() {
-		return this.projectEncryptionKey;
+	public final ProjectEncryptionKeyIndicator clusterStateEncryption() {
+		return this.clusterStateEncryption;
 	}
 
 	/**
+	 * Reports the health of data stream lifecycle transitions of backing indices to
+	 * the frozen tier.
+	 * <p>
 	 * API name: {@code dlm_frozen_transitions}
 	 */
 	@Nullable
@@ -257,9 +260,9 @@ public class Indicators implements JsonpSerializable {
 			this.fileSettings.serialize(generator, mapper);
 
 		}
-		if (this.projectEncryptionKey != null) {
-			generator.writeKey("project_encryption_key");
-			this.projectEncryptionKey.serialize(generator, mapper);
+		if (this.clusterStateEncryption != null) {
+			generator.writeKey("cluster_state_encryption");
+			this.clusterStateEncryption.serialize(generator, mapper);
 
 		}
 		if (this.dlmFrozenTransitions != null) {
@@ -310,7 +313,7 @@ public class Indicators implements JsonpSerializable {
 		private FileSettingsIndicator fileSettings;
 
 		@Nullable
-		private ProjectEncryptionKeyIndicator projectEncryptionKey;
+		private ProjectEncryptionKeyIndicator clusterStateEncryption;
 
 		@Nullable
 		private DlmFrozenTransitionsIndicator dlmFrozenTransitions;
@@ -327,7 +330,7 @@ public class Indicators implements JsonpSerializable {
 			this.slm = instance.slm;
 			this.shardsCapacity = instance.shardsCapacity;
 			this.fileSettings = instance.fileSettings;
-			this.projectEncryptionKey = instance.projectEncryptionKey;
+			this.clusterStateEncryption = instance.clusterStateEncryption;
 			this.dlmFrozenTransitions = instance.dlmFrozenTransitions;
 
 		}
@@ -473,22 +476,25 @@ public class Indicators implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code project_encryption_key}
+		 * API name: {@code cluster_state_encryption}
 		 */
-		public final Builder projectEncryptionKey(@Nullable ProjectEncryptionKeyIndicator value) {
-			this.projectEncryptionKey = value;
+		public final Builder clusterStateEncryption(@Nullable ProjectEncryptionKeyIndicator value) {
+			this.clusterStateEncryption = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code project_encryption_key}
+		 * API name: {@code cluster_state_encryption}
 		 */
-		public final Builder projectEncryptionKey(
+		public final Builder clusterStateEncryption(
 				Function<ProjectEncryptionKeyIndicator.Builder, ObjectBuilder<ProjectEncryptionKeyIndicator>> fn) {
-			return this.projectEncryptionKey(fn.apply(new ProjectEncryptionKeyIndicator.Builder()).build());
+			return this.clusterStateEncryption(fn.apply(new ProjectEncryptionKeyIndicator.Builder()).build());
 		}
 
 		/**
+		 * Reports the health of data stream lifecycle transitions of backing indices to
+		 * the frozen tier.
+		 * <p>
 		 * API name: {@code dlm_frozen_transitions}
 		 */
 		public final Builder dlmFrozenTransitions(@Nullable DlmFrozenTransitionsIndicator value) {
@@ -497,6 +503,9 @@ public class Indicators implements JsonpSerializable {
 		}
 
 		/**
+		 * Reports the health of data stream lifecycle transitions of backing indices to
+		 * the frozen tier.
+		 * <p>
 		 * API name: {@code dlm_frozen_transitions}
 		 */
 		public final Builder dlmFrozenTransitions(
@@ -547,7 +556,8 @@ public class Indicators implements JsonpSerializable {
 		op.add(Builder::slm, SlmIndicator._DESERIALIZER, "slm");
 		op.add(Builder::shardsCapacity, ShardsCapacityIndicator._DESERIALIZER, "shards_capacity");
 		op.add(Builder::fileSettings, FileSettingsIndicator._DESERIALIZER, "file_settings");
-		op.add(Builder::projectEncryptionKey, ProjectEncryptionKeyIndicator._DESERIALIZER, "project_encryption_key");
+		op.add(Builder::clusterStateEncryption, ProjectEncryptionKeyIndicator._DESERIALIZER,
+				"cluster_state_encryption");
 		op.add(Builder::dlmFrozenTransitions, DlmFrozenTransitionsIndicator._DESERIALIZER, "dlm_frozen_transitions");
 
 	}

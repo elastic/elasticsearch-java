@@ -81,6 +81,9 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class PutUserManagedServiceAccountRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
+	private final String description;
+
+	@Nullable
 	private final Boolean enabled;
 
 	private final String namespace;
@@ -96,6 +99,7 @@ public class PutUserManagedServiceAccountRequest extends RequestBase implements 
 
 	private PutUserManagedServiceAccountRequest(Builder builder) {
 
+		this.description = builder.description;
 		this.enabled = builder.enabled;
 		this.namespace = ApiTypeHelper.requireNonNull(builder.namespace, this, "namespace");
 		this.refresh = builder.refresh;
@@ -107,6 +111,18 @@ public class PutUserManagedServiceAccountRequest extends RequestBase implements 
 	public static PutUserManagedServiceAccountRequest of(
 			Function<Builder, ObjectBuilder<PutUserManagedServiceAccountRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * A free-text description of the account, as sent on the last PUT of the
+	 * account. It has no meaning to Elasticsearch. Absent when the account has no
+	 * description.
+	 * <p>
+	 * API name: {@code description}
+	 */
+	@Nullable
+	public final String description() {
+		return this.description;
 	}
 
 	/**
@@ -178,6 +194,11 @@ public class PutUserManagedServiceAccountRequest extends RequestBase implements 
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.description != null) {
+			generator.writeKey("description");
+			generator.write(this.description);
+
+		}
 		if (this.enabled != null) {
 			generator.writeKey("enabled");
 			generator.write(this.enabled);
@@ -206,6 +227,9 @@ public class PutUserManagedServiceAccountRequest extends RequestBase implements 
 			implements
 				ObjectBuilder<PutUserManagedServiceAccountRequest> {
 		@Nullable
+		private String description;
+
+		@Nullable
 		private Boolean enabled;
 
 		private String namespace;
@@ -220,6 +244,7 @@ public class PutUserManagedServiceAccountRequest extends RequestBase implements 
 		public Builder() {
 		}
 		private Builder(PutUserManagedServiceAccountRequest instance) {
+			this.description = instance.description;
 			this.enabled = instance.enabled;
 			this.namespace = instance.namespace;
 			this.refresh = instance.refresh;
@@ -227,6 +252,18 @@ public class PutUserManagedServiceAccountRequest extends RequestBase implements 
 			this.service = instance.service;
 
 		}
+		/**
+		 * A free-text description of the account, as sent on the last PUT of the
+		 * account. It has no meaning to Elasticsearch. Absent when the account has no
+		 * description.
+		 * <p>
+		 * API name: {@code description}
+		 */
+		public final Builder description(@Nullable String value) {
+			this.description = value;
+			return this;
+		}
+
 		/**
 		 * Whether the account can authenticate. Tokens can still be created for a
 		 * disabled account; they just cannot be used until the account is enabled.
@@ -340,6 +377,7 @@ public class PutUserManagedServiceAccountRequest extends RequestBase implements 
 	protected static void setupPutUserManagedServiceAccountRequestDeserializer(
 			ObjectDeserializer<PutUserManagedServiceAccountRequest.Builder> op) {
 
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
 

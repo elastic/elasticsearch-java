@@ -89,6 +89,8 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 
 		ConstantScore("constant_score"),
 
+		DenseVector("dense_vector"),
+
 		DisMax("dis_max"),
 
 		DistanceFeature("distance_feature"),
@@ -345,6 +347,23 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 	 */
 	public ConstantScoreQuery constantScore() {
 		return TaggedUnionUtils.get(this, Kind.ConstantScore);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code dense_vector}?
+	 */
+	public boolean isDenseVector() {
+		return _kind == Kind.DenseVector;
+	}
+
+	/**
+	 * Get the {@code dense_vector} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code dense_vector} kind.
+	 */
+	public DenseVectorQuery denseVector() {
+		return TaggedUnionUtils.get(this, Kind.DenseVector);
 	}
 
 	/**
@@ -1434,6 +1453,17 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 			return this.constantScore(fn.apply(new ConstantScoreQuery.Builder()).build());
 		}
 
+		public ObjectBuilder<Query> denseVector(DenseVectorQuery v) {
+			this._kind = Kind.DenseVector;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Query> denseVector(
+				Function<DenseVectorQuery.Builder, ObjectBuilder<DenseVectorQuery>> fn) {
+			return this.denseVector(fn.apply(new DenseVectorQuery.Builder()).build());
+		}
+
 		public ObjectBuilder<Query> disMax(DisMaxQuery v) {
 			this._kind = Kind.DisMax;
 			this._value = v;
@@ -2052,6 +2082,7 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		op.add(Builder::common, CommonTermsQuery._DESERIALIZER, "common");
 		op.add(Builder::combinedFields, CombinedFieldsQuery._DESERIALIZER, "combined_fields");
 		op.add(Builder::constantScore, ConstantScoreQuery._DESERIALIZER, "constant_score");
+		op.add(Builder::denseVector, DenseVectorQuery._DESERIALIZER, "dense_vector");
 		op.add(Builder::disMax, DisMaxQuery._DESERIALIZER, "dis_max");
 		op.add(Builder::distanceFeature, DistanceFeatureQuery._DESERIALIZER, "distance_feature");
 		op.add(Builder::exists, ExistsQuery._DESERIALIZER, "exists");

@@ -23,6 +23,8 @@ import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
@@ -58,7 +60,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class TopMetricsAggregation extends MetricAggregationBase implements AggregationVariant {
+public class TopMetricsAggregation extends AggregationBase implements AggregationVariant, JsonpSerializable {
 	private final List<TopMetricsValue> metrics;
 
 	@Nullable
@@ -69,7 +71,6 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 	// ---------------------------------------------------------------------------------------------
 
 	private TopMetricsAggregation(Builder builder) {
-		super(builder);
 
 		this.metrics = ApiTypeHelper.unmodifiable(builder.metrics);
 		this.size = builder.size;
@@ -117,9 +118,17 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		return this.sort;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
 		if (ApiTypeHelper.isDefined(this.metrics)) {
 			generator.writeKey("metrics");
 			generator.writeStartArray();
@@ -148,13 +157,18 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 
 	}
 
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link TopMetricsAggregation}.
 	 */
 
-	public static class Builder extends MetricAggregationBase.AbstractBuilder<Builder>
+	public static class Builder extends AggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TopMetricsAggregation> {
 		@Nullable
@@ -287,7 +301,7 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 			.lazy(Builder::new, TopMetricsAggregation::setupTopMetricsAggregationDeserializer);
 
 	protected static void setupTopMetricsAggregationDeserializer(ObjectDeserializer<TopMetricsAggregation.Builder> op) {
-		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
+
 		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(TopMetricsValue._DESERIALIZER), "metrics");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");

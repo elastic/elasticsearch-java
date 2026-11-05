@@ -90,7 +90,6 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 
 	private final Map<String, JsonData> metadata;
 
-	@Nullable
 	private final String name;
 
 	@Nullable
@@ -104,7 +103,7 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 
 		this.expiration = builder.expiration;
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
-		this.name = builder.name;
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.refresh = builder.refresh;
 		this.roleDescriptors = ApiTypeHelper.unmodifiable(builder.roleDescriptors);
 
@@ -136,11 +135,12 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * A name for the API key.
+	 * Required - A name for the API key. It is required, and it cannot be longer
+	 * than 256 characters, begin or end with whitespace, or begin with an
+	 * underscore.
 	 * <p>
 	 * API name: {@code name}
 	 */
-	@Nullable
 	public final String name() {
 		return this.name;
 	}
@@ -207,11 +207,9 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 			generator.writeEnd();
 
 		}
-		if (this.name != null) {
-			generator.writeKey("name");
-			generator.write(this.name);
+		generator.writeKey("name");
+		generator.write(this.name);
 
-		}
 		if (ApiTypeHelper.isDefined(this.roleDescriptors)) {
 			generator.writeKey("role_descriptors");
 			generator.writeStartObject();
@@ -241,7 +239,6 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private Map<String, JsonData> metadata;
 
-		@Nullable
 		private String name;
 
 		@Nullable
@@ -308,11 +305,13 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * A name for the API key.
+		 * Required - A name for the API key. It is required, and it cannot be longer
+		 * than 256 characters, begin or end with whitespace, or begin with an
+		 * underscore.
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public final Builder name(@Nullable String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}

@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 // typedef: indices.get_field_mapping.Request
 
 /**
- * Get mapping definitions.
+ * Get field mapping definitions.
  * <p>
  * Retrieves mapping definitions for one or more fields. For data streams, the
  * API retrieves field mappings for the stream’s backing indices.

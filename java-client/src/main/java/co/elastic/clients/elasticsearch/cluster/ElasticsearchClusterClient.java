@@ -480,7 +480,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: cluster.info
 
 	/**
-	 * Get cluster info.
+	 * Get cluster subsystem info.
 	 * <p>
 	 * Returns basic information about the cluster.
 	 * 
@@ -497,7 +497,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get cluster info.
+	 * Get cluster subsystem info.
 	 * <p>
 	 * Returns basic information about the cluster.
 	 * 

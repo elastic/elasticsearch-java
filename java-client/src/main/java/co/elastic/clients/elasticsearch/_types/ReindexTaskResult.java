@@ -73,7 +73,7 @@ public class ReindexTaskResult implements JsonpSerializable {
 	@Nullable
 	private final Long deleted;
 
-	private final List<BulkIndexByScrollFailure> failures;
+	private final List<BulkByPaginatedSearchFailure> failures;
 
 	@Nullable
 	private final Long noops;
@@ -166,7 +166,7 @@ public class ReindexTaskResult implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code failures}
 	 */
-	public final List<BulkIndexByScrollFailure> failures() {
+	public final List<BulkByPaginatedSearchFailure> failures() {
 		return this.failures;
 	}
 
@@ -301,7 +301,7 @@ public class ReindexTaskResult implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.failures)) {
 			generator.writeKey("failures");
 			generator.writeStartArray();
-			for (BulkIndexByScrollFailure item0 : this.failures) {
+			for (BulkByPaginatedSearchFailure item0 : this.failures) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -383,7 +383,7 @@ public class ReindexTaskResult implements JsonpSerializable {
 		private Long deleted;
 
 		@Nullable
-		private List<BulkIndexByScrollFailure> failures;
+		private List<BulkByPaginatedSearchFailure> failures;
 
 		@Nullable
 		private Long noops;
@@ -472,7 +472,7 @@ public class ReindexTaskResult implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>failures</code>.
 		 */
-		public final Builder failures(List<BulkIndexByScrollFailure> list) {
+		public final Builder failures(List<BulkByPaginatedSearchFailure> list) {
 			this.failures = _listAddAll(this.failures, list);
 			return this;
 		}
@@ -485,7 +485,7 @@ public class ReindexTaskResult implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>failures</code>.
 		 */
-		public final Builder failures(BulkIndexByScrollFailure value, BulkIndexByScrollFailure... values) {
+		public final Builder failures(BulkByPaginatedSearchFailure value, BulkByPaginatedSearchFailure... values) {
 			this.failures = _listAdd(this.failures, value, values);
 			return this;
 		}
@@ -499,8 +499,8 @@ public class ReindexTaskResult implements JsonpSerializable {
 		 * Adds a value to <code>failures</code> using a builder lambda.
 		 */
 		public final Builder failures(
-				Function<BulkIndexByScrollFailure.Builder, ObjectBuilder<BulkIndexByScrollFailure>> fn) {
-			return failures(fn.apply(new BulkIndexByScrollFailure.Builder()).build());
+				Function<BulkByPaginatedSearchFailure.Builder, ObjectBuilder<BulkByPaginatedSearchFailure>> fn) {
+			return failures(fn.apply(new BulkByPaginatedSearchFailure.Builder()).build());
 		}
 
 		/**
@@ -651,7 +651,7 @@ public class ReindexTaskResult implements JsonpSerializable {
 		op.add(Builder::batches, JsonpDeserializer.longDeserializer(), "batches");
 		op.add(Builder::created, JsonpDeserializer.longDeserializer(), "created");
 		op.add(Builder::deleted, JsonpDeserializer.longDeserializer(), "deleted");
-		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(BulkIndexByScrollFailure._DESERIALIZER),
+		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(BulkByPaginatedSearchFailure._DESERIALIZER),
 				"failures");
 		op.add(Builder::noops, JsonpDeserializer.longDeserializer(), "noops");
 		op.add(Builder::requestsPerSecond, JsonpDeserializer.floatDeserializer(), "requests_per_second");

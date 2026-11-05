@@ -24,6 +24,7 @@ import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.grant_api_key.ApiKeyGrantType;
 import co.elastic.clients.elasticsearch.security.grant_api_key.GrantApiKey;
+import co.elastic.clients.elasticsearch.security.grant_api_key.GrantApiKeyClientAuthentication;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -73,11 +74,13 @@ import javax.annotation.Nullable;
  * <li>username and password</li>
  * <li>Elasticsearch access tokens</li>
  * <li>JWTs</li>
+ * <li>service account tokens of user-managed service accounts</li>
  * </ul>
  * <p>
  * The user, for whom the authentication credentials is provided, can optionally
  * &quot;run as&quot; (impersonate) another user. In this case, the API key will
- * be created on behalf of the impersonated user.
+ * be created on behalf of the impersonated user. Run as is not supported with
+ * the <code>_user_managed_service_account</code> grant type.
  * <p>
  * This API is intended be used by applications that need to create and manage
  * API keys for end users, but cannot guarantee that those users have permission
@@ -101,6 +104,9 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 
 	private final GrantApiKey apiKey;
 
+	@Nullable
+	private final GrantApiKeyClientAuthentication clientAuthentication;
+
 	private final ApiKeyGrantType grantType;
 
 	@Nullable
@@ -113,6 +119,9 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	private final String runAs;
 
 	@Nullable
+	private final String serviceAccountToken;
+
+	@Nullable
 	private final String username;
 
 	// ---------------------------------------------------------------------------------------------
@@ -121,10 +130,12 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 
 		this.accessToken = builder.accessToken;
 		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
+		this.clientAuthentication = builder.clientAuthentication;
 		this.grantType = ApiTypeHelper.requireNonNull(builder.grantType, this, "grantType");
 		this.password = builder.password;
 		this.refresh = builder.refresh;
 		this.runAs = builder.runAs;
+		this.serviceAccountToken = builder.serviceAccountToken;
 		this.username = builder.username;
 
 	}
@@ -154,8 +165,22 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * The client authentication for a JWT that requires it, which is what is
+	 * normally sent in the <code>ES-Client-Authentication</code> request header. It
+	 * is valid only with the <code>access_token</code> grant type, when the access
+	 * token is a JWT.
+	 * <p>
+	 * API name: {@code client_authentication}
+	 */
+	@Nullable
+	public final GrantApiKeyClientAuthentication clientAuthentication() {
+		return this.clientAuthentication;
+	}
+
+	/**
 	 * Required - The type of grant. Supported grant types are:
-	 * <code>access_token</code>, <code>password</code>.
+	 * <code>access_token</code>, <code>password</code>, and
+	 * <code>_user_managed_service_account</code>.
 	 * <p>
 	 * API name: {@code grant_type}
 	 */
@@ -187,13 +212,27 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * The name of the user to be impersonated.
+	 * The name of the user to be impersonated. It is not valid with the
+	 * <code>_user_managed_service_account</code> grant type.
 	 * <p>
 	 * API name: {@code run_as}
 	 */
 	@Nullable
 	public final String runAs() {
 		return this.runAs;
+	}
+
+	/**
+	 * The service account token of a user-managed service account, as returned by
+	 * the create service account token API. If you specify the
+	 * <code>_user_managed_service_account</code> grant type, this parameter is
+	 * required. It is not valid with other grant types.
+	 * <p>
+	 * API name: {@code service_account_token}
+	 */
+	@Nullable
+	public final String serviceAccountToken() {
+		return this.serviceAccountToken;
 	}
 
 	/**
@@ -227,6 +266,11 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		generator.writeKey("api_key");
 		this.apiKey.serialize(generator, mapper);
 
+		if (this.clientAuthentication != null) {
+			generator.writeKey("client_authentication");
+			this.clientAuthentication.serialize(generator, mapper);
+
+		}
 		generator.writeKey("grant_type");
 		this.grantType.serialize(generator, mapper);
 		if (this.password != null) {
@@ -237,6 +281,11 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		if (this.runAs != null) {
 			generator.writeKey("run_as");
 			generator.write(this.runAs);
+
+		}
+		if (this.serviceAccountToken != null) {
+			generator.writeKey("service_account_token");
+			generator.write(this.serviceAccountToken);
 
 		}
 		if (this.username != null) {
@@ -261,6 +310,9 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 
 		private GrantApiKey apiKey;
 
+		@Nullable
+		private GrantApiKeyClientAuthentication clientAuthentication;
+
 		private ApiKeyGrantType grantType;
 
 		@Nullable
@@ -273,6 +325,9 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		private String runAs;
 
 		@Nullable
+		private String serviceAccountToken;
+
+		@Nullable
 		private String username;
 
 		public Builder() {
@@ -280,10 +335,12 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		private Builder(GrantApiKeyRequest instance) {
 			this.accessToken = instance.accessToken;
 			this.apiKey = instance.apiKey;
+			this.clientAuthentication = instance.clientAuthentication;
 			this.grantType = instance.grantType;
 			this.password = instance.password;
 			this.refresh = instance.refresh;
 			this.runAs = instance.runAs;
+			this.serviceAccountToken = instance.serviceAccountToken;
 			this.username = instance.username;
 
 		}
@@ -318,8 +375,35 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * The client authentication for a JWT that requires it, which is what is
+		 * normally sent in the <code>ES-Client-Authentication</code> request header. It
+		 * is valid only with the <code>access_token</code> grant type, when the access
+		 * token is a JWT.
+		 * <p>
+		 * API name: {@code client_authentication}
+		 */
+		public final Builder clientAuthentication(@Nullable GrantApiKeyClientAuthentication value) {
+			this.clientAuthentication = value;
+			return this;
+		}
+
+		/**
+		 * The client authentication for a JWT that requires it, which is what is
+		 * normally sent in the <code>ES-Client-Authentication</code> request header. It
+		 * is valid only with the <code>access_token</code> grant type, when the access
+		 * token is a JWT.
+		 * <p>
+		 * API name: {@code client_authentication}
+		 */
+		public final Builder clientAuthentication(
+				Function<GrantApiKeyClientAuthentication.Builder, ObjectBuilder<GrantApiKeyClientAuthentication>> fn) {
+			return this.clientAuthentication(fn.apply(new GrantApiKeyClientAuthentication.Builder()).build());
+		}
+
+		/**
 		 * Required - The type of grant. Supported grant types are:
-		 * <code>access_token</code>, <code>password</code>.
+		 * <code>access_token</code>, <code>password</code>, and
+		 * <code>_user_managed_service_account</code>.
 		 * <p>
 		 * API name: {@code grant_type}
 		 */
@@ -352,12 +436,26 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * The name of the user to be impersonated.
+		 * The name of the user to be impersonated. It is not valid with the
+		 * <code>_user_managed_service_account</code> grant type.
 		 * <p>
 		 * API name: {@code run_as}
 		 */
 		public final Builder runAs(@Nullable String value) {
 			this.runAs = value;
+			return this;
+		}
+
+		/**
+		 * The service account token of a user-managed service account, as returned by
+		 * the create service account token API. If you specify the
+		 * <code>_user_managed_service_account</code> grant type, this parameter is
+		 * required. It is not valid with other grant types.
+		 * <p>
+		 * API name: {@code service_account_token}
+		 */
+		public final Builder serviceAccountToken(@Nullable String value) {
+			this.serviceAccountToken = value;
 			return this;
 		}
 
@@ -409,9 +507,11 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 
 		op.add(Builder::accessToken, JsonpDeserializer.stringDeserializer(), "access_token");
 		op.add(Builder::apiKey, GrantApiKey._DESERIALIZER, "api_key");
+		op.add(Builder::clientAuthentication, GrantApiKeyClientAuthentication._DESERIALIZER, "client_authentication");
 		op.add(Builder::grantType, ApiKeyGrantType._DESERIALIZER, "grant_type");
 		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
 		op.add(Builder::runAs, JsonpDeserializer.stringDeserializer(), "run_as");
+		op.add(Builder::serviceAccountToken, JsonpDeserializer.stringDeserializer(), "service_account_token");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 
 	}
