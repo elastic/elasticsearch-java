@@ -55,6 +55,13 @@ public class RestClientGzipCompressionTests extends RestClientTestCase {
     public static void startHttpServer() throws Exception {
         httpServer = MockHttpServer.createHttp(new InetSocketAddress(InetAddress.getLoopbackAddress(), 0), 0);
         httpServer.createContext("/", new GzipResponseHandler());
+        httpServer.createContext("/accept-encoding", exchange -> {
+            byte[] bytes = String.valueOf(exchange.getRequestHeaders().getFirst("Accept-Encoding"))
+                .getBytes(StandardCharsets.UTF_8);
+            exchange.sendResponseHeaders(200, bytes.length);
+            exchange.getResponseBody().write(bytes);
+            exchange.close();
+        });
         httpServer.start();
     }
 
@@ -123,17 +130,25 @@ public class RestClientGzipCompressionTests extends RestClientTestCase {
         return bos.toByteArray();
     }
 
-    // From org.apache.httpcomponents.client5.httpclient5.5.6, the client decompresses responses
-    // by default, so to test the java client's decompression logic, a custom http client with decompression
-    // disabled must be used.
+    // Rest5ClientBuilder disables HC5's content compression, so these tests exercise
+    // Rest5Client's own gzip handling.
     private Rest5Client createClient(boolean enableCompression) {
         InetSocketAddress address = httpServer.getAddress();
         return Rest5Client.builder(new HttpHost("http", address.getHostString(), address.getPort()))
             .setCompressionEnabled(enableCompression)
-            .setHttpClient(HttpAsyncClientBuilder.create()
-                .disableContentCompression()
-                .build())
             .build();
+    }
+
+    @Test
+    public void testAcceptEncodingFollowsCompressionSetting() throws Exception {
+        for (boolean enableCompression : new boolean[]{false, true}) {
+            try (Rest5Client restClient = createClient(enableCompression)) {
+                Response response = restClient.performRequest(new Request("GET", "/accept-encoding"));
+                String acceptEncoding = new String(readAll(response.getEntity().getContent()),
+                    StandardCharsets.UTF_8);
+                Assert.assertEquals(enableCompression ? "gzip" : "null", acceptEncoding);
+            }
+        }
     }
 
     @Test
@@ -208,14 +223,7 @@ public class RestClientGzipCompressionTests extends RestClientTestCase {
 
     @Test
     public void testCompressingClientAsync() throws Exception {
-        InetSocketAddress address = httpServer.getAddress();
-        Rest5Client restClient = Rest5Client.builder(new HttpHost("http", address.getHostString(),
-                address.getPort()))
-            .setCompressionEnabled(true)
-            .setHttpClient(HttpAsyncClientBuilder.create()
-                .disableContentCompression()
-                .build())
-            .build();
+        Rest5Client restClient = createClient(true);
 
         Request request = new Request("POST", "/");
         request.setEntity(new StringEntity("compressing client", ContentType.TEXT_PLAIN));
@@ -232,9 +240,9 @@ public class RestClientGzipCompressionTests extends RestClientTestCase {
     }
 
     /**
-     * Verifies that when HC5's built-in auto-decompression is active (the default since 5.6),
-     * response headers are reconciled with the already-decompressed entity, meaning the content encoding is
-     * not gzip.
+     * Verifies that when HC5's built-in auto-decompression is active (the default since 5.6 for
+     * user-provided http clients), response headers are reconciled with the already-decompressed entity,
+     * meaning the content encoding is not gzip.
      */
     @Test
     public void testAutoDecompressionAsync() throws Exception {
@@ -242,6 +250,7 @@ public class RestClientGzipCompressionTests extends RestClientTestCase {
         Rest5Client restClient = Rest5Client.builder(new HttpHost("http", address.getHostString(),
                 address.getPort()))
             .setCompressionEnabled(true)
+            .setHttpClient(HttpAsyncClientBuilder.create().build())
             .build();
 
         Request request = new Request("POST", "/");
