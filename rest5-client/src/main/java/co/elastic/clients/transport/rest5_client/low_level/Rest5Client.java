@@ -101,7 +101,8 @@ import static org.apache.hc.core5.http.HttpHeaders.CONTENT_LENGTH;
  * failed (the more failures, the later they will be retried). In case of failures all of the alive nodes
  * (or dead nodes that
  * deserve a retry) are retried until one responds or none of them does, in which case an
- * {@link IOException} will be thrown.
+ * {@link IOException} will be thrown. Requests with a non-repeatable entity are not retried, as their body
+ * can only be sent once.
  * <p>
  * Requests can be either synchronous or asynchronous. The asynchronous variants all end with {@code Async}.
  * <p>
@@ -308,7 +309,7 @@ public class Rest5Client implements Closeable {
             onFailure(context.node);
             Exception cause = extractAndWrapCause(e);
             addSuppressedException(previousException, cause);
-            if (isRetryableException(e) && nodes.hasNext()) {
+            if (isRetryableException(e) && request.canRetry() && nodes.hasNext()) {
                 return performRequest(nodes, request, cause);
             }
             if (cause instanceof IOException) {
@@ -326,7 +327,7 @@ public class Rest5Client implements Closeable {
             return responseOrResponseException.response;
         }
         addSuppressedException(previousException, responseOrResponseException.responseException);
-        if (nodes.hasNext()) {
+        if (request.canRetry() && nodes.hasNext()) {
             return performRequest(nodes, request, responseOrResponseException.responseException);
         }
         throw responseOrResponseException.responseException;
@@ -422,7 +423,7 @@ public class Rest5Client implements Closeable {
                             if (responseOrResponseException.responseException == null) {
                                 listener.onSuccess(responseOrResponseException.response);
                             } else {
-                                if (nodes.hasNext()) {
+                                if (request.canRetry() && nodes.hasNext()) {
                                     listener.trackFailure(responseOrResponseException.responseException);
                                     performRequestAsync(nodes, request, listener);
                                 } else {
@@ -440,7 +441,7 @@ public class Rest5Client implements Closeable {
                             RequestLogger.logFailedRequest(logger, request.httpRequest, context.node,
                                 failure);
                             onFailure(context.node);
-                            if (isRetryableException(failure) && nodes.hasNext()) {
+                            if (isRetryableException(failure) && request.canRetry() && nodes.hasNext()) {
                                 listener.trackFailure(failure);
                                 performRequestAsync(nodes, request, listener);
                             } else {
@@ -857,6 +858,15 @@ public class Rest5Client implements Closeable {
             if (requestConfig != null) {
                 requestBase.setConfig(requestConfig);
             }
+        }
+
+        /**
+         * A non-repeatable entity (e.g. backed by an {@code InputStream}) is consumed by the first attempt, and
+         * sending it again would produce an empty or incomplete body.
+         */
+        boolean canRetry() {
+            HttpEntity entity = httpRequest.getEntity();
+            return entity == null || entity.isRepeatable();
         }
 
         RequestContext createContextForNextAttempt(Node node) {
