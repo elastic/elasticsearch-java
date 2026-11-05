@@ -193,10 +193,10 @@ public class MultiBufferEntityTest {
     @Test
     public void testRetryResendsFullBody() throws IOException {
         List<ByteBuffer> body = bulkBody(2000);
-        MultiBufferEntity entity = entity(body);
 
         // Attempts interrupted by close() and failed() are both reset
         for (int attempt = 0; attempt < 2; attempt++) {
+            MultiBufferEntity entity = entity(body);
             FakeChannel interrupted = new FakeChannel(1000, Integer.MAX_VALUE);
             for (int i = 0; i < 3; i++) {
                 interrupted.newEvent();
