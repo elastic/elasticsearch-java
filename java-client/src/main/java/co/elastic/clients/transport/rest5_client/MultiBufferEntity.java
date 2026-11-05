@@ -138,15 +138,12 @@ class MultiBufferEntity extends AbstractHttpEntity implements AsyncEntityProduce
 
     @Override
     public void produce(DataStreamChannel channel) throws IOException {
-        // The input is typically many small buffers (e.g. one per NDJSON line of a bulk request). Each
-        // write() below is at most one HTTP/2 DATA frame and, over HTTP/1.1, one chunk, so writing
-        // them one by one is very expensive (issue #1339). Coalesce them into a staging buffer and
-        // write that instead; input buffers that are already large, or the last one, are written directly.
-        //
-        // Keep going as long as the channel accepts everything: over HTTP/1.1 the encoder buffers up
-        // to the socket send buffer, over HTTP/2 the multiplexer takes exactly one frame per output
-        // event. Once a write is refused or partial (socket buffer full, frame or flow-control window
-        // exhausted), return and wait for the next output event.
+        // Each write() is one HTTP/2 frame or HTTP/1.1 chunk, so small buffers are coalesced. Each iteration:
+        // 1. Staging has unsent bytes: send those first, they come before anything in currentBuffer.
+        // 2. Staging is empty and there is no current buffer: the body is complete, end the stream.
+        // 3. The current buffer is large, or it's the last one: write it directly, copying is useless.
+        // 4. Otherwise small buffers follow: coalesce them into staging and write that.
+        // Loops while the channel accepts everything, returns on a refused or partial write to resume later.
         while (true) {
             ByteBuffer out;
             if (staging != null && staging.hasRemaining()) {
