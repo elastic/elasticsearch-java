@@ -84,6 +84,7 @@ public class ChildrenAggregate extends SingleBucketAggregateBase implements Aggr
 		public Builder() {
 		}
 		private Builder(ChildrenAggregate instance) {
+			super(instance);
 
 		}
 		@Override

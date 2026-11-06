@@ -140,6 +140,7 @@ public class SearchableSnapshots extends Base {
 		public Builder() {
 		}
 		private Builder(SearchableSnapshots instance) {
+			super(instance);
 			this.indicesCount = instance.indicesCount;
 			this.fullCopyIndicesCount = instance.fullCopyIndicesCount;
 			this.sharedCacheIndicesCount = instance.sharedCacheIndicesCount;

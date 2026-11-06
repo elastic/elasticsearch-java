@@ -237,6 +237,7 @@ public class NetworkDirectionProcessor extends ProcessorBase implements Processo
 		public Builder() {
 		}
 		private Builder(NetworkDirectionProcessor instance) {
+			super(instance);
 			this.sourceIp = instance.sourceIp;
 			this.destinationIp = instance.destinationIp;
 			this.targetField = instance.targetField;

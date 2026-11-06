@@ -132,6 +132,7 @@ public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant
 		public Builder() {
 		}
 		private Builder(SpanFieldMaskingQuery instance) {
+			super(instance);
 			this.field = instance.field;
 			this.query = instance.query;
 

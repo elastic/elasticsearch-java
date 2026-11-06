@@ -116,6 +116,7 @@ public class StringStatsAggregation extends MetricAggregationBase implements Agg
 		public Builder() {
 		}
 		private Builder(StringStatsAggregation instance) {
+			super(instance);
 			this.showDistribution = instance.showDistribution;
 
 		}

@@ -276,6 +276,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(KnnQuery instance) {
+			super(instance);
 			this.field = instance.field;
 			this.queryVector = instance.queryVector;
 			this.queryVectorBuilder = instance.queryVectorBuilder;

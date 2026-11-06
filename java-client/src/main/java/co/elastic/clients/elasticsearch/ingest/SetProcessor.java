@@ -232,6 +232,7 @@ public class SetProcessor extends ProcessorBase implements ProcessorVariant {
 		public Builder() {
 		}
 		private Builder(SetProcessor instance) {
+			super(instance);
 			this.copyFrom = instance.copyFrom;
 			this.field = instance.field;
 			this.ignoreEmptyValue = instance.ignoreEmptyValue;

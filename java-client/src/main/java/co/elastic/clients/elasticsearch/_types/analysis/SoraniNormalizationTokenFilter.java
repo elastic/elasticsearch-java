@@ -93,6 +93,7 @@ public class SoraniNormalizationTokenFilter extends TokenFilterBase implements T
 		public Builder() {
 		}
 		private Builder(SoraniNormalizationTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

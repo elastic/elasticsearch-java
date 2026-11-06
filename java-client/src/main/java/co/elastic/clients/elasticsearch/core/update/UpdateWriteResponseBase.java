@@ -127,6 +127,16 @@ public abstract class UpdateWriteResponseBase<TDocument> extends WriteResponseBa
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(UpdateWriteResponseBase<TDocument> instance) {
+			super(instance);
+			this.get = instance.get;
+			this.tDocumentSerializer = instance.tDocumentSerializer;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

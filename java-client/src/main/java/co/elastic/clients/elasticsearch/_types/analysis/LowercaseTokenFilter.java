@@ -115,6 +115,7 @@ public class LowercaseTokenFilter extends TokenFilterBase implements TokenFilter
 		public Builder() {
 		}
 		private Builder(LowercaseTokenFilter instance) {
+			super(instance);
 			this.language = instance.language;
 
 		}

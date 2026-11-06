@@ -172,6 +172,7 @@ public class CardinalityAggregation extends MetricAggregationBase
 		public Builder() {
 		}
 		private Builder(CardinalityAggregation instance) {
+			super(instance);
 			this.precisionThreshold = instance.precisionThreshold;
 			this.rehash = instance.rehash;
 			this.executionHint = instance.executionHint;

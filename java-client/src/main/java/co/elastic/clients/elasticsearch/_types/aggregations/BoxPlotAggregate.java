@@ -341,6 +341,7 @@ public class BoxPlotAggregate extends AggregateBase implements AggregateVariant 
 		public Builder() {
 		}
 		private Builder(BoxPlotAggregate instance) {
+			super(instance);
 			this.min = instance.min;
 			this.max = instance.max;
 			this.q1 = instance.q1;

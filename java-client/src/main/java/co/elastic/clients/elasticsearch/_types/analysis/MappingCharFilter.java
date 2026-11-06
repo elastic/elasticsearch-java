@@ -140,6 +140,7 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
 		public Builder() {
 		}
 		private Builder(MappingCharFilter instance) {
+			super(instance);
 			this.mappings = instance.mappings;
 			this.mappingsPath = instance.mappingsPath;
 

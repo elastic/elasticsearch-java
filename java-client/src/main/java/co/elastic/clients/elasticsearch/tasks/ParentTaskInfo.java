@@ -107,6 +107,7 @@ public class ParentTaskInfo extends TaskInfo {
 		public Builder() {
 		}
 		private Builder(ParentTaskInfo instance) {
+			super(instance);
 			this.children = instance.children;
 
 		}

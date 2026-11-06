@@ -36,6 +36,8 @@ import co.elastic.clients.elasticsearch._types.SegmentsStats;
 import co.elastic.clients.elasticsearch._types.StoreStats;
 import co.elastic.clients.elasticsearch._types.TranslogStats;
 import co.elastic.clients.elasticsearch._types.WarmerStats;
+import co.elastic.clients.elasticsearch.cluster.stats.DenseVectorStats;
+import co.elastic.clients.elasticsearch.cluster.stats.SparseVectorStats;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -78,6 +80,9 @@ public class IndexStats implements JsonpSerializable {
 	private final CompletionStats completion;
 
 	@Nullable
+	private final DenseVectorStats denseVector;
+
+	@Nullable
 	private final DocStats docs;
 
 	@Nullable
@@ -117,6 +122,9 @@ public class IndexStats implements JsonpSerializable {
 	private final SegmentsStats segments;
 
 	@Nullable
+	private final SparseVectorStats sparseVector;
+
+	@Nullable
 	private final StoreStats store;
 
 	@Nullable
@@ -136,6 +144,7 @@ public class IndexStats implements JsonpSerializable {
 	private IndexStats(Builder builder) {
 
 		this.completion = builder.completion;
+		this.denseVector = builder.denseVector;
 		this.docs = builder.docs;
 		this.fielddata = builder.fielddata;
 		this.flush = builder.flush;
@@ -149,6 +158,7 @@ public class IndexStats implements JsonpSerializable {
 		this.requestCache = builder.requestCache;
 		this.search = builder.search;
 		this.segments = builder.segments;
+		this.sparseVector = builder.sparseVector;
 		this.store = builder.store;
 		this.translog = builder.translog;
 		this.warmer = builder.warmer;
@@ -169,6 +179,16 @@ public class IndexStats implements JsonpSerializable {
 	@Nullable
 	public final CompletionStats completion() {
 		return this.completion;
+	}
+
+	/**
+	 * Contains statistics about the dense vectors in the index.
+	 * <p>
+	 * API name: {@code dense_vector}
+	 */
+	@Nullable
+	public final DenseVectorStats denseVector() {
+		return this.denseVector;
 	}
 
 	/**
@@ -306,6 +326,16 @@ public class IndexStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Contains statistics about the sparse vectors in the index.
+	 * <p>
+	 * API name: {@code sparse_vector}
+	 */
+	@Nullable
+	public final SparseVectorStats sparseVector() {
+		return this.sparseVector;
+	}
+
+	/**
 	 * Contains statistics about the size of shards assigned to the node.
 	 * <p>
 	 * API name: {@code store}
@@ -365,6 +395,11 @@ public class IndexStats implements JsonpSerializable {
 		if (this.completion != null) {
 			generator.writeKey("completion");
 			this.completion.serialize(generator, mapper);
+
+		}
+		if (this.denseVector != null) {
+			generator.writeKey("dense_vector");
+			this.denseVector.serialize(generator, mapper);
 
 		}
 		if (this.docs != null) {
@@ -432,6 +467,11 @@ public class IndexStats implements JsonpSerializable {
 			this.segments.serialize(generator, mapper);
 
 		}
+		if (this.sparseVector != null) {
+			generator.writeKey("sparse_vector");
+			this.sparseVector.serialize(generator, mapper);
+
+		}
 		if (this.store != null) {
 			generator.writeKey("store");
 			this.store.serialize(generator, mapper);
@@ -476,6 +516,9 @@ public class IndexStats implements JsonpSerializable {
 		private CompletionStats completion;
 
 		@Nullable
+		private DenseVectorStats denseVector;
+
+		@Nullable
 		private DocStats docs;
 
 		@Nullable
@@ -515,6 +558,9 @@ public class IndexStats implements JsonpSerializable {
 		private SegmentsStats segments;
 
 		@Nullable
+		private SparseVectorStats sparseVector;
+
+		@Nullable
 		private StoreStats store;
 
 		@Nullable
@@ -533,6 +579,7 @@ public class IndexStats implements JsonpSerializable {
 		}
 		private Builder(IndexStats instance) {
 			this.completion = instance.completion;
+			this.denseVector = instance.denseVector;
 			this.docs = instance.docs;
 			this.fielddata = instance.fielddata;
 			this.flush = instance.flush;
@@ -546,6 +593,7 @@ public class IndexStats implements JsonpSerializable {
 			this.requestCache = instance.requestCache;
 			this.search = instance.search;
 			this.segments = instance.segments;
+			this.sparseVector = instance.sparseVector;
 			this.store = instance.store;
 			this.translog = instance.translog;
 			this.warmer = instance.warmer;
@@ -570,6 +618,25 @@ public class IndexStats implements JsonpSerializable {
 		 */
 		public final Builder completion(Function<CompletionStats.Builder, ObjectBuilder<CompletionStats>> fn) {
 			return this.completion(fn.apply(new CompletionStats.Builder()).build());
+		}
+
+		/**
+		 * Contains statistics about the dense vectors in the index.
+		 * <p>
+		 * API name: {@code dense_vector}
+		 */
+		public final Builder denseVector(@Nullable DenseVectorStats value) {
+			this.denseVector = value;
+			return this;
+		}
+
+		/**
+		 * Contains statistics about the dense vectors in the index.
+		 * <p>
+		 * API name: {@code dense_vector}
+		 */
+		public final Builder denseVector(Function<DenseVectorStats.Builder, ObjectBuilder<DenseVectorStats>> fn) {
+			return this.denseVector(fn.apply(new DenseVectorStats.Builder()).build());
 		}
 
 		/**
@@ -828,6 +895,25 @@ public class IndexStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Contains statistics about the sparse vectors in the index.
+		 * <p>
+		 * API name: {@code sparse_vector}
+		 */
+		public final Builder sparseVector(@Nullable SparseVectorStats value) {
+			this.sparseVector = value;
+			return this;
+		}
+
+		/**
+		 * Contains statistics about the sparse vectors in the index.
+		 * <p>
+		 * API name: {@code sparse_vector}
+		 */
+		public final Builder sparseVector(Function<SparseVectorStats.Builder, ObjectBuilder<SparseVectorStats>> fn) {
+			return this.sparseVector(fn.apply(new SparseVectorStats.Builder()).build());
+		}
+
+		/**
 		 * Contains statistics about the size of shards assigned to the node.
 		 * <p>
 		 * API name: {@code store}
@@ -949,6 +1035,7 @@ public class IndexStats implements JsonpSerializable {
 	protected static void setupIndexStatsDeserializer(ObjectDeserializer<IndexStats.Builder> op) {
 
 		op.add(Builder::completion, CompletionStats._DESERIALIZER, "completion");
+		op.add(Builder::denseVector, DenseVectorStats._DESERIALIZER, "dense_vector");
 		op.add(Builder::docs, DocStats._DESERIALIZER, "docs");
 		op.add(Builder::fielddata, FielddataStats._DESERIALIZER, "fielddata");
 		op.add(Builder::flush, FlushStats._DESERIALIZER, "flush");
@@ -962,6 +1049,7 @@ public class IndexStats implements JsonpSerializable {
 		op.add(Builder::requestCache, RequestCacheStats._DESERIALIZER, "request_cache");
 		op.add(Builder::search, SearchStats._DESERIALIZER, "search");
 		op.add(Builder::segments, SegmentsStats._DESERIALIZER, "segments");
+		op.add(Builder::sparseVector, SparseVectorStats._DESERIALIZER, "sparse_vector");
 		op.add(Builder::store, StoreStats._DESERIALIZER, "store");
 		op.add(Builder::translog, TranslogStats._DESERIALIZER, "translog");
 		op.add(Builder::warmer, WarmerStats._DESERIALIZER, "warmer");

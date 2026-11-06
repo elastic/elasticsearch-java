@@ -85,6 +85,7 @@ public class UntypedDecayFunction extends DecayFunctionBase<JsonData, JsonData> 
 		public Builder() {
 		}
 		private Builder(UntypedDecayFunction instance) {
+			super(instance);
 
 		}
 		@Override

@@ -127,6 +127,16 @@ public abstract class InferenceEndpointInfoAmazonBedrock extends InferenceEndpoi
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(InferenceEndpointInfoAmazonBedrock instance) {
+			super(instance);
+			this.inferenceId = instance.inferenceId;
+			this.taskType = instance.taskType;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

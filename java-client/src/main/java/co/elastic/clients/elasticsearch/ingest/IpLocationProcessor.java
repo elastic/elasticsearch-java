@@ -259,6 +259,7 @@ public class IpLocationProcessor extends ProcessorBase implements ProcessorVaria
 		public Builder() {
 		}
 		private Builder(IpLocationProcessor instance) {
+			super(instance);
 			this.databaseFile = instance.databaseFile;
 			this.field = instance.field;
 			this.firstOnly = instance.firstOnly;

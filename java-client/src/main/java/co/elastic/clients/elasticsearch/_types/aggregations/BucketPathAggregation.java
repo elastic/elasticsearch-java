@@ -128,6 +128,14 @@ public abstract class BucketPathAggregation extends AggregationBase implements J
 			return this.bucketsPath(fn.apply(new BucketsPath.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(BucketPathAggregation instance) {
+			this.bucketsPath = instance.bucketsPath;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

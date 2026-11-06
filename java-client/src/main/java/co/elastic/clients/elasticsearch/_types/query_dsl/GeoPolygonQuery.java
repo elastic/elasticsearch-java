@@ -184,8 +184,11 @@ public class GeoPolygonQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(GeoPolygonQuery instance) {
+			super(instance);
 			this.validationMethod = instance.validationMethod;
 			this.ignoreUnmapped = instance.ignoreUnmapped;
+			this.field = instance.field;
+			this.polygon = instance.polygon;
 
 		}
 		/**

@@ -134,6 +134,7 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 		public Builder() {
 		}
 		private Builder(MatrixStatsAggregate instance) {
+			super(instance);
 			this.docCount = instance.docCount;
 			this.fields = instance.fields;
 

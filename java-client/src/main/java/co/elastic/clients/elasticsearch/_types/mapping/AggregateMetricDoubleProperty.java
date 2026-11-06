@@ -174,6 +174,7 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 		public Builder() {
 		}
 		private Builder(AggregateMetricDoubleProperty instance) {
+			super(instance);
 			this.defaultMetric = instance.defaultMetric;
 			this.ignoreMalformed = instance.ignoreMalformed;
 			this.metrics = instance.metrics;

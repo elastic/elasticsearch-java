@@ -84,6 +84,7 @@ public class SumAggregation extends FormatMetricAggregationBase implements Aggre
 		public Builder() {
 		}
 		private Builder(SumAggregation instance) {
+			super(instance);
 
 		}
 		@Override

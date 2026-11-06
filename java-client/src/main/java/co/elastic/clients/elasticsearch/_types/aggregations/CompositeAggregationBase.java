@@ -273,6 +273,19 @@ public abstract class CompositeAggregationBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(CompositeAggregationBase instance) {
+			this.field = instance.field;
+			this.missingBucket = instance.missingBucket;
+			this.missingOrder = instance.missingOrder;
+			this.script = instance.script;
+			this.valueType = instance.valueType;
+			this.order = instance.order;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

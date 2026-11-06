@@ -317,6 +317,22 @@ public abstract class NumberPropertyBase extends DocValuesPropertyBase {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(NumberPropertyBase instance) {
+			super(instance);
+			this.boost = instance.boost;
+			this.coerce = instance.coerce;
+			this.ignoreMalformed = instance.ignoreMalformed;
+			this.index = instance.index;
+			this.onScriptError = instance.onScriptError;
+			this.script = instance.script;
+			this.timeSeriesMetric = instance.timeSeriesMetric;
+			this.timeSeriesDimension = instance.timeSeriesDimension;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

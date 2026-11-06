@@ -287,6 +287,18 @@ public class UserProfile implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(UserProfile instance) {
+			this.uid = instance.uid;
+			this.user = instance.user;
+			this.data = instance.data;
+			this.labels = instance.labels;
+			this.enabled = instance.enabled;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

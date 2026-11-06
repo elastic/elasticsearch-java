@@ -147,6 +147,16 @@ public abstract class CorePropertyBase extends PropertyBase {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(CorePropertyBase instance) {
+			super(instance);
+			this.copyTo = instance.copyTo;
+			this.store = instance.store;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

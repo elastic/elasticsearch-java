@@ -134,6 +134,7 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
 		public Builder() {
 		}
 		private Builder(ObjectProperty instance) {
+			super(instance);
 			this.enabled = instance.enabled;
 			this.subobjects = instance.subobjects;
 

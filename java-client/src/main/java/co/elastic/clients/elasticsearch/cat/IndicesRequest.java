@@ -157,7 +157,10 @@ public class IndicesRequest extends CatRequestBase {
 	}
 
 	/**
-	 * The type of index that wildcard patterns can match.
+	 * The type of index that wildcard patterns can match. Note that
+	 * <code>closed</code> also matches non-hidden data streams, so their open
+	 * backing indices are returned as well. It does not restrict the response to
+	 * closed indices only.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -327,7 +330,10 @@ public class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * The type of index that wildcard patterns can match.
+		 * The type of index that wildcard patterns can match. Note that
+		 * <code>closed</code> also matches non-hidden data streams, so their open
+		 * backing indices are returned as well. It does not restrict the response to
+		 * closed indices only.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -339,7 +345,10 @@ public class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * The type of index that wildcard patterns can match.
+		 * The type of index that wildcard patterns can match. Note that
+		 * <code>closed</code> also matches non-hidden data streams, so their open
+		 * backing indices are returned as well. It does not restrict the response to
+		 * closed indices only.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>

@@ -144,6 +144,7 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 		public Builder() {
 		}
 		private Builder(PatternCaptureTokenFilter instance) {
+			super(instance);
 			this.patterns = instance.patterns;
 			this.preserveOriginal = instance.preserveOriginal;
 

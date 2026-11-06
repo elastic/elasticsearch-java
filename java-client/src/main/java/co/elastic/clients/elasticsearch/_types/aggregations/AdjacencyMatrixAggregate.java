@@ -86,6 +86,7 @@ public class AdjacencyMatrixAggregate extends MultiBucketAggregateBase<Adjacency
 		public Builder() {
 		}
 		private Builder(AdjacencyMatrixAggregate instance) {
+			super(instance);
 
 		}
 		@Override

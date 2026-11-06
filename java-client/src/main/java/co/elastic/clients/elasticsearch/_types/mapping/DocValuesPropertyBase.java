@@ -101,6 +101,15 @@ public abstract class DocValuesPropertyBase extends CorePropertyBase {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(DocValuesPropertyBase instance) {
+			super(instance);
+			this.docValues = instance.docValues;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

@@ -176,6 +176,15 @@ public class SynonymRuleRead implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(SynonymRuleRead instance) {
+			this.id = instance.id;
+			this.synonyms = instance.synonyms;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

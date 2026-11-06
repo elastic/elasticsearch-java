@@ -117,6 +117,7 @@ public class TopMetricsAggregate extends AggregateBase implements AggregateVaria
 		public Builder() {
 		}
 		private Builder(TopMetricsAggregate instance) {
+			super(instance);
 			this.top = instance.top;
 
 		}

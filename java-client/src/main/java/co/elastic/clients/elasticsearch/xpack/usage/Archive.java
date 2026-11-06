@@ -97,6 +97,7 @@ public class Archive extends Base {
 		public Builder() {
 		}
 		private Builder(Archive instance) {
+			super(instance);
 			this.indicesCount = instance.indicesCount;
 
 		}

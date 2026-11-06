@@ -111,6 +111,7 @@ public class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 		public Builder() {
 		}
 		private Builder(DataframeEvaluationSummaryAucRoc instance) {
+			super(instance);
 			this.curve = instance.curve;
 
 		}

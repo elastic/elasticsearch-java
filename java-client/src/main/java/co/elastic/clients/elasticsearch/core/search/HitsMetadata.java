@@ -182,6 +182,7 @@ public class HitsMetadata<T> implements JsonpSerializable {
 			this.total = instance.total;
 			this.hits = instance.hits;
 			this.maxScore = instance.maxScore;
+			this.tSerializer = instance.tSerializer;
 
 		}
 		/**

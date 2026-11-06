@@ -75,6 +75,7 @@ public class WebhookAction extends HttpInputRequestDefinition {
 		public Builder() {
 		}
 		private Builder(WebhookAction instance) {
+			super(instance);
 
 		}
 		@Override

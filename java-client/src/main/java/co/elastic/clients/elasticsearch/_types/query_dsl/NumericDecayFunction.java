@@ -85,6 +85,7 @@ public class NumericDecayFunction extends DecayFunctionBase<Double, Double> impl
 		public Builder() {
 		}
 		private Builder(NumericDecayFunction instance) {
+			super(instance);
 
 		}
 		@Override

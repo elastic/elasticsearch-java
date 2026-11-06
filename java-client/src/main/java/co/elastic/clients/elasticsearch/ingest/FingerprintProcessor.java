@@ -212,6 +212,7 @@ public class FingerprintProcessor extends ProcessorBase implements ProcessorVari
 		public Builder() {
 		}
 		private Builder(FingerprintProcessor instance) {
+			super(instance);
 			this.fields = instance.fields;
 			this.targetField = instance.targetField;
 			this.salt = instance.salt;

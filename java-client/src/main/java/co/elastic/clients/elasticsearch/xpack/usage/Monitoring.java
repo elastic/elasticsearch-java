@@ -126,6 +126,7 @@ public class Monitoring extends Base {
 		public Builder() {
 		}
 		private Builder(Monitoring instance) {
+			super(instance);
 			this.collectionEnabled = instance.collectionEnabled;
 			this.enabledExporters = instance.enabledExporters;
 

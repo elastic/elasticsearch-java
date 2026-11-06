@@ -142,6 +142,7 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
 		public Builder() {
 		}
 		private Builder(KeepTypesTokenFilter instance) {
+			super(instance);
 			this.mode = instance.mode;
 			this.types = instance.types;
 

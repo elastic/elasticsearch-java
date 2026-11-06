@@ -115,6 +115,14 @@ public abstract class TokenFilterBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(TokenFilterBase instance) {
+			this.version = instance.version;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

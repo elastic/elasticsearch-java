@@ -85,6 +85,7 @@ public class CumulativeCardinalityAggregation extends PipelineAggregationBase im
 		public Builder() {
 		}
 		private Builder(CumulativeCardinalityAggregation instance) {
+			super(instance);
 
 		}
 		@Override

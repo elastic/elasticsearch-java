@@ -140,6 +140,16 @@ public abstract class PipelineAggregationBase extends BucketPathAggregation {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(PipelineAggregationBase instance) {
+			super(instance);
+			this.format = instance.format;
+			this.gapPolicy = instance.gapPolicy;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

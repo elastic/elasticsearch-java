@@ -360,6 +360,23 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(StatsAggregate instance) {
+			super(instance);
+			this.count = instance.count;
+			this.min = instance.min;
+			this.max = instance.max;
+			this.avg = instance.avg;
+			this.sum = instance.sum;
+			this.minAsString = instance.minAsString;
+			this.maxAsString = instance.maxAsString;
+			this.avgAsString = instance.avgAsString;
+			this.sumAsString = instance.sumAsString;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

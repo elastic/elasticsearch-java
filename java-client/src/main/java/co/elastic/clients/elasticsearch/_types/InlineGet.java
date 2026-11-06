@@ -282,6 +282,7 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 			this.primaryTerm = instance.primaryTerm;
 			this.routing = instance.routing;
 			this.source = instance.source;
+			this.tDocumentSerializer = instance.tDocumentSerializer;
 			this.metadata = instance.metadata;
 
 		}

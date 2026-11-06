@@ -135,6 +135,7 @@ public class DerivativeAggregate extends SingleMetricAggregateBase implements Ag
 		public Builder() {
 		}
 		private Builder(DerivativeAggregate instance) {
+			super(instance);
 			this.normalizedValue = instance.normalizedValue;
 			this.normalizedValueAsString = instance.normalizedValueAsString;
 

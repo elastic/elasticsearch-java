@@ -218,6 +218,7 @@ public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyV
 		public Builder() {
 		}
 		private Builder(GeoShapeProperty instance) {
+			super(instance);
 			this.coerce = instance.coerce;
 			this.ignoreMalformed = instance.ignoreMalformed;
 			this.ignoreZValue = instance.ignoreZValue;

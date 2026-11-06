@@ -114,6 +114,7 @@ public class GeoBoundsAggregate extends AggregateBase implements AggregateVarian
 		public Builder() {
 		}
 		private Builder(GeoBoundsAggregate instance) {
+			super(instance);
 			this.bounds = instance.bounds;
 
 		}

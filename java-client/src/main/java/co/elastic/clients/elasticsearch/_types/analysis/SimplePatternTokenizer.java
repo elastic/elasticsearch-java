@@ -115,6 +115,7 @@ public class SimplePatternTokenizer extends TokenizerBase implements TokenizerDe
 		public Builder() {
 		}
 		private Builder(SimplePatternTokenizer instance) {
+			super(instance);
 			this.pattern = instance.pattern;
 
 		}

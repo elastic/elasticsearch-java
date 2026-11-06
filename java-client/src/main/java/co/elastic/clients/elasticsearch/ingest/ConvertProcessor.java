@@ -175,6 +175,7 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 		public Builder() {
 		}
 		private Builder(ConvertProcessor instance) {
+			super(instance);
 			this.field = instance.field;
 			this.ignoreMissing = instance.ignoreMissing;
 			this.targetField = instance.targetField;

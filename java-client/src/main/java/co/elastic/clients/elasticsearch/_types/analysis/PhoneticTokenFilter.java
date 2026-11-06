@@ -212,6 +212,7 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 		public Builder() {
 		}
 		private Builder(PhoneticTokenFilter instance) {
+			super(instance);
 			this.encoder = instance.encoder;
 			this.languageset = instance.languageset;
 			this.maxCodeLen = instance.maxCodeLen;

@@ -123,6 +123,7 @@ public class SignificantLongTermsBucket extends SignificantTermsBucketBase {
 		public Builder() {
 		}
 		private Builder(SignificantLongTermsBucket instance) {
+			super(instance);
 			this.key = instance.key;
 			this.keyAsString = instance.keyAsString;
 

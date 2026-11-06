@@ -142,6 +142,7 @@ public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDef
 		public Builder() {
 		}
 		private Builder(LengthTokenFilter instance) {
+			super(instance);
 			this.max = instance.max;
 			this.min = instance.min;
 

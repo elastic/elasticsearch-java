@@ -97,6 +97,7 @@ public class HealthStatistics extends Base {
 		public Builder() {
 		}
 		private Builder(HealthStatistics instance) {
+			super(instance);
 			this.invocations = instance.invocations;
 
 		}

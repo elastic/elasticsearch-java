@@ -271,6 +271,7 @@ public class Realm extends Base {
 		public Builder() {
 		}
 		private Builder(Realm instance) {
+			super(instance);
 			this.name = instance.name;
 			this.order = instance.order;
 			this.size = instance.size;

@@ -117,6 +117,7 @@ public class MatchAllQuery extends QueryBase
 		public Builder() {
 		}
 		private Builder(MatchAllQuery instance) {
+			super(instance);
 
 		}
 		@Override

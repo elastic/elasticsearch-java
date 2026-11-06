@@ -106,6 +106,7 @@ public class FiltersBucket extends MultiBucketBase {
 		public Builder() {
 		}
 		private Builder(FiltersBucket instance) {
+			super(instance);
 			this.key = instance.key;
 
 		}

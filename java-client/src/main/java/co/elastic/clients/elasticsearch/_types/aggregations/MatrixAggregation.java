@@ -193,6 +193,15 @@ public abstract class MatrixAggregation extends AggregationBase implements Jsonp
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(MatrixAggregation instance) {
+			this.fields = instance.fields;
+			this.missing = instance.missing;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

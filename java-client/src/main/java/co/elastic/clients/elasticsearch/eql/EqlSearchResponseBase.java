@@ -373,6 +373,21 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(EqlSearchResponseBase<TEvent> instance) {
+			this.id = instance.id;
+			this.isPartial = instance.isPartial;
+			this.isRunning = instance.isRunning;
+			this.took = instance.took;
+			this.timedOut = instance.timedOut;
+			this.hits = instance.hits;
+			this.shardFailures = instance.shardFailures;
+			this.tEventSerializer = instance.tEventSerializer;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

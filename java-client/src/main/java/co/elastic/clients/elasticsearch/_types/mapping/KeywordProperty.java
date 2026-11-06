@@ -339,6 +339,7 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 		public Builder() {
 		}
 		private Builder(KeywordProperty instance) {
+			super(instance);
 			this.boost = instance.boost;
 			this.eagerGlobalOrdinals = instance.eagerGlobalOrdinals;
 			this.index = instance.index;

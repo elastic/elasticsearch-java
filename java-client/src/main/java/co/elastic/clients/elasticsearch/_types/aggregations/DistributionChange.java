@@ -84,6 +84,7 @@ public class DistributionChange extends AbstractChangePoint implements ChangeTyp
 		public Builder() {
 		}
 		private Builder(DistributionChange instance) {
+			super(instance);
 
 		}
 		@Override

@@ -143,6 +143,7 @@ public class BoxplotAggregation extends MetricAggregationBase implements Aggrega
 		public Builder() {
 		}
 		private Builder(BoxplotAggregation instance) {
+			super(instance);
 			this.compression = instance.compression;
 			this.executionHint = instance.executionHint;
 

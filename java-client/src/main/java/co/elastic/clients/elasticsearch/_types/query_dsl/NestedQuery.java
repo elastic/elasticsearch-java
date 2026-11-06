@@ -195,6 +195,7 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(NestedQuery instance) {
+			super(instance);
 			this.ignoreUnmapped = instance.ignoreUnmapped;
 			this.innerHits = instance.innerHits;
 			this.path = instance.path;

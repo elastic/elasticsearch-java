@@ -111,6 +111,7 @@ public class ReadOnlyUrlRepository extends RepositoryBase implements RepositoryV
 		public Builder() {
 		}
 		private Builder(ReadOnlyUrlRepository instance) {
+			super(instance);
 			this.settings = instance.settings;
 
 		}

@@ -150,6 +150,7 @@ public class UpdateIndexNameRequest extends RequestBase implements JsonpSerializ
 		private Builder(UpdateIndexNameRequest instance) {
 			this.connectorId = instance.connectorId;
 			this.indexName = instance.indexName;
+			this.isExpNullIndexName = instance.isExpNullIndexName;
 
 		}
 		/**

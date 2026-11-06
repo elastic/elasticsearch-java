@@ -92,6 +92,7 @@ public class ArabicStemTokenFilter extends TokenFilterBase implements TokenFilte
 		public Builder() {
 		}
 		private Builder(ArabicStemTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override
