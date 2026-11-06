@@ -125,6 +125,7 @@ public class KuromojiIterationMarkCharFilter extends CharFilterBase implements C
 		public Builder() {
 		}
 		private Builder(KuromojiIterationMarkCharFilter instance) {
+			super(instance);
 			this.normalizeKana = instance.normalizeKana;
 			this.normalizeKanji = instance.normalizeKanji;
 

@@ -142,6 +142,7 @@ public class DataframeEvaluationClassificationMetrics extends DataframeEvaluatio
 		public Builder() {
 		}
 		private Builder(DataframeEvaluationClassificationMetrics instance) {
+			super(instance);
 			this.accuracy = instance.accuracy;
 			this.multiclassConfusionMatrix = instance.multiclassConfusionMatrix;
 

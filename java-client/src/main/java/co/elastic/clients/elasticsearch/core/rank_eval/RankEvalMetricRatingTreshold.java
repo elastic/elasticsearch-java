@@ -107,6 +107,15 @@ public abstract class RankEvalMetricRatingTreshold extends RankEvalMetricBase {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(RankEvalMetricRatingTreshold instance) {
+			super(instance);
+			this.relevantRatingThreshold = instance.relevantRatingThreshold;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

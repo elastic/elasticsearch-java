@@ -115,6 +115,7 @@ public class WildcardProperty extends DocValuesPropertyBase implements PropertyV
 		public Builder() {
 		}
 		private Builder(WildcardProperty instance) {
+			super(instance);
 			this.nullValue = instance.nullValue;
 
 		}

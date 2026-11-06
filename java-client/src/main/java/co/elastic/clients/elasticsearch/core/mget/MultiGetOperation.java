@@ -71,6 +71,9 @@ public class MultiGetOperation implements JsonpSerializable {
 	private final List<String> routing;
 
 	@Nullable
+	private final String routeSlice;
+
+	@Nullable
 	private final SourceConfig source;
 
 	private final List<String> storedFields;
@@ -88,6 +91,7 @@ public class MultiGetOperation implements JsonpSerializable {
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = builder.index;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
+		this.routeSlice = builder.routeSlice;
 		this.source = builder.source;
 		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 		this.version = builder.version;
@@ -120,12 +124,25 @@ public class MultiGetOperation implements JsonpSerializable {
 
 	/**
 	 * The key for the primary shard the document resides on. Required if routing is
-	 * used during indexing.
+	 * used during indexing. Not allowed when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
 	public final List<String> routing() {
 		return this.routing;
+	}
+
+	/**
+	 * The slice the document belongs to, for a slice-enabled index
+	 * (<code>index.slice.enabled</code> set to <code>true</code>). It overrides the
+	 * <code>_slice</code> set in the request path.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
 	}
 
 	/**
@@ -192,6 +209,11 @@ public class MultiGetOperation implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.routeSlice != null) {
+			generator.writeKey("_slice");
+			generator.write(this.routeSlice);
+
+		}
 		if (this.source != null) {
 			generator.writeKey("_source");
 			this.source.serialize(generator, mapper);
@@ -240,6 +262,9 @@ public class MultiGetOperation implements JsonpSerializable {
 		private List<String> routing;
 
 		@Nullable
+		private String routeSlice;
+
+		@Nullable
 		private SourceConfig source;
 
 		@Nullable
@@ -257,6 +282,7 @@ public class MultiGetOperation implements JsonpSerializable {
 			this.id = instance.id;
 			this.index = instance.index;
 			this.routing = instance.routing;
+			this.routeSlice = instance.routeSlice;
 			this.source = instance.source;
 			this.storedFields = instance.storedFields;
 			this.version = instance.version;
@@ -285,7 +311,8 @@ public class MultiGetOperation implements JsonpSerializable {
 
 		/**
 		 * The key for the primary shard the document resides on. Required if routing is
-		 * used during indexing.
+		 * used during indexing. Not allowed when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -298,7 +325,8 @@ public class MultiGetOperation implements JsonpSerializable {
 
 		/**
 		 * The key for the primary shard the document resides on. Required if routing is
-		 * used during indexing.
+		 * used during indexing. Not allowed when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -306,6 +334,18 @@ public class MultiGetOperation implements JsonpSerializable {
 		 */
 		public final Builder routing(String value, String... values) {
 			this.routing = _listAdd(this.routing, value, values);
+			return this;
+		}
+
+		/**
+		 * The slice the document belongs to, for a slice-enabled index
+		 * (<code>index.slice.enabled</code> set to <code>true</code>). It overrides the
+		 * <code>_slice</code> set in the request path.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder routeSlice(@Nullable String value) {
+			this.routeSlice = value;
 			return this;
 		}
 
@@ -406,6 +446,7 @@ public class MultiGetOperation implements JsonpSerializable {
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::routing, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"routing");
+		op.add(Builder::routeSlice, JsonpDeserializer.stringDeserializer(), "_slice");
 		op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
 		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stored_fields");

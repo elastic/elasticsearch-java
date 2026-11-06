@@ -253,11 +253,9 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * The slice identifier used to route the operation to a specific slice. Use the
-	 * special value <code>_all</code> to target all slices without restricting to a
-	 * routing value. Required when <code>index.slice.enabled</code> is
-	 * <code>true</code> for the target index; not allowed when
-	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * The default slice identifier for a slice-enabled index
+	 * (<code>index.slice.enabled</code> set to <code>true</code>), applied to the
+	 * items that do not specify their own <code>_slice</code>.
 	 * <p>
 	 * API name: {@code _slice}
 	 */
@@ -580,11 +578,9 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * The slice identifier used to route the operation to a specific slice. Use the
-		 * special value <code>_all</code> to target all slices without restricting to a
-		 * routing value. Required when <code>index.slice.enabled</code> is
-		 * <code>true</code> for the target index; not allowed when
-		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * The default slice identifier for a slice-enabled index
+		 * (<code>index.slice.enabled</code> set to <code>true</code>), applied to the
+		 * items that do not specify their own <code>_slice</code>.
 		 * <p>
 		 * API name: {@code _slice}
 		 */
@@ -707,11 +703,14 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
+				final int _routeSlice = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
+				if (request.routeSlice() != null)
+					propsSet |= _routeSlice;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -725,6 +724,15 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 					buf.append("/_mtermvectors");
 					return buf.toString();
 				}
+				if (propsSet == (_index | _routeSlice)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index, buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.routeSlice, buf);
+					buf.append("/_mtermvectors");
+					return buf.toString();
+				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
@@ -733,16 +741,23 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				final int _index = 1 << 0;
+				final int _routeSlice = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
+				if (request.routeSlice() != null)
+					propsSet |= _routeSlice;
 
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_index)) {
 					params.put("index", request.index);
+				}
+				if (propsSet == (_index | _routeSlice)) {
+					params.put("index", request.index);
+					params.put("routeSlice", request.routeSlice);
 				}
 				return params;
 			},
@@ -750,8 +765,18 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+				}
 				if (request.realtime != null) {
 					params.put("realtime", String.valueOf(request.realtime));
+				}
+				if (request.termStatistics != null) {
+					params.put("term_statistics", String.valueOf(request.termStatistics));
+				}
+				if (request.offsets != null) {
+					params.put("offsets", String.valueOf(request.offsets));
 				}
 				if (request.payloads != null) {
 					params.put("payloads", String.valueOf(request.payloads));
@@ -768,25 +793,12 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 				if (request.fieldStatistics != null) {
 					params.put("field_statistics", String.valueOf(request.fieldStatistics));
 				}
-				if (request.routeSlice != null) {
-					params.put("_slice", request.routeSlice);
-				}
-				if (request.version != null) {
-					params.put("version", String.valueOf(request.version));
-				}
-				if (ApiTypeHelper.isDefined(request.routing)) {
-					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
-							.collect(Collectors.joining(",")));
-				}
-				if (request.termStatistics != null) {
-					params.put("term_statistics", String.valueOf(request.termStatistics));
-				}
-				if (request.offsets != null) {
-					params.put("offsets", String.valueOf(request.offsets));
-				}
 				if (ApiTypeHelper.isDefined(request.fields)) {
 					params.put("fields", request.fields.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
+				}
+				if (request.version != null) {
+					params.put("version", String.valueOf(request.version));
 				}
 				return params;
 

@@ -476,6 +476,7 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(MultiMatchQuery instance) {
+			super(instance);
 			this.analyzer = instance.analyzer;
 			this.autoGenerateSynonymsPhraseQuery = instance.autoGenerateSynonymsPhraseQuery;
 			this.cutoffFrequency = instance.cutoffFrequency;

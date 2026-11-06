@@ -138,6 +138,7 @@ public class SetSecurityUserProcessor extends ProcessorBase implements Processor
 		public Builder() {
 		}
 		private Builder(SetSecurityUserProcessor instance) {
+			super(instance);
 			this.field = instance.field;
 			this.properties = instance.properties;
 

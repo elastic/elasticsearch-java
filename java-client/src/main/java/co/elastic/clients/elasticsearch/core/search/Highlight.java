@@ -131,6 +131,7 @@ public class Highlight extends HighlightBase {
 		public Builder() {
 		}
 		private Builder(Highlight instance) {
+			super(instance);
 			this.encoder = instance.encoder;
 			this.fields = instance.fields;
 

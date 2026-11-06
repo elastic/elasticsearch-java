@@ -178,6 +178,7 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 		public Builder() {
 		}
 		private Builder(ElisionTokenFilter instance) {
+			super(instance);
 			this.articles = instance.articles;
 			this.articlesPath = instance.articlesPath;
 			this.articlesCase = instance.articlesCase;

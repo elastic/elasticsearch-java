@@ -74,6 +74,12 @@ public class RequestChatCompletion implements JsonpSerializable {
 	@Nullable
 	private final Reasoning reasoning;
 
+	@Nullable
+	private final CacheControl cacheControl;
+
+	@Nullable
+	private final String sessionId;
+
 	private final List<String> stop;
 
 	@Nullable
@@ -95,6 +101,8 @@ public class RequestChatCompletion implements JsonpSerializable {
 		this.model = builder.model;
 		this.maxCompletionTokens = builder.maxCompletionTokens;
 		this.reasoning = builder.reasoning;
+		this.cacheControl = builder.cacheControl;
+		this.sessionId = builder.sessionId;
 		this.stop = ApiTypeHelper.unmodifiable(builder.stop);
 		this.temperature = builder.temperature;
 		this.toolChoice = builder.toolChoice;
@@ -194,6 +202,40 @@ public class RequestChatCompletion implements JsonpSerializable {
 	@Nullable
 	public final Reasoning reasoning() {
 		return this.reasoning;
+	}
+
+	/**
+	 * The prompt caching configuration for the completion request. Example:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;cache_control&quot;: {
+	 *     &quot;type&quot;: &quot;ephemeral&quot;,
+	 *     &quot;ttl&quot;: &quot;1h&quot;
+	 *   }
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Unknown fields in the object and invalid <code>ttl</code> values return an
+	 * error. Currently supported only for <code>elastic</code> provider.
+	 * <p>
+	 * API name: {@code cache_control}
+	 */
+	@Nullable
+	public final CacheControl cacheControl() {
+		return this.cacheControl;
+	}
+
+	/**
+	 * An identifier that groups related completion requests into a session.
+	 * Currently supported only for <code>elastic</code> provider.
+	 * <p>
+	 * API name: {@code session_id}
+	 */
+	@Nullable
+	public final String sessionId() {
+		return this.sessionId;
 	}
 
 	/**
@@ -324,6 +366,16 @@ public class RequestChatCompletion implements JsonpSerializable {
 			this.reasoning.serialize(generator, mapper);
 
 		}
+		if (this.cacheControl != null) {
+			generator.writeKey("cache_control");
+			this.cacheControl.serialize(generator, mapper);
+
+		}
+		if (this.sessionId != null) {
+			generator.writeKey("session_id");
+			generator.write(this.sessionId);
+
+		}
 		if (ApiTypeHelper.isDefined(this.stop)) {
 			generator.writeKey("stop");
 			generator.writeStartArray();
@@ -388,6 +440,12 @@ public class RequestChatCompletion implements JsonpSerializable {
 		private Reasoning reasoning;
 
 		@Nullable
+		private CacheControl cacheControl;
+
+		@Nullable
+		private String sessionId;
+
+		@Nullable
 		private List<String> stop;
 
 		@Nullable
@@ -409,6 +467,8 @@ public class RequestChatCompletion implements JsonpSerializable {
 			this.model = instance.model;
 			this.maxCompletionTokens = instance.maxCompletionTokens;
 			this.reasoning = instance.reasoning;
+			this.cacheControl = instance.cacheControl;
+			this.sessionId = instance.sessionId;
 			this.stop = instance.stop;
 			this.temperature = instance.temperature;
 			this.toolChoice = instance.toolChoice;
@@ -591,6 +651,62 @@ public class RequestChatCompletion implements JsonpSerializable {
 		 */
 		public final Builder reasoning(Function<Reasoning.Builder, ObjectBuilder<Reasoning>> fn) {
 			return this.reasoning(fn.apply(new Reasoning.Builder()).build());
+		}
+
+		/**
+		 * The prompt caching configuration for the completion request. Example:
+		 * 
+		 * <pre>
+		 * <code>{
+		 *   &quot;cache_control&quot;: {
+		 *     &quot;type&quot;: &quot;ephemeral&quot;,
+		 *     &quot;ttl&quot;: &quot;1h&quot;
+		 *   }
+		 * }
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * Unknown fields in the object and invalid <code>ttl</code> values return an
+		 * error. Currently supported only for <code>elastic</code> provider.
+		 * <p>
+		 * API name: {@code cache_control}
+		 */
+		public final Builder cacheControl(@Nullable CacheControl value) {
+			this.cacheControl = value;
+			return this;
+		}
+
+		/**
+		 * The prompt caching configuration for the completion request. Example:
+		 * 
+		 * <pre>
+		 * <code>{
+		 *   &quot;cache_control&quot;: {
+		 *     &quot;type&quot;: &quot;ephemeral&quot;,
+		 *     &quot;ttl&quot;: &quot;1h&quot;
+		 *   }
+		 * }
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * Unknown fields in the object and invalid <code>ttl</code> values return an
+		 * error. Currently supported only for <code>elastic</code> provider.
+		 * <p>
+		 * API name: {@code cache_control}
+		 */
+		public final Builder cacheControl(Function<CacheControl.Builder, ObjectBuilder<CacheControl>> fn) {
+			return this.cacheControl(fn.apply(new CacheControl.Builder()).build());
+		}
+
+		/**
+		 * An identifier that groups related completion requests into a session.
+		 * Currently supported only for <code>elastic</code> provider.
+		 * <p>
+		 * API name: {@code session_id}
+		 */
+		public final Builder sessionId(@Nullable String value) {
+			this.sessionId = value;
+			return this;
 		}
 
 		/**
@@ -843,6 +959,8 @@ public class RequestChatCompletion implements JsonpSerializable {
 		op.add(Builder::model, JsonpDeserializer.stringDeserializer(), "model");
 		op.add(Builder::maxCompletionTokens, JsonpDeserializer.longDeserializer(), "max_completion_tokens");
 		op.add(Builder::reasoning, Reasoning._DESERIALIZER, "reasoning");
+		op.add(Builder::cacheControl, CacheControl._DESERIALIZER, "cache_control");
+		op.add(Builder::sessionId, JsonpDeserializer.stringDeserializer(), "session_id");
 		op.add(Builder::stop, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stop");
 		op.add(Builder::temperature, JsonpDeserializer.floatDeserializer(), "temperature");
 		op.add(Builder::toolChoice, CompletionToolType._DESERIALIZER, "tool_choice");

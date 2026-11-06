@@ -140,6 +140,7 @@ public class CharGroupTokenizer extends TokenizerBase implements TokenizerDefini
 		public Builder() {
 		}
 		private Builder(CharGroupTokenizer instance) {
+			super(instance);
 			this.tokenizeOnChars = instance.tokenizeOnChars;
 			this.maxTokenLength = instance.maxTokenLength;
 

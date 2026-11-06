@@ -116,6 +116,7 @@ public class BucketScriptAggregation extends PipelineAggregationBase implements 
 		public Builder() {
 		}
 		private Builder(BucketScriptAggregation instance) {
+			super(instance);
 			this.script = instance.script;
 
 		}

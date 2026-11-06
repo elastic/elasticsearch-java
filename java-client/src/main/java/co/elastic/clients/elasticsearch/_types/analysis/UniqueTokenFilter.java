@@ -118,6 +118,7 @@ public class UniqueTokenFilter extends TokenFilterBase implements TokenFilterDef
 		public Builder() {
 		}
 		private Builder(UniqueTokenFilter instance) {
+			super(instance);
 			this.onlyOnSamePosition = instance.onlyOnSamePosition;
 
 		}

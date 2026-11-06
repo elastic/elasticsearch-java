@@ -239,9 +239,7 @@ public class MultisearchHeader implements JsonpSerializable {
 	/**
 	 * The slice identifier for routing the search to a specific slice. Use the
 	 * special value <code>_all</code> to query all slices without restricting to a
-	 * routing value. Required when <code>index.slice.enabled</code> is
-	 * <code>true</code> for the target index; not allowed when
-	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * routing value. When omitted, all slices are targeted.
 	 * <p>
 	 * API name: {@code _slice}
 	 */
@@ -567,9 +565,7 @@ public class MultisearchHeader implements JsonpSerializable {
 		/**
 		 * The slice identifier for routing the search to a specific slice. Use the
 		 * special value <code>_all</code> to query all slices without restricting to a
-		 * routing value. Required when <code>index.slice.enabled</code> is
-		 * <code>true</code> for the target index; not allowed when
-		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * routing value. When omitted, all slices are targeted.
 		 * <p>
 		 * API name: {@code _slice}
 		 */

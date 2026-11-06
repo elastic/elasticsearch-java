@@ -84,6 +84,7 @@ public class GeoHashGridAggregate extends MultiBucketAggregateBase<GeoHashGridBu
 		public Builder() {
 		}
 		private Builder(GeoHashGridAggregate instance) {
+			super(instance);
 
 		}
 		@Override

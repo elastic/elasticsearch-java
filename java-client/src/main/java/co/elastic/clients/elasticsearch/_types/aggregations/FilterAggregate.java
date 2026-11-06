@@ -94,6 +94,7 @@ public class FilterAggregate extends SingleBucketAggregateBase implements Aggreg
 		public Builder() {
 		}
 		private Builder(FilterAggregate instance) {
+			super(instance);
 
 		}
 		@Override

@@ -69,6 +69,9 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 	private final String routing;
 
 	@Nullable
+	private final String routeSlice;
+
+	@Nullable
 	private final Long ifPrimaryTerm;
 
 	@Nullable
@@ -87,6 +90,7 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 		this.id = builder.id;
 		this.index = builder.index;
 		this.routing = builder.routing;
+		this.routeSlice = builder.routeSlice;
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
 		this.version = builder.version;
@@ -116,13 +120,27 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 
 	/**
 	 * A custom value used to route operations to a specific shard, or multiple
-	 * comma separated values.
+	 * comma separated values. Not allowed when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
 	public final String routing() {
 		return this.routing;
+	}
+
+	/**
+	 * The slice identifier for a slice-enabled index
+	 * (<code>index.slice.enabled</code> set to <code>true</code>), which scopes the
+	 * operation to that slice. It overrides the <code>_slice</code> set in the
+	 * request path.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
 	}
 
 	/**
@@ -183,6 +201,11 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 			generator.write(this.routing);
 
 		}
+		if (this.routeSlice != null) {
+			generator.writeKey("_slice");
+			generator.write(this.routeSlice);
+
+		}
 		if (this.ifPrimaryTerm != null) {
 			generator.writeKey("if_primary_term");
 			generator.write(this.ifPrimaryTerm);
@@ -223,6 +246,9 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 		private String routing;
 
 		@Nullable
+		private String routeSlice;
+
+		@Nullable
 		private Long ifPrimaryTerm;
 
 		@Nullable
@@ -256,12 +282,26 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 
 		/**
 		 * A custom value used to route operations to a specific shard, or multiple
-		 * comma separated values.
+		 * comma separated values. Not allowed when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 */
 		public final BuilderT routing(@Nullable String value) {
 			this.routing = value;
+			return self();
+		}
+
+		/**
+		 * The slice identifier for a slice-enabled index
+		 * (<code>index.slice.enabled</code> set to <code>true</code>), which scopes the
+		 * operation to that slice. It overrides the <code>_slice</code> set in the
+		 * request path.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final BuilderT routeSlice(@Nullable String value) {
+			this.routeSlice = value;
 			return self();
 		}
 
@@ -297,6 +337,21 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(BulkOperationBase instance) {
+			this.id = instance.id;
+			this.index = instance.index;
+			this.routing = instance.routing;
+			this.routeSlice = instance.routeSlice;
+			this.ifPrimaryTerm = instance.ifPrimaryTerm;
+			this.ifSeqNo = instance.ifSeqNo;
+			this.version = instance.version;
+			this.versionType = instance.versionType;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}
@@ -308,6 +363,7 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(AbstractBuilder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(AbstractBuilder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+		op.add(AbstractBuilder::routeSlice, JsonpDeserializer.stringDeserializer(), "_slice");
 		op.add(AbstractBuilder::ifPrimaryTerm, JsonpDeserializer.longDeserializer(), "if_primary_term");
 		op.add(AbstractBuilder::ifSeqNo, JsonpDeserializer.longDeserializer(), "if_seq_no");
 		op.add(AbstractBuilder::version, JsonpDeserializer.longDeserializer(), "version");

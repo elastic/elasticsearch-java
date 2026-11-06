@@ -156,6 +156,8 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	private final String projectRouting;
 
+	private final List<String> routeSlice;
+
 	private final List<String> routing;
 
 	// ---------------------------------------------------------------------------------------------
@@ -171,6 +173,7 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.preference = builder.preference;
 		this.projectRouting = builder.projectRouting;
+		this.routeSlice = ApiTypeHelper.unmodifiable(builder.routeSlice);
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 
 	}
@@ -285,7 +288,21 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * A custom value that is used to route operations to a specific shard.
+	 * The slice identifier for a slice-enabled index
+	 * (<code>index.slice.enabled</code> set to <code>true</code>), which scopes the
+	 * point in time to that slice. When omitted, the point in time covers all
+	 * slices.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	public final List<String> routeSlice() {
+		return this.routeSlice;
+	}
+
+	/**
+	 * A custom value that is used to route operations to a specific shard. Not
+	 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
+	 * target index; use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -352,6 +369,9 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 		private String projectRouting;
 
 		@Nullable
+		private List<String> routeSlice;
+
+		@Nullable
 		private List<String> routing;
 
 		public Builder() {
@@ -366,6 +386,7 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 			this.maxConcurrentShardRequests = instance.maxConcurrentShardRequests;
 			this.preference = instance.preference;
 			this.projectRouting = instance.projectRouting;
+			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
 
 		}
@@ -540,7 +561,39 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * A custom value that is used to route operations to a specific shard.
+		 * The slice identifier for a slice-enabled index
+		 * (<code>index.slice.enabled</code> set to <code>true</code>), which scopes the
+		 * point in time to that slice. When omitted, the point in time covers all
+		 * slices.
+		 * <p>
+		 * API name: {@code _slice}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routeSlice</code>.
+		 */
+		public final Builder routeSlice(List<String> list) {
+			this.routeSlice = _listAddAll(this.routeSlice, list);
+			return this;
+		}
+
+		/**
+		 * The slice identifier for a slice-enabled index
+		 * (<code>index.slice.enabled</code> set to <code>true</code>), which scopes the
+		 * point in time to that slice. When omitted, the point in time covers all
+		 * slices.
+		 * <p>
+		 * API name: {@code _slice}
+		 * <p>
+		 * Adds one or more values to <code>routeSlice</code>.
+		 */
+		public final Builder routeSlice(String value, String... values) {
+			this.routeSlice = _listAdd(this.routeSlice, value, values);
+			return this;
+		}
+
+		/**
+		 * A custom value that is used to route operations to a specific shard. Not
+		 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
+		 * target index; use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -552,7 +605,9 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * A custom value that is used to route operations to a specific shard.
+		 * A custom value that is used to route operations to a specific shard. Not
+		 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
+		 * target index; use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -677,6 +732,10 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 					params.put("preference", request.preference);
 				}
 				params.put("keep_alive", request.keepAlive._toJsonString());
+				if (ApiTypeHelper.isDefined(request.routeSlice)) {
+					params.put("_slice", request.routeSlice.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+				}
 				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, OpenPointInTimeResponse._DESERIALIZER);

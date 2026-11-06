@@ -95,6 +95,9 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 	private final List<String> routing;
 
 	@Nullable
+	private final String routeSlice;
+
+	@Nullable
 	private final Boolean termStatistics;
 
 	@Nullable
@@ -117,6 +120,7 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		this.payloads = builder.payloads;
 		this.positions = builder.positions;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
+		this.routeSlice = builder.routeSlice;
 		this.termStatistics = builder.termStatistics;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
@@ -222,12 +226,26 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 	}
 
 	/**
-	 * Custom value used to route operations to a specific shard.
+	 * Custom value used to route operations to a specific shard. Not allowed when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+	 * use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
 	public final List<String> routing() {
 		return this.routing;
+	}
+
+	/**
+	 * The slice the document belongs to, for a slice-enabled index
+	 * (<code>index.slice.enabled</code> set to <code>true</code>). It overrides the
+	 * <code>_slice</code> set in the request path.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
 	}
 
 	/**
@@ -331,6 +349,11 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.routeSlice != null) {
+			generator.writeKey("_slice");
+			generator.write(this.routeSlice);
+
+		}
 		if (this.termStatistics != null) {
 			generator.writeKey("term_statistics");
 			generator.write(this.termStatistics);
@@ -393,6 +416,9 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		private List<String> routing;
 
 		@Nullable
+		private String routeSlice;
+
+		@Nullable
 		private Boolean termStatistics;
 
 		@Nullable
@@ -414,6 +440,7 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 			this.payloads = instance.payloads;
 			this.positions = instance.positions;
 			this.routing = instance.routing;
+			this.routeSlice = instance.routeSlice;
 			this.termStatistics = instance.termStatistics;
 			this.version = instance.version;
 			this.versionType = instance.versionType;
@@ -541,7 +568,9 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		}
 
 		/**
-		 * Custom value used to route operations to a specific shard.
+		 * Custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -553,7 +582,9 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		}
 
 		/**
-		 * Custom value used to route operations to a specific shard.
+		 * Custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -561,6 +592,18 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		 */
 		public final Builder routing(String value, String... values) {
 			this.routing = _listAdd(this.routing, value, values);
+			return this;
+		}
+
+		/**
+		 * The slice the document belongs to, for a slice-enabled index
+		 * (<code>index.slice.enabled</code> set to <code>true</code>). It overrides the
+		 * <code>_slice</code> set in the request path.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder routeSlice(@Nullable String value) {
+			this.routeSlice = value;
 			return this;
 		}
 
@@ -640,6 +683,7 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		op.add(Builder::positions, JsonpDeserializer.booleanDeserializer(), "positions");
 		op.add(Builder::routing, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"routing");
+		op.add(Builder::routeSlice, JsonpDeserializer.stringDeserializer(), "_slice");
 		op.add(Builder::termStatistics, JsonpDeserializer.booleanDeserializer(), "term_statistics");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 		op.add(Builder::versionType, VersionType._DESERIALIZER, "version_type");

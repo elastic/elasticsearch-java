@@ -177,6 +177,7 @@ public class RuleRetriever extends RetrieverBase implements RetrieverVariant {
 		public Builder() {
 		}
 		private Builder(RuleRetriever instance) {
+			super(instance);
 			this.rulesetIds = instance.rulesetIds;
 			this.matchCriteria = instance.matchCriteria;
 			this.retriever = instance.retriever;

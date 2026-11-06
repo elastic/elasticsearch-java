@@ -23,6 +23,8 @@ import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyQuery;
 import co.elastic.clients.elasticsearch.security.query_api_keys.ApiKeyQueryVariant;
 import co.elastic.clients.elasticsearch.security.query_role.RoleQuery;
 import co.elastic.clients.elasticsearch.security.query_role.RoleQueryVariant;
+import co.elastic.clients.elasticsearch.security.query_service_accounts.ServiceAccountQuery;
+import co.elastic.clients.elasticsearch.security.query_service_accounts.ServiceAccountQueryVariant;
 import co.elastic.clients.elasticsearch.security.query_user.UserQuery;
 import co.elastic.clients.elasticsearch.security.query_user.UserQueryVariant;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -66,6 +68,7 @@ public class BoolQuery extends QueryBase
 		implements
 			ApiKeyQueryVariant,
 			QueryVariant,
+			ServiceAccountQueryVariant,
 			RoleQueryVariant,
 			UserQueryVariant {
 	private final List<Query> filter;
@@ -110,6 +113,14 @@ public class BoolQuery extends QueryBase
 	@Override
 	public Query.Kind _queryKind() {
 		return Query.Kind.Bool;
+	}
+
+	/**
+	 * ServiceAccountQuery variant kind.
+	 */
+	@Override
+	public ServiceAccountQuery.Kind _serviceAccountQueryKind() {
+		return ServiceAccountQuery.Kind.Bool;
 	}
 
 	/**
@@ -254,6 +265,7 @@ public class BoolQuery extends QueryBase
 		public Builder() {
 		}
 		private Builder(BoolQuery instance) {
+			super(instance);
 			this.filter = instance.filter;
 			this.minimumShouldMatch = instance.minimumShouldMatch;
 			this.must = instance.must;

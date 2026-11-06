@@ -669,6 +669,32 @@ public abstract class HealthResponseBody implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(HealthResponseBody instance) {
+			this.activePrimaryShards = instance.activePrimaryShards;
+			this.activeShards = instance.activeShards;
+			this.activeShardsPercent = instance.activeShardsPercent;
+			this.activeShardsPercentAsNumber = instance.activeShardsPercentAsNumber;
+			this.clusterName = instance.clusterName;
+			this.delayedUnassignedShards = instance.delayedUnassignedShards;
+			this.indices = instance.indices;
+			this.initializingShards = instance.initializingShards;
+			this.numberOfDataNodes = instance.numberOfDataNodes;
+			this.numberOfInFlightFetch = instance.numberOfInFlightFetch;
+			this.numberOfNodes = instance.numberOfNodes;
+			this.numberOfPendingTasks = instance.numberOfPendingTasks;
+			this.relocatingShards = instance.relocatingShards;
+			this.status = instance.status;
+			this.taskMaxWaitingInQueue = instance.taskMaxWaitingInQueue;
+			this.taskMaxWaitingInQueueMillis = instance.taskMaxWaitingInQueueMillis;
+			this.timedOut = instance.timedOut;
+			this.unassignedPrimaryShards = instance.unassignedPrimaryShards;
+			this.unassignedShards = instance.unassignedShards;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

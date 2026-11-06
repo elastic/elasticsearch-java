@@ -105,6 +105,7 @@ public class DataStreamLifecycleEffectiveRetentionStats extends DataStreamLifecy
 		public Builder() {
 		}
 		private Builder(DataStreamLifecycleEffectiveRetentionStats instance) {
+			super(instance);
 			this.retainedDataStreams = instance.retainedDataStreams;
 
 		}

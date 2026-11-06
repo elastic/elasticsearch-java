@@ -93,6 +93,7 @@ public class SerbianNormalizationTokenFilter extends TokenFilterBase implements 
 		public Builder() {
 		}
 		private Builder(SerbianNormalizationTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

@@ -79,6 +79,8 @@ public class PluginStats implements JsonpSerializable {
 
 	private final boolean licensed;
 
+	private final List<String> nativeControllerEnabledSettings;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private PluginStats(Builder builder) {
@@ -94,6 +96,8 @@ public class PluginStats implements JsonpSerializable {
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 		this.licensed = ApiTypeHelper.requireNonNull(builder.licensed, this, "licensed", false);
+		this.nativeControllerEnabledSettings = ApiTypeHelper
+				.unmodifiableRequired(builder.nativeControllerEnabledSettings, this, "nativeControllerEnabledSettings");
 
 	}
 
@@ -165,6 +169,13 @@ public class PluginStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code native_controller_enabled_settings}
+	 */
+	public final List<String> nativeControllerEnabledSettings() {
+		return this.nativeControllerEnabledSettings;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -209,6 +220,17 @@ public class PluginStats implements JsonpSerializable {
 		generator.writeKey("licensed");
 		generator.write(this.licensed);
 
+		if (ApiTypeHelper.isDefined(this.nativeControllerEnabledSettings)) {
+			generator.writeKey("native_controller_enabled_settings");
+			generator.writeStartArray();
+			for (String item0 : this.nativeControllerEnabledSettings) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+
 	}
 
 	@Override
@@ -241,6 +263,8 @@ public class PluginStats implements JsonpSerializable {
 
 		private Boolean licensed;
 
+		private List<String> nativeControllerEnabledSettings;
+
 		public Builder() {
 		}
 		private Builder(PluginStats instance) {
@@ -253,6 +277,7 @@ public class PluginStats implements JsonpSerializable {
 			this.name = instance.name;
 			this.version = instance.version;
 			this.licensed = instance.licensed;
+			this.nativeControllerEnabledSettings = instance.nativeControllerEnabledSettings;
 
 		}
 		/**
@@ -339,6 +364,27 @@ public class PluginStats implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * Required - API name: {@code native_controller_enabled_settings}
+		 * <p>
+		 * Adds all elements of <code>list</code> to
+		 * <code>nativeControllerEnabledSettings</code>.
+		 */
+		public final Builder nativeControllerEnabledSettings(List<String> list) {
+			this.nativeControllerEnabledSettings = _listAddAll(this.nativeControllerEnabledSettings, list);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code native_controller_enabled_settings}
+		 * <p>
+		 * Adds one or more values to <code>nativeControllerEnabledSettings</code>.
+		 */
+		public final Builder nativeControllerEnabledSettings(String value, String... values) {
+			this.nativeControllerEnabledSettings = _listAdd(this.nativeControllerEnabledSettings, value, values);
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -383,6 +429,9 @@ public class PluginStats implements JsonpSerializable {
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 		op.add(Builder::licensed, JsonpDeserializer.booleanDeserializer(), "licensed");
+		op.add(Builder::nativeControllerEnabledSettings,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"native_controller_enabled_settings");
 
 	}
 

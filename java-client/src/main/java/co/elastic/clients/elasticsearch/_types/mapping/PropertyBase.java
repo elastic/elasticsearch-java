@@ -328,6 +328,19 @@ public abstract class PropertyBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(PropertyBase instance) {
+			this.meta = instance.meta;
+			this.properties = instance.properties;
+			this.ignoreAbove = instance.ignoreAbove;
+			this.dynamic = instance.dynamic;
+			this.fields = instance.fields;
+			this.syntheticSourceKeep = instance.syntheticSourceKeep;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

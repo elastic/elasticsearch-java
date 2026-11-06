@@ -79,14 +79,18 @@ public class DlmFrozenTransitionOverdueIndex implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code index_name}
+	 * Required - The name of the overdue index.
+	 * <p>
+	 * API name: {@code index_name}
 	 */
 	public final String indexName() {
 		return this.indexName;
 	}
 
 	/**
-	 * Required - API name: {@code transition_state}
+	 * Required - The transition state of the overdue index.
+	 * <p>
+	 * API name: {@code transition_state}
 	 */
 	public final DlmFrozenTransitionState transitionState() {
 		return this.transitionState;
@@ -137,7 +141,9 @@ public class DlmFrozenTransitionOverdueIndex implements JsonpSerializable {
 
 		}
 		/**
-		 * Required - API name: {@code index_name}
+		 * Required - The name of the overdue index.
+		 * <p>
+		 * API name: {@code index_name}
 		 */
 		public final Builder indexName(String value) {
 			this.indexName = value;
@@ -145,7 +151,9 @@ public class DlmFrozenTransitionOverdueIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code transition_state}
+		 * Required - The transition state of the overdue index.
+		 * <p>
+		 * API name: {@code transition_state}
 		 */
 		public final Builder transitionState(DlmFrozenTransitionState value) {
 			this.transitionState = value;

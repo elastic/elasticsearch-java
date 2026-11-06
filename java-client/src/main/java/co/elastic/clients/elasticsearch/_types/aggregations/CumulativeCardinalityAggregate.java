@@ -133,6 +133,7 @@ public class CumulativeCardinalityAggregate extends AggregateBase implements Agg
 		public Builder() {
 		}
 		private Builder(CumulativeCardinalityAggregate instance) {
+			super(instance);
 			this.value = instance.value;
 			this.valueAsString = instance.valueAsString;
 

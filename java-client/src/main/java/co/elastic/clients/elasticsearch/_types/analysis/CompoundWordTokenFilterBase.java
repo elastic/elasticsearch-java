@@ -308,6 +308,20 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(CompoundWordTokenFilterBase instance) {
+			super(instance);
+			this.maxSubwordSize = instance.maxSubwordSize;
+			this.minSubwordSize = instance.minSubwordSize;
+			this.minWordSize = instance.minWordSize;
+			this.onlyLongestMatch = instance.onlyLongestMatch;
+			this.wordList = instance.wordList;
+			this.wordListPath = instance.wordListPath;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

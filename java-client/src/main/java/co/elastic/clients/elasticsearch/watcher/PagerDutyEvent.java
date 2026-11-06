@@ -388,6 +388,22 @@ public class PagerDutyEvent implements JsonpSerializable {
 			return this.proxy(fn.apply(new PagerDutyEventProxy.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(PagerDutyEvent instance) {
+			this.account = instance.account;
+			this.attachPayload = instance.attachPayload;
+			this.client = instance.client;
+			this.clientUrl = instance.clientUrl;
+			this.contexts = instance.contexts;
+			this.description = instance.description;
+			this.eventType = instance.eventType;
+			this.incidentKey = instance.incidentKey;
+			this.proxy = instance.proxy;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

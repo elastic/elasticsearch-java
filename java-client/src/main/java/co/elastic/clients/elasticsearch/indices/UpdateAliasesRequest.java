@@ -61,9 +61,21 @@ import javax.annotation.Nullable;
 // typedef: indices.update_aliases.Request
 
 /**
- * Create or update an alias.
+ * Update aliases and delete indices atomically.
  * <p>
- * Adds a data stream or index to an alias.
+ * Applies one or more actions in a single request:
+ * <ul>
+ * <li>Add a data stream or index to an alias.</li>
+ * <li>Remove a data stream or index from an alias.</li>
+ * <li>Delete an index in that same request, so the deletion and the alias
+ * changes are applied together.</li>
+ * </ul>
+ * <p>
+ * For example, you can replace an index with an alias of the same name.
+ * <p>
+ * NOTE: Every <code>remove_index</code> action in the request runs first,
+ * before any <code>add</code> or <code>remove</code> actions, no matter where
+ * it sits in the <code>actions</code> array.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.update_aliases.Request">API
  *      specification</a>

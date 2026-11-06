@@ -116,6 +116,7 @@ public class EncryptedReasoningDetail extends BaseReasoningDetail implements Rea
 		public Builder() {
 		}
 		private Builder(EncryptedReasoningDetail instance) {
+			super(instance);
 			this.data = instance.data;
 
 		}

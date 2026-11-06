@@ -106,6 +106,7 @@ public class DataStreamLifecycleIndicator extends BaseIndicator {
 		public Builder() {
 		}
 		private Builder(DataStreamLifecycleIndicator instance) {
+			super(instance);
 			this.details = instance.details;
 
 		}

@@ -84,6 +84,7 @@ public class GlobalAggregate extends SingleBucketAggregateBase implements Aggreg
 		public Builder() {
 		}
 		private Builder(GlobalAggregate instance) {
+			super(instance);
 
 		}
 		@Override

@@ -145,6 +145,7 @@ public class CjkBigramTokenFilter extends TokenFilterBase implements TokenFilter
 		public Builder() {
 		}
 		private Builder(CjkBigramTokenFilter instance) {
+			super(instance);
 			this.ignoredScripts = instance.ignoredScripts;
 			this.outputUnigrams = instance.outputUnigrams;
 

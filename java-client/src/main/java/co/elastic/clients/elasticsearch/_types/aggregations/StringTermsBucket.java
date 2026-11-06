@@ -102,6 +102,7 @@ public class StringTermsBucket extends TermsBucketBase {
 		public Builder() {
 		}
 		private Builder(StringTermsBucket instance) {
+			super(instance);
 			this.key = instance.key;
 
 		}

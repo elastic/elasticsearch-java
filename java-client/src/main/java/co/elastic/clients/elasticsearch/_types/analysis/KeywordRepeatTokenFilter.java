@@ -92,6 +92,7 @@ public class KeywordRepeatTokenFilter extends TokenFilterBase implements TokenFi
 		public Builder() {
 		}
 		private Builder(KeywordRepeatTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

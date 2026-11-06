@@ -187,6 +187,16 @@ public abstract class DataStreamLifecycleThresholdStats implements JsonpSerializ
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(DataStreamLifecycleThresholdStats instance) {
+			this.minimumMillis = instance.minimumMillis;
+			this.maximumMillis = instance.maximumMillis;
+			this.averageMillis = instance.averageMillis;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

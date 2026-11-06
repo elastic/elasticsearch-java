@@ -93,6 +93,7 @@ public class GermanNormalizationTokenFilter extends TokenFilterBase implements T
 		public Builder() {
 		}
 		private Builder(GermanNormalizationTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

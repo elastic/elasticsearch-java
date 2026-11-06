@@ -50,6 +50,16 @@ public enum ApiKeyGrantType implements JsonEnum {
 
 	Password("password"),
 
+	/**
+	 * In this type of grant, you must supply a service account token of a
+	 * user-managed service account in the <code>service_account_token</code>
+	 * parameter. The API key is owned by the service account and is limited by the
+	 * roles assigned to it. The service account token is authenticated on every
+	 * grant, so a disabled account or an invalidated token is rejected. Tokens that
+	 * belong to built-in (<code>elastic/*</code>) service accounts are rejected.
+	 */
+	UserManagedServiceAccount("_user_managed_service_account"),
+
 	;
 
 	private final String jsonValue;

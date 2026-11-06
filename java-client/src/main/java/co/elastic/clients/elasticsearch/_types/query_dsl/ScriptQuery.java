@@ -109,6 +109,7 @@ public class ScriptQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(ScriptQuery instance) {
+			super(instance);
 			this.script = instance.script;
 
 		}

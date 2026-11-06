@@ -138,6 +138,7 @@ public class DelimitedPayloadTokenFilter extends TokenFilterBase implements Toke
 		public Builder() {
 		}
 		private Builder(DelimitedPayloadTokenFilter instance) {
+			super(instance);
 			this.delimiter = instance.delimiter;
 			this.encoding = instance.encoding;
 

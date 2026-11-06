@@ -147,6 +147,7 @@ public class GpuVectorIndexing extends Base {
 		public Builder() {
 		}
 		private Builder(GpuVectorIndexing instance) {
+			super(instance);
 			this.indexBuildCount = instance.indexBuildCount;
 			this.nodesWithGpu = instance.nodesWithGpu;
 			this.nodes = instance.nodes;

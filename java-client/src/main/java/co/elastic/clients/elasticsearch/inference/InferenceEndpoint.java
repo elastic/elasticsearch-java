@@ -262,6 +262,17 @@ public class InferenceEndpoint implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(InferenceEndpoint instance) {
+			this.chunkingSettings = instance.chunkingSettings;
+			this.service = instance.service;
+			this.serviceSettings = instance.serviceSettings;
+			this.taskSettings = instance.taskSettings;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

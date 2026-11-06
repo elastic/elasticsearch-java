@@ -192,6 +192,8 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 
 	private final List<Rescore> rescore;
 
+	private final List<String> routeSlice;
+
 	private final List<String> routing;
 
 	private final Map<String, RuntimeField> runtimeMappings;
@@ -279,6 +281,7 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		this.query = builder.query;
 		this.requestCache = builder.requestCache;
 		this.rescore = ApiTypeHelper.unmodifiable(builder.rescore);
+		this.routeSlice = ApiTypeHelper.unmodifiable(builder.routeSlice);
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
@@ -619,6 +622,24 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * The slice identifiers for a slice-enabled index
+	 * (<code>index.slice.enabled</code> set to <code>true</code>): a single slice,
+	 * a comma-separated list such as <code>tenant-a,tenant-b</code>, or
+	 * <code>_all</code> to target all slices. When omitted, all slices are
+	 * targeted. Indices that are not slice-enabled match no documents when a slice
+	 * is specified.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	public final List<String> routeSlice() {
+		return this.routeSlice;
+	}
+
+	/**
+	 * A custom value used to route operations to a specific shard. Not allowed when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+	 * use <code>_slice</code> instead.
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	public final List<String> routing() {
@@ -1161,6 +1182,9 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		private List<Rescore> rescore;
 
 		@Nullable
+		private List<String> routeSlice;
+
+		@Nullable
 		private List<String> routing;
 
 		@Nullable
@@ -1254,6 +1278,7 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 			this.query = instance.query;
 			this.requestCache = instance.requestCache;
 			this.rescore = instance.rescore;
+			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
 			this.runtimeMappings = instance.runtimeMappings;
 			this.scriptFields = instance.scriptFields;
@@ -1825,6 +1850,44 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * The slice identifiers for a slice-enabled index
+		 * (<code>index.slice.enabled</code> set to <code>true</code>): a single slice,
+		 * a comma-separated list such as <code>tenant-a,tenant-b</code>, or
+		 * <code>_all</code> to target all slices. When omitted, all slices are
+		 * targeted. Indices that are not slice-enabled match no documents when a slice
+		 * is specified.
+		 * <p>
+		 * API name: {@code _slice}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routeSlice</code>.
+		 */
+		public final Builder routeSlice(List<String> list) {
+			this.routeSlice = _listAddAll(this.routeSlice, list);
+			return this;
+		}
+
+		/**
+		 * The slice identifiers for a slice-enabled index
+		 * (<code>index.slice.enabled</code> set to <code>true</code>): a single slice,
+		 * a comma-separated list such as <code>tenant-a,tenant-b</code>, or
+		 * <code>_all</code> to target all slices. When omitted, all slices are
+		 * targeted. Indices that are not slice-enabled match no documents when a slice
+		 * is specified.
+		 * <p>
+		 * API name: {@code _slice}
+		 * <p>
+		 * Adds one or more values to <code>routeSlice</code>.
+		 */
+		public final Builder routeSlice(String value, String... values) {
+			this.routeSlice = _listAdd(this.routeSlice, value, values);
+			return this;
+		}
+
+		/**
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
+		 * <p>
 		 * API name: {@code routing}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>routing</code>.
@@ -1835,6 +1898,10 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
+		 * <p>
 		 * API name: {@code routing}
 		 * <p>
 		 * Adds one or more values to <code>routing</code>.
@@ -2353,15 +2420,29 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
+				final int _routeSlice = 1 << 1;
 
 				int propsSet = 0;
 
 				propsSet |= _index;
+				if (ApiTypeHelper.isDefined(request.routeSlice()))
+					propsSet |= _routeSlice;
 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index, buf);
+					buf.append("/_fleet");
+					buf.append("/_fleet_search");
+					return buf.toString();
+				}
+				if (propsSet == (_index | _routeSlice)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index, buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.routeSlice.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_fleet");
 					buf.append("/_fleet_search");
 					return buf.toString();
@@ -2374,13 +2455,21 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				final int _index = 1 << 0;
+				final int _routeSlice = 1 << 1;
 
 				int propsSet = 0;
 
 				propsSet |= _index;
+				if (ApiTypeHelper.isDefined(request.routeSlice()))
+					propsSet |= _routeSlice;
 
 				if (propsSet == (_index)) {
 					params.put("index", request.index);
+				}
+				if (propsSet == (_index | _routeSlice)) {
+					params.put("index", request.index);
+					params.put("routeSlice", request.routeSlice.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},

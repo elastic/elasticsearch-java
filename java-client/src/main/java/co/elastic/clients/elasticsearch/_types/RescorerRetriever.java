@@ -135,6 +135,7 @@ public class RescorerRetriever extends RetrieverBase implements RetrieverVariant
 		public Builder() {
 		}
 		private Builder(RescorerRetriever instance) {
+			super(instance);
 			this.retriever = instance.retriever;
 			this.rescore = instance.rescore;
 

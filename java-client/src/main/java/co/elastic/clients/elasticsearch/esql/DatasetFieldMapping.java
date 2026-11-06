@@ -63,7 +63,7 @@ public class DatasetFieldMapping implements JsonpSerializable {
 	private final String type;
 
 	@Nullable
-	private final String path;
+	private final String renameFrom;
 
 	@Nullable
 	private final String format;
@@ -73,7 +73,7 @@ public class DatasetFieldMapping implements JsonpSerializable {
 	private DatasetFieldMapping(Builder builder) {
 
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
-		this.path = builder.path;
+		this.renameFrom = builder.renameFrom;
 		this.format = builder.format;
 
 	}
@@ -94,12 +94,14 @@ public class DatasetFieldMapping implements JsonpSerializable {
 	/**
 	 * The underlying file column that this logical column reads from. This is a
 	 * read-path rename: the physical column becomes this single logical column.
+	 * Responses always use <code>rename_from</code>. <code>path</code>, the former
+	 * name for this field, is still accepted in requests and means the same thing.
 	 * <p>
-	 * API name: {@code path}
+	 * API name: {@code rename_from}
 	 */
 	@Nullable
-	public final String path() {
-		return this.path;
+	public final String renameFrom() {
+		return this.renameFrom;
 	}
 
 	/**
@@ -127,9 +129,9 @@ public class DatasetFieldMapping implements JsonpSerializable {
 		generator.writeKey("type");
 		generator.write(this.type);
 
-		if (this.path != null) {
-			generator.writeKey("path");
-			generator.write(this.path);
+		if (this.renameFrom != null) {
+			generator.writeKey("rename_from");
+			generator.write(this.renameFrom);
 
 		}
 		if (this.format != null) {
@@ -157,7 +159,7 @@ public class DatasetFieldMapping implements JsonpSerializable {
 		private String type;
 
 		@Nullable
-		private String path;
+		private String renameFrom;
 
 		@Nullable
 		private String format;
@@ -166,7 +168,7 @@ public class DatasetFieldMapping implements JsonpSerializable {
 		}
 		private Builder(DatasetFieldMapping instance) {
 			this.type = instance.type;
-			this.path = instance.path;
+			this.renameFrom = instance.renameFrom;
 			this.format = instance.format;
 
 		}
@@ -183,11 +185,13 @@ public class DatasetFieldMapping implements JsonpSerializable {
 		/**
 		 * The underlying file column that this logical column reads from. This is a
 		 * read-path rename: the physical column becomes this single logical column.
+		 * Responses always use <code>rename_from</code>. <code>path</code>, the former
+		 * name for this field, is still accepted in requests and means the same thing.
 		 * <p>
-		 * API name: {@code path}
+		 * API name: {@code rename_from}
 		 */
-		public final Builder path(@Nullable String value) {
-			this.path = value;
+		public final Builder renameFrom(@Nullable String value) {
+			this.renameFrom = value;
 			return this;
 		}
 
@@ -237,7 +241,7 @@ public class DatasetFieldMapping implements JsonpSerializable {
 	protected static void setupDatasetFieldMappingDeserializer(ObjectDeserializer<DatasetFieldMapping.Builder> op) {
 
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
-		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
+		op.add(Builder::renameFrom, JsonpDeserializer.stringDeserializer(), "rename_from", "path");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 
 	}

@@ -64,6 +64,9 @@ public class Features implements JsonpSerializable {
 
 	private final Feature ccr;
 
+	@Nullable
+	private final Feature columnar;
+
 	private final Feature dataStreams;
 
 	private final Feature dataTiers;
@@ -88,6 +91,9 @@ public class Features implements JsonpSerializable {
 	private final Feature logstash;
 
 	private final Feature logsdb;
+
+	@Nullable
+	private final Feature logsdbColumnar;
 
 	private final Feature ml;
 
@@ -127,6 +133,7 @@ public class Features implements JsonpSerializable {
 		this.aggregateMetric = ApiTypeHelper.requireNonNull(builder.aggregateMetric, this, "aggregateMetric");
 		this.analytics = ApiTypeHelper.requireNonNull(builder.analytics, this, "analytics");
 		this.ccr = ApiTypeHelper.requireNonNull(builder.ccr, this, "ccr");
+		this.columnar = builder.columnar;
 		this.dataStreams = ApiTypeHelper.requireNonNull(builder.dataStreams, this, "dataStreams");
 		this.dataTiers = ApiTypeHelper.requireNonNull(builder.dataTiers, this, "dataTiers");
 		this.enrich = ApiTypeHelper.requireNonNull(builder.enrich, this, "enrich");
@@ -138,6 +145,7 @@ public class Features implements JsonpSerializable {
 		this.ilm = ApiTypeHelper.requireNonNull(builder.ilm, this, "ilm");
 		this.logstash = ApiTypeHelper.requireNonNull(builder.logstash, this, "logstash");
 		this.logsdb = ApiTypeHelper.requireNonNull(builder.logsdb, this, "logsdb");
+		this.logsdbColumnar = builder.logsdbColumnar;
 		this.ml = ApiTypeHelper.requireNonNull(builder.ml, this, "ml");
 		this.monitoring = ApiTypeHelper.requireNonNull(builder.monitoring, this, "monitoring");
 		this.rollup = ApiTypeHelper.requireNonNull(builder.rollup, this, "rollup");
@@ -179,6 +187,14 @@ public class Features implements JsonpSerializable {
 	 */
 	public final Feature ccr() {
 		return this.ccr;
+	}
+
+	/**
+	 * Required - API name: {@code columnar}
+	 */
+	@Nullable
+	public final Feature columnar() {
+		return this.columnar;
 	}
 
 	/**
@@ -259,6 +275,14 @@ public class Features implements JsonpSerializable {
 	 */
 	public final Feature logsdb() {
 		return this.logsdb;
+	}
+
+	/**
+	 * Required - API name: {@code logsdb_columnar}
+	 */
+	@Nullable
+	public final Feature logsdbColumnar() {
+		return this.logsdbColumnar;
 	}
 
 	/**
@@ -382,6 +406,11 @@ public class Features implements JsonpSerializable {
 		generator.writeKey("ccr");
 		this.ccr.serialize(generator, mapper);
 
+		if (this.columnar != null) {
+			generator.writeKey("columnar");
+			this.columnar.serialize(generator, mapper);
+
+		}
 		generator.writeKey("data_streams");
 		this.dataStreams.serialize(generator, mapper);
 
@@ -421,6 +450,11 @@ public class Features implements JsonpSerializable {
 		generator.writeKey("logsdb");
 		this.logsdb.serialize(generator, mapper);
 
+		if (this.logsdbColumnar != null) {
+			generator.writeKey("logsdb_columnar");
+			this.logsdbColumnar.serialize(generator, mapper);
+
+		}
 		generator.writeKey("ml");
 		this.ml.serialize(generator, mapper);
 
@@ -490,6 +524,9 @@ public class Features implements JsonpSerializable {
 
 		private Feature ccr;
 
+		@Nullable
+		private Feature columnar;
+
 		private Feature dataStreams;
 
 		private Feature dataTiers;
@@ -514,6 +551,9 @@ public class Features implements JsonpSerializable {
 		private Feature logstash;
 
 		private Feature logsdb;
+
+		@Nullable
+		private Feature logsdbColumnar;
 
 		private Feature ml;
 
@@ -552,6 +592,7 @@ public class Features implements JsonpSerializable {
 			this.aggregateMetric = instance.aggregateMetric;
 			this.analytics = instance.analytics;
 			this.ccr = instance.ccr;
+			this.columnar = instance.columnar;
 			this.dataStreams = instance.dataStreams;
 			this.dataTiers = instance.dataTiers;
 			this.enrich = instance.enrich;
@@ -563,6 +604,7 @@ public class Features implements JsonpSerializable {
 			this.ilm = instance.ilm;
 			this.logstash = instance.logstash;
 			this.logsdb = instance.logsdb;
+			this.logsdbColumnar = instance.logsdbColumnar;
 			this.ml = instance.ml;
 			this.monitoring = instance.monitoring;
 			this.rollup = instance.rollup;
@@ -622,6 +664,21 @@ public class Features implements JsonpSerializable {
 		 */
 		public final Builder ccr(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.ccr(fn.apply(new Feature.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code columnar}
+		 */
+		public final Builder columnar(@Nullable Feature value) {
+			this.columnar = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code columnar}
+		 */
+		public final Builder columnar(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.columnar(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -787,6 +844,21 @@ public class Features implements JsonpSerializable {
 		 */
 		public final Builder logsdb(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.logsdb(fn.apply(new Feature.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code logsdb_columnar}
+		 */
+		public final Builder logsdbColumnar(@Nullable Feature value) {
+			this.logsdbColumnar = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code logsdb_columnar}
+		 */
+		public final Builder logsdbColumnar(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.logsdbColumnar(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -1036,6 +1108,7 @@ public class Features implements JsonpSerializable {
 		op.add(Builder::aggregateMetric, Feature._DESERIALIZER, "aggregate_metric");
 		op.add(Builder::analytics, Feature._DESERIALIZER, "analytics");
 		op.add(Builder::ccr, Feature._DESERIALIZER, "ccr");
+		op.add(Builder::columnar, Feature._DESERIALIZER, "columnar");
 		op.add(Builder::dataStreams, Feature._DESERIALIZER, "data_streams");
 		op.add(Builder::dataTiers, Feature._DESERIALIZER, "data_tiers");
 		op.add(Builder::enrich, Feature._DESERIALIZER, "enrich");
@@ -1047,6 +1120,7 @@ public class Features implements JsonpSerializable {
 		op.add(Builder::ilm, Feature._DESERIALIZER, "ilm");
 		op.add(Builder::logstash, Feature._DESERIALIZER, "logstash");
 		op.add(Builder::logsdb, Feature._DESERIALIZER, "logsdb");
+		op.add(Builder::logsdbColumnar, Feature._DESERIALIZER, "logsdb_columnar");
 		op.add(Builder::ml, Feature._DESERIALIZER, "ml");
 		op.add(Builder::monitoring, Feature._DESERIALIZER, "monitoring");
 		op.add(Builder::rollup, Feature._DESERIALIZER, "rollup");

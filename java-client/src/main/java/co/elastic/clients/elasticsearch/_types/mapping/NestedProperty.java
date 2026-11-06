@@ -155,6 +155,7 @@ public class NestedProperty extends CorePropertyBase implements PropertyVariant 
 		public Builder() {
 		}
 		private Builder(NestedProperty instance) {
+			super(instance);
 			this.enabled = instance.enabled;
 			this.includeInParent = instance.includeInParent;
 			this.includeInRoot = instance.includeInRoot;

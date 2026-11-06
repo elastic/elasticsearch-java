@@ -95,9 +95,11 @@ public class EmbeddingContentObjectItem implements JsonpSerializable {
 
 	/**
 	 * The format of the input. For the <code>text</code> type this must be
-	 * <code>text</code>. For all other types, this must be <code>base64</code>. If
-	 * not specified, this will default to <code>text</code> for the
-	 * <code>text</code> type and <code>base64</code> for all other types.
+	 * <code>text</code>. For all other types, this must be <code>base64</code> or
+	 * <code>url</code>. If not specified, this will default to <code>text</code>
+	 * for the <code>text</code> type and <code>base64</code> for all other types.
+	 * The <code>url</code> format is available in Elasticsearch 9.6.0 and later.
+	 * Not all services and models support all formats.
 	 * <p>
 	 * API name: {@code format}
 	 */
@@ -107,8 +109,11 @@ public class EmbeddingContentObjectItem implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The value of the input to embed. For images, this must be a
-	 * base64-encoded data URI, i.e. &quot;data:content/type;base64,...&quot;
+	 * Required - The value of the input to embed. For the <code>base64</code>
+	 * format, this must be a base64-encoded data URI, i.e.
+	 * &quot;data:content/type;base64,...&quot;. For the <code>url</code> format,
+	 * this must be a URL that points to the content, i.e. &quot;<a href=
+	 * "https://example.com/image.jpg">https://example.com/image.jpg</a>&quot;.
 	 * <p>
 	 * API name: {@code value}
 	 */
@@ -181,9 +186,11 @@ public class EmbeddingContentObjectItem implements JsonpSerializable {
 
 		/**
 		 * The format of the input. For the <code>text</code> type this must be
-		 * <code>text</code>. For all other types, this must be <code>base64</code>. If
-		 * not specified, this will default to <code>text</code> for the
-		 * <code>text</code> type and <code>base64</code> for all other types.
+		 * <code>text</code>. For all other types, this must be <code>base64</code> or
+		 * <code>url</code>. If not specified, this will default to <code>text</code>
+		 * for the <code>text</code> type and <code>base64</code> for all other types.
+		 * The <code>url</code> format is available in Elasticsearch 9.6.0 and later.
+		 * Not all services and models support all formats.
 		 * <p>
 		 * API name: {@code format}
 		 */
@@ -193,8 +200,11 @@ public class EmbeddingContentObjectItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The value of the input to embed. For images, this must be a
-		 * base64-encoded data URI, i.e. &quot;data:content/type;base64,...&quot;
+		 * Required - The value of the input to embed. For the <code>base64</code>
+		 * format, this must be a base64-encoded data URI, i.e.
+		 * &quot;data:content/type;base64,...&quot;. For the <code>url</code> format,
+		 * this must be a URL that points to the content, i.e. &quot;<a href=
+		 * "https://example.com/image.jpg">https://example.com/image.jpg</a>&quot;.
 		 * <p>
 		 * API name: {@code value}
 		 */

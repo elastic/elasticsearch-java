@@ -134,6 +134,7 @@ public class InferenceAggregation extends PipelineAggregationBase implements Agg
 		public Builder() {
 		}
 		private Builder(InferenceAggregation instance) {
+			super(instance);
 			this.modelId = instance.modelId;
 			this.inferenceConfig = instance.inferenceConfig;
 

@@ -101,6 +101,7 @@ public class DataframeEvaluationClass extends DataframeEvaluationValue {
 		public Builder() {
 		}
 		private Builder(DataframeEvaluationClass instance) {
+			super(instance);
 			this.className = instance.className;
 
 		}

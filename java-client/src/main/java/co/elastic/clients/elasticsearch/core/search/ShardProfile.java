@@ -78,6 +78,8 @@ public class ShardProfile implements JsonpSerializable {
 
 	private final String nodeId;
 
+	private final List<RescoreProfile> rescore;
+
 	private final List<SearchProfile> searches;
 
 	private final int shardId;
@@ -93,6 +95,7 @@ public class ShardProfile implements JsonpSerializable {
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.rescore = ApiTypeHelper.unmodifiable(builder.rescore);
 		this.searches = ApiTypeHelper.unmodifiableRequired(builder.searches, this, "searches");
 		this.shardId = ApiTypeHelper.requireNonNull(builder.shardId, this, "shardId", 0);
 
@@ -154,6 +157,16 @@ public class ShardProfile implements JsonpSerializable {
 	}
 
 	/**
+	 * One entry per rescorer, in the order they ran. Omitted when the request has
+	 * no rescorer.
+	 * <p>
+	 * API name: {@code rescore}
+	 */
+	public final List<RescoreProfile> rescore() {
+		return this.rescore;
+	}
+
+	/**
 	 * Required - API name: {@code searches}
 	 */
 	public final List<SearchProfile> searches() {
@@ -210,6 +223,16 @@ public class ShardProfile implements JsonpSerializable {
 		generator.writeKey("node_id");
 		generator.write(this.nodeId);
 
+		if (ApiTypeHelper.isDefined(this.rescore)) {
+			generator.writeKey("rescore");
+			generator.writeStartArray();
+			for (RescoreProfile item0 : this.rescore) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (ApiTypeHelper.isDefined(this.searches)) {
 			generator.writeKey("searches");
 			generator.writeStartArray();
@@ -253,6 +276,9 @@ public class ShardProfile implements JsonpSerializable {
 
 		private String nodeId;
 
+		@Nullable
+		private List<RescoreProfile> rescore;
+
 		private List<SearchProfile> searches;
 
 		private Integer shardId;
@@ -267,6 +293,7 @@ public class ShardProfile implements JsonpSerializable {
 			this.id = instance.id;
 			this.index = instance.index;
 			this.nodeId = instance.nodeId;
+			this.rescore = instance.rescore;
 			this.searches = instance.searches;
 			this.shardId = instance.shardId;
 
@@ -363,6 +390,44 @@ public class ShardProfile implements JsonpSerializable {
 		}
 
 		/**
+		 * One entry per rescorer, in the order they ran. Omitted when the request has
+		 * no rescorer.
+		 * <p>
+		 * API name: {@code rescore}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>rescore</code>.
+		 */
+		public final Builder rescore(List<RescoreProfile> list) {
+			this.rescore = _listAddAll(this.rescore, list);
+			return this;
+		}
+
+		/**
+		 * One entry per rescorer, in the order they ran. Omitted when the request has
+		 * no rescorer.
+		 * <p>
+		 * API name: {@code rescore}
+		 * <p>
+		 * Adds one or more values to <code>rescore</code>.
+		 */
+		public final Builder rescore(RescoreProfile value, RescoreProfile... values) {
+			this.rescore = _listAdd(this.rescore, value, values);
+			return this;
+		}
+
+		/**
+		 * One entry per rescorer, in the order they ran. Omitted when the request has
+		 * no rescorer.
+		 * <p>
+		 * API name: {@code rescore}
+		 * <p>
+		 * Adds a value to <code>rescore</code> using a builder lambda.
+		 */
+		public final Builder rescore(Function<RescoreProfile.Builder, ObjectBuilder<RescoreProfile>> fn) {
+			return rescore(fn.apply(new RescoreProfile.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code searches}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>searches</code>.
@@ -441,6 +506,7 @@ public class ShardProfile implements JsonpSerializable {
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
+		op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(RescoreProfile._DESERIALIZER), "rescore");
 		op.add(Builder::searches, JsonpDeserializer.arrayDeserializer(SearchProfile._DESERIALIZER), "searches");
 		op.add(Builder::shardId, JsonpDeserializer.integerDeserializer(), "shard_id");
 

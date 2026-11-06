@@ -276,6 +276,18 @@ public abstract class ChatCompletionInferenceResult implements JsonpSerializable
 			return this.usage(fn.apply(new ChatCompletionUsage.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(ChatCompletionInferenceResult instance) {
+			this.id = instance.id;
+			this.choices = instance.choices;
+			this.model = instance.model;
+			this.object = instance.object;
+			this.usage = instance.usage;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

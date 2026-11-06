@@ -388,6 +388,22 @@ public abstract class SynonymTokenFilterBase extends TokenFilterBase {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(SynonymTokenFilterBase instance) {
+			super(instance);
+			this.expand = instance.expand;
+			this.format = instance.format;
+			this.lenient = instance.lenient;
+			this.synonyms = instance.synonyms;
+			this.synonymsPath = instance.synonymsPath;
+			this.synonymsSet = instance.synonymsSet;
+			this.tokenizer = instance.tokenizer;
+			this.updateable = instance.updateable;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

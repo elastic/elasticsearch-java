@@ -76,6 +76,7 @@ public class HttpInputRequestResult extends HttpInputRequestDefinition {
 		public Builder() {
 		}
 		private Builder(HttpInputRequestResult instance) {
+			super(instance);
 
 		}
 		@Override

@@ -127,6 +127,16 @@ public abstract class InferenceEndpointInfoAzureAIStudio extends InferenceEndpoi
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(InferenceEndpointInfoAzureAIStudio instance) {
+			super(instance);
+			this.inferenceId = instance.inferenceId;
+			this.taskType = instance.taskType;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

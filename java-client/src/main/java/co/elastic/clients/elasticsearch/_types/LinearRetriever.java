@@ -203,6 +203,7 @@ public class LinearRetriever extends RetrieverBase implements RetrieverVariant {
 		public Builder() {
 		}
 		private Builder(LinearRetriever instance) {
+			super(instance);
 			this.retrievers = instance.retrievers;
 			this.rankWindowSize = instance.rankWindowSize;
 			this.query = instance.query;

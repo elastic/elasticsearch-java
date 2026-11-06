@@ -158,6 +158,17 @@ public abstract class RangePropertyBase extends DocValuesPropertyBase {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(RangePropertyBase instance) {
+			super(instance);
+			this.boost = instance.boost;
+			this.coerce = instance.coerce;
+			this.index = instance.index;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

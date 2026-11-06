@@ -106,6 +106,7 @@ public class RepositoryIntegrityIndicator extends BaseIndicator {
 		public Builder() {
 		}
 		private Builder(RepositoryIntegrityIndicator instance) {
+			super(instance);
 			this.details = instance.details;
 
 		}

@@ -84,6 +84,7 @@ public class MinAggregation extends FormatMetricAggregationBase implements Aggre
 		public Builder() {
 		}
 		private Builder(MinAggregation instance) {
+			super(instance);
 
 		}
 		@Override

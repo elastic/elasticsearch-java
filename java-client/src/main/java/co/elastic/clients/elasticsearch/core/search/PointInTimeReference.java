@@ -66,12 +66,16 @@ public class PointInTimeReference implements JsonpSerializable {
 	@Nullable
 	private final Time keepAlive;
 
+	@Nullable
+	private final String routeSlice;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private PointInTimeReference(Builder builder) {
 
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.keepAlive = builder.keepAlive;
+		this.routeSlice = builder.routeSlice;
 
 	}
 
@@ -95,6 +99,18 @@ public class PointInTimeReference implements JsonpSerializable {
 	}
 
 	/**
+	 * The slice identifiers to search within the point in time: a single slice, a
+	 * comma-separated list such as <code>tenant-a,tenant-b</code>, or
+	 * <code>_all</code> to search all slices.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -111,6 +127,11 @@ public class PointInTimeReference implements JsonpSerializable {
 		if (this.keepAlive != null) {
 			generator.writeKey("keep_alive");
 			this.keepAlive.serialize(generator, mapper);
+
+		}
+		if (this.routeSlice != null) {
+			generator.writeKey("_slice");
+			generator.write(this.routeSlice);
 
 		}
 
@@ -135,11 +156,15 @@ public class PointInTimeReference implements JsonpSerializable {
 		@Nullable
 		private Time keepAlive;
 
+		@Nullable
+		private String routeSlice;
+
 		public Builder() {
 		}
 		private Builder(PointInTimeReference instance) {
 			this.id = instance.id;
 			this.keepAlive = instance.keepAlive;
+			this.routeSlice = instance.routeSlice;
 
 		}
 		/**
@@ -163,6 +188,18 @@ public class PointInTimeReference implements JsonpSerializable {
 		 */
 		public final Builder keepAlive(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.keepAlive(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * The slice identifiers to search within the point in time: a single slice, a
+		 * comma-separated list such as <code>tenant-a,tenant-b</code>, or
+		 * <code>_all</code> to search all slices.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder routeSlice(@Nullable String value) {
+			this.routeSlice = value;
+			return this;
 		}
 
 		@Override
@@ -201,6 +238,7 @@ public class PointInTimeReference implements JsonpSerializable {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::keepAlive, Time._DESERIALIZER, "keep_alive");
+		op.add(Builder::routeSlice, JsonpDeserializer.stringDeserializer(), "_slice");
 
 	}
 

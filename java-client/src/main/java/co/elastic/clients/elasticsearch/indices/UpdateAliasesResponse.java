@@ -19,7 +19,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
+import co.elastic.clients.elasticsearch.indices.update_aliases.IndicesUpdateAliasesResponseBody;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -52,7 +52,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class UpdateAliasesResponse extends AcknowledgedResponseBase {
+public class UpdateAliasesResponse extends IndicesUpdateAliasesResponseBody {
 	// ---------------------------------------------------------------------------------------------
 
 	private UpdateAliasesResponse(Builder builder) {
@@ -70,7 +70,7 @@ public class UpdateAliasesResponse extends AcknowledgedResponseBase {
 	 * Builder for {@link UpdateAliasesResponse}.
 	 */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+	public static class Builder extends IndicesUpdateAliasesResponseBody.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UpdateAliasesResponse> {
 		@Override
@@ -100,7 +100,7 @@ public class UpdateAliasesResponse extends AcknowledgedResponseBase {
 			.lazy(Builder::new, UpdateAliasesResponse::setupUpdateAliasesResponseDeserializer);
 
 	protected static void setupUpdateAliasesResponseDeserializer(ObjectDeserializer<UpdateAliasesResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+		IndicesUpdateAliasesResponseBody.setupIndicesUpdateAliasesResponseBodyDeserializer(op);
 
 	}
 

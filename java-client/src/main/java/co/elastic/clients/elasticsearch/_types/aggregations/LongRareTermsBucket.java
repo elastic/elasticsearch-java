@@ -123,6 +123,7 @@ public class LongRareTermsBucket extends MultiBucketBase {
 		public Builder() {
 		}
 		private Builder(LongRareTermsBucket instance) {
+			super(instance);
 			this.key = instance.key;
 			this.keyAsString = instance.keyAsString;
 

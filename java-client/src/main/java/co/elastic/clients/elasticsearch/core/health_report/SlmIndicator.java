@@ -104,6 +104,7 @@ public class SlmIndicator extends BaseIndicator {
 		public Builder() {
 		}
 		private Builder(SlmIndicator instance) {
+			super(instance);
 			this.details = instance.details;
 
 		}

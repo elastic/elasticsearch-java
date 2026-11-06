@@ -116,6 +116,7 @@ public class SummaryReasoningDetail extends BaseReasoningDetail implements Reaso
 		public Builder() {
 		}
 		private Builder(SummaryReasoningDetail instance) {
+			super(instance);
 			this.summary = instance.summary;
 
 		}

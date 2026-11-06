@@ -244,6 +244,16 @@ public class SearchApplicationParameters implements JsonpSerializable {
 			return this.template(fn.apply(new SearchApplicationTemplate.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(SearchApplicationParameters instance) {
+			this.indices = instance.indices;
+			this.analyticsCollectionName = instance.analyticsCollectionName;
+			this.template = instance.template;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

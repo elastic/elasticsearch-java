@@ -275,6 +275,7 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
 		public Builder() {
 		}
 		private Builder(SearchAsYouTypeProperty instance) {
+			super(instance);
 			this.analyzer = instance.analyzer;
 			this.index = instance.index;
 			this.indexOptions = instance.indexOptions;

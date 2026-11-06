@@ -230,12 +230,14 @@ public class CommonTermsQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(CommonTermsQuery instance) {
+			super(instance);
 			this.analyzer = instance.analyzer;
 			this.cutoffFrequency = instance.cutoffFrequency;
 			this.highFreqOperator = instance.highFreqOperator;
 			this.lowFreqOperator = instance.lowFreqOperator;
 			this.minimumShouldMatch = instance.minimumShouldMatch;
 			this.query = instance.query;
+			this.field = instance.field;
 
 		}
 		/**

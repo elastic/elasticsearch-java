@@ -225,11 +225,13 @@ public class RegexpQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(RegexpQuery instance) {
+			super(instance);
 			this.caseInsensitive = instance.caseInsensitive;
 			this.flags = instance.flags;
 			this.maxDeterminizedStates = instance.maxDeterminizedStates;
 			this.rewrite = instance.rewrite;
 			this.value = instance.value;
+			this.field = instance.field;
 
 		}
 		/**

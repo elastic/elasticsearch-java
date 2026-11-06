@@ -77,7 +77,13 @@ public class SegmentsRequest extends RequestBase {
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
+	@Nullable
+	private final Boolean includeAutoCalibration;
+
 	private final List<String> index;
+
+	@Nullable
+	private final Boolean vectorFormats;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -86,7 +92,9 @@ public class SegmentsRequest extends RequestBase {
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.includeAutoCalibration = builder.includeAutoCalibration;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
+		this.vectorFormats = builder.vectorFormats;
 
 	}
 
@@ -136,6 +144,18 @@ public class SegmentsRequest extends RequestBase {
 	}
 
 	/**
+	 * If <code>true</code>, the response includes the auto-calibration information
+	 * of each segment, for the <code>dense_vector</code> fields that support
+	 * auto-calibration.
+	 * <p>
+	 * API name: {@code include_auto_calibration}
+	 */
+	@Nullable
+	public final Boolean includeAutoCalibration() {
+		return this.includeAutoCalibration;
+	}
+
+	/**
 	 * Comma-separated list of data streams, indices, and aliases used to limit the
 	 * request. Supports wildcards (<code>*</code>). To target all data streams and
 	 * indices, omit this parameter or use <code>*</code> or <code>_all</code>.
@@ -144,6 +164,17 @@ public class SegmentsRequest extends RequestBase {
 	 */
 	public final List<String> index() {
 		return this.index;
+	}
+
+	/**
+	 * If <code>true</code>, the response includes the vector formats used by the
+	 * fields of each segment, in <code>attributes</code>.
+	 * <p>
+	 * API name: {@code vector_formats}
+	 */
+	@Nullable
+	public final Boolean vectorFormats() {
+		return this.vectorFormats;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -163,7 +194,13 @@ public class SegmentsRequest extends RequestBase {
 		private Boolean ignoreUnavailable;
 
 		@Nullable
+		private Boolean includeAutoCalibration;
+
+		@Nullable
 		private List<String> index;
+
+		@Nullable
+		private Boolean vectorFormats;
 
 		public Builder() {
 		}
@@ -171,7 +208,9 @@ public class SegmentsRequest extends RequestBase {
 			this.allowNoIndices = instance.allowNoIndices;
 			this.expandWildcards = instance.expandWildcards;
 			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.includeAutoCalibration = instance.includeAutoCalibration;
 			this.index = instance.index;
+			this.vectorFormats = instance.vectorFormats;
 
 		}
 		/**
@@ -234,6 +273,18 @@ public class SegmentsRequest extends RequestBase {
 		}
 
 		/**
+		 * If <code>true</code>, the response includes the auto-calibration information
+		 * of each segment, for the <code>dense_vector</code> fields that support
+		 * auto-calibration.
+		 * <p>
+		 * API name: {@code include_auto_calibration}
+		 */
+		public final Builder includeAutoCalibration(@Nullable Boolean value) {
+			this.includeAutoCalibration = value;
+			return this;
+		}
+
+		/**
 		 * Comma-separated list of data streams, indices, and aliases used to limit the
 		 * request. Supports wildcards (<code>*</code>). To target all data streams and
 		 * indices, omit this parameter or use <code>*</code> or <code>_all</code>.
@@ -258,6 +309,17 @@ public class SegmentsRequest extends RequestBase {
 		 */
 		public final Builder index(String value, String... values) {
 			this.index = _listAdd(this.index, value, values);
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, the response includes the vector formats used by the
+		 * fields of each segment, in <code>attributes</code>.
+		 * <p>
+		 * API name: {@code vector_formats}
+		 */
+		public final Builder vectorFormats(@Nullable Boolean value) {
+			this.vectorFormats = value;
 			return this;
 		}
 
@@ -347,6 +409,9 @@ public class SegmentsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.vectorFormats != null) {
+					params.put("vector_formats", String.valueOf(request.vectorFormats));
+				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue())
 							.filter(Objects::nonNull).collect(Collectors.joining(",")));
@@ -356,6 +421,9 @@ public class SegmentsRequest extends RequestBase {
 				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.includeAutoCalibration != null) {
+					params.put("include_auto_calibration", String.valueOf(request.includeAutoCalibration));
 				}
 				return params;
 

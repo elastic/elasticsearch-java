@@ -162,6 +162,7 @@ public class DataTiers extends Base {
 		public Builder() {
 		}
 		private Builder(DataTiers instance) {
+			super(instance);
 			this.dataWarm = instance.dataWarm;
 			this.dataFrozen = instance.dataFrozen;
 			this.dataCold = instance.dataCold;

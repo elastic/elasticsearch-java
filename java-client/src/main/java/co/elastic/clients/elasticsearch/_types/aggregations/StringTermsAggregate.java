@@ -98,6 +98,7 @@ public class StringTermsAggregate extends TermsAggregateBase<StringTermsBucket>
 		public Builder() {
 		}
 		private Builder(StringTermsAggregate instance) {
+			super(instance);
 
 		}
 		@Override

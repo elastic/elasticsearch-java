@@ -88,6 +88,7 @@ public class DateDistanceFeatureQuery extends DistanceFeatureQueryBase<String, T
 		public Builder() {
 		}
 		private Builder(DateDistanceFeatureQuery instance) {
+			super(instance);
 
 		}
 		@Override

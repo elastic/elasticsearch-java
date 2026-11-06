@@ -106,6 +106,7 @@ public class DlmFrozenTransitionsIndicator extends BaseIndicator {
 		public Builder() {
 		}
 		private Builder(DlmFrozenTransitionsIndicator instance) {
+			super(instance);
 			this.details = instance.details;
 
 		}

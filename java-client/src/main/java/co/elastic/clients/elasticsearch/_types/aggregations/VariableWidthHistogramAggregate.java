@@ -87,6 +87,7 @@ public class VariableWidthHistogramAggregate extends MultiBucketAggregateBase<Va
 		public Builder() {
 		}
 		private Builder(VariableWidthHistogramAggregate instance) {
+			super(instance);
 
 		}
 		@Override

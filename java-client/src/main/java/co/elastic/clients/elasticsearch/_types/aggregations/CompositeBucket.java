@@ -112,6 +112,7 @@ public class CompositeBucket extends MultiBucketBase {
 		public Builder() {
 		}
 		private Builder(CompositeBucket instance) {
+			super(instance);
 			this.key = instance.key;
 
 		}

@@ -115,6 +115,7 @@ public class IntegerNumberProperty extends NumberPropertyBase implements Propert
 		public Builder() {
 		}
 		private Builder(IntegerNumberProperty instance) {
+			super(instance);
 			this.nullValue = instance.nullValue;
 
 		}

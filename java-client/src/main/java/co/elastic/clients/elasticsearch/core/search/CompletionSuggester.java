@@ -199,6 +199,7 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 		public Builder() {
 		}
 		private Builder(CompletionSuggester instance) {
+			super(instance);
 			this.contexts = instance.contexts;
 			this.fuzzy = instance.fuzzy;
 			this.regex = instance.regex;

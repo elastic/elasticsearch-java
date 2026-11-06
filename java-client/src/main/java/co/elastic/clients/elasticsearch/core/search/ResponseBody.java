@@ -645,6 +645,28 @@ public abstract class ResponseBody<TDocument> implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(ResponseBody<TDocument> instance) {
+			this.took = instance.took;
+			this.timedOut = instance.timedOut;
+			this.shards = instance.shards;
+			this.hits = instance.hits;
+			this.aggregations = instance.aggregations;
+			this.clusters = instance.clusters;
+			this.fields = instance.fields;
+			this.maxScore = instance.maxScore;
+			this.numReducePhases = instance.numReducePhases;
+			this.profile = instance.profile;
+			this.pitId = instance.pitId;
+			this.scrollId = instance.scrollId;
+			this.suggest = instance.suggest;
+			this.terminatedEarly = instance.terminatedEarly;
+			this.tDocumentSerializer = instance.tDocumentSerializer;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

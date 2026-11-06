@@ -121,6 +121,7 @@ public class VectorDbDocument extends Base {
 		public Builder() {
 		}
 		private Builder(VectorDbDocument instance) {
+			super(instance);
 			this.indicesCount = instance.indicesCount;
 			this.numDocs = instance.numDocs;
 

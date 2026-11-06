@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.indices.delete_alias;
+package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -47,22 +47,22 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: indices.delete_alias.IndicesAliasesResponseBody
+// typedef: indices._types.AliasesResponseBody
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#indices.delete_alias.IndicesAliasesResponseBody">API
+ *      "../doc-files/api-spec.html#indices._types.AliasesResponseBody">API
  *      specification</a>
  */
 
-public abstract class IndicesAliasesResponseBody extends AcknowledgedResponseBase {
+public abstract class AliasesResponseBody extends AcknowledgedResponseBase {
 	@Nullable
 	private final Boolean errors;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndicesAliasesResponseBody(AbstractBuilder<?> builder) {
+	protected AliasesResponseBody(AbstractBuilder<?> builder) {
 		super(builder);
 
 		this.errors = builder.errors;
@@ -70,6 +70,9 @@ public abstract class IndicesAliasesResponseBody extends AcknowledgedResponseBas
 	}
 
 	/**
+	 * If <code>true</code>, at least one alias action failed. The request still
+	 * returns HTTP 200.
+	 * <p>
 	 * API name: {@code errors}
 	 */
 	@Nullable
@@ -95,6 +98,9 @@ public abstract class IndicesAliasesResponseBody extends AcknowledgedResponseBas
 		private Boolean errors;
 
 		/**
+		 * If <code>true</code>, at least one alias action failed. The request still
+		 * returns HTTP 200.
+		 * <p>
 		 * API name: {@code errors}
 		 */
 		public final BuilderT errors(@Nullable Boolean value) {
@@ -102,10 +108,19 @@ public abstract class IndicesAliasesResponseBody extends AcknowledgedResponseBas
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(AliasesResponseBody instance) {
+			super(instance);
+			this.errors = instance.errors;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupIndicesAliasesResponseBodyDeserializer(
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupAliasesResponseBodyDeserializer(
 			ObjectDeserializer<BuilderT> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 		op.add(AbstractBuilder::errors, JsonpDeserializer.booleanDeserializer(), "errors");

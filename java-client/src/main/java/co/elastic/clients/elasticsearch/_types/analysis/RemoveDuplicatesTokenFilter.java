@@ -92,6 +92,7 @@ public class RemoveDuplicatesTokenFilter extends TokenFilterBase implements Toke
 		public Builder() {
 		}
 		private Builder(RemoveDuplicatesTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override
