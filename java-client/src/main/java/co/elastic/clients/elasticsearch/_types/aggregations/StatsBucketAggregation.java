@@ -84,6 +84,7 @@ public class StatsBucketAggregation extends PipelineAggregationBase implements A
 		public Builder() {
 		}
 		private Builder(StatsBucketAggregation instance) {
+			super(instance);
 
 		}
 		@Override

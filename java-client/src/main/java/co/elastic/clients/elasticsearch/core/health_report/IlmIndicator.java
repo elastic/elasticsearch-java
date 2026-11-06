@@ -104,6 +104,7 @@ public class IlmIndicator extends BaseIndicator {
 		public Builder() {
 		}
 		private Builder(IlmIndicator instance) {
+			super(instance);
 			this.details = instance.details;
 
 		}

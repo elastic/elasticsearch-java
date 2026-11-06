@@ -161,6 +161,15 @@ public class Base implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(Base instance) {
+			this.available = instance.available;
+			this.enabled = instance.enabled;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

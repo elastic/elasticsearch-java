@@ -321,6 +321,7 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(MatchBoolPrefixQuery instance) {
+			super(instance);
 			this.analyzer = instance.analyzer;
 			this.fuzziness = instance.fuzziness;
 			this.fuzzyRewrite = instance.fuzzyRewrite;
@@ -330,6 +331,7 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 			this.operator = instance.operator;
 			this.prefixLength = instance.prefixLength;
 			this.query = instance.query;
+			this.field = instance.field;
 
 		}
 		/**

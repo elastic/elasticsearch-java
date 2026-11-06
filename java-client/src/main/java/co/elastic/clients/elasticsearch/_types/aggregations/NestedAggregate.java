@@ -84,6 +84,7 @@ public class NestedAggregate extends SingleBucketAggregateBase implements Aggreg
 		public Builder() {
 		}
 		private Builder(NestedAggregate instance) {
+			super(instance);
 
 		}
 		@Override

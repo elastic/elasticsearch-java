@@ -115,6 +115,7 @@ public class CountedKeywordProperty extends PropertyBase implements PropertyVari
 		public Builder() {
 		}
 		private Builder(CountedKeywordProperty instance) {
+			super(instance);
 			this.index = instance.index;
 
 		}

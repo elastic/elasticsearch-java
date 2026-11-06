@@ -111,6 +111,7 @@ public class SourceOnlyRepository extends RepositoryBase implements RepositoryVa
 		public Builder() {
 		}
 		private Builder(SourceOnlyRepository instance) {
+			super(instance);
 			this.settings = instance.settings;
 
 		}

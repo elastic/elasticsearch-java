@@ -107,6 +107,7 @@ public class IcuTokenizer extends TokenizerBase implements TokenizerDefinitionVa
 		public Builder() {
 		}
 		private Builder(IcuTokenizer instance) {
+			super(instance);
 			this.ruleFiles = instance.ruleFiles;
 
 		}

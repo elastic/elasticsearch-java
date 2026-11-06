@@ -141,6 +141,14 @@ public abstract class CompletionInferenceResult implements JsonpSerializable {
 			return completion(fn.apply(new CompletionResult.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(CompletionInferenceResult instance) {
+			this.completion = instance.completion;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

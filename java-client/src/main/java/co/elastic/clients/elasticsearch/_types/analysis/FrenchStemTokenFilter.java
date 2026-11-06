@@ -92,6 +92,7 @@ public class FrenchStemTokenFilter extends TokenFilterBase implements TokenFilte
 		public Builder() {
 		}
 		private Builder(FrenchStemTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

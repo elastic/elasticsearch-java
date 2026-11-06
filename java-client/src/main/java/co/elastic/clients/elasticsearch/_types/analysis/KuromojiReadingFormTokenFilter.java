@@ -110,6 +110,7 @@ public class KuromojiReadingFormTokenFilter extends TokenFilterBase implements T
 		public Builder() {
 		}
 		private Builder(KuromojiReadingFormTokenFilter instance) {
+			super(instance);
 			this.useRomaji = instance.useRomaji;
 
 		}

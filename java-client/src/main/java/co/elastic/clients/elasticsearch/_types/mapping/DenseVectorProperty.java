@@ -227,6 +227,7 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 		public Builder() {
 		}
 		private Builder(DenseVectorProperty instance) {
+			super(instance);
 			this.dims = instance.dims;
 			this.elementType = instance.elementType;
 			this.index = instance.index;

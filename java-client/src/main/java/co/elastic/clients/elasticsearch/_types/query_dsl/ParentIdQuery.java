@@ -160,6 +160,7 @@ public class ParentIdQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(ParentIdQuery instance) {
+			super(instance);
 			this.id = instance.id;
 			this.ignoreUnmapped = instance.ignoreUnmapped;
 			this.type = instance.type;

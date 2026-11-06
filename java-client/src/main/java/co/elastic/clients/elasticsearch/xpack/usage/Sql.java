@@ -132,6 +132,7 @@ public class Sql extends Base {
 		public Builder() {
 		}
 		private Builder(Sql instance) {
+			super(instance);
 			this.features = instance.features;
 			this.queries = instance.queries;
 

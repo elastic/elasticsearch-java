@@ -115,6 +115,7 @@ public class UnsignedLongNumberProperty extends NumberPropertyBase implements Pr
 		public Builder() {
 		}
 		private Builder(UnsignedLongNumberProperty instance) {
+			super(instance);
 			this.nullValue = instance.nullValue;
 
 		}

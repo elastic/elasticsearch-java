@@ -169,6 +169,7 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		public Builder() {
 		}
 		private Builder(TopMetricsAggregation instance) {
+			super(instance);
 			this.metrics = instance.metrics;
 			this.size = instance.size;
 			this.sort = instance.sort;

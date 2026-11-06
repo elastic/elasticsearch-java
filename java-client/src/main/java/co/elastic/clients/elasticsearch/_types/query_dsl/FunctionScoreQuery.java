@@ -230,6 +230,7 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(FunctionScoreQuery instance) {
+			super(instance);
 			this.boostMode = instance.boostMode;
 			this.functions = instance.functions;
 			this.maxBoost = instance.maxBoost;

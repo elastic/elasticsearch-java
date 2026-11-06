@@ -130,6 +130,7 @@ public class ExtendedMemoryStats extends MemoryStats {
 		public Builder() {
 		}
 		private Builder(ExtendedMemoryStats instance) {
+			super(instance);
 			this.freePercent = instance.freePercent;
 			this.usedPercent = instance.usedPercent;
 

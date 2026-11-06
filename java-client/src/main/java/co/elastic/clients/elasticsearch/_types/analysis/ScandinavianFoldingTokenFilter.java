@@ -93,6 +93,7 @@ public class ScandinavianFoldingTokenFilter extends TokenFilterBase implements T
 		public Builder() {
 		}
 		private Builder(ScandinavianFoldingTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

@@ -151,6 +151,7 @@ public class ForeachProcessor extends ProcessorBase implements ProcessorVariant 
 		public Builder() {
 		}
 		private Builder(ForeachProcessor instance) {
+			super(instance);
 			this.field = instance.field;
 			this.ignoreMissing = instance.ignoreMissing;
 			this.processor = instance.processor;

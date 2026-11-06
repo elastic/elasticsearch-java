@@ -115,6 +115,7 @@ public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterD
 		public Builder() {
 		}
 		private Builder(SnowballTokenFilter instance) {
+			super(instance);
 			this.language = instance.language;
 
 		}

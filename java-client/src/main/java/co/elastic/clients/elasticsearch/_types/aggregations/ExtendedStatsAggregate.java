@@ -523,6 +523,28 @@ public class ExtendedStatsAggregate extends StatsAggregate implements AggregateV
 			return this.stdDeviationBoundsAsString(fn.apply(new StandardDeviationBoundsAsString.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(ExtendedStatsAggregate instance) {
+			super(instance);
+			this.sumOfSquares = instance.sumOfSquares;
+			this.variance = instance.variance;
+			this.variancePopulation = instance.variancePopulation;
+			this.varianceSampling = instance.varianceSampling;
+			this.stdDeviation = instance.stdDeviation;
+			this.stdDeviationPopulation = instance.stdDeviationPopulation;
+			this.stdDeviationSampling = instance.stdDeviationSampling;
+			this.stdDeviationBounds = instance.stdDeviationBounds;
+			this.sumOfSquaresAsString = instance.sumOfSquaresAsString;
+			this.varianceAsString = instance.varianceAsString;
+			this.variancePopulationAsString = instance.variancePopulationAsString;
+			this.varianceSamplingAsString = instance.varianceSamplingAsString;
+			this.stdDeviationAsString = instance.stdDeviationAsString;
+			this.stdDeviationBoundsAsString = instance.stdDeviationBoundsAsString;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

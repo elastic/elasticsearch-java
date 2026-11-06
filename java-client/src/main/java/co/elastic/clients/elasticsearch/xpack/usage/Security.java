@@ -285,6 +285,7 @@ public class Security extends Base {
 		public Builder() {
 		}
 		private Builder(Security instance) {
+			super(instance);
 			this.apiKeyService = instance.apiKeyService;
 			this.anonymous = instance.anonymous;
 			this.audit = instance.audit;

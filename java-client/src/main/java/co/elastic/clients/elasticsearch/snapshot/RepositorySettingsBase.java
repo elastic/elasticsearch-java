@@ -244,6 +244,17 @@ public abstract class RepositorySettingsBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(RepositorySettingsBase instance) {
+			this.chunkSize = instance.chunkSize;
+			this.compress = instance.compress;
+			this.maxRestoreBytesPerSec = instance.maxRestoreBytesPerSec;
+			this.maxSnapshotBytesPerSec = instance.maxSnapshotBytesPerSec;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

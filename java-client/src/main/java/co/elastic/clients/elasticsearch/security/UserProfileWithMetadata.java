@@ -159,6 +159,16 @@ public class UserProfileWithMetadata extends UserProfile {
 			return this.doc(fn.apply(new UserProfileHitMetadata.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(UserProfileWithMetadata instance) {
+			super(instance);
+			this.lastSynchronized = instance.lastSynchronized;
+			this.doc = instance.doc;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

@@ -171,6 +171,7 @@ public class SourceOnlyRepositorySettings extends RepositorySettingsBase {
 		public Builder() {
 		}
 		private Builder(SourceOnlyRepositorySettings instance) {
+			super(instance);
 			this.delegateType = instance.delegateType;
 			this.maxNumberOfSnapshots = instance.maxNumberOfSnapshots;
 			this.readOnly = instance.readOnly;

@@ -97,6 +97,7 @@ public class Analytics extends Base {
 		public Builder() {
 		}
 		private Builder(Analytics instance) {
+			super(instance);
 			this.stats = instance.stats;
 
 		}

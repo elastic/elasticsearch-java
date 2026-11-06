@@ -142,6 +142,7 @@ public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilt
 		public Builder() {
 		}
 		private Builder(FingerprintTokenFilter instance) {
+			super(instance);
 			this.maxOutputSize = instance.maxOutputSize;
 			this.separator = instance.separator;
 

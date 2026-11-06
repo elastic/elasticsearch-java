@@ -309,6 +309,17 @@ public abstract class TaskListResponseBase implements JsonpSerializable {
 			return this.tasks(fn.apply(new TaskInfos.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(TaskListResponseBase instance) {
+			this.nodeFailures = instance.nodeFailures;
+			this.taskFailures = instance.taskFailures;
+			this.nodes = instance.nodes;
+			this.tasks = instance.tasks;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

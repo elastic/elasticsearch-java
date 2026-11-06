@@ -138,6 +138,14 @@ public class FeatureToggle implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(FeatureToggle instance) {
+			this.enabled = instance.enabled;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

@@ -259,6 +259,7 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		public Builder() {
 		}
 		private Builder(GrokProcessor instance) {
+			super(instance);
 			this.ecsCompatibility = instance.ecsCompatibility;
 			this.field = instance.field;
 			this.ignoreMissing = instance.ignoreMissing;

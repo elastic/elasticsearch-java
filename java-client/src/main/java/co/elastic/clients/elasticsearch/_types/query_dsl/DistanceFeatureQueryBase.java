@@ -220,6 +220,19 @@ public abstract class DistanceFeatureQueryBase<TOrigin, TDistance> extends Query
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(DistanceFeatureQueryBase<TOrigin, TDistance> instance) {
+			super(instance);
+			this.origin = instance.origin;
+			this.pivot = instance.pivot;
+			this.field = instance.field;
+			this.tOriginSerializer = instance.tOriginSerializer;
+			this.tDistanceSerializer = instance.tDistanceSerializer;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

@@ -134,6 +134,7 @@ public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket
 		public Builder() {
 		}
 		private Builder(CompositeAggregate instance) {
+			super(instance);
 			this.afterKey = instance.afterKey;
 
 		}

@@ -110,6 +110,7 @@ public class TopHitsAggregate extends AggregateBase implements AggregateVariant 
 		public Builder() {
 		}
 		private Builder(TopHitsAggregate instance) {
+			super(instance);
 			this.hits = instance.hits;
 
 		}

@@ -110,6 +110,7 @@ public class IcuFoldingTokenFilter extends TokenFilterBase implements TokenFilte
 		public Builder() {
 		}
 		private Builder(IcuFoldingTokenFilter instance) {
+			super(instance);
 			this.unicodeSetFilter = instance.unicodeSetFilter;
 
 		}

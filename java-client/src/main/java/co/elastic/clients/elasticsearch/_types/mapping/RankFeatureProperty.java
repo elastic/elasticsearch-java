@@ -115,6 +115,7 @@ public class RankFeatureProperty extends PropertyBase implements PropertyVariant
 		public Builder() {
 		}
 		private Builder(RankFeatureProperty instance) {
+			super(instance);
 			this.positiveScoreImpact = instance.positiveScoreImpact;
 
 		}

@@ -25,6 +25,7 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.elasticsearch.core.rank_eval.RankEvalMetric;
 import co.elastic.clients.elasticsearch.core.rank_eval.RankEvalRequestItem;
+import co.elastic.clients.elasticsearch.core.rank_eval.RankEvalTemplate;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -92,6 +93,8 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final SearchType searchType;
 
+	private final List<RankEvalTemplate> templates;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private RankEvalRequest(Builder builder) {
@@ -103,6 +106,7 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		this.metric = builder.metric;
 		this.requests = ApiTypeHelper.unmodifiableRequired(builder.requests, this, "requests");
 		this.searchType = builder.searchType;
+		this.templates = ApiTypeHelper.unmodifiable(builder.templates);
 
 	}
 
@@ -192,6 +196,17 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Query templates that the rated requests can refer to by their
+	 * <code>template_id</code>. This way, queries that differ only in their
+	 * parameters don't have to be repeated in <code>requests</code>.
+	 * <p>
+	 * API name: {@code templates}
+	 */
+	public final List<RankEvalTemplate> templates() {
+		return this.templates;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -211,6 +226,16 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 			generator.writeKey("requests");
 			generator.writeStartArray();
 			for (RankEvalRequestItem item0 : this.requests) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.templates)) {
+			generator.writeKey("templates");
+			generator.writeStartArray();
+			for (RankEvalTemplate item0 : this.templates) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -247,6 +272,9 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private SearchType searchType;
 
+		@Nullable
+		private List<RankEvalTemplate> templates;
+
 		public Builder() {
 		}
 		private Builder(RankEvalRequest instance) {
@@ -257,6 +285,7 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 			this.metric = instance.metric;
 			this.requests = instance.requests;
 			this.searchType = instance.searchType;
+			this.templates = instance.templates;
 
 		}
 		/**
@@ -411,6 +440,47 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * Query templates that the rated requests can refer to by their
+		 * <code>template_id</code>. This way, queries that differ only in their
+		 * parameters don't have to be repeated in <code>requests</code>.
+		 * <p>
+		 * API name: {@code templates}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>templates</code>.
+		 */
+		public final Builder templates(List<RankEvalTemplate> list) {
+			this.templates = _listAddAll(this.templates, list);
+			return this;
+		}
+
+		/**
+		 * Query templates that the rated requests can refer to by their
+		 * <code>template_id</code>. This way, queries that differ only in their
+		 * parameters don't have to be repeated in <code>requests</code>.
+		 * <p>
+		 * API name: {@code templates}
+		 * <p>
+		 * Adds one or more values to <code>templates</code>.
+		 */
+		public final Builder templates(RankEvalTemplate value, RankEvalTemplate... values) {
+			this.templates = _listAdd(this.templates, value, values);
+			return this;
+		}
+
+		/**
+		 * Query templates that the rated requests can refer to by their
+		 * <code>template_id</code>. This way, queries that differ only in their
+		 * parameters don't have to be repeated in <code>requests</code>.
+		 * <p>
+		 * API name: {@code templates}
+		 * <p>
+		 * Adds a value to <code>templates</code> using a builder lambda.
+		 */
+		public final Builder templates(Function<RankEvalTemplate.Builder, ObjectBuilder<RankEvalTemplate>> fn) {
+			return templates(fn.apply(new RankEvalTemplate.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -447,6 +517,7 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 
 		op.add(Builder::metric, RankEvalMetric._DESERIALIZER, "metric");
 		op.add(Builder::requests, JsonpDeserializer.arrayDeserializer(RankEvalRequestItem._DESERIALIZER), "requests");
+		op.add(Builder::templates, JsonpDeserializer.arrayDeserializer(RankEvalTemplate._DESERIALIZER), "templates");
 
 	}
 

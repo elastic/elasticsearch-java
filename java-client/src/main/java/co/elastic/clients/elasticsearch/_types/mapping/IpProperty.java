@@ -239,6 +239,7 @@ public class IpProperty extends DocValuesPropertyBase implements PropertyVariant
 		public Builder() {
 		}
 		private Builder(IpProperty instance) {
+			super(instance);
 			this.boost = instance.boost;
 			this.index = instance.index;
 			this.ignoreMalformed = instance.ignoreMalformed;

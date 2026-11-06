@@ -115,6 +115,7 @@ public class ClassicTokenizer extends TokenizerBase implements TokenizerDefiniti
 		public Builder() {
 		}
 		private Builder(ClassicTokenizer instance) {
+			super(instance);
 			this.maxTokenLength = instance.maxTokenLength;
 
 		}

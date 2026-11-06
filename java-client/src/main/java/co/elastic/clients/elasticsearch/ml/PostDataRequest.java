@@ -188,6 +188,7 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 			this.resetEnd = instance.resetEnd;
 			this.resetStart = instance.resetStart;
 			this.data = instance.data;
+			this.tDataSerializer = instance.tDataSerializer;
 
 		}
 		/**

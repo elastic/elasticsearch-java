@@ -155,6 +155,7 @@ public class PointProperty extends DocValuesPropertyBase implements PropertyVari
 		public Builder() {
 		}
 		private Builder(PointProperty instance) {
+			super(instance);
 			this.ignoreMalformed = instance.ignoreMalformed;
 			this.ignoreZValue = instance.ignoreZValue;
 			this.nullValue = instance.nullValue;

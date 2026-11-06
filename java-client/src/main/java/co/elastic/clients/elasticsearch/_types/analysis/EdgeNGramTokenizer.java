@@ -180,6 +180,7 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefini
 		public Builder() {
 		}
 		private Builder(EdgeNGramTokenizer instance) {
+			super(instance);
 			this.customTokenChars = instance.customTokenChars;
 			this.maxGram = instance.maxGram;
 			this.minGram = instance.minGram;

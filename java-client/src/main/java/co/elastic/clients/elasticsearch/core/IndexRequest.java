@@ -625,6 +625,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 			this.versionType = instance.versionType;
 			this.waitForActiveShards = instance.waitForActiveShards;
 			this.document = instance.document;
+			this.tDocumentSerializer = instance.tDocumentSerializer;
 
 		}
 		/**

@@ -235,6 +235,7 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 		public Builder() {
 		}
 		private Builder(GeoPointProperty instance) {
+			super(instance);
 			this.ignoreMalformed = instance.ignoreMalformed;
 			this.ignoreZValue = instance.ignoreZValue;
 			this.nullValue = instance.nullValue;

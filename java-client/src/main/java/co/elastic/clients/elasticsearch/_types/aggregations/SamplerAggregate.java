@@ -84,6 +84,7 @@ public class SamplerAggregate extends SingleBucketAggregateBase implements Aggre
 		public Builder() {
 		}
 		private Builder(SamplerAggregate instance) {
+			super(instance);
 
 		}
 		@Override

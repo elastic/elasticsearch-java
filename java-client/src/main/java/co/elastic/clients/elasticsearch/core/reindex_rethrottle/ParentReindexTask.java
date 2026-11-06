@@ -110,6 +110,7 @@ public class ParentReindexTask extends ReindexTask {
 		public Builder() {
 		}
 		private Builder(ParentReindexTask instance) {
+			super(instance);
 			this.children = instance.children;
 
 		}

@@ -180,6 +180,7 @@ public class NGramTokenizer extends TokenizerBase implements TokenizerDefinition
 		public Builder() {
 		}
 		private Builder(NGramTokenizer instance) {
+			super(instance);
 			this.customTokenChars = instance.customTokenChars;
 			this.maxGram = instance.maxGram;
 			this.minGram = instance.minGram;

@@ -119,6 +119,8 @@ public class NumberRangeQuery extends RangeQueryBase<Double> implements RangeQue
 		public Builder() {
 		}
 		private Builder(NumberRangeQuery instance) {
+			super(instance);
+			this.field = instance.field;
 
 		}
 		@Override

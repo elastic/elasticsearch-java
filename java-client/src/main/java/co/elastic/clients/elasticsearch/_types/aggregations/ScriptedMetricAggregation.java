@@ -221,6 +221,7 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		public Builder() {
 		}
 		private Builder(ScriptedMetricAggregation instance) {
+			super(instance);
 			this.combineScript = instance.combineScript;
 			this.initScript = instance.initScript;
 			this.mapScript = instance.mapScript;

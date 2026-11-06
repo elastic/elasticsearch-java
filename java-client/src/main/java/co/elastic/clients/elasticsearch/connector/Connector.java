@@ -1052,6 +1052,44 @@ public class Connector implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(Connector instance) {
+			this.apiKeyId = instance.apiKeyId;
+			this.apiKeySecretId = instance.apiKeySecretId;
+			this.configuration = instance.configuration;
+			this.customScheduling = instance.customScheduling;
+			this.deleted = instance.deleted;
+			this.description = instance.description;
+			this.error = instance.error;
+			this.features = instance.features;
+			this.filtering = instance.filtering;
+			this.id = instance.id;
+			this.indexName = instance.indexName;
+			this.isNative = instance.isNative;
+			this.language = instance.language;
+			this.lastAccessControlSyncError = instance.lastAccessControlSyncError;
+			this.lastAccessControlSyncScheduledAt = instance.lastAccessControlSyncScheduledAt;
+			this.lastAccessControlSyncStatus = instance.lastAccessControlSyncStatus;
+			this.lastDeletedDocumentCount = instance.lastDeletedDocumentCount;
+			this.lastIncrementalSyncScheduledAt = instance.lastIncrementalSyncScheduledAt;
+			this.lastIndexedDocumentCount = instance.lastIndexedDocumentCount;
+			this.lastSeen = instance.lastSeen;
+			this.lastSyncError = instance.lastSyncError;
+			this.lastSyncScheduledAt = instance.lastSyncScheduledAt;
+			this.lastSyncStatus = instance.lastSyncStatus;
+			this.lastSynced = instance.lastSynced;
+			this.name = instance.name;
+			this.pipeline = instance.pipeline;
+			this.scheduling = instance.scheduling;
+			this.serviceType = instance.serviceType;
+			this.status = instance.status;
+			this.syncCursor = instance.syncCursor;
+			this.syncNow = instance.syncNow;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

@@ -129,6 +129,7 @@ public class RateAggregate extends AggregateBase implements AggregateVariant {
 		public Builder() {
 		}
 		private Builder(RateAggregate instance) {
+			super(instance);
 			this.value = instance.value;
 			this.valueAsString = instance.valueAsString;
 

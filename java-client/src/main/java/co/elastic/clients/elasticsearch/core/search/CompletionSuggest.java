@@ -128,7 +128,9 @@ public class CompletionSuggest<TDocument> extends SuggestBase implements Suggest
 		public Builder() {
 		}
 		private Builder(CompletionSuggest<TDocument> instance) {
+			super(instance);
 			this.options = instance.options;
+			this.tDocumentSerializer = instance.tDocumentSerializer;
 
 		}
 		/**

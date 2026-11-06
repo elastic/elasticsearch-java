@@ -102,6 +102,7 @@ public class ChangePointBucket extends MultiBucketBase {
 		public Builder() {
 		}
 		private Builder(ChangePointBucket instance) {
+			super(instance);
 			this.key = instance.key;
 
 		}

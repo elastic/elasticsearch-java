@@ -119,6 +119,16 @@ public abstract class SignificantTermsBucketBase extends MultiBucketBase {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(SignificantTermsBucketBase instance) {
+			super(instance);
+			this.score = instance.score;
+			this.bgCount = instance.bgCount;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

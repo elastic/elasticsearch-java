@@ -120,6 +120,7 @@ public class JaStopTokenFilter extends TokenFilterBase implements TokenFilterDef
 		public Builder() {
 		}
 		private Builder(JaStopTokenFilter instance) {
+			super(instance);
 			this.stopwords = instance.stopwords;
 
 		}

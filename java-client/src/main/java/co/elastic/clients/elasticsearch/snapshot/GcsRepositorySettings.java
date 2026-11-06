@@ -216,6 +216,7 @@ public class GcsRepositorySettings extends RepositorySettingsBase {
 		public Builder() {
 		}
 		private Builder(GcsRepositorySettings instance) {
+			super(instance);
 			this.bucket = instance.bucket;
 			this.applicationName = instance.applicationName;
 			this.basePath = instance.basePath;

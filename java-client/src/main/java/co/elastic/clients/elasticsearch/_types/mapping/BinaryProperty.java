@@ -92,6 +92,7 @@ public class BinaryProperty extends DocValuesPropertyBase implements PropertyVar
 		public Builder() {
 		}
 		private Builder(BinaryProperty instance) {
+			super(instance);
 
 		}
 		@Override

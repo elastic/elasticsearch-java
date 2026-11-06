@@ -101,6 +101,15 @@ public abstract class FormatMetricAggregationBase extends MetricAggregationBase 
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(FormatMetricAggregationBase instance) {
+			super(instance);
+			this.format = instance.format;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

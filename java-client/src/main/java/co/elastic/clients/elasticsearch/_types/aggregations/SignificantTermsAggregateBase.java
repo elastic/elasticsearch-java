@@ -146,6 +146,17 @@ public abstract class SignificantTermsAggregateBase<T> extends MultiBucketAggreg
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(SignificantTermsAggregateBase<T> instance) {
+			super(instance);
+			this.bgCount = instance.bgCount;
+			this.docCount = instance.docCount;
+			this.tSerializer = instance.tSerializer;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

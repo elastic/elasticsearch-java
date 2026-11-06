@@ -121,6 +121,14 @@ public abstract class RankEvalMetricBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(RankEvalMetricBase instance) {
+			this.k = instance.k;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

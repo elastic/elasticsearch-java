@@ -145,6 +145,7 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 		public Builder() {
 		}
 		private Builder(MultiplexerTokenFilter instance) {
+			super(instance);
 			this.filters = instance.filters;
 			this.preserveOriginal = instance.preserveOriginal;
 

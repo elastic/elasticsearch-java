@@ -84,6 +84,7 @@ public class CartesianCentroidAggregation extends MetricAggregationBase implemen
 		public Builder() {
 		}
 		private Builder(CartesianCentroidAggregation instance) {
+			super(instance);
 
 		}
 		@Override

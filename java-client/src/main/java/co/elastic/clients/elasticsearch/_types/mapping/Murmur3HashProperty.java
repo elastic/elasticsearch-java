@@ -92,6 +92,7 @@ public class Murmur3HashProperty extends DocValuesPropertyBase implements Proper
 		public Builder() {
 		}
 		private Builder(Murmur3HashProperty instance) {
+			super(instance);
 
 		}
 		@Override

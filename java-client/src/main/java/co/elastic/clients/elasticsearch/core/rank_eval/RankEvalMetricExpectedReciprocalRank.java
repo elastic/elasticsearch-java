@@ -108,6 +108,7 @@ public class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBase {
 		public Builder() {
 		}
 		private Builder(RankEvalMetricExpectedReciprocalRank instance) {
+			super(instance);
 			this.maximumRelevance = instance.maximumRelevance;
 
 		}

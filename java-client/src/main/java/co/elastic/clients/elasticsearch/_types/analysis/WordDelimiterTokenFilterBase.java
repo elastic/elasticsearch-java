@@ -574,6 +574,27 @@ public abstract class WordDelimiterTokenFilterBase extends TokenFilterBase {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(WordDelimiterTokenFilterBase instance) {
+			super(instance);
+			this.catenateAll = instance.catenateAll;
+			this.catenateNumbers = instance.catenateNumbers;
+			this.catenateWords = instance.catenateWords;
+			this.generateNumberParts = instance.generateNumberParts;
+			this.generateWordParts = instance.generateWordParts;
+			this.preserveOriginal = instance.preserveOriginal;
+			this.protectedWords = instance.protectedWords;
+			this.protectedWordsPath = instance.protectedWordsPath;
+			this.splitOnCaseChange = instance.splitOnCaseChange;
+			this.splitOnNumerics = instance.splitOnNumerics;
+			this.stemEnglishPossessive = instance.stemEnglishPossessive;
+			this.typeTable = instance.typeTable;
+			this.typeTablePath = instance.typeTablePath;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
