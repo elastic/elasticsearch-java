@@ -161,6 +161,15 @@ public class Counter implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(Counter instance) {
+			this.active = instance.active;
+			this.total = instance.total;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

@@ -82,6 +82,7 @@ public class MatchNoneQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(MatchNoneQuery instance) {
+			super(instance);
 
 		}
 		@Override

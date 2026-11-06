@@ -121,6 +121,16 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(AsyncSearchDocumentResponseBase<TDocument> instance) {
+			super(instance);
+			this.response = instance.response;
+			this.tDocumentSerializer = instance.tDocumentSerializer;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

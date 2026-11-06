@@ -102,6 +102,15 @@ public abstract class IndicesAliasesResponseBody extends AcknowledgedResponseBas
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(IndicesAliasesResponseBody instance) {
+			super(instance);
+			this.errors = instance.errors;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

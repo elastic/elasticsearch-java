@@ -195,6 +195,7 @@ public class BucketKsAggregation extends BucketPathAggregation implements Aggreg
 		public Builder() {
 		}
 		private Builder(BucketKsAggregation instance) {
+			super(instance);
 			this.alternative = instance.alternative;
 			this.fractions = instance.fractions;
 			this.samplingMethod = instance.samplingMethod;

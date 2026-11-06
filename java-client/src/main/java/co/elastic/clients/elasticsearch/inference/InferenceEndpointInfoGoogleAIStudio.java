@@ -127,6 +127,16 @@ public abstract class InferenceEndpointInfoGoogleAIStudio extends InferenceEndpo
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(InferenceEndpointInfoGoogleAIStudio instance) {
+			super(instance);
+			this.inferenceId = instance.inferenceId;
+			this.taskType = instance.taskType;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

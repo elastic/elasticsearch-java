@@ -84,6 +84,7 @@ public class SimpleValueAggregate extends SingleMetricAggregateBase implements A
 		public Builder() {
 		}
 		private Builder(SimpleValueAggregate instance) {
+			super(instance);
 
 		}
 		@Override

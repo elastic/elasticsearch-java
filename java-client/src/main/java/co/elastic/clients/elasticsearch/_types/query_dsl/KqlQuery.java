@@ -183,6 +183,7 @@ public class KqlQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(KqlQuery instance) {
+			super(instance);
 			this.caseInsensitive = instance.caseInsensitive;
 			this.defaultField = instance.defaultField;
 			this.query = instance.query;

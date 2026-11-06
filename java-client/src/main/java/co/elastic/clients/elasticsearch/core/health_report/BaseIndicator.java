@@ -239,6 +239,17 @@ public abstract class BaseIndicator implements JsonpSerializable {
 			return diagnosis(fn.apply(new Diagnosis.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(BaseIndicator instance) {
+			this.status = instance.status;
+			this.symptom = instance.symptom;
+			this.impacts = instance.impacts;
+			this.diagnosis = instance.diagnosis;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

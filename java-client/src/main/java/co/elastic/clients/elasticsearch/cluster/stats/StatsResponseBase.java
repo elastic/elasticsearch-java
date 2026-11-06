@@ -405,6 +405,23 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 			return this.ccs(fn.apply(new CCSStats.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(StatsResponseBase instance) {
+			super(instance);
+			this.clusterName = instance.clusterName;
+			this.clusterUuid = instance.clusterUuid;
+			this.indices = instance.indices;
+			this.nodes = instance.nodes;
+			this.repositories = instance.repositories;
+			this.snapshots = instance.snapshots;
+			this.status = instance.status;
+			this.timestamp = instance.timestamp;
+			this.ccs = instance.ccs;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

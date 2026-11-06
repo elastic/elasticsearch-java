@@ -175,6 +175,15 @@ public abstract class QueryRuleset implements JsonpSerializable {
 			return rules(fn.apply(new QueryRule.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(QueryRuleset instance) {
+			this.rulesetId = instance.rulesetId;
+			this.rules = instance.rules;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

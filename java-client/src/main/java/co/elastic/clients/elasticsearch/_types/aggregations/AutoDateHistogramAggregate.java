@@ -111,6 +111,7 @@ public class AutoDateHistogramAggregate extends MultiBucketAggregateBase<DateHis
 		public Builder() {
 		}
 		private Builder(AutoDateHistogramAggregate instance) {
+			super(instance);
 			this.interval = instance.interval;
 
 		}

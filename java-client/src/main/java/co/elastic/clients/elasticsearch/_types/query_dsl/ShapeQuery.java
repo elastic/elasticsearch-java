@@ -165,7 +165,10 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(ShapeQuery instance) {
+			super(instance);
 			this.ignoreUnmapped = instance.ignoreUnmapped;
+			this.field = instance.field;
+			this.shape = instance.shape;
 
 		}
 		/**

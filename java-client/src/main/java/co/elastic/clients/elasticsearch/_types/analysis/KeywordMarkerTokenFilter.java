@@ -203,6 +203,7 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 		public Builder() {
 		}
 		private Builder(KeywordMarkerTokenFilter instance) {
+			super(instance);
 			this.ignoreCase = instance.ignoreCase;
 			this.keywords = instance.keywords;
 			this.keywordsPath = instance.keywordsPath;

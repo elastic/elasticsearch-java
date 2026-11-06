@@ -115,6 +115,7 @@ public class ShortNumberProperty extends NumberPropertyBase implements PropertyV
 		public Builder() {
 		}
 		private Builder(ShortNumberProperty instance) {
+			super(instance);
 			this.nullValue = instance.nullValue;
 
 		}

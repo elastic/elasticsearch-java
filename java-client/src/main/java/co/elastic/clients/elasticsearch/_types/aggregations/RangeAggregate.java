@@ -117,6 +117,14 @@ public class RangeAggregate extends MultiBucketAggregateBase<RangeBucket>
 	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				MultiBucketAggregateBase.AbstractBuilder<RangeBucket, BuilderT> {
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(RangeAggregate instance) {
+			super(instance);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

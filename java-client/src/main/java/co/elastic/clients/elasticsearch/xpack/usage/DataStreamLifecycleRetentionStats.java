@@ -104,6 +104,7 @@ public class DataStreamLifecycleRetentionStats extends DataStreamLifecycleThresh
 		public Builder() {
 		}
 		private Builder(DataStreamLifecycleRetentionStats instance) {
+			super(instance);
 			this.configuredDataStreams = instance.configuredDataStreams;
 
 		}

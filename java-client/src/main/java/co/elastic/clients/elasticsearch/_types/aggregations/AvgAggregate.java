@@ -84,6 +84,7 @@ public class AvgAggregate extends SingleMetricAggregateBase implements Aggregate
 		public Builder() {
 		}
 		private Builder(AvgAggregate instance) {
+			super(instance);
 
 		}
 		@Override

@@ -106,6 +106,7 @@ public class ProjectEncryptionKeyIndicator extends BaseIndicator {
 		public Builder() {
 		}
 		private Builder(ProjectEncryptionKeyIndicator instance) {
+			super(instance);
 			this.details = instance.details;
 
 		}

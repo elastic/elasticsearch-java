@@ -135,6 +135,7 @@ public class RankVectorProperty extends PropertyBase implements PropertyVariant 
 		public Builder() {
 		}
 		private Builder(RankVectorProperty instance) {
+			super(instance);
 			this.elementType = instance.elementType;
 			this.dims = instance.dims;
 

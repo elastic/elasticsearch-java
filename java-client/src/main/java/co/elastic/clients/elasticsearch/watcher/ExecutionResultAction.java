@@ -235,6 +235,7 @@ public class ExecutionResultAction extends ExecutionResultForeachAction {
 		public Builder() {
 		}
 		private Builder(ExecutionResultAction instance) {
+			super(instance);
 			this.id = instance.id;
 			this.type = instance.type;
 			this.status = instance.status;

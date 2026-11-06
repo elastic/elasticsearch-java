@@ -107,6 +107,7 @@ public class RuntimeFieldTypes extends Base {
 		public Builder() {
 		}
 		private Builder(RuntimeFieldTypes instance) {
+			super(instance);
 			this.fieldTypes = instance.fieldTypes;
 
 		}

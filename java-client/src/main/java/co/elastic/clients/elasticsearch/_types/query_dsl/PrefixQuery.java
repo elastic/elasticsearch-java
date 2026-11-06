@@ -217,9 +217,11 @@ public class PrefixQuery extends QueryBase
 		public Builder() {
 		}
 		private Builder(PrefixQuery instance) {
+			super(instance);
 			this.rewrite = instance.rewrite;
 			this.value = instance.value;
 			this.caseInsensitive = instance.caseInsensitive;
+			this.field = instance.field;
 
 		}
 		/**

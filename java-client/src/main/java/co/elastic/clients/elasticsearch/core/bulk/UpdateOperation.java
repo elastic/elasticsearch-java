@@ -238,8 +238,13 @@ public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationB
 		public Builder() {
 		}
 		private Builder(UpdateOperation<TDocument, TPartialDocument> instance) {
+			super(instance);
 			this.requireAlias = instance.requireAlias;
 			this.retryOnConflict = instance.retryOnConflict;
+			this.tDocumentSerializer = instance.tDocumentSerializer;
+			this.tPartialDocumentSerializer = instance.tPartialDocumentSerializer;
+			this.action = instance.action;
+			this.binaryAction = instance.binaryAction;
 
 		}
 		/**

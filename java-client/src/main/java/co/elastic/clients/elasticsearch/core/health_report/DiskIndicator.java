@@ -104,6 +104,7 @@ public class DiskIndicator extends BaseIndicator {
 		public Builder() {
 		}
 		private Builder(DiskIndicator instance) {
+			super(instance);
 			this.details = instance.details;
 
 		}

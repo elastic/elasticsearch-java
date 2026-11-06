@@ -84,6 +84,7 @@ public class MaxAggregate extends SingleMetricAggregateBase implements Aggregate
 		public Builder() {
 		}
 		private Builder(MaxAggregate instance) {
+			super(instance);
 
 		}
 		@Override

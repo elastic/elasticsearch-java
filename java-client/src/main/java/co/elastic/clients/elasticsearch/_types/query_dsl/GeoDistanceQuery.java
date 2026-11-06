@@ -232,10 +232,13 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(GeoDistanceQuery instance) {
+			super(instance);
 			this.distance = instance.distance;
 			this.distanceType = instance.distanceType;
 			this.validationMethod = instance.validationMethod;
 			this.ignoreUnmapped = instance.ignoreUnmapped;
+			this.field = instance.field;
+			this.location = instance.location;
 
 		}
 		/**

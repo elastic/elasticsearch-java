@@ -75,6 +75,7 @@ public class PagerDutyAction extends PagerDutyEvent {
 		public Builder() {
 		}
 		private Builder(PagerDutyAction instance) {
+			super(instance);
 
 		}
 		@Override

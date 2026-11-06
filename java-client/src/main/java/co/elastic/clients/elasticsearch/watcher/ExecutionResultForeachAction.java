@@ -403,6 +403,21 @@ public class ExecutionResultForeachAction implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(ExecutionResultForeachAction instance) {
+			this.email = instance.email;
+			this.index = instance.index;
+			this.logging = instance.logging;
+			this.pagerduty = instance.pagerduty;
+			this.slack = instance.slack;
+			this.webhook = instance.webhook;
+			this.error = instance.error;
+			this.reason = instance.reason;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

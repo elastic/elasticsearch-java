@@ -124,8 +124,8 @@ public class Settings implements JsonpSerializable {
 	}
 
 	/**
-	 * Defines if dates in the ouput should be written as ISO formatted string or as
-	 * millis since epoch. epoch_millis was the default for transforms created
+	 * Defines if dates in the output should be written as ISO formatted string or
+	 * as millis since epoch. epoch_millis was the default for transforms created
 	 * before version 7.11. For compatible output set this value to
 	 * <code>true</code>.
 	 * <p>
@@ -224,7 +224,7 @@ public class Settings implements JsonpSerializable {
 	 * The initial timeout for the requests the transform sends to nodes to retrieve
 	 * checkpoint information. Each consecutive failure doubles the timeout, up to a
 	 * maximum of <code>12h</code>. The minimum value is <code>1ms</code> and the
-	 * maximum is <code>12h</code>.
+	 * maximum is <code>12h</code>. Defaults to <code>30s</code>.
 	 * <p>
 	 * API name: {@code indexer_request_timeout}
 	 */
@@ -360,8 +360,8 @@ public class Settings implements JsonpSerializable {
 		}
 
 		/**
-		 * Defines if dates in the ouput should be written as ISO formatted string or as
-		 * millis since epoch. epoch_millis was the default for transforms created
+		 * Defines if dates in the output should be written as ISO formatted string or
+		 * as millis since epoch. epoch_millis was the default for transforms created
 		 * before version 7.11. For compatible output set this value to
 		 * <code>true</code>.
 		 * <p>
@@ -460,7 +460,7 @@ public class Settings implements JsonpSerializable {
 		 * The initial timeout for the requests the transform sends to nodes to retrieve
 		 * checkpoint information. Each consecutive failure doubles the timeout, up to a
 		 * maximum of <code>12h</code>. The minimum value is <code>1ms</code> and the
-		 * maximum is <code>12h</code>.
+		 * maximum is <code>12h</code>. Defaults to <code>30s</code>.
 		 * <p>
 		 * API name: {@code indexer_request_timeout}
 		 */
@@ -473,7 +473,7 @@ public class Settings implements JsonpSerializable {
 		 * The initial timeout for the requests the transform sends to nodes to retrieve
 		 * checkpoint information. Each consecutive failure doubles the timeout, up to a
 		 * maximum of <code>12h</code>. The minimum value is <code>1ms</code> and the
-		 * maximum is <code>12h</code>.
+		 * maximum is <code>12h</code>. Defaults to <code>30s</code>.
 		 * <p>
 		 * API name: {@code indexer_request_timeout}
 		 */

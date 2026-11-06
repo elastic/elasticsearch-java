@@ -118,6 +118,7 @@ public class TruncateTokenFilter extends TokenFilterBase implements TokenFilterD
 		public Builder() {
 		}
 		private Builder(TruncateTokenFilter instance) {
+			super(instance);
 			this.length = instance.length;
 
 		}

@@ -297,6 +297,20 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(BulkOperationBase instance) {
+			this.id = instance.id;
+			this.index = instance.index;
+			this.routing = instance.routing;
+			this.ifPrimaryTerm = instance.ifPrimaryTerm;
+			this.ifSeqNo = instance.ifSeqNo;
+			this.version = instance.version;
+			this.versionType = instance.versionType;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

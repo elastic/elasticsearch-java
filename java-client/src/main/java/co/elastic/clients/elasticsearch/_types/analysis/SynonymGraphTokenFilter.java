@@ -92,6 +92,7 @@ public class SynonymGraphTokenFilter extends SynonymTokenFilterBase implements T
 		public Builder() {
 		}
 		private Builder(SynonymGraphTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

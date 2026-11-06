@@ -268,6 +268,7 @@ public class FieldSort implements JsonpSerializable {
 			this.unmappedType = instance.unmappedType;
 			this.numericType = instance.numericType;
 			this.format = instance.format;
+			this.field = instance.field;
 
 		}
 		/**

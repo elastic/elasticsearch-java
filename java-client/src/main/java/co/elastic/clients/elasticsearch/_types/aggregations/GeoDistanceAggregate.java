@@ -86,6 +86,7 @@ public class GeoDistanceAggregate extends RangeAggregate implements AggregateVar
 		public Builder() {
 		}
 		private Builder(GeoDistanceAggregate instance) {
+			super(instance);
 
 		}
 		@Override

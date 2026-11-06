@@ -127,6 +127,16 @@ public abstract class InferenceEndpointInfoAlibabaCloudAI extends InferenceEndpo
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(InferenceEndpointInfoAlibabaCloudAI instance) {
+			super(instance);
+			this.inferenceId = instance.inferenceId;
+			this.taskType = instance.taskType;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

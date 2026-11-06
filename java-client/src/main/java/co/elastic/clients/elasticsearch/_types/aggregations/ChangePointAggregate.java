@@ -129,6 +129,7 @@ public class ChangePointAggregate extends AggregateBase implements AggregateVari
 		public Builder() {
 		}
 		private Builder(ChangePointAggregate instance) {
+			super(instance);
 			this.type = instance.type;
 			this.bucket = instance.bucket;
 

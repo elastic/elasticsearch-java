@@ -201,6 +201,7 @@ public class HasParentQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(HasParentQuery instance) {
+			super(instance);
 			this.ignoreUnmapped = instance.ignoreUnmapped;
 			this.innerHits = instance.innerHits;
 			this.parentType = instance.parentType;

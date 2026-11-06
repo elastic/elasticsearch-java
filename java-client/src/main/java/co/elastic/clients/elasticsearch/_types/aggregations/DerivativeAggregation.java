@@ -84,6 +84,7 @@ public class DerivativeAggregation extends PipelineAggregationBase implements Ag
 		public Builder() {
 		}
 		private Builder(DerivativeAggregation instance) {
+			super(instance);
 
 		}
 		@Override

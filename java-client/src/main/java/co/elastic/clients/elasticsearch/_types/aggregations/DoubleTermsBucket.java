@@ -123,6 +123,7 @@ public class DoubleTermsBucket extends TermsBucketBase {
 		public Builder() {
 		}
 		private Builder(DoubleTermsBucket instance) {
+			super(instance);
 			this.key = instance.key;
 			this.keyAsString = instance.keyAsString;
 

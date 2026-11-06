@@ -111,6 +111,7 @@ public class SharedFileSystemRepository extends RepositoryBase implements Reposi
 		public Builder() {
 		}
 		private Builder(SharedFileSystemRepository instance) {
+			super(instance);
 			this.settings = instance.settings;
 
 		}

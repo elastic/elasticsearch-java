@@ -568,6 +568,8 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 			this.timeout = instance.timeout;
 			this.upsert = instance.upsert;
 			this.waitForActiveShards = instance.waitForActiveShards;
+			this.tDocumentSerializer = instance.tDocumentSerializer;
+			this.tPartialDocumentSerializer = instance.tPartialDocumentSerializer;
 
 		}
 		/**

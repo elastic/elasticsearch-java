@@ -115,6 +115,7 @@ public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterDe
 		public Builder() {
 		}
 		private Builder(StemmerTokenFilter instance) {
+			super(instance);
 			this.language = instance.language;
 
 		}

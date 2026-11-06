@@ -120,6 +120,15 @@ public abstract class DeleteInferenceEndpointResult extends AcknowledgedResponse
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(DeleteInferenceEndpointResult instance) {
+			super(instance);
+			this.pipelines = instance.pipelines;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

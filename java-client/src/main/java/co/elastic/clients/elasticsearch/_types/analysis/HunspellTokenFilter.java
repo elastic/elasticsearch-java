@@ -189,6 +189,7 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
 		public Builder() {
 		}
 		private Builder(HunspellTokenFilter instance) {
+			super(instance);
 			this.dedup = instance.dedup;
 			this.dictionary = instance.dictionary;
 			this.locale = instance.locale;

@@ -230,6 +230,7 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(CombinedFieldsQuery instance) {
+			super(instance);
 			this.fields = instance.fields;
 			this.query = instance.query;
 			this.autoGenerateSynonymsPhraseQuery = instance.autoGenerateSynonymsPhraseQuery;

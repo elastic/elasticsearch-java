@@ -112,6 +112,7 @@ public class TimeSeriesBucket extends MultiBucketBase {
 		public Builder() {
 		}
 		private Builder(TimeSeriesBucket instance) {
+			super(instance);
 			this.key = instance.key;
 
 		}

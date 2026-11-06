@@ -92,6 +92,7 @@ public class ClassicTokenFilter extends TokenFilterBase implements TokenFilterDe
 		public Builder() {
 		}
 		private Builder(ClassicTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

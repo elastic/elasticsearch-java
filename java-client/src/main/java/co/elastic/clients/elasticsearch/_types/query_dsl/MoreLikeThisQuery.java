@@ -514,6 +514,7 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(MoreLikeThisQuery instance) {
+			super(instance);
 			this.analyzer = instance.analyzer;
 			this.boostTerms = instance.boostTerms;
 			this.failOnUnsupportedField = instance.failOnUnsupportedField;

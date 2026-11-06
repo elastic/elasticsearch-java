@@ -123,6 +123,7 @@ public class LongTermsBucket extends TermsBucketBase {
 		public Builder() {
 		}
 		private Builder(LongTermsBucket instance) {
+			super(instance);
 			this.key = instance.key;
 			this.keyAsString = instance.keyAsString;
 

@@ -92,6 +92,7 @@ public class TrimTokenFilter extends TokenFilterBase implements TokenFilterDefin
 		public Builder() {
 		}
 		private Builder(TrimTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

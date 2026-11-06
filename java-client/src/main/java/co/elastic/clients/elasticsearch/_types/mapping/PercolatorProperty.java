@@ -92,6 +92,7 @@ public class PercolatorProperty extends PropertyBase implements PropertyVariant 
 		public Builder() {
 		}
 		private Builder(PercolatorProperty instance) {
+			super(instance);
 
 		}
 		@Override

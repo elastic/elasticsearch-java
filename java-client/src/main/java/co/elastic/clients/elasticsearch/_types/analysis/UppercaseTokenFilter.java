@@ -92,6 +92,7 @@ public class UppercaseTokenFilter extends TokenFilterBase implements TokenFilter
 		public Builder() {
 		}
 		private Builder(UppercaseTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

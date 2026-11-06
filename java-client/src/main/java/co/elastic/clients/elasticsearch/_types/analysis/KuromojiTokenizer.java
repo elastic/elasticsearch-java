@@ -236,6 +236,7 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
 		public Builder() {
 		}
 		private Builder(KuromojiTokenizer instance) {
+			super(instance);
 			this.discardPunctuation = instance.discardPunctuation;
 			this.mode = instance.mode;
 			this.nbestCost = instance.nbestCost;

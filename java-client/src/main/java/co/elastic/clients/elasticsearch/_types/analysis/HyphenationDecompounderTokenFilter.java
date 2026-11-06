@@ -166,6 +166,7 @@ public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterB
 		public Builder() {
 		}
 		private Builder(HyphenationDecompounderTokenFilter instance) {
+			super(instance);
 			this.hyphenationPatternsPath = instance.hyphenationPatternsPath;
 			this.noSubMatches = instance.noSubMatches;
 			this.noOverlappingMatches = instance.noOverlappingMatches;

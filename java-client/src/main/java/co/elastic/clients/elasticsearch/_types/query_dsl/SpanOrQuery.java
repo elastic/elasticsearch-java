@@ -124,6 +124,7 @@ public class SpanOrQuery extends QueryBase implements SpanQueryVariant, QueryVar
 		public Builder() {
 		}
 		private Builder(SpanOrQuery instance) {
+			super(instance);
 			this.clauses = instance.clauses;
 
 		}

@@ -193,6 +193,7 @@ public class VariableWidthHistogramBucket extends MultiBucketBase {
 		public Builder() {
 		}
 		private Builder(VariableWidthHistogramBucket instance) {
+			super(instance);
 			this.min = instance.min;
 			this.key = instance.key;
 			this.max = instance.max;

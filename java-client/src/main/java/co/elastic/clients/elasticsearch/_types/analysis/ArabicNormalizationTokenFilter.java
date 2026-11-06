@@ -93,6 +93,7 @@ public class ArabicNormalizationTokenFilter extends TokenFilterBase implements T
 		public Builder() {
 		}
 		private Builder(ArabicNormalizationTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

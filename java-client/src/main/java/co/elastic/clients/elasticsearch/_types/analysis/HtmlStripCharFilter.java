@@ -120,6 +120,7 @@ public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDef
 		public Builder() {
 		}
 		private Builder(HtmlStripCharFilter instance) {
+			super(instance);
 			this.escapedTags = instance.escapedTags;
 
 		}

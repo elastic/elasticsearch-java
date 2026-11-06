@@ -348,6 +348,7 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 		public Builder() {
 		}
 		private Builder(TermSuggester instance) {
+			super(instance);
 			this.lowercaseTerms = instance.lowercaseTerms;
 			this.maxEdits = instance.maxEdits;
 			this.maxInspections = instance.maxInspections;

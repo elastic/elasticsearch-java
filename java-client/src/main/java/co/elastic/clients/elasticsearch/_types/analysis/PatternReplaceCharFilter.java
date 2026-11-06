@@ -151,6 +151,7 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
 		public Builder() {
 		}
 		private Builder(PatternReplaceCharFilter instance) {
+			super(instance);
 			this.flags = instance.flags;
 			this.pattern = instance.pattern;
 			this.replacement = instance.replacement;

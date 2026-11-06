@@ -134,6 +134,7 @@ public class HistogramProperty extends PropertyBase implements PropertyVariant {
 		public Builder() {
 		}
 		private Builder(HistogramProperty instance) {
+			super(instance);
 			this.ignoreMalformed = instance.ignoreMalformed;
 			this.timeSeriesMetric = instance.timeSeriesMetric;
 
