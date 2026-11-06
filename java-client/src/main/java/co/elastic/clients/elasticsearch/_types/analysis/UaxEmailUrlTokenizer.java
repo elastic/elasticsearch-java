@@ -115,6 +115,7 @@ public class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerDefi
 		public Builder() {
 		}
 		private Builder(UaxEmailUrlTokenizer instance) {
+			super(instance);
 			this.maxTokenLength = instance.maxTokenLength;
 
 		}

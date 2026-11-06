@@ -121,6 +121,7 @@ public class PercentilesBucketAggregation extends PipelineAggregationBase implem
 		public Builder() {
 		}
 		private Builder(PercentilesBucketAggregation instance) {
+			super(instance);
 			this.percents = instance.percents;
 
 		}

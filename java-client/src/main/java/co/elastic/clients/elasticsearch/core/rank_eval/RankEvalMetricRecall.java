@@ -80,6 +80,7 @@ public class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {
 		public Builder() {
 		}
 		private Builder(RankEvalMetricRecall instance) {
+			super(instance);
 
 		}
 		@Override

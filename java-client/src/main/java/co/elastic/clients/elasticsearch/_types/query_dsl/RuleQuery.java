@@ -166,6 +166,7 @@ public class RuleQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(RuleQuery instance) {
+			super(instance);
 			this.organic = instance.organic;
 			this.rulesetIds = instance.rulesetIds;
 			this.rulesetId = instance.rulesetId;

@@ -93,6 +93,7 @@ public class BengaliNormalizationTokenFilter extends TokenFilterBase implements 
 		public Builder() {
 		}
 		private Builder(BengaliNormalizationTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

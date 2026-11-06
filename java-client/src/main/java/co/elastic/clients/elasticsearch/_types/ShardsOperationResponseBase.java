@@ -122,6 +122,14 @@ public abstract class ShardsOperationResponseBase implements JsonpSerializable {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(ShardsOperationResponseBase instance) {
+			this.shards = instance.shards;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

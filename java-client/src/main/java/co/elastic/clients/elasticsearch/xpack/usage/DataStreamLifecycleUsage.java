@@ -227,6 +227,7 @@ public class DataStreamLifecycleUsage extends Base {
 		public Builder() {
 		}
 		private Builder(DataStreamLifecycleUsage instance) {
+			super(instance);
 			this.count = instance.count;
 			this.defaultRolloverUsed = instance.defaultRolloverUsed;
 			this.dataRetention = instance.dataRetention;

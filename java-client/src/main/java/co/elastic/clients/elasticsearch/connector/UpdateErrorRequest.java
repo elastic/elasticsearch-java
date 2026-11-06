@@ -150,6 +150,7 @@ public class UpdateErrorRequest extends RequestBase implements JsonpSerializable
 		private Builder(UpdateErrorRequest instance) {
 			this.connectorId = instance.connectorId;
 			this.error = instance.error;
+			this.isExpNullError = instance.isExpNullError;
 
 		}
 		/**

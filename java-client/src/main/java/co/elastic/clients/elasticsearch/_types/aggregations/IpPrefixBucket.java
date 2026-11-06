@@ -154,6 +154,7 @@ public class IpPrefixBucket extends MultiBucketBase {
 		public Builder() {
 		}
 		private Builder(IpPrefixBucket instance) {
+			super(instance);
 			this.isIpv6 = instance.isIpv6;
 			this.key = instance.key;
 			this.prefixLength = instance.prefixLength;

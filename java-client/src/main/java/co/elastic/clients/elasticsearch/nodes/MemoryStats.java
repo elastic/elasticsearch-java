@@ -553,6 +553,27 @@ public class MemoryStats implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(MemoryStats instance) {
+			this.adjustedTotal = instance.adjustedTotal;
+			this.adjustedTotalInBytes = instance.adjustedTotalInBytes;
+			this.resident = instance.resident;
+			this.residentInBytes = instance.residentInBytes;
+			this.share = instance.share;
+			this.shareInBytes = instance.shareInBytes;
+			this.totalVirtual = instance.totalVirtual;
+			this.totalVirtualInBytes = instance.totalVirtualInBytes;
+			this.total = instance.total;
+			this.totalInBytes = instance.totalInBytes;
+			this.free = instance.free;
+			this.freeInBytes = instance.freeInBytes;
+			this.used = instance.used;
+			this.usedInBytes = instance.usedInBytes;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

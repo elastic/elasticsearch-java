@@ -113,6 +113,7 @@ public class ExponentialHistogramProperty extends PropertyBase implements Proper
 		public Builder() {
 		}
 		private Builder(ExponentialHistogramProperty instance) {
+			super(instance);
 			this.timeSeriesMetric = instance.timeSeriesMetric;
 
 		}

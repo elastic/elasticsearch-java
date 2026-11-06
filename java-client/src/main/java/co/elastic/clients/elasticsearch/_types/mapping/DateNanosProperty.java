@@ -258,6 +258,7 @@ public class DateNanosProperty extends DocValuesPropertyBase implements Property
 		public Builder() {
 		}
 		private Builder(DateNanosProperty instance) {
+			super(instance);
 			this.boost = instance.boost;
 			this.format = instance.format;
 			this.ignoreMalformed = instance.ignoreMalformed;

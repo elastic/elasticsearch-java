@@ -115,6 +115,14 @@ public abstract class TokenizerBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(TokenizerBase instance) {
+			this.version = instance.version;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

@@ -305,6 +305,18 @@ public abstract class ProcessorBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(ProcessorBase instance) {
+			this.description = instance.description;
+			this.if_ = instance.if_;
+			this.ignoreFailure = instance.ignoreFailure;
+			this.onFailure = instance.onFailure;
+			this.tag = instance.tag;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

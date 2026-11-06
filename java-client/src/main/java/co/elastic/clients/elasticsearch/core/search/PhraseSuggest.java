@@ -115,6 +115,7 @@ public class PhraseSuggest extends SuggestBase implements SuggestionVariant {
 		public Builder() {
 		}
 		private Builder(PhraseSuggest instance) {
+			super(instance);
 			this.options = instance.options;
 
 		}

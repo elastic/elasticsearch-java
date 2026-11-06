@@ -197,6 +197,7 @@ public class TokenCountProperty extends DocValuesPropertyBase implements Propert
 		public Builder() {
 		}
 		private Builder(TokenCountProperty instance) {
+			super(instance);
 			this.analyzer = instance.analyzer;
 			this.boost = instance.boost;
 			this.index = instance.index;

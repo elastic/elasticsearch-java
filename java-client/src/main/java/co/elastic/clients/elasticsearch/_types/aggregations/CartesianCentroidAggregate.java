@@ -131,6 +131,7 @@ public class CartesianCentroidAggregate extends AggregateBase implements Aggrega
 		public Builder() {
 		}
 		private Builder(CartesianCentroidAggregate instance) {
+			super(instance);
 			this.count = instance.count;
 			this.location = instance.location;
 

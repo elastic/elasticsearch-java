@@ -115,6 +115,7 @@ public class WatcherWatchTriggerSchedule extends Counter {
 		public Builder() {
 		}
 		private Builder(WatcherWatchTriggerSchedule instance) {
+			super(instance);
 			this.cron = instance.cron;
 			this.all = instance.all;
 

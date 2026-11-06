@@ -153,6 +153,15 @@ public abstract class QueryBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(QueryBase instance) {
+			this.boost = instance.boost;
+			this.queryName = instance.queryName;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

@@ -708,6 +708,24 @@ public class RoleDescriptor implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(RoleDescriptor instance) {
+			this.cluster = instance.cluster;
+			this.indices = instance.indices;
+			this.remoteIndices = instance.remoteIndices;
+			this.remoteCluster = instance.remoteCluster;
+			this.global = instance.global;
+			this.applications = instance.applications;
+			this.metadata = instance.metadata;
+			this.runAs = instance.runAs;
+			this.description = instance.description;
+			this.restriction = instance.restriction;
+			this.transientMetadata = instance.transientMetadata;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

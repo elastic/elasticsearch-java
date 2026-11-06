@@ -86,6 +86,7 @@ public class GeoDecayFunction extends DecayFunctionBase<GeoLocation, String> imp
 		public Builder() {
 		}
 		private Builder(GeoDecayFunction instance) {
+			super(instance);
 
 		}
 		@Override

@@ -263,6 +263,7 @@ public class DiversifyRetriever extends RetrieverBase implements RetrieverVarian
 		public Builder() {
 		}
 		private Builder(DiversifyRetriever instance) {
+			super(instance);
 			this.type = instance.type;
 			this.field = instance.field;
 			this.retriever = instance.retriever;

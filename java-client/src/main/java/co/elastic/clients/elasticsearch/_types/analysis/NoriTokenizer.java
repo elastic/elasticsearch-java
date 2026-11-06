@@ -178,6 +178,7 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
 		public Builder() {
 		}
 		private Builder(NoriTokenizer instance) {
+			super(instance);
 			this.decompoundMode = instance.decompoundMode;
 			this.discardPunctuation = instance.discardPunctuation;
 			this.userDictionary = instance.userDictionary;

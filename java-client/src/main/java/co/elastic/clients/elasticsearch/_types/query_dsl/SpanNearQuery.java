@@ -171,6 +171,7 @@ public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryV
 		public Builder() {
 		}
 		private Builder(SpanNearQuery instance) {
+			super(instance);
 			this.clauses = instance.clauses;
 			this.inOrder = instance.inOrder;
 			this.slop = instance.slop;

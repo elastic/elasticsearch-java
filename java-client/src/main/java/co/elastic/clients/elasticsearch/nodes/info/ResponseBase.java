@@ -151,6 +151,16 @@ public abstract class ResponseBase extends NodesResponseBase {
 			return nodes(key, fn.apply(new NodeInfo.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(ResponseBase instance) {
+			super(instance);
+			this.clusterName = instance.clusterName;
+			this.nodes = instance.nodes;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

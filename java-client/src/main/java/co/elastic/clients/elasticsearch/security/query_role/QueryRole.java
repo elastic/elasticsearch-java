@@ -127,6 +127,7 @@ public class QueryRole extends RoleDescriptor {
 		public Builder() {
 		}
 		private Builder(QueryRole instance) {
+			super(instance);
 			this.sort = instance.sort;
 			this.name = instance.name;
 

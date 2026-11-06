@@ -81,6 +81,7 @@ public class RankEvalMetricMeanReciprocalRank extends RankEvalMetricRatingTresho
 		public Builder() {
 		}
 		private Builder(RankEvalMetricMeanReciprocalRank instance) {
+			super(instance);
 
 		}
 		@Override

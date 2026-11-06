@@ -332,6 +332,7 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 		public Builder() {
 		}
 		private Builder(IcuCollationTokenFilter instance) {
+			super(instance);
 			this.alternate = instance.alternate;
 			this.casefirst = instance.casefirst;
 			this.caselevel = instance.caselevel;

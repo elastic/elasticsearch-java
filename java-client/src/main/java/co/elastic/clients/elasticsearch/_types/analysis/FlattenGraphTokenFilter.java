@@ -92,6 +92,7 @@ public class FlattenGraphTokenFilter extends TokenFilterBase implements TokenFil
 		public Builder() {
 		}
 		private Builder(FlattenGraphTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

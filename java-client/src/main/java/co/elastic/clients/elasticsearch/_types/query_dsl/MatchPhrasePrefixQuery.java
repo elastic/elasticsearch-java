@@ -226,11 +226,13 @@ public class MatchPhrasePrefixQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(MatchPhrasePrefixQuery instance) {
+			super(instance);
 			this.analyzer = instance.analyzer;
 			this.maxExpansions = instance.maxExpansions;
 			this.query = instance.query;
 			this.slop = instance.slop;
 			this.zeroTermsQuery = instance.zeroTermsQuery;
+			this.field = instance.field;
 
 		}
 		/**

@@ -208,6 +208,7 @@ public class RRFRetriever extends RetrieverBase implements RetrieverVariant {
 		public Builder() {
 		}
 		private Builder(RRFRetriever instance) {
+			super(instance);
 			this.retrievers = instance.retrievers;
 			this.rankConstant = instance.rankConstant;
 			this.rankWindowSize = instance.rankWindowSize;

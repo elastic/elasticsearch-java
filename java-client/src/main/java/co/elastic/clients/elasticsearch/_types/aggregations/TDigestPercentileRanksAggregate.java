@@ -85,6 +85,7 @@ public class TDigestPercentileRanksAggregate extends PercentilesAggregateBase im
 		public Builder() {
 		}
 		private Builder(TDigestPercentileRanksAggregate instance) {
+			super(instance);
 
 		}
 		@Override

@@ -167,6 +167,8 @@ public class ArrayCompareCondition implements JsonpSerializable {
 		}
 		private Builder(ArrayCompareCondition instance) {
 			this.path = instance.path;
+			this.operator = instance.operator;
+			this.params = instance.params;
 
 		}
 		/**

@@ -142,6 +142,7 @@ public class DataframeAnalysisRegression extends DataframeAnalysisBase implement
 		public Builder() {
 		}
 		private Builder(DataframeAnalysisRegression instance) {
+			super(instance);
 			this.lossFunction = instance.lossFunction;
 			this.lossFunctionParameter = instance.lossFunctionParameter;
 

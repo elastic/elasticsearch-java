@@ -298,6 +298,7 @@ public class DateProperty extends DocValuesPropertyBase implements PropertyVaria
 		public Builder() {
 		}
 		private Builder(DateProperty instance) {
+			super(instance);
 			this.boost = instance.boost;
 			this.fielddata = instance.fielddata;
 			this.format = instance.format;

@@ -165,6 +165,7 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 		private Builder(HitsSequence<TEvent> instance) {
 			this.events = instance.events;
 			this.joinKeys = instance.joinKeys;
+			this.tEventSerializer = instance.tEventSerializer;
 
 		}
 		/**

@@ -214,6 +214,8 @@ public class DecayPlacement<TOrigin, TScale> implements JsonpSerializable {
 			this.offset = instance.offset;
 			this.scale = instance.scale;
 			this.origin = instance.origin;
+			this.tOriginSerializer = instance.tOriginSerializer;
+			this.tScaleSerializer = instance.tScaleSerializer;
 
 		}
 		/**

@@ -134,6 +134,7 @@ public class PipelineProcessor extends ProcessorBase implements ProcessorVariant
 		public Builder() {
 		}
 		private Builder(PipelineProcessor instance) {
+			super(instance);
 			this.name = instance.name;
 			this.ignoreMissingPipeline = instance.ignoreMissingPipeline;
 

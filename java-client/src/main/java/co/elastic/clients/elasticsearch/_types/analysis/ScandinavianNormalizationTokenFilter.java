@@ -93,6 +93,7 @@ public class ScandinavianNormalizationTokenFilter extends TokenFilterBase implem
 		public Builder() {
 		}
 		private Builder(ScandinavianNormalizationTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

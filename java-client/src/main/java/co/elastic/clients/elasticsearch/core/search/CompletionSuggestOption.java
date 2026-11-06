@@ -316,6 +316,7 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 			this.score = instance.score;
 			this.source = instance.source;
 			this.text = instance.text;
+			this.tDocumentSerializer = instance.tDocumentSerializer;
 
 		}
 		/**

@@ -336,6 +336,20 @@ public class User implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(User instance) {
+			this.email = instance.email;
+			this.fullName = instance.fullName;
+			this.metadata = instance.metadata;
+			this.roles = instance.roles;
+			this.username = instance.username;
+			this.enabled = instance.enabled;
+			this.profileUid = instance.profileUid;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

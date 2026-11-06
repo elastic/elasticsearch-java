@@ -194,8 +194,10 @@ public class TermQuery extends QueryBase
 		public Builder() {
 		}
 		private Builder(TermQuery instance) {
+			super(instance);
 			this.value = instance.value;
 			this.caseInsensitive = instance.caseInsensitive;
+			this.field = instance.field;
 
 		}
 		/**

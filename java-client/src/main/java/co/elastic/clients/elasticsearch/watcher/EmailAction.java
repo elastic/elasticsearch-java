@@ -73,6 +73,7 @@ public class EmailAction extends Email {
 		public Builder() {
 		}
 		private Builder(EmailAction instance) {
+			super(instance);
 
 		}
 		@Override

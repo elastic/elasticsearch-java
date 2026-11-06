@@ -547,6 +547,26 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(HttpInputRequestDefinition instance) {
+			this.auth = instance.auth;
+			this.body = instance.body;
+			this.connectionTimeout = instance.connectionTimeout;
+			this.headers = instance.headers;
+			this.host = instance.host;
+			this.method = instance.method;
+			this.params = instance.params;
+			this.path = instance.path;
+			this.port = instance.port;
+			this.proxy = instance.proxy;
+			this.readTimeout = instance.readTimeout;
+			this.scheme = instance.scheme;
+			this.url = instance.url;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

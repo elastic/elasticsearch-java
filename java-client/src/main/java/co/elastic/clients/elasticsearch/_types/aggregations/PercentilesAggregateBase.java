@@ -103,6 +103,15 @@ public abstract class PercentilesAggregateBase extends AggregateBase {
 			return this.values(fn.apply(new Percentiles.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(PercentilesAggregateBase instance) {
+			super(instance);
+			this.values = instance.values;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

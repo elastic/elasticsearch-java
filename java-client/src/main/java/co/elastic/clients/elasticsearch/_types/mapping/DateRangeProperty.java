@@ -115,6 +115,7 @@ public class DateRangeProperty extends RangePropertyBase implements PropertyVari
 		public Builder() {
 		}
 		private Builder(DateRangeProperty instance) {
+			super(instance);
 			this.format = instance.format;
 
 		}

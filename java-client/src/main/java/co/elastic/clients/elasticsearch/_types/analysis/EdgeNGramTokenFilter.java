@@ -187,6 +187,7 @@ public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilter
 		public Builder() {
 		}
 		private Builder(EdgeNGramTokenFilter instance) {
+			super(instance);
 			this.maxGram = instance.maxGram;
 			this.minGram = instance.minGram;
 			this.side = instance.side;

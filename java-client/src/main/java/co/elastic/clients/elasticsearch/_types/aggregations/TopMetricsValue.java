@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -62,11 +63,15 @@ import javax.annotation.Nullable;
 public class TopMetricsValue implements JsonpSerializable {
 	private final String field;
 
+	@Nullable
+	private final FieldValue missing;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private TopMetricsValue(Builder builder) {
 
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.missing = builder.missing;
 
 	}
 
@@ -84,6 +89,18 @@ public class TopMetricsValue implements JsonpSerializable {
 	}
 
 	/**
+	 * The value to treat a document as having when it has no value for the field.
+	 * By default, a document that is missing any of the metrics or the sort value
+	 * is ignored.
+	 * <p>
+	 * API name: {@code missing}
+	 */
+	@Nullable
+	public final FieldValue missing() {
+		return this.missing;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -96,6 +113,12 @@ public class TopMetricsValue implements JsonpSerializable {
 
 		generator.writeKey("field");
 		generator.write(this.field);
+
+		if (this.missing != null) {
+			generator.writeKey("missing");
+			this.missing.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -113,10 +136,14 @@ public class TopMetricsValue implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TopMetricsValue> {
 		private String field;
 
+		@Nullable
+		private FieldValue missing;
+
 		public Builder() {
 		}
 		private Builder(TopMetricsValue instance) {
 			this.field = instance.field;
+			this.missing = instance.missing;
 
 		}
 		/**
@@ -126,6 +153,77 @@ public class TopMetricsValue implements JsonpSerializable {
 		 */
 		public final Builder field(String value) {
 			this.field = value;
+			return this;
+		}
+
+		/**
+		 * The value to treat a document as having when it has no value for the field.
+		 * By default, a document that is missing any of the metrics or the sort value
+		 * is ignored.
+		 * <p>
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(@Nullable FieldValue value) {
+			this.missing = value;
+			return this;
+		}
+
+		/**
+		 * The value to treat a document as having when it has no value for the field.
+		 * By default, a document that is missing any of the metrics or the sort value
+		 * is ignored.
+		 * <p>
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.missing(fn.apply(new FieldValue.Builder()).build());
+		}
+
+		/**
+		 * The value to treat a document as having when it has no value for the field.
+		 * By default, a document that is missing any of the metrics or the sort value
+		 * is ignored.
+		 * <p>
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(String value) {
+			this.missing = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * The value to treat a document as having when it has no value for the field.
+		 * By default, a document that is missing any of the metrics or the sort value
+		 * is ignored.
+		 * <p>
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(long value) {
+			this.missing = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * The value to treat a document as having when it has no value for the field.
+		 * By default, a document that is missing any of the metrics or the sort value
+		 * is ignored.
+		 * <p>
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(double value) {
+			this.missing = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * The value to treat a document as having when it has no value for the field.
+		 * By default, a document that is missing any of the metrics or the sort value
+		 * is ignored.
+		 * <p>
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(boolean value) {
+			this.missing = FieldValue.of(value);
 			return this;
 		}
 
@@ -164,6 +262,7 @@ public class TopMetricsValue implements JsonpSerializable {
 	protected static void setupTopMetricsValueDeserializer(ObjectDeserializer<TopMetricsValue.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::missing, FieldValue._DESERIALIZER, "missing");
 
 	}
 

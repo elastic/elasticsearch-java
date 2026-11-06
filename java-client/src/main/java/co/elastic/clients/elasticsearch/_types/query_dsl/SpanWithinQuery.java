@@ -135,6 +135,7 @@ public class SpanWithinQuery extends QueryBase implements SpanQueryVariant, Quer
 		public Builder() {
 		}
 		private Builder(SpanWithinQuery instance) {
+			super(instance);
 			this.big = instance.big;
 			this.little = instance.little;
 

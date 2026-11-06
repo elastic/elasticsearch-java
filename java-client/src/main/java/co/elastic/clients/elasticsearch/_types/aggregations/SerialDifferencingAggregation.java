@@ -117,6 +117,7 @@ public class SerialDifferencingAggregation extends PipelineAggregationBase imple
 		public Builder() {
 		}
 		private Builder(SerialDifferencingAggregation instance) {
+			super(instance);
 			this.lag = instance.lag;
 
 		}

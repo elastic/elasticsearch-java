@@ -138,6 +138,7 @@ public class ScoreSort implements SortOptionsVariant, JsonpSerializable {
 		}
 		private Builder(ScoreSort instance) {
 			this.order = instance.order;
+			this._sortOptionsKind = instance._sortOptionsKind;
 
 		}
 		/**

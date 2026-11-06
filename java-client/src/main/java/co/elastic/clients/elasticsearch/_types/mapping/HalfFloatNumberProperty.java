@@ -115,6 +115,7 @@ public class HalfFloatNumberProperty extends NumberPropertyBase implements Prope
 		public Builder() {
 		}
 		private Builder(HalfFloatNumberProperty instance) {
+			super(instance);
 			this.nullValue = instance.nullValue;
 
 		}

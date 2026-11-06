@@ -160,6 +160,7 @@ public class HtmlStripProcessor extends ProcessorBase implements ProcessorVarian
 		public Builder() {
 		}
 		private Builder(HtmlStripProcessor instance) {
+			super(instance);
 			this.field = instance.field;
 			this.ignoreMissing = instance.ignoreMissing;
 			this.targetField = instance.targetField;

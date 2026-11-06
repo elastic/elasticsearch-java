@@ -310,6 +310,18 @@ public class QueryRule implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(QueryRule instance) {
+			this.ruleId = instance.ruleId;
+			this.type = instance.type;
+			this.criteria = instance.criteria;
+			this.actions = instance.actions;
+			this.priority = instance.priority;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

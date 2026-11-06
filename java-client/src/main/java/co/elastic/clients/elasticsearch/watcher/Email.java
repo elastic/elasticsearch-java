@@ -523,6 +523,24 @@ public class Email implements JsonpSerializable {
 			return attachments(key, fn.apply(new EmailAttachment.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(Email instance) {
+			this.id = instance.id;
+			this.bcc = instance.bcc;
+			this.body = instance.body;
+			this.cc = instance.cc;
+			this.from = instance.from;
+			this.priority = instance.priority;
+			this.replyTo = instance.replyTo;
+			this.sentDate = instance.sentDate;
+			this.subject = instance.subject;
+			this.to = instance.to;
+			this.attachments = instance.attachments;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

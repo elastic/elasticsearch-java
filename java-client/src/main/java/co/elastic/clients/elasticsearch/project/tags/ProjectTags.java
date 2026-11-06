@@ -185,6 +185,15 @@ public abstract class ProjectTags implements JsonpSerializable {
 			return linkedProjects(key, fn.apply(new Tags.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(ProjectTags instance) {
+			this.origin = instance.origin;
+			this.linkedProjects = instance.linkedProjects;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

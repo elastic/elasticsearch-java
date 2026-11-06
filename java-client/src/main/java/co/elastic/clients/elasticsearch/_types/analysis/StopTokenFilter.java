@@ -196,6 +196,7 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 		public Builder() {
 		}
 		private Builder(StopTokenFilter instance) {
+			super(instance);
 			this.ignoreCase = instance.ignoreCase;
 			this.removeTrailing = instance.removeTrailing;
 			this.stopwords = instance.stopwords;

@@ -294,6 +294,7 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(PercolateQuery instance) {
+			super(instance);
 			this.document = instance.document;
 			this.documents = instance.documents;
 			this.field = instance.field;

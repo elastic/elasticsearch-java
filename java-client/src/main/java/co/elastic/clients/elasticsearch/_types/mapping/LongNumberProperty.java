@@ -115,6 +115,7 @@ public class LongNumberProperty extends NumberPropertyBase implements PropertyVa
 		public Builder() {
 		}
 		private Builder(LongNumberProperty instance) {
+			super(instance);
 			this.nullValue = instance.nullValue;
 
 		}

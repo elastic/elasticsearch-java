@@ -84,6 +84,7 @@ public class StatsAggregation extends FormatMetricAggregationBase implements Agg
 		public Builder() {
 		}
 		private Builder(StatsAggregation instance) {
+			super(instance);
 
 		}
 		@Override

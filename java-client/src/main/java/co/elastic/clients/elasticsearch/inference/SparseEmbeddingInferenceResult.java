@@ -142,6 +142,14 @@ public abstract class SparseEmbeddingInferenceResult implements JsonpSerializabl
 			return sparseEmbedding(fn.apply(new SparseEmbeddingResult.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(SparseEmbeddingInferenceResult instance) {
+			this.sparseEmbedding = instance.sparseEmbedding;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

@@ -132,6 +132,7 @@ public class HighlightField extends HighlightBase {
 		public Builder() {
 		}
 		private Builder(HighlightField instance) {
+			super(instance);
 			this.fragmentOffset = instance.fragmentOffset;
 			this.matchedFields = instance.matchedFields;
 

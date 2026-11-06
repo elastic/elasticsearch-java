@@ -169,6 +169,7 @@ public class SharedFileSystemRepositorySettings extends RepositorySettingsBase {
 		public Builder() {
 		}
 		private Builder(SharedFileSystemRepositorySettings instance) {
+			super(instance);
 			this.location = instance.location;
 			this.maxNumberOfSnapshots = instance.maxNumberOfSnapshots;
 			this.readonly = instance.readonly;

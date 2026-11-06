@@ -378,6 +378,7 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		public Builder() {
 		}
 		private Builder(PhraseSuggester instance) {
+			super(instance);
 			this.collate = instance.collate;
 			this.confidence = instance.confidence;
 			this.directGenerator = instance.directGenerator;

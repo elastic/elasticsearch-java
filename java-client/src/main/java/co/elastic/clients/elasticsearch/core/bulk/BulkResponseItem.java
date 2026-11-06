@@ -401,6 +401,7 @@ public class BulkResponseItem implements JsonpSerializable {
 			this.version = instance.version;
 			this.forcedRefresh = instance.forcedRefresh;
 			this.get = instance.get;
+			this.operationType = instance.operationType;
 
 		}
 		/**

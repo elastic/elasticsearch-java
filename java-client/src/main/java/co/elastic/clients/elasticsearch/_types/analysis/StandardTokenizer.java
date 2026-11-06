@@ -115,6 +115,7 @@ public class StandardTokenizer extends TokenizerBase implements TokenizerDefinit
 		public Builder() {
 		}
 		private Builder(StandardTokenizer instance) {
+			super(instance);
 			this.maxTokenLength = instance.maxTokenLength;
 
 		}

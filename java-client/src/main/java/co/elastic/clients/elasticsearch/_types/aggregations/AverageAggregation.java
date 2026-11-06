@@ -84,6 +84,7 @@ public class AverageAggregation extends FormatMetricAggregationBase implements A
 		public Builder() {
 		}
 		private Builder(AverageAggregation instance) {
+			super(instance);
 
 		}
 		@Override

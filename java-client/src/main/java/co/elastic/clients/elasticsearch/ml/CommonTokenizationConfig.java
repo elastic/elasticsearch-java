@@ -251,6 +251,18 @@ public abstract class CommonTokenizationConfig implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(CommonTokenizationConfig instance) {
+			this.doLowerCase = instance.doLowerCase;
+			this.maxSequenceLength = instance.maxSequenceLength;
+			this.span = instance.span;
+			this.truncate = instance.truncate;
+			this.withSpecialTokens = instance.withSpecialTokens;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

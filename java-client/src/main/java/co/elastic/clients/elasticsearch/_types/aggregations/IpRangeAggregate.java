@@ -84,6 +84,7 @@ public class IpRangeAggregate extends MultiBucketAggregateBase<IpRangeBucket> im
 		public Builder() {
 		}
 		private Builder(IpRangeAggregate instance) {
+			super(instance);
 
 		}
 		@Override

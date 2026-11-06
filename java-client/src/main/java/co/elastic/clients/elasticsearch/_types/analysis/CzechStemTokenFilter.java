@@ -92,6 +92,7 @@ public class CzechStemTokenFilter extends TokenFilterBase implements TokenFilter
 		public Builder() {
 		}
 		private Builder(CzechStemTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

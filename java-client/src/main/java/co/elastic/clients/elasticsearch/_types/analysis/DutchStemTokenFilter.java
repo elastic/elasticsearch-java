@@ -92,6 +92,7 @@ public class DutchStemTokenFilter extends TokenFilterBase implements TokenFilter
 		public Builder() {
 		}
 		private Builder(DutchStemTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

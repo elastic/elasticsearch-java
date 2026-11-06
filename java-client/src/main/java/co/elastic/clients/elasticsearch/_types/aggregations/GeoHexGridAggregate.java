@@ -84,6 +84,7 @@ public class GeoHexGridAggregate extends MultiBucketAggregateBase<GeoHexGridBuck
 		public Builder() {
 		}
 		private Builder(GeoHexGridAggregate instance) {
+			super(instance);
 
 		}
 		@Override

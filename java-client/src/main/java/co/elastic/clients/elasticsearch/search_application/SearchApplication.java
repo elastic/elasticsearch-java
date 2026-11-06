@@ -160,6 +160,16 @@ public class SearchApplication extends SearchApplicationParameters {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(SearchApplication instance) {
+			super(instance);
+			this.name = instance.name;
+			this.updatedAtMillis = instance.updatedAtMillis;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

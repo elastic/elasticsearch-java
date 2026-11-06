@@ -306,6 +306,7 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 		public Builder() {
 		}
 		private Builder(AttachmentProcessor instance) {
+			super(instance);
 			this.field = instance.field;
 			this.ignoreMissing = instance.ignoreMissing;
 			this.indexedChars = instance.indexedChars;

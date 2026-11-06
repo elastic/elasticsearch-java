@@ -29,6 +29,7 @@ import co.elastic.clients.elasticsearch._types.Slices;
 import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
+import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
@@ -266,6 +267,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 
 	private final List<String> routing;
 
+	private final Map<String, RuntimeField> runtimeMappings;
+
 	@Nullable
 	private final Time scroll;
 
@@ -327,6 +330,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		this.requestsPerSecond = builder.requestsPerSecond;
 		this.routeSlice = builder.routeSlice;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
+		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.scroll = builder.scroll;
 		this.scrollSize = builder.scrollSize;
 		this.searchTimeout = builder.searchTimeout;
@@ -584,6 +588,16 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
+	 * One or more runtime fields in the search request. These fields take
+	 * precedence over mapped fields with the same name.
+	 * <p>
+	 * API name: {@code runtime_mappings}
+	 */
+	public final Map<String, RuntimeField> runtimeMappings() {
+		return this.runtimeMappings;
+	}
+
+	/**
 	 * The period to retain the search context for scrolling.
 	 * <p>
 	 * API name: {@code scroll}
@@ -751,6 +765,17 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 			this.query.serialize(generator, mapper);
 
 		}
+		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
+			generator.writeKey("runtime_mappings");
+			generator.writeStartObject();
+			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.slice != null) {
 			generator.writeKey("slice");
 			this.slice.serialize(generator, mapper);
@@ -838,6 +863,9 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		private List<String> routing;
 
 		@Nullable
+		private Map<String, RuntimeField> runtimeMappings;
+
+		@Nullable
 		private Time scroll;
 
 		@Nullable
@@ -899,6 +927,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 			this.requestsPerSecond = instance.requestsPerSecond;
 			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
+			this.runtimeMappings = instance.runtimeMappings;
 			this.scroll = instance.scroll;
 			this.scrollSize = instance.scrollSize;
 			this.searchTimeout = instance.searchTimeout;
@@ -1222,6 +1251,45 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
+		 * One or more runtime fields in the search request. These fields take
+		 * precedence over mapped fields with the same name.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
+		 */
+		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
+			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
+			return this;
+		}
+
+		/**
+		 * One or more runtime fields in the search request. These fields take
+		 * precedence over mapped fields with the same name.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code>.
+		 */
+		public final Builder runtimeMappings(String key, RuntimeField value) {
+			this.runtimeMappings = _mapPut(this.runtimeMappings, key, value);
+			return this;
+		}
+
+		/**
+		 * One or more runtime fields in the search request. These fields take
+		 * precedence over mapped fields with the same name.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code> using a builder lambda.
+		 */
+		public final Builder runtimeMappings(String key,
+				Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return runtimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
+		}
+
+		/**
 		 * The period to retain the search context for scrolling.
 		 * <p>
 		 * API name: {@code scroll}
@@ -1506,6 +1574,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 
 		op.add(Builder::maxDocs, JsonpDeserializer.longDeserializer(), "max_docs");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
+				"runtime_mappings");
 		op.add(Builder::slice, SlicedScroll._DESERIALIZER, "slice");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
 

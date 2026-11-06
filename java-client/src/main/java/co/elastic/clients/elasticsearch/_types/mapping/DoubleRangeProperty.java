@@ -92,6 +92,7 @@ public class DoubleRangeProperty extends RangePropertyBase implements PropertyVa
 		public Builder() {
 		}
 		private Builder(DoubleRangeProperty instance) {
+			super(instance);
 
 		}
 		@Override

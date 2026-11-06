@@ -129,6 +129,7 @@ public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFil
 		public Builder() {
 		}
 		private Builder(IcuTransformTokenFilter instance) {
+			super(instance);
 			this.dir = instance.dir;
 			this.id = instance.id;
 

@@ -92,6 +92,7 @@ public class VersionProperty extends DocValuesPropertyBase implements PropertyVa
 		public Builder() {
 		}
 		private Builder(VersionProperty instance) {
+			super(instance);
 
 		}
 		@Override

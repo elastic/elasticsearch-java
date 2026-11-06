@@ -209,6 +209,17 @@ public abstract class WriteOperation extends BulkOperationBase {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(WriteOperation instance) {
+			super(instance);
+			this.dynamicTemplates = instance.dynamicTemplates;
+			this.pipeline = instance.pipeline;
+			this.requireAlias = instance.requireAlias;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

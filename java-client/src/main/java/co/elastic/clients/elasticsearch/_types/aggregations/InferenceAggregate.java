@@ -225,6 +225,7 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 		public Builder() {
 		}
 		private Builder(InferenceAggregate instance) {
+			super(instance);
 			this.value = instance.value;
 			this.featureImportance = instance.featureImportance;
 			this.topClasses = instance.topClasses;
