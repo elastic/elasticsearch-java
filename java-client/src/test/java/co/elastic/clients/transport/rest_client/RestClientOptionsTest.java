@@ -203,16 +203,14 @@ class RestClientOptionsTest extends Assertions {
     @Test
     void testConvertedOptionsUseSafeResponseConsumer() throws Exception {
         // Transport options set on the client builder are converted from DefaultTransportOptions
-        ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
+        try (ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
             .host("http://example.com")
             .useLegacyTransport(true)
             .transportOptions(o -> o.addHeader("Foo", "bar"))
-        );
-
-        RestClientOptions options = (RestClientOptions) esClient._transportOptions();
-        assertSame(SafeResponseConsumer.DEFAULT_FACTORY,
-            options.restClientRequestOptions().getHttpAsyncResponseConsumerFactory());
-
-        esClient._transport().close();
+        )) {
+            RestClientOptions options = (RestClientOptions) esClient._transportOptions();
+            assertSame(SafeResponseConsumer.DEFAULT_FACTORY,
+                options.restClientRequestOptions().getHttpAsyncResponseConsumerFactory());
+        }
     }
 }

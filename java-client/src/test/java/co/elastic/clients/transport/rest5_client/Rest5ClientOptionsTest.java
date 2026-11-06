@@ -203,15 +203,13 @@ class Rest5ClientOptionsTest extends Assertions {
     @Test
     void testConvertedOptionsUseSafeResponseConsumer() throws Exception {
         // Transport options set on the client builder are converted from DefaultTransportOptions
-        ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
+        try (ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
             .host("http://example.com")
             .transportOptions(o -> o.addHeader("Foo", "bar"))
-        );
-
-        Rest5ClientOptions options = (Rest5ClientOptions) esClient._transportOptions();
-        assertSame(SafeResponseConsumer.DEFAULT_FACTORY,
-            options.restClientRequestOptions().getHttpAsyncResponseConsumerFactory());
-
-        esClient._transport().close();
+        )) {
+            Rest5ClientOptions options = (Rest5ClientOptions) esClient._transportOptions();
+            assertSame(SafeResponseConsumer.DEFAULT_FACTORY,
+                options.restClientRequestOptions().getHttpAsyncResponseConsumerFactory());
+        }
     }
 }
