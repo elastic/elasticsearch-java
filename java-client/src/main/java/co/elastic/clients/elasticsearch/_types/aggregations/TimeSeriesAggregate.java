@@ -84,6 +84,7 @@ public class TimeSeriesAggregate extends MultiBucketAggregateBase<TimeSeriesBuck
 		public Builder() {
 		}
 		private Builder(TimeSeriesAggregate instance) {
+			super(instance);
 
 		}
 		@Override

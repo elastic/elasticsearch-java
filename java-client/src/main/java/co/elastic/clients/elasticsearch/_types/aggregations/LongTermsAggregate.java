@@ -99,6 +99,7 @@ public class LongTermsAggregate extends TermsAggregateBase<LongTermsBucket>
 		public Builder() {
 		}
 		private Builder(LongTermsAggregate instance) {
+			super(instance);
 
 		}
 		@Override

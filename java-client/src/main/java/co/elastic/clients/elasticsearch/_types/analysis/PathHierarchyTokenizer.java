@@ -197,6 +197,7 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
 		public Builder() {
 		}
 		private Builder(PathHierarchyTokenizer instance) {
+			super(instance);
 			this.bufferSize = instance.bufferSize;
 			this.delimiter = instance.delimiter;
 			this.replacement = instance.replacement;

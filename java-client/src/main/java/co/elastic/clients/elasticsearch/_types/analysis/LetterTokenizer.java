@@ -92,6 +92,7 @@ public class LetterTokenizer extends TokenizerBase implements TokenizerDefinitio
 		public Builder() {
 		}
 		private Builder(LetterTokenizer instance) {
+			super(instance);
 
 		}
 		@Override

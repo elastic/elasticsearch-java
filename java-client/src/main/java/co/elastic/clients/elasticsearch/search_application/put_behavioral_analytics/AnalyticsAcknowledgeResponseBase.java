@@ -101,6 +101,15 @@ public abstract class AnalyticsAcknowledgeResponseBase extends AcknowledgedRespo
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(AnalyticsAcknowledgeResponseBase instance) {
+			super(instance);
+			this.name = instance.name;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

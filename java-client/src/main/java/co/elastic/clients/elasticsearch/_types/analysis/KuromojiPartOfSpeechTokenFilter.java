@@ -120,6 +120,7 @@ public class KuromojiPartOfSpeechTokenFilter extends TokenFilterBase implements 
 		public Builder() {
 		}
 		private Builder(KuromojiPartOfSpeechTokenFilter instance) {
+			super(instance);
 			this.stoptags = instance.stoptags;
 
 		}

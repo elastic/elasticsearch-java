@@ -88,6 +88,7 @@ public class GeoDistanceFeatureQuery extends DistanceFeatureQueryBase<GeoLocatio
 		public Builder() {
 		}
 		private Builder(GeoDistanceFeatureQuery instance) {
+			super(instance);
 
 		}
 		@Override

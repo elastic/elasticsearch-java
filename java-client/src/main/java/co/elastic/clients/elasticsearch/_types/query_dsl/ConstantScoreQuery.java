@@ -113,6 +113,7 @@ public class ConstantScoreQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(ConstantScoreQuery instance) {
+			super(instance);
 			this.filter = instance.filter;
 
 		}

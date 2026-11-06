@@ -27,14 +27,17 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -64,14 +67,13 @@ import javax.annotation.Nullable;
  */
 
 public class GetViewRequest extends RequestBase {
-	@Nullable
-	private final String name;
+	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetViewRequest(Builder builder) {
 
-		this.name = builder.name;
+		this.name = ApiTypeHelper.unmodifiable(builder.name);
 
 	}
 
@@ -84,8 +86,7 @@ public class GetViewRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	@Nullable
-	public final String name() {
+	public final List<String> name() {
 		return this.name;
 	}
 
@@ -97,7 +98,7 @@ public class GetViewRequest extends RequestBase {
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<GetViewRequest> {
 		@Nullable
-		private String name;
+		private List<String> name;
 
 		public Builder() {
 		}
@@ -109,9 +110,23 @@ public class GetViewRequest extends RequestBase {
 		 * The comma-separated view names to retrieve.
 		 * <p>
 		 * API name: {@code name}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 */
-		public final Builder name(@Nullable String value) {
-			this.name = value;
+		public final Builder name(List<String> list) {
+			this.name = _listAddAll(this.name, list);
+			return this;
+		}
+
+		/**
+		 * The comma-separated view names to retrieve.
+		 * <p>
+		 * API name: {@code name}
+		 * <p>
+		 * Adds one or more values to <code>name</code>.
+		 */
+		public final Builder name(String value, String... values) {
+			this.name = _listAdd(this.name, value, values);
 			return this;
 		}
 
@@ -159,7 +174,7 @@ public class GetViewRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.name() != null)
+				if (ApiTypeHelper.isDefined(request.name()))
 					propsSet |= _name;
 
 				if (propsSet == 0) {
@@ -173,7 +188,9 @@ public class GetViewRequest extends RequestBase {
 					buf.append("/_query");
 					buf.append("/view");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name, buf);
+					SimpleEndpoint.pathEncode(
+							request.name.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -187,13 +204,14 @@ public class GetViewRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.name() != null)
+				if (ApiTypeHelper.isDefined(request.name()))
 					propsSet |= _name;
 
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_name)) {
-					params.put("name", request.name);
+					params.put("name", request.name.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},

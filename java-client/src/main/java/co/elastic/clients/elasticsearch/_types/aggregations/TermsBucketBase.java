@@ -101,6 +101,15 @@ public abstract class TermsBucketBase extends MultiBucketBase {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(TermsBucketBase instance) {
+			super(instance);
+			this.docCountErrorUpperBound = instance.docCountErrorUpperBound;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

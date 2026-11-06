@@ -292,6 +292,7 @@ public class DiscoveryNodeContent implements JsonpSerializable {
 			this.version = instance.version;
 			this.minIndexVersion = instance.minIndexVersion;
 			this.maxIndexVersion = instance.maxIndexVersion;
+			this.id = instance.id;
 
 		}
 		/**

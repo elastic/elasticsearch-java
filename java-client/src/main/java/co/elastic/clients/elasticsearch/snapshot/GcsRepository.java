@@ -110,6 +110,7 @@ public class GcsRepository extends RepositoryBase implements RepositoryVariant {
 		public Builder() {
 		}
 		private Builder(GcsRepository instance) {
+			super(instance);
 			this.settings = instance.settings;
 
 		}

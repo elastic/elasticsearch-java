@@ -203,6 +203,7 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(RankFeatureQuery instance) {
+			super(instance);
 			this.field = instance.field;
 			this.saturation = instance.saturation;
 			this.log = instance.log;

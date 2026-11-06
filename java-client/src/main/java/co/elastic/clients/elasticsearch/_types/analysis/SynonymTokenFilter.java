@@ -92,6 +92,7 @@ public class SynonymTokenFilter extends SynonymTokenFilterBase implements TokenF
 		public Builder() {
 		}
 		private Builder(SynonymTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

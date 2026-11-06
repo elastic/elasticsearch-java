@@ -213,10 +213,12 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(TermsSetQuery instance) {
+			super(instance);
 			this.minimumShouldMatch = instance.minimumShouldMatch;
 			this.minimumShouldMatchField = instance.minimumShouldMatchField;
 			this.minimumShouldMatchScript = instance.minimumShouldMatchScript;
 			this.terms = instance.terms;
+			this.field = instance.field;
 
 		}
 		/**

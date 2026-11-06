@@ -86,6 +86,7 @@ public class SumAggregate extends SingleMetricAggregateBase implements Aggregate
 		public Builder() {
 		}
 		private Builder(SumAggregate instance) {
+			super(instance);
 
 		}
 		@Override

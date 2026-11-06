@@ -156,6 +156,7 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerDefiniti
 		public Builder() {
 		}
 		private Builder(PatternTokenizer instance) {
+			super(instance);
 			this.flags = instance.flags;
 			this.group = instance.group;
 			this.pattern = instance.pattern;

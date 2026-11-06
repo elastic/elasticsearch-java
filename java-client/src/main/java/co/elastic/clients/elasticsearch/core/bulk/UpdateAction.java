@@ -289,6 +289,8 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 			this.scriptedUpsert = instance.scriptedUpsert;
 			this.source = instance.source;
 			this.upsert = instance.upsert;
+			this.tDocumentSerializer = instance.tDocumentSerializer;
+			this.tPartialDocumentSerializer = instance.tPartialDocumentSerializer;
 
 		}
 		/**

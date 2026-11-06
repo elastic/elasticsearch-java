@@ -656,6 +656,7 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(QueryStringQuery instance) {
+			super(instance);
 			this.allowLeadingWildcard = instance.allowLeadingWildcard;
 			this.analyzer = instance.analyzer;
 			this.analyzeWildcard = instance.analyzeWildcard;

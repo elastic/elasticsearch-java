@@ -132,7 +132,11 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 
 		NetworkDirection("network_direction"),
 
+		NormalizeForStream("normalize_for_stream"),
+
 		Pipeline("pipeline"),
+
+		RecoverFailureDocument("recover_failure_document"),
 
 		Redact("redact"),
 
@@ -712,6 +716,24 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	}
 
 	/**
+	 * Is this variant instance of kind {@code normalize_for_stream}?
+	 */
+	public boolean isNormalizeForStream() {
+		return _kind == Kind.NormalizeForStream;
+	}
+
+	/**
+	 * Get the {@code normalize_for_stream} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code normalize_for_stream}
+	 *             kind.
+	 */
+	public NormalizeForStreamProcessor normalizeForStream() {
+		return TaggedUnionUtils.get(this, Kind.NormalizeForStream);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code pipeline}?
 	 */
 	public boolean isPipeline() {
@@ -726,6 +748,24 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	 */
 	public PipelineProcessor pipeline() {
 		return TaggedUnionUtils.get(this, Kind.Pipeline);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code recover_failure_document}?
+	 */
+	public boolean isRecoverFailureDocument() {
+		return _kind == Kind.RecoverFailureDocument;
+	}
+
+	/**
+	 * Get the {@code recover_failure_document} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the
+	 *             {@code recover_failure_document} kind.
+	 */
+	public RecoverFailureDocumentProcessor recoverFailureDocument() {
+		return TaggedUnionUtils.get(this, Kind.RecoverFailureDocument);
 	}
 
 	/**
@@ -1364,6 +1404,17 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 			return this.networkDirection(fn.apply(new NetworkDirectionProcessor.Builder()).build());
 		}
 
+		public ObjectBuilder<Processor> normalizeForStream(NormalizeForStreamProcessor v) {
+			this._kind = Kind.NormalizeForStream;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> normalizeForStream(
+				Function<NormalizeForStreamProcessor.Builder, ObjectBuilder<NormalizeForStreamProcessor>> fn) {
+			return this.normalizeForStream(fn.apply(new NormalizeForStreamProcessor.Builder()).build());
+		}
+
 		public ObjectBuilder<Processor> pipeline(PipelineProcessor v) {
 			this._kind = Kind.Pipeline;
 			this._value = v;
@@ -1373,6 +1424,17 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		public ObjectBuilder<Processor> pipeline(
 				Function<PipelineProcessor.Builder, ObjectBuilder<PipelineProcessor>> fn) {
 			return this.pipeline(fn.apply(new PipelineProcessor.Builder()).build());
+		}
+
+		public ObjectBuilder<Processor> recoverFailureDocument(RecoverFailureDocumentProcessor v) {
+			this._kind = Kind.RecoverFailureDocument;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> recoverFailureDocument(
+				Function<RecoverFailureDocumentProcessor.Builder, ObjectBuilder<RecoverFailureDocumentProcessor>> fn) {
+			return this.recoverFailureDocument(fn.apply(new RecoverFailureDocumentProcessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Processor> redact(RedactProcessor v) {
@@ -1597,7 +1659,10 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		op.add(Builder::kv, KeyValueProcessor._DESERIALIZER, "kv");
 		op.add(Builder::lowercase, LowercaseProcessor._DESERIALIZER, "lowercase");
 		op.add(Builder::networkDirection, NetworkDirectionProcessor._DESERIALIZER, "network_direction");
+		op.add(Builder::normalizeForStream, NormalizeForStreamProcessor._DESERIALIZER, "normalize_for_stream");
 		op.add(Builder::pipeline, PipelineProcessor._DESERIALIZER, "pipeline");
+		op.add(Builder::recoverFailureDocument, RecoverFailureDocumentProcessor._DESERIALIZER,
+				"recover_failure_document");
 		op.add(Builder::redact, RedactProcessor._DESERIALIZER, "redact");
 		op.add(Builder::registeredDomain, RegisteredDomainProcessor._DESERIALIZER, "registered_domain");
 		op.add(Builder::remove, RemoveProcessor._DESERIALIZER, "remove");

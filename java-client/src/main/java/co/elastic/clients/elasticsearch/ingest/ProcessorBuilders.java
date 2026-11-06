@@ -570,6 +570,25 @@ public class ProcessorBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link NormalizeForStreamProcessor
+	 * normalize_for_stream} {@code Processor} variant.
+	 */
+	public static NormalizeForStreamProcessor.Builder normalizeForStream() {
+		return new NormalizeForStreamProcessor.Builder();
+	}
+
+	/**
+	 * Creates a Processor of the {@link NormalizeForStreamProcessor
+	 * normalize_for_stream} {@code Processor} variant.
+	 */
+	public static Processor normalizeForStream(
+			Function<NormalizeForStreamProcessor.Builder, ObjectBuilder<NormalizeForStreamProcessor>> fn) {
+		Processor.Builder builder = new Processor.Builder();
+		builder.normalizeForStream(fn.apply(new NormalizeForStreamProcessor.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link PipelineProcessor pipeline}
 	 * {@code Processor} variant.
 	 */
@@ -584,6 +603,25 @@ public class ProcessorBuilders {
 	public static Processor pipeline(Function<PipelineProcessor.Builder, ObjectBuilder<PipelineProcessor>> fn) {
 		Processor.Builder builder = new Processor.Builder();
 		builder.pipeline(fn.apply(new PipelineProcessor.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link RecoverFailureDocumentProcessor
+	 * recover_failure_document} {@code Processor} variant.
+	 */
+	public static RecoverFailureDocumentProcessor.Builder recoverFailureDocument() {
+		return new RecoverFailureDocumentProcessor.Builder();
+	}
+
+	/**
+	 * Creates a Processor of the {@link RecoverFailureDocumentProcessor
+	 * recover_failure_document} {@code Processor} variant.
+	 */
+	public static Processor recoverFailureDocument(
+			Function<RecoverFailureDocumentProcessor.Builder, ObjectBuilder<RecoverFailureDocumentProcessor>> fn) {
+		Processor.Builder builder = new Processor.Builder();
+		builder.recoverFailureDocument(fn.apply(new RecoverFailureDocumentProcessor.Builder()).build());
 		return builder.build();
 	}
 

@@ -204,6 +204,7 @@ public class UriPartsProcessor extends ProcessorBase implements ProcessorVariant
 		public Builder() {
 		}
 		private Builder(UriPartsProcessor instance) {
+			super(instance);
 			this.field = instance.field;
 			this.ignoreMissing = instance.ignoreMissing;
 			this.keepOriginal = instance.keepOriginal;

@@ -124,6 +124,7 @@ public class Slm extends Base {
 		public Builder() {
 		}
 		private Builder(Slm instance) {
+			super(instance);
 			this.policyCount = instance.policyCount;
 			this.policyStats = instance.policyStats;
 

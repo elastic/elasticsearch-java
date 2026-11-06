@@ -101,6 +101,7 @@ public class GeoHexGridBucket extends MultiBucketBase {
 		public Builder() {
 		}
 		private Builder(GeoHexGridBucket instance) {
+			super(instance);
 			this.key = instance.key;
 
 		}

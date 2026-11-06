@@ -161,6 +161,15 @@ public abstract class MultiBucketBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(MultiBucketBase instance) {
+			this.docCount = instance.docCount;
+			this.aggregations = instance.aggregations;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

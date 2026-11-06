@@ -135,6 +135,7 @@ public class GeoCentroidAggregation extends MetricAggregationBase implements Agg
 		public Builder() {
 		}
 		private Builder(GeoCentroidAggregation instance) {
+			super(instance);
 			this.count = instance.count;
 			this.location = instance.location;
 

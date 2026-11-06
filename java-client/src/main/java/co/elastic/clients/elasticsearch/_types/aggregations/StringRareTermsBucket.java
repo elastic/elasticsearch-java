@@ -101,6 +101,7 @@ public class StringRareTermsBucket extends MultiBucketBase {
 		public Builder() {
 		}
 		private Builder(StringRareTermsBucket instance) {
+			super(instance);
 			this.key = instance.key;
 
 		}

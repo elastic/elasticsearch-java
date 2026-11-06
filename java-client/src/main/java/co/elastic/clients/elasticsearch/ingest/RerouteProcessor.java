@@ -189,6 +189,7 @@ public class RerouteProcessor extends ProcessorBase implements ProcessorVariant 
 		public Builder() {
 		}
 		private Builder(RerouteProcessor instance) {
+			super(instance);
 			this.destination = instance.destination;
 			this.dataset = instance.dataset;
 			this.namespace = instance.namespace;

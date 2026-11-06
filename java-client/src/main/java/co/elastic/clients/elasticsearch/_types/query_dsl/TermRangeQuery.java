@@ -118,6 +118,8 @@ public class TermRangeQuery extends RangeQueryBase<String> implements RangeQuery
 		public Builder() {
 		}
 		private Builder(TermRangeQuery instance) {
+			super(instance);
+			this.field = instance.field;
 
 		}
 		@Override

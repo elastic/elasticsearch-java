@@ -149,6 +149,7 @@ public class JoinProcessor extends ProcessorBase implements ProcessorVariant {
 		public Builder() {
 		}
 		private Builder(JoinProcessor instance) {
+			super(instance);
 			this.field = instance.field;
 			this.separator = instance.separator;
 			this.targetField = instance.targetField;

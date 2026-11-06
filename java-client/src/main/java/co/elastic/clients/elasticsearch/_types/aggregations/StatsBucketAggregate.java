@@ -84,6 +84,7 @@ public class StatsBucketAggregate extends StatsAggregate implements AggregateVar
 		public Builder() {
 		}
 		private Builder(StatsBucketAggregate instance) {
+			super(instance);
 
 		}
 		@Override

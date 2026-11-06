@@ -106,6 +106,7 @@ public class FileSettingsIndicator extends BaseIndicator {
 		public Builder() {
 		}
 		private Builder(FileSettingsIndicator instance) {
+			super(instance);
 			this.details = instance.details;
 
 		}

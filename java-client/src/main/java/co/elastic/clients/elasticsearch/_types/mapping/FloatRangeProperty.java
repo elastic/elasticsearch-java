@@ -92,6 +92,7 @@ public class FloatRangeProperty extends RangePropertyBase implements PropertyVar
 		public Builder() {
 		}
 		private Builder(FloatRangeProperty instance) {
+			super(instance);
 
 		}
 		@Override

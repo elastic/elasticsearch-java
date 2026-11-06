@@ -119,6 +119,8 @@ public class LongNumberRangeQuery extends RangeQueryBase<Long> implements RangeQ
 		public Builder() {
 		}
 		private Builder(LongNumberRangeQuery instance) {
+			super(instance);
+			this.field = instance.field;
 
 		}
 		@Override

@@ -115,6 +115,7 @@ public class DataStreamLifecycleWithRollover extends DataStreamLifecycle {
 		public Builder() {
 		}
 		private Builder(DataStreamLifecycleWithRollover instance) {
+			super(instance);
 			this.rollover = instance.rollover;
 
 		}

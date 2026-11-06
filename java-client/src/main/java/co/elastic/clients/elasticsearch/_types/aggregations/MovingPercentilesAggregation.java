@@ -161,6 +161,7 @@ public class MovingPercentilesAggregation extends PipelineAggregationBase implem
 		public Builder() {
 		}
 		private Builder(MovingPercentilesAggregation instance) {
+			super(instance);
 			this.window = instance.window;
 			this.shift = instance.shift;
 			this.keyed = instance.keyed;

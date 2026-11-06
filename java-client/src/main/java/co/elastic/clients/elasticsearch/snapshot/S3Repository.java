@@ -115,6 +115,7 @@ public class S3Repository extends RepositoryBase implements RepositoryVariant {
 		public Builder() {
 		}
 		private Builder(S3Repository instance) {
+			super(instance);
 			this.settings = instance.settings;
 
 		}

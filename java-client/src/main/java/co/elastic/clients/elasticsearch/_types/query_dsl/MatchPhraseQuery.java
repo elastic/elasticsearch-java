@@ -201,10 +201,12 @@ public class MatchPhraseQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(MatchPhraseQuery instance) {
+			super(instance);
 			this.analyzer = instance.analyzer;
 			this.query = instance.query;
 			this.slop = instance.slop;
 			this.zeroTermsQuery = instance.zeroTermsQuery;
+			this.field = instance.field;
 
 		}
 		/**

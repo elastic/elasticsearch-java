@@ -92,6 +92,7 @@ public class KStemTokenFilter extends TokenFilterBase implements TokenFilterDefi
 		public Builder() {
 		}
 		private Builder(KStemTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

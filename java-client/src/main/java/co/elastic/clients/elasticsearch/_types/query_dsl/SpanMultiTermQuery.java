@@ -120,6 +120,7 @@ public class SpanMultiTermQuery extends QueryBase implements SpanQueryVariant, Q
 		public Builder() {
 		}
 		private Builder(SpanMultiTermQuery instance) {
+			super(instance);
 			this.match = instance.match;
 
 		}

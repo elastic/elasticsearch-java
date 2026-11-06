@@ -145,6 +145,7 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 		public Builder() {
 		}
 		private Builder(StemmerOverrideTokenFilter instance) {
+			super(instance);
 			this.rules = instance.rules;
 			this.rulesPath = instance.rulesPath;
 

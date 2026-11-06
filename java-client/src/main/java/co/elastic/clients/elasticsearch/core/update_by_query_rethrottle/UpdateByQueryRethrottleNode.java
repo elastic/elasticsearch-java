@@ -113,6 +113,7 @@ public class UpdateByQueryRethrottleNode extends BaseNode {
 		public Builder() {
 		}
 		private Builder(UpdateByQueryRethrottleNode instance) {
+			super(instance);
 			this.tasks = instance.tasks;
 
 		}

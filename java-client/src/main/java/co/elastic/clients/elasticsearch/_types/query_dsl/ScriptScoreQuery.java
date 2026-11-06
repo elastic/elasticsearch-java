@@ -152,6 +152,7 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(ScriptScoreQuery instance) {
+			super(instance);
 			this.minScore = instance.minScore;
 			this.query = instance.query;
 			this.script = instance.script;

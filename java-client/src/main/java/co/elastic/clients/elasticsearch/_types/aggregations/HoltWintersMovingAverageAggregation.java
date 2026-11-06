@@ -112,6 +112,7 @@ public class HoltWintersMovingAverageAggregation extends MovingAverageAggregatio
 		public Builder() {
 		}
 		private Builder(HoltWintersMovingAverageAggregation instance) {
+			super(instance);
 			this.settings = instance.settings;
 
 		}

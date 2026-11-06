@@ -893,6 +893,31 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(DataframeAnalysisBase instance) {
+			this.alpha = instance.alpha;
+			this.dependentVariable = instance.dependentVariable;
+			this.downsampleFactor = instance.downsampleFactor;
+			this.earlyStoppingEnabled = instance.earlyStoppingEnabled;
+			this.eta = instance.eta;
+			this.etaGrowthRatePerTree = instance.etaGrowthRatePerTree;
+			this.featureBagFraction = instance.featureBagFraction;
+			this.featureProcessors = instance.featureProcessors;
+			this.gamma = instance.gamma;
+			this.lambda = instance.lambda;
+			this.maxOptimizationRoundsPerHyperparameter = instance.maxOptimizationRoundsPerHyperparameter;
+			this.maxTrees = instance.maxTrees;
+			this.numTopFeatureImportanceValues = instance.numTopFeatureImportanceValues;
+			this.predictionFieldName = instance.predictionFieldName;
+			this.randomizeSeed = instance.randomizeSeed;
+			this.softTreeDepthLimit = instance.softTreeDepthLimit;
+			this.softTreeDepthTolerance = instance.softTreeDepthTolerance;
+			this.trainingPercent = instance.trainingPercent;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

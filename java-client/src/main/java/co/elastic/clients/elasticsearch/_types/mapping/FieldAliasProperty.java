@@ -115,6 +115,7 @@ public class FieldAliasProperty extends PropertyBase implements PropertyVariant 
 		public Builder() {
 		}
 		private Builder(FieldAliasProperty instance) {
+			super(instance);
 			this.path = instance.path;
 
 		}

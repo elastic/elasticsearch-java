@@ -92,6 +92,7 @@ public class IpRangeProperty extends RangePropertyBase implements PropertyVarian
 		public Builder() {
 		}
 		private Builder(IpRangeProperty instance) {
+			super(instance);
 
 		}
 		@Override

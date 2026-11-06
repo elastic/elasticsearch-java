@@ -94,6 +94,7 @@ public class MissingAggregate extends SingleBucketAggregateBase implements Aggre
 		public Builder() {
 		}
 		private Builder(MissingAggregate instance) {
+			super(instance);
 
 		}
 		@Override

@@ -141,6 +141,14 @@ public abstract class RerankedInferenceResult implements JsonpSerializable {
 			return rerank(fn.apply(new RankedDocument.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(RerankedInferenceResult instance) {
+			this.rerank = instance.rerank;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

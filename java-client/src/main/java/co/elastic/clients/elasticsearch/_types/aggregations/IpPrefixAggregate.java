@@ -84,6 +84,7 @@ public class IpPrefixAggregate extends MultiBucketAggregateBase<IpPrefixBucket> 
 		public Builder() {
 		}
 		private Builder(IpPrefixAggregate instance) {
+			super(instance);
 
 		}
 		@Override

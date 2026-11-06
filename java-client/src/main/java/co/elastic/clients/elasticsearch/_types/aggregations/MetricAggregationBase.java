@@ -245,6 +245,16 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(MetricAggregationBase instance) {
+			this.field = instance.field;
+			this.missing = instance.missing;
+			this.script = instance.script;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

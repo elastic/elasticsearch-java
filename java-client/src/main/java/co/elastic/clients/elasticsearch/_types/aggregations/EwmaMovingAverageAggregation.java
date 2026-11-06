@@ -111,6 +111,7 @@ public class EwmaMovingAverageAggregation extends MovingAverageAggregationBase
 		public Builder() {
 		}
 		private Builder(EwmaMovingAverageAggregation instance) {
+			super(instance);
 			this.settings = instance.settings;
 
 		}

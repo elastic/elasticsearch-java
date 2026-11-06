@@ -114,6 +114,7 @@ public class CartesianBoundsAggregate extends AggregateBase implements Aggregate
 		public Builder() {
 		}
 		private Builder(CartesianBoundsAggregate instance) {
+			super(instance);
 			this.bounds = instance.bounds;
 
 		}

@@ -120,6 +120,16 @@ public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(MultiBucketAggregateBase<TBucket> instance) {
+			super(instance);
+			this.buckets = instance.buckets;
+			this.tBucketSerializer = instance.tBucketSerializer;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

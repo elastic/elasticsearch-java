@@ -122,6 +122,7 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 		public Builder() {
 		}
 		private Builder(NoriPartOfSpeechTokenFilter instance) {
+			super(instance);
 			this.stoptags = instance.stoptags;
 
 		}

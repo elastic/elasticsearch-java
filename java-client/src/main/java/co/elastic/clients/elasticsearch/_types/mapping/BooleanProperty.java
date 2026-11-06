@@ -260,6 +260,7 @@ public class BooleanProperty extends DocValuesPropertyBase implements PropertyVa
 		public Builder() {
 		}
 		private Builder(BooleanProperty instance) {
+			super(instance);
 			this.boost = instance.boost;
 			this.fielddata = instance.fielddata;
 			this.index = instance.index;

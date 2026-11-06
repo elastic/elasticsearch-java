@@ -294,6 +294,8 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 			this.order = instance.order;
 			this.unit = instance.unit;
 			this.nested = instance.nested;
+			this.field = instance.field;
+			this.location = instance.location;
 
 		}
 		/**
