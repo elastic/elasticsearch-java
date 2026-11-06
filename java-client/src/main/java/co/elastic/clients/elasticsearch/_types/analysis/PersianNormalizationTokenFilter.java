@@ -93,6 +93,7 @@ public class PersianNormalizationTokenFilter extends TokenFilterBase implements 
 		public Builder() {
 		}
 		private Builder(PersianNormalizationTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

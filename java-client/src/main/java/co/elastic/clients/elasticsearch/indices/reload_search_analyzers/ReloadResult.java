@@ -199,6 +199,15 @@ public class ReloadResult implements JsonpSerializable {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(ReloadResult instance) {
+			this.reloadDetails = instance.reloadDetails;
+			this.shards = instance.shards;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

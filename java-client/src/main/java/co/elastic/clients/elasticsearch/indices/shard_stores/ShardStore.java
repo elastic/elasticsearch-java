@@ -207,6 +207,8 @@ public class ShardStore implements JsonpSerializable {
 			this.allocation = instance.allocation;
 			this.allocationId = instance.allocationId;
 			this.storeException = instance.storeException;
+			this.nodeId = instance.nodeId;
+			this.node = instance.node;
 
 		}
 		/**

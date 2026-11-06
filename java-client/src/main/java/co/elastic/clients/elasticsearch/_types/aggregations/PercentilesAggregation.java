@@ -192,6 +192,7 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
 		public Builder() {
 		}
 		private Builder(PercentilesAggregation instance) {
+			super(instance);
 			this.keyed = instance.keyed;
 			this.percents = instance.percents;
 			this.hdr = instance.hdr;

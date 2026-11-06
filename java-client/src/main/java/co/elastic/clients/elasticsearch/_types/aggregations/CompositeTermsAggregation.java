@@ -76,6 +76,7 @@ public class CompositeTermsAggregation extends CompositeAggregationBase {
 		public Builder() {
 		}
 		private Builder(CompositeTermsAggregation instance) {
+			super(instance);
 
 		}
 		@Override

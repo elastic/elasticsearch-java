@@ -84,6 +84,7 @@ public class AverageBucketAggregation extends PipelineAggregationBase implements
 		public Builder() {
 		}
 		private Builder(AverageBucketAggregation instance) {
+			super(instance);
 
 		}
 		@Override

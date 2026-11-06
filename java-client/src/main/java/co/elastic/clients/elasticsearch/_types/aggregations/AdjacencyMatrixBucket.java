@@ -101,6 +101,7 @@ public class AdjacencyMatrixBucket extends MultiBucketBase {
 		public Builder() {
 		}
 		private Builder(AdjacencyMatrixBucket instance) {
+			super(instance);
 			this.key = instance.key;
 
 		}

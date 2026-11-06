@@ -219,6 +219,7 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 			this.timestamp = instance.timestamp;
 			this.timingStats = instance.timingStats;
 			this.validationLoss = instance.validationLoss;
+			this._dataframeAnalyticsStatsKind = instance._dataframeAnalyticsStatsKind;
 
 		}
 		/**

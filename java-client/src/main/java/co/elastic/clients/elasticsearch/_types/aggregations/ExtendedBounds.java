@@ -156,6 +156,7 @@ public class ExtendedBounds<T> implements JsonpSerializable {
 		private Builder(ExtendedBounds<T> instance) {
 			this.max = instance.max;
 			this.min = instance.min;
+			this.tSerializer = instance.tSerializer;
 
 		}
 		/**

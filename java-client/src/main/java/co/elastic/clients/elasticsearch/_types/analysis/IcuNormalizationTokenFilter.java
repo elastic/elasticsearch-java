@@ -109,6 +109,7 @@ public class IcuNormalizationTokenFilter extends TokenFilterBase implements Toke
 		public Builder() {
 		}
 		private Builder(IcuNormalizationTokenFilter instance) {
+			super(instance);
 			this.name = instance.name;
 
 		}

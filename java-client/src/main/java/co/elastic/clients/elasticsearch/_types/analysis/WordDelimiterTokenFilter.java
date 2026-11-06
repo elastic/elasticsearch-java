@@ -92,6 +92,7 @@ public class WordDelimiterTokenFilter extends WordDelimiterTokenFilterBase imple
 		public Builder() {
 		}
 		private Builder(WordDelimiterTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

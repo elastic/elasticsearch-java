@@ -87,6 +87,7 @@ public class StringRareTermsAggregate extends MultiBucketAggregateBase<StringRar
 		public Builder() {
 		}
 		private Builder(StringRareTermsAggregate instance) {
+			super(instance);
 
 		}
 		@Override

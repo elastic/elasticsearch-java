@@ -193,6 +193,7 @@ public class TextSimilarityReranker extends RetrieverBase implements RetrieverVa
 		public Builder() {
 		}
 		private Builder(TextSimilarityReranker instance) {
+			super(instance);
 			this.retriever = instance.retriever;
 			this.rankWindowSize = instance.rankWindowSize;
 			this.inferenceId = instance.inferenceId;

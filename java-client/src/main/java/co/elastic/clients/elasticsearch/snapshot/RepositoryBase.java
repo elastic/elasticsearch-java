@@ -114,6 +114,14 @@ public abstract class RepositoryBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(RepositoryBase instance) {
+			this.uuid = instance.uuid;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

@@ -269,6 +269,7 @@ public class AzureRepositorySettings extends RepositorySettingsBase {
 		public Builder() {
 		}
 		private Builder(AzureRepositorySettings instance) {
+			super(instance);
 			this.basePath = instance.basePath;
 			this.client = instance.client;
 			this.container = instance.container;

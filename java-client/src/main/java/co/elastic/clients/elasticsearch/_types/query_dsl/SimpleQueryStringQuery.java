@@ -424,6 +424,7 @@ public class SimpleQueryStringQuery extends QueryBase
 		public Builder() {
 		}
 		private Builder(SimpleQueryStringQuery instance) {
+			super(instance);
 			this.analyzer = instance.analyzer;
 			this.analyzeWildcard = instance.analyzeWildcard;
 			this.autoGenerateSynonymsPhraseQuery = instance.autoGenerateSynonymsPhraseQuery;

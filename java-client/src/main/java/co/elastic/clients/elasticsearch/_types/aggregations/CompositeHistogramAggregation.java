@@ -100,6 +100,7 @@ public class CompositeHistogramAggregation extends CompositeAggregationBase {
 		public Builder() {
 		}
 		private Builder(CompositeHistogramAggregation instance) {
+			super(instance);
 			this.interval = instance.interval;
 
 		}

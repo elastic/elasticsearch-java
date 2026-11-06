@@ -101,6 +101,7 @@ public class SignificantStringTermsBucket extends SignificantTermsBucketBase {
 		public Builder() {
 		}
 		private Builder(SignificantStringTermsBucket instance) {
+			super(instance);
 			this.key = instance.key;
 
 		}

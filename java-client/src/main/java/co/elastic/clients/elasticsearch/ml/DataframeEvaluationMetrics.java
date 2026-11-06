@@ -239,6 +239,16 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(DataframeEvaluationMetrics instance) {
+			this.aucRoc = instance.aucRoc;
+			this.precision = instance.precision;
+			this.recall = instance.recall;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

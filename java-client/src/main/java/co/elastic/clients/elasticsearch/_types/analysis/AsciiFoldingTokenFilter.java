@@ -118,6 +118,7 @@ public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFil
 		public Builder() {
 		}
 		private Builder(AsciiFoldingTokenFilter instance) {
+			super(instance);
 			this.preserveOriginal = instance.preserveOriginal;
 
 		}

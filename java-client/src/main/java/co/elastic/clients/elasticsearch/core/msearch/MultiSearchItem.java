@@ -110,6 +110,7 @@ public class MultiSearchItem<TDocument> extends ResponseBody<TDocument> {
 		public Builder() {
 		}
 		private Builder(MultiSearchItem<TDocument> instance) {
+			super(instance);
 			this.status = instance.status;
 
 		}

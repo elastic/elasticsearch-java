@@ -277,6 +277,7 @@ public class RedactProcessor extends ProcessorBase implements ProcessorVariant {
 		public Builder() {
 		}
 		private Builder(RedactProcessor instance) {
+			super(instance);
 			this.field = instance.field;
 			this.patterns = instance.patterns;
 			this.patternDefinitions = instance.patternDefinitions;

@@ -176,6 +176,7 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 		public Builder() {
 		}
 		private Builder(WatchRecordStats instance) {
+			super(instance);
 			this.executionPhase = instance.executionPhase;
 			this.triggeredTime = instance.triggeredTime;
 			this.executedActions = instance.executedActions;

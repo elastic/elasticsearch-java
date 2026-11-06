@@ -139,7 +139,9 @@ public class SpanTermQuery extends QueryBase implements SpanQueryVariant, QueryV
 		public Builder() {
 		}
 		private Builder(SpanTermQuery instance) {
+			super(instance);
 			this.value = instance.value;
+			this.field = instance.field;
 
 		}
 		/**

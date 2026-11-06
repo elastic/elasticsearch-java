@@ -90,6 +90,7 @@ public class ThaiTokenizer extends TokenizerBase implements TokenizerDefinitionV
 		public Builder() {
 		}
 		private Builder(ThaiTokenizer instance) {
+			super(instance);
 
 		}
 		@Override

@@ -97,6 +97,7 @@ public class MultiTermsAggregate extends TermsAggregateBase<MultiTermsBucket>
 		public Builder() {
 		}
 		private Builder(MultiTermsAggregate instance) {
+			super(instance);
 
 		}
 		@Override

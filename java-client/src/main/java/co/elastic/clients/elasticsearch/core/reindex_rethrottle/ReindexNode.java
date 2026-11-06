@@ -110,6 +110,7 @@ public class ReindexNode extends BaseNode {
 		public Builder() {
 		}
 		private Builder(ReindexNode instance) {
+			super(instance);
 			this.tasks = instance.tasks;
 
 		}

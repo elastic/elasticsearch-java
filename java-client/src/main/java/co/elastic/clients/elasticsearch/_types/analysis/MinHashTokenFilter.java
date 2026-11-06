@@ -191,6 +191,7 @@ public class MinHashTokenFilter extends TokenFilterBase implements TokenFilterDe
 		public Builder() {
 		}
 		private Builder(MinHashTokenFilter instance) {
+			super(instance);
 			this.bucketCount = instance.bucketCount;
 			this.hashCount = instance.hashCount;
 			this.hashSetSize = instance.hashSetSize;

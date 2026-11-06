@@ -110,6 +110,7 @@ public class AzureRepository extends RepositoryBase implements RepositoryVariant
 		public Builder() {
 		}
 		private Builder(AzureRepository instance) {
+			super(instance);
 			this.settings = instance.settings;
 
 		}

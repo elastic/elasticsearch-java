@@ -163,6 +163,7 @@ public class MovingFunctionAggregation extends PipelineAggregationBase implement
 		public Builder() {
 		}
 		private Builder(MovingFunctionAggregation instance) {
+			super(instance);
 			this.script = instance.script;
 			this.shift = instance.shift;
 			this.window = instance.window;

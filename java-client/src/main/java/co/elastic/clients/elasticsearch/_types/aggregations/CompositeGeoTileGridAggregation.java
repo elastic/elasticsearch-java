@@ -128,6 +128,7 @@ public class CompositeGeoTileGridAggregation extends CompositeAggregationBase {
 		public Builder() {
 		}
 		private Builder(CompositeGeoTileGridAggregation instance) {
+			super(instance);
 			this.precision = instance.precision;
 			this.bounds = instance.bounds;
 

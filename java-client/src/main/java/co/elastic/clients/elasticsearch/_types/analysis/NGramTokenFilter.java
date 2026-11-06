@@ -163,6 +163,7 @@ public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefi
 		public Builder() {
 		}
 		private Builder(NGramTokenFilter instance) {
+			super(instance);
 			this.maxGram = instance.maxGram;
 			this.minGram = instance.minGram;
 			this.preserveOriginal = instance.preserveOriginal;

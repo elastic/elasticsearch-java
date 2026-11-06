@@ -92,6 +92,7 @@ public class BrazilianStemTokenFilter extends TokenFilterBase implements TokenFi
 		public Builder() {
 		}
 		private Builder(BrazilianStemTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

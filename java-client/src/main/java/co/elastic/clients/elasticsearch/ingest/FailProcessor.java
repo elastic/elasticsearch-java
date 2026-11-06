@@ -109,6 +109,7 @@ public class FailProcessor extends ProcessorBase implements ProcessorVariant {
 		public Builder() {
 		}
 		private Builder(FailProcessor instance) {
+			super(instance);
 			this.message = instance.message;
 
 		}

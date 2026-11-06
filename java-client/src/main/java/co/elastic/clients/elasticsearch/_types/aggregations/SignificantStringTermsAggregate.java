@@ -89,6 +89,7 @@ public class SignificantStringTermsAggregate extends SignificantTermsAggregateBa
 		public Builder() {
 		}
 		private Builder(SignificantStringTermsAggregate instance) {
+			super(instance);
 
 		}
 		@Override

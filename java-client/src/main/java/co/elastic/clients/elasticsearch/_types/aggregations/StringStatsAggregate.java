@@ -263,6 +263,7 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 		public Builder() {
 		}
 		private Builder(StringStatsAggregate instance) {
+			super(instance);
 			this.count = instance.count;
 			this.minLength = instance.minLength;
 			this.maxLength = instance.maxLength;

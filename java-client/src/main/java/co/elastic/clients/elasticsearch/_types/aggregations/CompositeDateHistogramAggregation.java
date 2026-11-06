@@ -194,6 +194,7 @@ public class CompositeDateHistogramAggregation extends CompositeAggregationBase 
 		public Builder() {
 		}
 		private Builder(CompositeDateHistogramAggregation instance) {
+			super(instance);
 			this.format = instance.format;
 			this.calendarInterval = instance.calendarInterval;
 			this.fixedInterval = instance.fixedInterval;

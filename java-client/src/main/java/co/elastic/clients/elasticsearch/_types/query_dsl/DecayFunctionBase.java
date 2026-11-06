@@ -206,6 +206,18 @@ public abstract class DecayFunctionBase<TOrigin, TScale> implements JsonpSeriali
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(DecayFunctionBase<TOrigin, TScale> instance) {
+			this.multiValueMode = instance.multiValueMode;
+			this.tOriginSerializer = instance.tOriginSerializer;
+			this.tScaleSerializer = instance.tScaleSerializer;
+			this.field = instance.field;
+			this.placement = instance.placement;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

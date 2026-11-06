@@ -131,6 +131,14 @@ public abstract class NodesResponseBase implements JsonpSerializable {
 			return this.nodeStats(fn.apply(new NodeStatistics.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(NodesResponseBase instance) {
+			this.nodeStats = instance.nodeStats;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

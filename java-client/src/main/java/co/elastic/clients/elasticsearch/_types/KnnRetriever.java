@@ -244,6 +244,7 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 		public Builder() {
 		}
 		private Builder(KnnRetriever instance) {
+			super(instance);
 			this.field = instance.field;
 			this.queryVector = instance.queryVector;
 			this.queryVectorBuilder = instance.queryVectorBuilder;

@@ -265,6 +265,19 @@ public abstract class BaseNode implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(BaseNode instance) {
+			this.attributes = instance.attributes;
+			this.host = instance.host;
+			this.ip = instance.ip;
+			this.name = instance.name;
+			this.roles = instance.roles;
+			this.transportAddress = instance.transportAddress;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

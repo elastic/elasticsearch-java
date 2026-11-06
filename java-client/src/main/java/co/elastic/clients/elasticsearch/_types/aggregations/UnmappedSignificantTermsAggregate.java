@@ -88,6 +88,7 @@ public class UnmappedSignificantTermsAggregate extends SignificantTermsAggregate
 		public Builder() {
 		}
 		private Builder(UnmappedSignificantTermsAggregate instance) {
+			super(instance);
 
 		}
 		@Override

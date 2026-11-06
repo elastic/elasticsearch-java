@@ -86,6 +86,7 @@ public class DateDecayFunction extends DecayFunctionBase<String, Time> implement
 		public Builder() {
 		}
 		private Builder(DateDecayFunction instance) {
+			super(instance);
 
 		}
 		@Override

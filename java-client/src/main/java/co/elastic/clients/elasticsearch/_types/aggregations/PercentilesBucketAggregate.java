@@ -84,6 +84,7 @@ public class PercentilesBucketAggregate extends PercentilesAggregateBase impleme
 		public Builder() {
 		}
 		private Builder(PercentilesBucketAggregate instance) {
+			super(instance);
 
 		}
 		@Override

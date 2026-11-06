@@ -97,6 +97,7 @@ public class FrozenIndices extends Base {
 		public Builder() {
 		}
 		private Builder(FrozenIndices instance) {
+			super(instance);
 			this.indicesCount = instance.indicesCount;
 
 		}

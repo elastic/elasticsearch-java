@@ -135,6 +135,7 @@ public class ScaledFloatNumberProperty extends NumberPropertyBase implements Pro
 		public Builder() {
 		}
 		private Builder(ScaledFloatNumberProperty instance) {
+			super(instance);
 			this.nullValue = instance.nullValue;
 			this.scalingFactor = instance.scalingFactor;
 

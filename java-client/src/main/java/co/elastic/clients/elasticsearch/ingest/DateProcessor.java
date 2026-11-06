@@ -225,6 +225,7 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 		public Builder() {
 		}
 		private Builder(DateProcessor instance) {
+			super(instance);
 			this.field = instance.field;
 			this.formats = instance.formats;
 			this.locale = instance.locale;

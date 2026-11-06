@@ -396,6 +396,7 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
 		public Builder() {
 		}
 		private Builder(TextProperty instance) {
+			super(instance);
 			this.analyzer = instance.analyzer;
 			this.boost = instance.boost;
 			this.eagerGlobalOrdinals = instance.eagerGlobalOrdinals;

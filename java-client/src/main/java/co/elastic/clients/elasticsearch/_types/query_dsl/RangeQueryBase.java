@@ -317,6 +317,22 @@ public abstract class RangeQueryBase<T> extends QueryBase {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(RangeQueryBase<T> instance) {
+			super(instance);
+			this.relation = instance.relation;
+			this.gt = instance.gt;
+			this.gte = instance.gte;
+			this.lt = instance.lt;
+			this.lte = instance.lte;
+			this.from = instance.from;
+			this.to = instance.to;
+			this.tSerializer = instance.tSerializer;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

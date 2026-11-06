@@ -115,6 +115,7 @@ public class WhitespaceTokenizer extends TokenizerBase implements TokenizerDefin
 		public Builder() {
 		}
 		private Builder(WhitespaceTokenizer instance) {
+			super(instance);
 			this.maxTokenLength = instance.maxTokenLength;
 
 		}

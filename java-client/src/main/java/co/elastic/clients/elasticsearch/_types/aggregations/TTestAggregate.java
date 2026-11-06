@@ -133,6 +133,7 @@ public class TTestAggregate extends AggregateBase implements AggregateVariant {
 		public Builder() {
 		}
 		private Builder(TTestAggregate instance) {
+			super(instance);
 			this.value = instance.value;
 			this.valueAsString = instance.valueAsString;
 

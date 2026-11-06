@@ -155,6 +155,15 @@ public abstract class SynonymsUpdateResult implements JsonpSerializable {
 			return this.reloadAnalyzersDetails(fn.apply(new ReloadResult.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(SynonymsUpdateResult instance) {
+			this.result = instance.result;
+			this.reloadAnalyzersDetails = instance.reloadAnalyzersDetails;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

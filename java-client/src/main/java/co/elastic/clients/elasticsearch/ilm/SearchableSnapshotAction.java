@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,6 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -66,12 +68,20 @@ public class SearchableSnapshotAction implements JsonpSerializable {
 	@Nullable
 	private final Boolean forceMergeIndex;
 
+	@Nullable
+	private final Integer totalShardsPerNode;
+
+	@Nullable
+	private final Time replicateFor;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private SearchableSnapshotAction(Builder builder) {
 
 		this.snapshotRepository = ApiTypeHelper.requireNonNull(builder.snapshotRepository, this, "snapshotRepository");
 		this.forceMergeIndex = builder.forceMergeIndex;
+		this.totalShardsPerNode = builder.totalShardsPerNode;
+		this.replicateFor = builder.replicateFor;
 
 	}
 
@@ -95,6 +105,32 @@ public class SearchableSnapshotAction implements JsonpSerializable {
 	}
 
 	/**
+	 * The maximum number of shards, including primaries and replicas, that can be
+	 * allocated to any single node for the mounted index. Must be at least 1.
+	 * <p>
+	 * API name: {@code total_shards_per_node}
+	 */
+	@Nullable
+	public final Integer totalShardsPerNode() {
+		return this.totalShardsPerNode;
+	}
+
+	/**
+	 * The period for which the mounted index keeps one replica before the replica
+	 * is removed. By default, the index is mounted without replicas. Must be
+	 * positive. Only the first <code>searchable_snapshot</code> action in a policy
+	 * may set this. It must fit before the next phase starts: for example, if this
+	 * phase has a <code>min_age</code> of 5d and the next phase has 12d, it can be
+	 * at most 7d.
+	 * <p>
+	 * API name: {@code replicate_for}
+	 */
+	@Nullable
+	public final Time replicateFor() {
+		return this.replicateFor;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -111,6 +147,16 @@ public class SearchableSnapshotAction implements JsonpSerializable {
 		if (this.forceMergeIndex != null) {
 			generator.writeKey("force_merge_index");
 			generator.write(this.forceMergeIndex);
+
+		}
+		if (this.totalShardsPerNode != null) {
+			generator.writeKey("total_shards_per_node");
+			generator.write(this.totalShardsPerNode);
+
+		}
+		if (this.replicateFor != null) {
+			generator.writeKey("replicate_for");
+			this.replicateFor.serialize(generator, mapper);
 
 		}
 
@@ -135,11 +181,19 @@ public class SearchableSnapshotAction implements JsonpSerializable {
 		@Nullable
 		private Boolean forceMergeIndex;
 
+		@Nullable
+		private Integer totalShardsPerNode;
+
+		@Nullable
+		private Time replicateFor;
+
 		public Builder() {
 		}
 		private Builder(SearchableSnapshotAction instance) {
 			this.snapshotRepository = instance.snapshotRepository;
 			this.forceMergeIndex = instance.forceMergeIndex;
+			this.totalShardsPerNode = instance.totalShardsPerNode;
+			this.replicateFor = instance.replicateFor;
 
 		}
 		/**
@@ -156,6 +210,46 @@ public class SearchableSnapshotAction implements JsonpSerializable {
 		public final Builder forceMergeIndex(@Nullable Boolean value) {
 			this.forceMergeIndex = value;
 			return this;
+		}
+
+		/**
+		 * The maximum number of shards, including primaries and replicas, that can be
+		 * allocated to any single node for the mounted index. Must be at least 1.
+		 * <p>
+		 * API name: {@code total_shards_per_node}
+		 */
+		public final Builder totalShardsPerNode(@Nullable Integer value) {
+			this.totalShardsPerNode = value;
+			return this;
+		}
+
+		/**
+		 * The period for which the mounted index keeps one replica before the replica
+		 * is removed. By default, the index is mounted without replicas. Must be
+		 * positive. Only the first <code>searchable_snapshot</code> action in a policy
+		 * may set this. It must fit before the next phase starts: for example, if this
+		 * phase has a <code>min_age</code> of 5d and the next phase has 12d, it can be
+		 * at most 7d.
+		 * <p>
+		 * API name: {@code replicate_for}
+		 */
+		public final Builder replicateFor(@Nullable Time value) {
+			this.replicateFor = value;
+			return this;
+		}
+
+		/**
+		 * The period for which the mounted index keeps one replica before the replica
+		 * is removed. By default, the index is mounted without replicas. Must be
+		 * positive. Only the first <code>searchable_snapshot</code> action in a policy
+		 * may set this. It must fit before the next phase starts: for example, if this
+		 * phase has a <code>min_age</code> of 5d and the next phase has 12d, it can be
+		 * at most 7d.
+		 * <p>
+		 * API name: {@code replicate_for}
+		 */
+		public final Builder replicateFor(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.replicateFor(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -195,6 +289,8 @@ public class SearchableSnapshotAction implements JsonpSerializable {
 
 		op.add(Builder::snapshotRepository, JsonpDeserializer.stringDeserializer(), "snapshot_repository");
 		op.add(Builder::forceMergeIndex, JsonpDeserializer.booleanDeserializer(), "force_merge_index");
+		op.add(Builder::totalShardsPerNode, JsonpDeserializer.integerDeserializer(), "total_shards_per_node");
+		op.add(Builder::replicateFor, Time._DESERIALIZER, "replicate_for");
 
 	}
 

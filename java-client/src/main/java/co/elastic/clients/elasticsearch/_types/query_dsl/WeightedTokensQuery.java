@@ -169,8 +169,10 @@ public class WeightedTokensQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(WeightedTokensQuery instance) {
+			super(instance);
 			this.tokens = instance.tokens;
 			this.pruningConfig = instance.pruningConfig;
+			this.field = instance.field;
 
 		}
 		/**

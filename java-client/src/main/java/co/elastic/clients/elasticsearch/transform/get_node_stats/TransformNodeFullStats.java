@@ -170,6 +170,15 @@ public abstract class TransformNodeFullStats implements JsonpSerializable {
 			return this.total(fn.apply(new TransformNodeStats.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(TransformNodeFullStats instance) {
+			this.total = instance.total;
+			this.nodes = instance.nodes;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

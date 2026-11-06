@@ -146,6 +146,16 @@ public abstract class SingleBucketAggregateBase extends AggregateBase {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(SingleBucketAggregateBase instance) {
+			super(instance);
+			this.docCount = instance.docCount;
+			this.aggregations = instance.aggregations;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

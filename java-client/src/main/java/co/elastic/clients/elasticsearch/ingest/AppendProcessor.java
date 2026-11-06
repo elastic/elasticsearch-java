@@ -186,6 +186,7 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		public Builder() {
 		}
 		private Builder(AppendProcessor instance) {
+			super(instance);
 			this.field = instance.field;
 			this.value = instance.value;
 			this.mediaType = instance.mediaType;

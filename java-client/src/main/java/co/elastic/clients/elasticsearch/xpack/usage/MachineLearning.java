@@ -180,6 +180,7 @@ public class MachineLearning extends Base {
 		public Builder() {
 		}
 		private Builder(MachineLearning instance) {
+			super(instance);
 			this.datafeeds = instance.datafeeds;
 			this.jobs = instance.jobs;
 			this.nodeCount = instance.nodeCount;

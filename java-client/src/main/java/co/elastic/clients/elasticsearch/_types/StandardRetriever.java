@@ -216,6 +216,7 @@ public class StandardRetriever extends RetrieverBase implements RetrieverVariant
 		public Builder() {
 		}
 		private Builder(StandardRetriever instance) {
+			super(instance);
 			this.query = instance.query;
 			this.searchAfter = instance.searchAfter;
 			this.terminateAfter = instance.terminateAfter;

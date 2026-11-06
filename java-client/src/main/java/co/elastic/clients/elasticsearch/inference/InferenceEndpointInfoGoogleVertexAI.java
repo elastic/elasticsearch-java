@@ -127,6 +127,16 @@ public abstract class InferenceEndpointInfoGoogleVertexAI extends InferenceEndpo
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(InferenceEndpointInfoGoogleVertexAI instance) {
+			super(instance);
+			this.inferenceId = instance.inferenceId;
+			this.taskType = instance.taskType;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

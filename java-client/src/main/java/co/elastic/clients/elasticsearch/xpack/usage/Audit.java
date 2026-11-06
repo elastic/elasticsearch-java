@@ -108,6 +108,7 @@ public class Audit extends FeatureToggle {
 		public Builder() {
 		}
 		private Builder(Audit instance) {
+			super(instance);
 			this.outputs = instance.outputs;
 
 		}

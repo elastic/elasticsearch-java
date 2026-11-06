@@ -20,6 +20,8 @@
 package co.elastic.clients.elasticsearch.security.get_token;
 
 import co.elastic.clients.elasticsearch.security.User;
+import co.elastic.clients.elasticsearch.security.authenticate.AuthenticateApiKey;
+import co.elastic.clients.elasticsearch.security.authenticate.ServiceToken;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -67,6 +69,12 @@ public class AuthenticatedUser extends User {
 
 	private final String authenticationType;
 
+	@Nullable
+	private final AuthenticateApiKey apiKey;
+
+	@Nullable
+	private final ServiceToken token;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private AuthenticatedUser(Builder builder) {
@@ -77,6 +85,8 @@ public class AuthenticatedUser extends User {
 		this.lookupRealm = ApiTypeHelper.requireNonNull(builder.lookupRealm, this, "lookupRealm");
 		this.authenticationProvider = builder.authenticationProvider;
 		this.authenticationType = ApiTypeHelper.requireNonNull(builder.authenticationType, this, "authenticationType");
+		this.apiKey = builder.apiKey;
+		this.token = builder.token;
 
 	}
 
@@ -113,6 +123,27 @@ public class AuthenticatedUser extends User {
 		return this.authenticationType;
 	}
 
+	/**
+	 * Present when the authenticated user is an API key.
+	 * <p>
+	 * API name: {@code api_key}
+	 */
+	@Nullable
+	public final AuthenticateApiKey apiKey() {
+		return this.apiKey;
+	}
+
+	/**
+	 * Present when the authenticated user is a service account, or authenticated
+	 * with a token.
+	 * <p>
+	 * API name: {@code token}
+	 */
+	@Nullable
+	public final ServiceToken token() {
+		return this.token;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -129,6 +160,17 @@ public class AuthenticatedUser extends User {
 		}
 		generator.writeKey("authentication_type");
 		generator.write(this.authenticationType);
+
+		if (this.apiKey != null) {
+			generator.writeKey("api_key");
+			this.apiKey.serialize(generator, mapper);
+
+		}
+		if (this.token != null) {
+			generator.writeKey("token");
+			this.token.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -148,13 +190,22 @@ public class AuthenticatedUser extends User {
 
 		private String authenticationType;
 
+		@Nullable
+		private AuthenticateApiKey apiKey;
+
+		@Nullable
+		private ServiceToken token;
+
 		public Builder() {
 		}
 		private Builder(AuthenticatedUser instance) {
+			super(instance);
 			this.authenticationRealm = instance.authenticationRealm;
 			this.lookupRealm = instance.lookupRealm;
 			this.authenticationProvider = instance.authenticationProvider;
 			this.authenticationType = instance.authenticationType;
+			this.apiKey = instance.apiKey;
+			this.token = instance.token;
 
 		}
 		/**
@@ -211,6 +262,46 @@ public class AuthenticatedUser extends User {
 			return this;
 		}
 
+		/**
+		 * Present when the authenticated user is an API key.
+		 * <p>
+		 * API name: {@code api_key}
+		 */
+		public final Builder apiKey(@Nullable AuthenticateApiKey value) {
+			this.apiKey = value;
+			return this;
+		}
+
+		/**
+		 * Present when the authenticated user is an API key.
+		 * <p>
+		 * API name: {@code api_key}
+		 */
+		public final Builder apiKey(Function<AuthenticateApiKey.Builder, ObjectBuilder<AuthenticateApiKey>> fn) {
+			return this.apiKey(fn.apply(new AuthenticateApiKey.Builder()).build());
+		}
+
+		/**
+		 * Present when the authenticated user is a service account, or authenticated
+		 * with a token.
+		 * <p>
+		 * API name: {@code token}
+		 */
+		public final Builder token(@Nullable ServiceToken value) {
+			this.token = value;
+			return this;
+		}
+
+		/**
+		 * Present when the authenticated user is a service account, or authenticated
+		 * with a token.
+		 * <p>
+		 * API name: {@code token}
+		 */
+		public final Builder token(Function<ServiceToken.Builder, ObjectBuilder<ServiceToken>> fn) {
+			return this.token(fn.apply(new ServiceToken.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -249,6 +340,8 @@ public class AuthenticatedUser extends User {
 		op.add(Builder::lookupRealm, UserRealm._DESERIALIZER, "lookup_realm");
 		op.add(Builder::authenticationProvider, AuthenticationProvider._DESERIALIZER, "authentication_provider");
 		op.add(Builder::authenticationType, JsonpDeserializer.stringDeserializer(), "authentication_type");
+		op.add(Builder::apiKey, AuthenticateApiKey._DESERIALIZER, "api_key");
+		op.add(Builder::token, ServiceToken._DESERIALIZER, "token");
 
 	}
 

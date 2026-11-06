@@ -175,6 +175,9 @@ public class TermsQuery extends QueryBase
 		public Builder() {
 		}
 		private Builder(TermsQuery instance) {
+			super(instance);
+			this.field = instance.field;
+			this.terms = instance.terms;
 
 		}
 		@Override

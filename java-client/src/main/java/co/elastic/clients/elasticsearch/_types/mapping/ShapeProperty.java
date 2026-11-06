@@ -179,6 +179,7 @@ public class ShapeProperty extends DocValuesPropertyBase implements PropertyVari
 		public Builder() {
 		}
 		private Builder(ShapeProperty instance) {
+			super(instance);
 			this.coerce = instance.coerce;
 			this.ignoreMalformed = instance.ignoreMalformed;
 			this.ignoreZValue = instance.ignoreZValue;

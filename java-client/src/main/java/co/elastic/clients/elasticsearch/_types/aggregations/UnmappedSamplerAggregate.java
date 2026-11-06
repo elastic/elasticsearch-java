@@ -84,6 +84,7 @@ public class UnmappedSamplerAggregate extends SingleBucketAggregateBase implemen
 		public Builder() {
 		}
 		private Builder(UnmappedSamplerAggregate instance) {
+			super(instance);
 
 		}
 		@Override

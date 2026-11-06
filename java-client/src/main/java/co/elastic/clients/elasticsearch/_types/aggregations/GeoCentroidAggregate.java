@@ -131,6 +131,7 @@ public class GeoCentroidAggregate extends AggregateBase implements AggregateVari
 		public Builder() {
 		}
 		private Builder(GeoCentroidAggregate instance) {
+			super(instance);
 			this.count = instance.count;
 			this.location = instance.location;
 

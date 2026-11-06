@@ -215,9 +215,12 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(GeoBoundingBoxQuery instance) {
+			super(instance);
 			this.type = instance.type;
 			this.validationMethod = instance.validationMethod;
 			this.ignoreUnmapped = instance.ignoreUnmapped;
+			this.field = instance.field;
+			this.boundingBox = instance.boundingBox;
 
 		}
 		/**

@@ -214,6 +214,15 @@ public class AutoscalingPolicy implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(AutoscalingPolicy instance) {
+			this.roles = instance.roles;
+			this.deciders = instance.deciders;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

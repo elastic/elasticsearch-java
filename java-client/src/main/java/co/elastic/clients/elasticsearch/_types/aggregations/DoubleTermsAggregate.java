@@ -99,6 +99,7 @@ public class DoubleTermsAggregate extends TermsAggregateBase<DoubleTermsBucket>
 		public Builder() {
 		}
 		private Builder(DoubleTermsAggregate instance) {
+			super(instance);
 
 		}
 		@Override
