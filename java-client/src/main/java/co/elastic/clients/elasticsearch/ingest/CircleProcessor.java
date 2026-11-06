@@ -196,6 +196,7 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 		public Builder() {
 		}
 		private Builder(CircleProcessor instance) {
+			super(instance);
 			this.errorDistance = instance.errorDistance;
 			this.field = instance.field;
 			this.ignoreMissing = instance.ignoreMissing;

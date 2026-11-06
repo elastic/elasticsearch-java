@@ -84,6 +84,7 @@ public class TDigestPercentilesAggregate extends PercentilesAggregateBase implem
 		public Builder() {
 		}
 		private Builder(TDigestPercentilesAggregate instance) {
+			super(instance);
 
 		}
 		@Override

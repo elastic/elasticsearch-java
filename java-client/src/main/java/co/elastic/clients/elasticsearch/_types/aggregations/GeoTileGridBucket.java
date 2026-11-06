@@ -101,6 +101,7 @@ public class GeoTileGridBucket extends MultiBucketBase {
 		public Builder() {
 		}
 		private Builder(GeoTileGridBucket instance) {
+			super(instance);
 			this.key = instance.key;
 
 		}

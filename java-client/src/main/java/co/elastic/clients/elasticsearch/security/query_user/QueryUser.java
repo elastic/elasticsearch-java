@@ -111,6 +111,7 @@ public class QueryUser extends User {
 		public Builder() {
 		}
 		private Builder(QueryUser instance) {
+			super(instance);
 			this.sort = instance.sort;
 
 		}

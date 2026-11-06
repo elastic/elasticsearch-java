@@ -27,7 +27,6 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -61,6 +60,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class Storage implements JsonpSerializable {
+	@Nullable
 	private final String type;
 
 	@Nullable
@@ -73,7 +73,7 @@ public class Storage implements JsonpSerializable {
 
 	private Storage(Builder builder) {
 
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = builder.type;
 		this.allowMmap = builder.allowMmap;
 		this.statsRefreshInterval = builder.statsRefreshInterval;
 
@@ -84,8 +84,9 @@ public class Storage implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code type}
+	 * API name: {@code type}
 	 */
+	@Nullable
 	public final String type() {
 		return this.type;
 	}
@@ -126,9 +127,11 @@ public class Storage implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("type");
-		generator.write(this.type);
+		if (this.type != null) {
+			generator.writeKey("type");
+			generator.write(this.type);
 
+		}
 		if (this.allowMmap != null) {
 			generator.writeKey("allow_mmap");
 			generator.write(this.allowMmap);
@@ -154,6 +157,7 @@ public class Storage implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Storage> {
+		@Nullable
 		private String type;
 
 		@Nullable
@@ -171,17 +175,17 @@ public class Storage implements JsonpSerializable {
 
 		}
 		/**
-		 * Required - API name: {@code type}
+		 * API name: {@code type}
 		 */
-		public final Builder type(String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code type}
+		 * API name: {@code type}
 		 */
-		public final Builder type(StorageType value) {
+		public final Builder type(@Nullable StorageType value) {
 			this.type = value == null ? null : value.jsonValue();
 			return this;
 		}

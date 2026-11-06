@@ -103,8 +103,8 @@ public class InferenceString implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - String which may be raw text, or the string representation of some
-	 * other data such as an image in base64.
+	 * Required - String which may be raw text, the string representation of some
+	 * other data such as an image in base64, or a URL that points to the data.
 	 * <p>
 	 * API name: {@code value}
 	 */
@@ -183,8 +183,8 @@ public class InferenceString implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - String which may be raw text, or the string representation of some
-		 * other data such as an image in base64.
+		 * Required - String which may be raw text, the string representation of some
+		 * other data such as an image in base64, or a URL that points to the data.
 		 * <p>
 		 * API name: {@code value}
 		 */

@@ -170,6 +170,7 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 		public Builder() {
 		}
 		private Builder(RemoveProcessor instance) {
+			super(instance);
 			this.field = instance.field;
 			this.keep = instance.keep;
 			this.ignoreMissing = instance.ignoreMissing;

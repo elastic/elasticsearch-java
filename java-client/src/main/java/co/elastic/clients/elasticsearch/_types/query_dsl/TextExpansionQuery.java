@@ -176,9 +176,11 @@ public class TextExpansionQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(TextExpansionQuery instance) {
+			super(instance);
 			this.modelId = instance.modelId;
 			this.modelText = instance.modelText;
 			this.pruningConfig = instance.pruningConfig;
+			this.field = instance.field;
 
 		}
 		/**

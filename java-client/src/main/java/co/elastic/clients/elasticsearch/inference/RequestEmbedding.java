@@ -141,6 +141,20 @@ public class RequestEmbedding implements JsonpSerializable {
 	 * </code>
 	 * </pre>
 	 * <p>
+	 * <code>content</code> object using the <code>url</code> format example
+	 * (available in Elasticsearch 9.6.0 and later):
+	 * 
+	 * <pre>
+	 * <code>&quot;input&quot;: {
+	 *     &quot;content&quot;: {
+	 *       &quot;type&quot;: &quot;image&quot;,
+	 *       &quot;format&quot;: &quot;url&quot;,
+	 *       &quot;value&quot;: &quot;https://example.com/image.jpg&quot;
+	 *     }
+	 *   }
+	 * </code>
+	 * </pre>
+	 * <p>
 	 * Multiple items in one <code>content</code> object example (available in
 	 * Elasticsearch 9.5.0 and later):
 	 * 
@@ -321,6 +335,20 @@ public class RequestEmbedding implements JsonpSerializable {
 		 * </code>
 		 * </pre>
 		 * <p>
+		 * <code>content</code> object using the <code>url</code> format example
+		 * (available in Elasticsearch 9.6.0 and later):
+		 * 
+		 * <pre>
+		 * <code>&quot;input&quot;: {
+		 *     &quot;content&quot;: {
+		 *       &quot;type&quot;: &quot;image&quot;,
+		 *       &quot;format&quot;: &quot;url&quot;,
+		 *       &quot;value&quot;: &quot;https://example.com/image.jpg&quot;
+		 *     }
+		 *   }
+		 * </code>
+		 * </pre>
+		 * <p>
 		 * Multiple items in one <code>content</code> object example (available in
 		 * Elasticsearch 9.5.0 and later):
 		 * 
@@ -405,6 +433,20 @@ public class RequestEmbedding implements JsonpSerializable {
 		 *     }
 		 *   }
 		 * ]
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * <code>content</code> object using the <code>url</code> format example
+		 * (available in Elasticsearch 9.6.0 and later):
+		 * 
+		 * <pre>
+		 * <code>&quot;input&quot;: {
+		 *     &quot;content&quot;: {
+		 *       &quot;type&quot;: &quot;image&quot;,
+		 *       &quot;format&quot;: &quot;url&quot;,
+		 *       &quot;value&quot;: &quot;https://example.com/image.jpg&quot;
+		 *     }
+		 *   }
 		 * </code>
 		 * </pre>
 		 * <p>

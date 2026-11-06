@@ -84,6 +84,7 @@ public class TerminateProcessor extends ProcessorBase implements ProcessorVarian
 		public Builder() {
 		}
 		private Builder(TerminateProcessor instance) {
+			super(instance);
 
 		}
 		@Override

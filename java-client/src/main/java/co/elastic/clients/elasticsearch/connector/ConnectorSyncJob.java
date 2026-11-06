@@ -596,6 +596,31 @@ public class ConnectorSyncJob implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(ConnectorSyncJob instance) {
+			this.cancelationRequestedAt = instance.cancelationRequestedAt;
+			this.canceledAt = instance.canceledAt;
+			this.completedAt = instance.completedAt;
+			this.connector = instance.connector;
+			this.createdAt = instance.createdAt;
+			this.deletedDocumentCount = instance.deletedDocumentCount;
+			this.error = instance.error;
+			this.id = instance.id;
+			this.indexedDocumentCount = instance.indexedDocumentCount;
+			this.indexedDocumentVolume = instance.indexedDocumentVolume;
+			this.jobType = instance.jobType;
+			this.lastSeen = instance.lastSeen;
+			this.metadata = instance.metadata;
+			this.startedAt = instance.startedAt;
+			this.status = instance.status;
+			this.totalDocumentCount = instance.totalDocumentCount;
+			this.triggerMethod = instance.triggerMethod;
+			this.workerHostname = instance.workerHostname;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

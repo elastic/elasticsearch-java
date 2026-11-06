@@ -86,6 +86,7 @@ public class FrequentItemSetsAggregate extends MultiBucketAggregateBase<Frequent
 		public Builder() {
 		}
 		private Builder(FrequentItemSetsAggregate instance) {
+			super(instance);
 
 		}
 		@Override

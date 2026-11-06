@@ -122,6 +122,7 @@ public class HistogramBucket extends MultiBucketBase {
 		public Builder() {
 		}
 		private Builder(HistogramBucket instance) {
+			super(instance);
 			this.keyAsString = instance.keyAsString;
 			this.key = instance.key;
 

@@ -97,6 +97,7 @@ public class FiltersAggregate extends MultiBucketAggregateBase<FiltersBucket>
 		public Builder() {
 		}
 		private Builder(FiltersAggregate instance) {
+			super(instance);
 
 		}
 		@Override

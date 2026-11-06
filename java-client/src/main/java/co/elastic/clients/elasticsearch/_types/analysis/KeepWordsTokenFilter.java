@@ -174,6 +174,7 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
 		public Builder() {
 		}
 		private Builder(KeepWordsTokenFilter instance) {
+			super(instance);
 			this.keepWords = instance.keepWords;
 			this.keepWordsCase = instance.keepWordsCase;
 			this.keepWordsPath = instance.keepWordsPath;

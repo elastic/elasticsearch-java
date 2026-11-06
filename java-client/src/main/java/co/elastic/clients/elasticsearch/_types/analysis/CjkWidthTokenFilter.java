@@ -92,6 +92,7 @@ public class CjkWidthTokenFilter extends TokenFilterBase implements TokenFilterD
 		public Builder() {
 		}
 		private Builder(CjkWidthTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

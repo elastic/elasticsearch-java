@@ -179,6 +179,7 @@ public class PinnedRetriever extends RetrieverBase implements RetrieverVariant {
 		public Builder() {
 		}
 		private Builder(PinnedRetriever instance) {
+			super(instance);
 			this.retriever = instance.retriever;
 			this.ids = instance.ids;
 			this.docs = instance.docs;

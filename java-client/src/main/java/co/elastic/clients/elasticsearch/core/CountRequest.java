@@ -130,8 +130,7 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Query query;
 
-	@Nullable
-	private final String routeSlice;
+	private final List<String> routeSlice;
 
 	private final List<String> routing;
 
@@ -159,7 +158,7 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		this.projectRouting = builder.projectRouting;
 		this.q = builder.q;
 		this.query = builder.query;
-		this.routeSlice = builder.routeSlice;
+		this.routeSlice = ApiTypeHelper.unmodifiable(builder.routeSlice);
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.stats = ApiTypeHelper.unmodifiable(builder.stats);
 		this.terminateAfter = builder.terminateAfter;
@@ -353,16 +352,16 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The slice identifier used to route the operation to a specific slice. Use the
-	 * special value <code>_all</code> to target all slices without restricting to a
-	 * routing value. Required when <code>index.slice.enabled</code> is
-	 * <code>true</code> for the target index; not allowed when
-	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * The slice identifiers for a slice-enabled index
+	 * (<code>index.slice.enabled</code> set to <code>true</code>): a single slice,
+	 * a comma-separated list such as <code>tenant-a,tenant-b</code>, or
+	 * <code>_all</code> to target all slices. When omitted, all slices are
+	 * targeted. Indices that are not slice-enabled match no documents when a slice
+	 * is specified.
 	 * <p>
 	 * API name: {@code _slice}
 	 */
-	@Nullable
-	public final String routeSlice() {
+	public final List<String> routeSlice() {
 		return this.routeSlice;
 	}
 
@@ -481,7 +480,7 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		private Query query;
 
 		@Nullable
-		private String routeSlice;
+		private List<String> routeSlice;
 
 		@Nullable
 		private List<String> routing;
@@ -755,16 +754,36 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The slice identifier used to route the operation to a specific slice. Use the
-		 * special value <code>_all</code> to target all slices without restricting to a
-		 * routing value. Required when <code>index.slice.enabled</code> is
-		 * <code>true</code> for the target index; not allowed when
-		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * The slice identifiers for a slice-enabled index
+		 * (<code>index.slice.enabled</code> set to <code>true</code>): a single slice,
+		 * a comma-separated list such as <code>tenant-a,tenant-b</code>, or
+		 * <code>_all</code> to target all slices. When omitted, all slices are
+		 * targeted. Indices that are not slice-enabled match no documents when a slice
+		 * is specified.
 		 * <p>
 		 * API name: {@code _slice}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routeSlice</code>.
 		 */
-		public final Builder routeSlice(@Nullable String value) {
-			this.routeSlice = value;
+		public final Builder routeSlice(List<String> list) {
+			this.routeSlice = _listAddAll(this.routeSlice, list);
+			return this;
+		}
+
+		/**
+		 * The slice identifiers for a slice-enabled index
+		 * (<code>index.slice.enabled</code> set to <code>true</code>): a single slice,
+		 * a comma-separated list such as <code>tenant-a,tenant-b</code>, or
+		 * <code>_all</code> to target all slices. When omitted, all slices are
+		 * targeted. Indices that are not slice-enabled match no documents when a slice
+		 * is specified.
+		 * <p>
+		 * API name: {@code _slice}
+		 * <p>
+		 * Adds one or more values to <code>routeSlice</code>.
+		 */
+		public final Builder routeSlice(String value, String... values) {
+			this.routeSlice = _listAdd(this.routeSlice, value, values);
 			return this;
 		}
 
@@ -895,11 +914,14 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
+				final int _routeSlice = 1 << 1;
 
 				int propsSet = 0;
 
 				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
+				if (ApiTypeHelper.isDefined(request.routeSlice()))
+					propsSet |= _routeSlice;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -914,6 +936,17 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 					buf.append("/_count");
 					return buf.toString();
 				}
+				if (propsSet == (_index | _routeSlice)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.routeSlice.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
+					buf.append("/_count");
+					return buf.toString();
+				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
@@ -922,16 +955,25 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				final int _index = 1 << 0;
+				final int _routeSlice = 1 << 1;
 
 				int propsSet = 0;
 
 				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
+				if (ApiTypeHelper.isDefined(request.routeSlice()))
+					propsSet |= _routeSlice;
 
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_index)) {
 					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+				}
+				if (propsSet == (_index | _routeSlice)) {
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+					params.put("routeSlice", request.routeSlice.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
 				}
 				return params;
@@ -955,9 +997,6 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.terminateAfter != null) {
 					params.put("terminate_after", String.valueOf(request.terminateAfter));
-				}
-				if (request.routeSlice != null) {
-					params.put("_slice", request.routeSlice);
 				}
 				if (request.lenient != null) {
 					params.put("lenient", String.valueOf(request.lenient));

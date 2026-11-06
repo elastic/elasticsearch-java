@@ -84,6 +84,7 @@ public class HdrPercentileRanksAggregate extends PercentilesAggregateBase implem
 		public Builder() {
 		}
 		private Builder(HdrPercentileRanksAggregate instance) {
+			super(instance);
 
 		}
 		@Override

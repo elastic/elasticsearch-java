@@ -134,6 +134,7 @@ public class FrequentItemSetsBucket extends MultiBucketBase {
 		public Builder() {
 		}
 		private Builder(FrequentItemSetsBucket instance) {
+			super(instance);
 			this.key = instance.key;
 			this.support = instance.support;
 

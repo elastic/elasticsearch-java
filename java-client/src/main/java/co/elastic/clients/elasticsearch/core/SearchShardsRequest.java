@@ -95,8 +95,7 @@ public class SearchShardsRequest extends RequestBase {
 	@Nullable
 	private final String preference;
 
-	@Nullable
-	private final String routeSlice;
+	private final List<String> routeSlice;
 
 	private final List<String> routing;
 
@@ -111,7 +110,7 @@ public class SearchShardsRequest extends RequestBase {
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
 		this.preference = builder.preference;
-		this.routeSlice = builder.routeSlice;
+		this.routeSlice = ApiTypeHelper.unmodifiable(builder.routeSlice);
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 
 	}
@@ -211,14 +210,11 @@ public class SearchShardsRequest extends RequestBase {
 	 * The slice identifier for routing the search to a specific slice. When
 	 * provided, the request is limited to shards that match the given slice value.
 	 * Use the special value <code>_all</code> to query all slices without
-	 * restricting to a routing value. Required when
-	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
-	 * not allowed when <code>index.slice.enabled</code> is <code>false</code>.
+	 * restricting to a routing value. When omitted, all slices are targeted.
 	 * <p>
 	 * API name: {@code _slice}
 	 */
-	@Nullable
-	public final String routeSlice() {
+	public final List<String> routeSlice() {
 		return this.routeSlice;
 	}
 
@@ -264,7 +260,7 @@ public class SearchShardsRequest extends RequestBase {
 		private String preference;
 
 		@Nullable
-		private String routeSlice;
+		private List<String> routeSlice;
 
 		@Nullable
 		private List<String> routing;
@@ -421,14 +417,29 @@ public class SearchShardsRequest extends RequestBase {
 		 * The slice identifier for routing the search to a specific slice. When
 		 * provided, the request is limited to shards that match the given slice value.
 		 * Use the special value <code>_all</code> to query all slices without
-		 * restricting to a routing value. Required when
-		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
-		 * not allowed when <code>index.slice.enabled</code> is <code>false</code>.
+		 * restricting to a routing value. When omitted, all slices are targeted.
 		 * <p>
 		 * API name: {@code _slice}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routeSlice</code>.
 		 */
-		public final Builder routeSlice(@Nullable String value) {
-			this.routeSlice = value;
+		public final Builder routeSlice(List<String> list) {
+			this.routeSlice = _listAddAll(this.routeSlice, list);
+			return this;
+		}
+
+		/**
+		 * The slice identifier for routing the search to a specific slice. When
+		 * provided, the request is limited to shards that match the given slice value.
+		 * Use the special value <code>_all</code> to query all slices without
+		 * restricting to a routing value. When omitted, all slices are targeted.
+		 * <p>
+		 * API name: {@code _slice}
+		 * <p>
+		 * Adds one or more values to <code>routeSlice</code>.
+		 */
+		public final Builder routeSlice(String value, String... values) {
+			this.routeSlice = _listAdd(this.routeSlice, value, values);
 			return this;
 		}
 
@@ -566,8 +577,9 @@ public class SearchShardsRequest extends RequestBase {
 				if (request.preference != null) {
 					params.put("preference", request.preference);
 				}
-				if (request.routeSlice != null) {
-					params.put("_slice", request.routeSlice);
+				if (ApiTypeHelper.isDefined(request.routeSlice)) {
+					params.put("_slice", request.routeSlice.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));

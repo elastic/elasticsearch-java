@@ -170,6 +170,20 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 	 * </code>
 	 * </pre>
 	 * <p>
+	 * object array example using the <code>url</code> format (available in
+	 * Elasticsearch 9.6.0 and later):
+	 * 
+	 * <pre>
+	 * <code>&quot;input&quot;: [
+	 *   {
+	 *     &quot;type&quot;: &quot;image&quot;,
+	 *     &quot;format&quot;: &quot;url&quot;,
+	 *     &quot;value&quot;: &quot;https://example.com/image.jpg&quot;
+	 *   }
+	 * ]
+	 * </code>
+	 * </pre>
+	 * <p>
 	 * API name: {@code input}
 	 */
 	public final RerankInput input() {
@@ -201,6 +215,18 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 	 *   &quot;type&quot;: &quot;image&quot;,
 	 *   &quot;format&quot;: &quot;base64&quot;,
 	 *   &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * object example using the <code>url</code> format (available in Elasticsearch
+	 * 9.6.0 and later):
+	 * 
+	 * <pre>
+	 * <code>&quot;query&quot;: {
+	 *   &quot;type&quot;: &quot;image&quot;,
+	 *   &quot;format&quot;: &quot;url&quot;,
+	 *   &quot;value&quot;: &quot;https://example.com/image.jpg&quot;
 	 * }
 	 * </code>
 	 * </pre>
@@ -390,6 +416,20 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 		 * </code>
 		 * </pre>
 		 * <p>
+		 * object array example using the <code>url</code> format (available in
+		 * Elasticsearch 9.6.0 and later):
+		 * 
+		 * <pre>
+		 * <code>&quot;input&quot;: [
+		 *   {
+		 *     &quot;type&quot;: &quot;image&quot;,
+		 *     &quot;format&quot;: &quot;url&quot;,
+		 *     &quot;value&quot;: &quot;https://example.com/image.jpg&quot;
+		 *   }
+		 * ]
+		 * </code>
+		 * </pre>
+		 * <p>
 		 * API name: {@code input}
 		 */
 		public final Builder input(RerankInput value) {
@@ -452,6 +492,20 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 		 * </code>
 		 * </pre>
 		 * <p>
+		 * object array example using the <code>url</code> format (available in
+		 * Elasticsearch 9.6.0 and later):
+		 * 
+		 * <pre>
+		 * <code>&quot;input&quot;: [
+		 *   {
+		 *     &quot;type&quot;: &quot;image&quot;,
+		 *     &quot;format&quot;: &quot;url&quot;,
+		 *     &quot;value&quot;: &quot;https://example.com/image.jpg&quot;
+		 *   }
+		 * ]
+		 * </code>
+		 * </pre>
+		 * <p>
 		 * API name: {@code input}
 		 */
 		public final Builder input(Function<RerankInput.Builder, ObjectBuilder<RerankInput>> fn) {
@@ -483,6 +537,18 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 		 *   &quot;type&quot;: &quot;image&quot;,
 		 *   &quot;format&quot;: &quot;base64&quot;,
 		 *   &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
+		 * }
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * object example using the <code>url</code> format (available in Elasticsearch
+		 * 9.6.0 and later):
+		 * 
+		 * <pre>
+		 * <code>&quot;query&quot;: {
+		 *   &quot;type&quot;: &quot;image&quot;,
+		 *   &quot;format&quot;: &quot;url&quot;,
+		 *   &quot;value&quot;: &quot;https://example.com/image.jpg&quot;
 		 * }
 		 * </code>
 		 * </pre>
@@ -519,6 +585,18 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 		 *   &quot;type&quot;: &quot;image&quot;,
 		 *   &quot;format&quot;: &quot;base64&quot;,
 		 *   &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
+		 * }
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * object example using the <code>url</code> format (available in Elasticsearch
+		 * 9.6.0 and later):
+		 * 
+		 * <pre>
+		 * <code>&quot;query&quot;: {
+		 *   &quot;type&quot;: &quot;image&quot;,
+		 *   &quot;format&quot;: &quot;url&quot;,
+		 *   &quot;value&quot;: &quot;https://example.com/image.jpg&quot;
 		 * }
 		 * </code>
 		 * </pre>

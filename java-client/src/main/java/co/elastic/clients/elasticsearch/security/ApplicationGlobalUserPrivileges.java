@@ -26,7 +26,6 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -59,13 +58,14 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ApplicationGlobalUserPrivileges implements JsonpSerializable {
+	@Nullable
 	private final ManageUserPrivileges manage;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ApplicationGlobalUserPrivileges(Builder builder) {
 
-		this.manage = ApiTypeHelper.requireNonNull(builder.manage, this, "manage");
+		this.manage = builder.manage;
 
 	}
 
@@ -75,8 +75,12 @@ public class ApplicationGlobalUserPrivileges implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code manage}
+	 * The applications for which application privileges can be managed. Absent when
+	 * the <code>application</code> section is present but grants no privileges.
+	 * <p>
+	 * API name: {@code manage}
 	 */
+	@Nullable
 	public final ManageUserPrivileges manage() {
 		return this.manage;
 	}
@@ -92,8 +96,11 @@ public class ApplicationGlobalUserPrivileges implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("manage");
-		this.manage.serialize(generator, mapper);
+		if (this.manage != null) {
+			generator.writeKey("manage");
+			this.manage.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -111,6 +118,7 @@ public class ApplicationGlobalUserPrivileges implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<ApplicationGlobalUserPrivileges> {
+		@Nullable
 		private ManageUserPrivileges manage;
 
 		public Builder() {
@@ -120,15 +128,21 @@ public class ApplicationGlobalUserPrivileges implements JsonpSerializable {
 
 		}
 		/**
-		 * Required - API name: {@code manage}
+		 * The applications for which application privileges can be managed. Absent when
+		 * the <code>application</code> section is present but grants no privileges.
+		 * <p>
+		 * API name: {@code manage}
 		 */
-		public final Builder manage(ManageUserPrivileges value) {
+		public final Builder manage(@Nullable ManageUserPrivileges value) {
 			this.manage = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code manage}
+		 * The applications for which application privileges can be managed. Absent when
+		 * the <code>application</code> section is present but grants no privileges.
+		 * <p>
+		 * API name: {@code manage}
 		 */
 		public final Builder manage(Function<ManageUserPrivileges.Builder, ObjectBuilder<ManageUserPrivileges>> fn) {
 			return this.manage(fn.apply(new ManageUserPrivileges.Builder()).build());

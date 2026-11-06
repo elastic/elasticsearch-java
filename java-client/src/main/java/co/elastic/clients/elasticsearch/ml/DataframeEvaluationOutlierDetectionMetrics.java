@@ -116,6 +116,7 @@ public class DataframeEvaluationOutlierDetectionMetrics extends DataframeEvaluat
 		public Builder() {
 		}
 		private Builder(DataframeEvaluationOutlierDetectionMetrics instance) {
+			super(instance);
 			this.confusionMatrix = instance.confusionMatrix;
 
 		}

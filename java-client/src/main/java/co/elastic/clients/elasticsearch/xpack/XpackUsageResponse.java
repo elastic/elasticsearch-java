@@ -31,6 +31,7 @@ import co.elastic.clients.elasticsearch.xpack.usage.Flattened;
 import co.elastic.clients.elasticsearch.xpack.usage.GpuVectorIndexing;
 import co.elastic.clients.elasticsearch.xpack.usage.HealthStatistics;
 import co.elastic.clients.elasticsearch.xpack.usage.Ilm;
+import co.elastic.clients.elasticsearch.xpack.usage.IndexModeUsage;
 import co.elastic.clients.elasticsearch.xpack.usage.Logging;
 import co.elastic.clients.elasticsearch.xpack.usage.MachineLearning;
 import co.elastic.clients.elasticsearch.xpack.usage.Monitoring;
@@ -40,6 +41,7 @@ import co.elastic.clients.elasticsearch.xpack.usage.Security;
 import co.elastic.clients.elasticsearch.xpack.usage.Slm;
 import co.elastic.clients.elasticsearch.xpack.usage.Sql;
 import co.elastic.clients.elasticsearch.xpack.usage.Vector;
+import co.elastic.clients.elasticsearch.xpack.usage.VectorDbColumnar;
 import co.elastic.clients.elasticsearch.xpack.usage.VectorDbDocument;
 import co.elastic.clients.elasticsearch.xpack.usage.Watcher;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -92,6 +94,9 @@ public class XpackUsageResponse implements JsonpSerializable {
 	private final Ccr ccr;
 
 	@Nullable
+	private final IndexModeUsage columnar;
+
+	@Nullable
 	private final Base dataFrame;
 
 	@Nullable
@@ -126,6 +131,9 @@ public class XpackUsageResponse implements JsonpSerializable {
 	@Nullable
 	private final Logging logging;
 
+	@Nullable
+	private final IndexModeUsage logsdbColumnar;
+
 	private final Base logstash;
 
 	private final MachineLearning ml;
@@ -155,6 +163,9 @@ public class XpackUsageResponse implements JsonpSerializable {
 	@Nullable
 	private final VectorDbDocument vectordbDocument;
 
+	@Nullable
+	private final VectorDbColumnar vectordbColumnar;
+
 	private final Base votingOnly;
 
 	// ---------------------------------------------------------------------------------------------
@@ -166,6 +177,7 @@ public class XpackUsageResponse implements JsonpSerializable {
 		this.archive = ApiTypeHelper.requireNonNull(builder.archive, this, "archive");
 		this.watcher = ApiTypeHelper.requireNonNull(builder.watcher, this, "watcher");
 		this.ccr = ApiTypeHelper.requireNonNull(builder.ccr, this, "ccr");
+		this.columnar = builder.columnar;
 		this.dataFrame = builder.dataFrame;
 		this.dataScience = builder.dataScience;
 		this.dataLifecycle = builder.dataLifecycle;
@@ -179,6 +191,7 @@ public class XpackUsageResponse implements JsonpSerializable {
 		this.healthApi = builder.healthApi;
 		this.ilm = ApiTypeHelper.requireNonNull(builder.ilm, this, "ilm");
 		this.logging = builder.logging;
+		this.logsdbColumnar = builder.logsdbColumnar;
 		this.logstash = ApiTypeHelper.requireNonNull(builder.logstash, this, "logstash");
 		this.ml = ApiTypeHelper.requireNonNull(builder.ml, this, "ml");
 		this.monitoring = ApiTypeHelper.requireNonNull(builder.monitoring, this, "monitoring");
@@ -193,6 +206,7 @@ public class XpackUsageResponse implements JsonpSerializable {
 		this.transform = ApiTypeHelper.requireNonNull(builder.transform, this, "transform");
 		this.vectors = builder.vectors;
 		this.vectordbDocument = builder.vectordbDocument;
+		this.vectordbColumnar = builder.vectordbColumnar;
 		this.votingOnly = ApiTypeHelper.requireNonNull(builder.votingOnly, this, "votingOnly");
 
 	}
@@ -234,6 +248,17 @@ public class XpackUsageResponse implements JsonpSerializable {
 	 */
 	public final Ccr ccr() {
 		return this.ccr;
+	}
+
+	/**
+	 * Usage of the indices with <code>index.mode</code> set to
+	 * <code>columnar</code>.
+	 * <p>
+	 * API name: {@code columnar}
+	 */
+	@Nullable
+	public final IndexModeUsage columnar() {
+		return this.columnar;
 	}
 
 	/**
@@ -337,6 +362,17 @@ public class XpackUsageResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * Usage of the indices with <code>index.mode</code> set to
+	 * <code>logsdb_columnar</code>.
+	 * <p>
+	 * API name: {@code logsdb_columnar}
+	 */
+	@Nullable
+	public final IndexModeUsage logsdbColumnar() {
+		return this.logsdbColumnar;
+	}
+
+	/**
 	 * Required - API name: {@code logstash}
 	 */
 	public final Base logstash() {
@@ -431,6 +467,18 @@ public class XpackUsageResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The <code>vectordb_columnar</code> index mode is behind a feature flag.
+	 * Without the flag, this section is still returned, disabled and with zero
+	 * counts.
+	 * <p>
+	 * API name: {@code vectordb_columnar}
+	 */
+	@Nullable
+	public final VectorDbColumnar vectordbColumnar() {
+		return this.vectordbColumnar;
+	}
+
+	/**
 	 * Required - API name: {@code voting_only}
 	 */
 	public final Base votingOnly() {
@@ -463,6 +511,11 @@ public class XpackUsageResponse implements JsonpSerializable {
 		generator.writeKey("ccr");
 		this.ccr.serialize(generator, mapper);
 
+		if (this.columnar != null) {
+			generator.writeKey("columnar");
+			this.columnar.serialize(generator, mapper);
+
+		}
 		if (this.dataFrame != null) {
 			generator.writeKey("data_frame");
 			this.dataFrame.serialize(generator, mapper);
@@ -520,6 +573,11 @@ public class XpackUsageResponse implements JsonpSerializable {
 			this.logging.serialize(generator, mapper);
 
 		}
+		if (this.logsdbColumnar != null) {
+			generator.writeKey("logsdb_columnar");
+			this.logsdbColumnar.serialize(generator, mapper);
+
+		}
 		generator.writeKey("logstash");
 		this.logstash.serialize(generator, mapper);
 
@@ -565,6 +623,11 @@ public class XpackUsageResponse implements JsonpSerializable {
 			this.vectordbDocument.serialize(generator, mapper);
 
 		}
+		if (this.vectordbColumnar != null) {
+			generator.writeKey("vectordb_columnar");
+			this.vectordbColumnar.serialize(generator, mapper);
+
+		}
 		generator.writeKey("voting_only");
 		this.votingOnly.serialize(generator, mapper);
 
@@ -593,6 +656,9 @@ public class XpackUsageResponse implements JsonpSerializable {
 		private Watcher watcher;
 
 		private Ccr ccr;
+
+		@Nullable
+		private IndexModeUsage columnar;
 
 		@Nullable
 		private Base dataFrame;
@@ -629,6 +695,9 @@ public class XpackUsageResponse implements JsonpSerializable {
 		@Nullable
 		private Logging logging;
 
+		@Nullable
+		private IndexModeUsage logsdbColumnar;
+
 		private Base logstash;
 
 		private MachineLearning ml;
@@ -657,6 +726,9 @@ public class XpackUsageResponse implements JsonpSerializable {
 
 		@Nullable
 		private VectorDbDocument vectordbDocument;
+
+		@Nullable
+		private VectorDbColumnar vectordbColumnar;
 
 		private Base votingOnly;
 
@@ -733,6 +805,27 @@ public class XpackUsageResponse implements JsonpSerializable {
 		 */
 		public final Builder ccr(Function<Ccr.Builder, ObjectBuilder<Ccr>> fn) {
 			return this.ccr(fn.apply(new Ccr.Builder()).build());
+		}
+
+		/**
+		 * Usage of the indices with <code>index.mode</code> set to
+		 * <code>columnar</code>.
+		 * <p>
+		 * API name: {@code columnar}
+		 */
+		public final Builder columnar(@Nullable IndexModeUsage value) {
+			this.columnar = value;
+			return this;
+		}
+
+		/**
+		 * Usage of the indices with <code>index.mode</code> set to
+		 * <code>columnar</code>.
+		 * <p>
+		 * API name: {@code columnar}
+		 */
+		public final Builder columnar(Function<IndexModeUsage.Builder, ObjectBuilder<IndexModeUsage>> fn) {
+			return this.columnar(fn.apply(new IndexModeUsage.Builder()).build());
 		}
 
 		/**
@@ -933,6 +1026,27 @@ public class XpackUsageResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Usage of the indices with <code>index.mode</code> set to
+		 * <code>logsdb_columnar</code>.
+		 * <p>
+		 * API name: {@code logsdb_columnar}
+		 */
+		public final Builder logsdbColumnar(@Nullable IndexModeUsage value) {
+			this.logsdbColumnar = value;
+			return this;
+		}
+
+		/**
+		 * Usage of the indices with <code>index.mode</code> set to
+		 * <code>logsdb_columnar</code>.
+		 * <p>
+		 * API name: {@code logsdb_columnar}
+		 */
+		public final Builder logsdbColumnar(Function<IndexModeUsage.Builder, ObjectBuilder<IndexModeUsage>> fn) {
+			return this.logsdbColumnar(fn.apply(new IndexModeUsage.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code logstash}
 		 */
 		public final Builder logstash(Base value) {
@@ -1129,6 +1243,29 @@ public class XpackUsageResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The <code>vectordb_columnar</code> index mode is behind a feature flag.
+		 * Without the flag, this section is still returned, disabled and with zero
+		 * counts.
+		 * <p>
+		 * API name: {@code vectordb_columnar}
+		 */
+		public final Builder vectordbColumnar(@Nullable VectorDbColumnar value) {
+			this.vectordbColumnar = value;
+			return this;
+		}
+
+		/**
+		 * The <code>vectordb_columnar</code> index mode is behind a feature flag.
+		 * Without the flag, this section is still returned, disabled and with zero
+		 * counts.
+		 * <p>
+		 * API name: {@code vectordb_columnar}
+		 */
+		public final Builder vectordbColumnar(Function<VectorDbColumnar.Builder, ObjectBuilder<VectorDbColumnar>> fn) {
+			return this.vectordbColumnar(fn.apply(new VectorDbColumnar.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code voting_only}
 		 */
 		public final Builder votingOnly(Base value) {
@@ -1176,6 +1313,7 @@ public class XpackUsageResponse implements JsonpSerializable {
 		op.add(Builder::archive, Archive._DESERIALIZER, "archive");
 		op.add(Builder::watcher, Watcher._DESERIALIZER, "watcher");
 		op.add(Builder::ccr, Ccr._DESERIALIZER, "ccr");
+		op.add(Builder::columnar, IndexModeUsage._DESERIALIZER, "columnar");
 		op.add(Builder::dataFrame, Base._DESERIALIZER, "data_frame");
 		op.add(Builder::dataScience, Base._DESERIALIZER, "data_science");
 		op.add(Builder::dataLifecycle, DataStreamLifecycleUsage._DESERIALIZER, "data_lifecycle");
@@ -1189,6 +1327,7 @@ public class XpackUsageResponse implements JsonpSerializable {
 		op.add(Builder::healthApi, HealthStatistics._DESERIALIZER, "health_api");
 		op.add(Builder::ilm, Ilm._DESERIALIZER, "ilm");
 		op.add(Builder::logging, Logging._DESERIALIZER, "logging");
+		op.add(Builder::logsdbColumnar, IndexModeUsage._DESERIALIZER, "logsdb_columnar");
 		op.add(Builder::logstash, Base._DESERIALIZER, "logstash");
 		op.add(Builder::ml, MachineLearning._DESERIALIZER, "ml");
 		op.add(Builder::monitoring, Monitoring._DESERIALIZER, "monitoring");
@@ -1202,6 +1341,7 @@ public class XpackUsageResponse implements JsonpSerializable {
 		op.add(Builder::transform, Base._DESERIALIZER, "transform");
 		op.add(Builder::vectors, Vector._DESERIALIZER, "vectors");
 		op.add(Builder::vectordbDocument, VectorDbDocument._DESERIALIZER, "vectordb_document");
+		op.add(Builder::vectordbColumnar, VectorDbColumnar._DESERIALIZER, "vectordb_columnar");
 		op.add(Builder::votingOnly, Base._DESERIALIZER, "voting_only");
 
 	}

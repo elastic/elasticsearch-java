@@ -107,6 +107,15 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(IndicesResponseBase instance) {
+			super(instance);
+			this.shards = instance.shards;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

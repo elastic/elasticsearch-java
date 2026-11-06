@@ -258,6 +258,7 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 		public Builder() {
 		}
 		private Builder(GeoIpProcessor instance) {
+			super(instance);
 			this.databaseFile = instance.databaseFile;
 			this.field = instance.field;
 			this.firstOnly = instance.firstOnly;

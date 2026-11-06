@@ -2137,7 +2137,7 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.get_field_mapping
 
 	/**
-	 * Get mapping definitions.
+	 * Get field mapping definitions.
 	 * <p>
 	 * Retrieves mapping definitions for one or more fields. For data streams, the
 	 * API retrieves field mappings for the stream’s backing indices.
@@ -2158,7 +2158,7 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Get mapping definitions.
+	 * Get field mapping definitions.
 	 * <p>
 	 * Retrieves mapping definitions for one or more fields. For data streams, the
 	 * API retrieves field mappings for the stream’s backing indices.
@@ -4219,9 +4219,9 @@ public class ElasticsearchIndicesAsyncClient
 	/**
 	 * Roll over to a new index.
 	 * <p>
-	 * TIP: We recommend using the index lifecycle rollover action to automate
-	 * rollovers. However, Serverless does not support Index Lifecycle Management
-	 * (ILM), so don't use this approach in the Serverless context.
+	 * TIP: To automate rollovers, use index lifecycle management (ILM) in
+	 * deployments that support it. Serverless does not support ILM. For data
+	 * streams in Serverless, use data stream lifecycle instead.
 	 * <p>
 	 * The rollover API creates a new index for a data stream or index alias. The
 	 * API behavior depends on the rollover target.
@@ -4287,9 +4287,9 @@ public class ElasticsearchIndicesAsyncClient
 	/**
 	 * Roll over to a new index.
 	 * <p>
-	 * TIP: We recommend using the index lifecycle rollover action to automate
-	 * rollovers. However, Serverless does not support Index Lifecycle Management
-	 * (ILM), so don't use this approach in the Serverless context.
+	 * TIP: To automate rollovers, use index lifecycle management (ILM) in
+	 * deployments that support it. Serverless does not support ILM. For data
+	 * streams in Serverless, use data stream lifecycle instead.
 	 * <p>
 	 * The rollover API creates a new index for a data stream or index alias. The
 	 * API behavior depends on the rollover target.
@@ -5012,9 +5012,21 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.update_aliases
 
 	/**
-	 * Create or update an alias.
+	 * Update aliases and delete indices atomically.
 	 * <p>
-	 * Adds a data stream or index to an alias.
+	 * Applies one or more actions in a single request:
+	 * <ul>
+	 * <li>Add a data stream or index to an alias.</li>
+	 * <li>Remove a data stream or index from an alias.</li>
+	 * <li>Delete an index in that same request, so the deletion and the alias
+	 * changes are applied together.</li>
+	 * </ul>
+	 * <p>
+	 * For example, you can replace an index with an alias of the same name.
+	 * <p>
+	 * NOTE: Every <code>remove_index</code> action in the request runs first,
+	 * before any <code>add</code> or <code>remove</code> actions, no matter where
+	 * it sits in the <code>actions</code> array.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-update-aliases">Documentation
@@ -5029,9 +5041,21 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Create or update an alias.
+	 * Update aliases and delete indices atomically.
 	 * <p>
-	 * Adds a data stream or index to an alias.
+	 * Applies one or more actions in a single request:
+	 * <ul>
+	 * <li>Add a data stream or index to an alias.</li>
+	 * <li>Remove a data stream or index from an alias.</li>
+	 * <li>Delete an index in that same request, so the deletion and the alias
+	 * changes are applied together.</li>
+	 * </ul>
+	 * <p>
+	 * For example, you can replace an index with an alias of the same name.
+	 * <p>
+	 * NOTE: Every <code>remove_index</code> action in the request runs first,
+	 * before any <code>add</code> or <code>remove</code> actions, no matter where
+	 * it sits in the <code>actions</code> array.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -5047,9 +5071,21 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Create or update an alias.
+	 * Update aliases and delete indices atomically.
 	 * <p>
-	 * Adds a data stream or index to an alias.
+	 * Applies one or more actions in a single request:
+	 * <ul>
+	 * <li>Add a data stream or index to an alias.</li>
+	 * <li>Remove a data stream or index from an alias.</li>
+	 * <li>Delete an index in that same request, so the deletion and the alias
+	 * changes are applied together.</li>
+	 * </ul>
+	 * <p>
+	 * For example, you can replace an index with an alias of the same name.
+	 * <p>
+	 * NOTE: Every <code>remove_index</code> action in the request runs first,
+	 * before any <code>add</code> or <code>remove</code> actions, no matter where
+	 * it sits in the <code>actions</code> array.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-update-aliases">Documentation

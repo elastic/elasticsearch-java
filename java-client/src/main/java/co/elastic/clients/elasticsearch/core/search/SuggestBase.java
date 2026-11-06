@@ -157,6 +157,16 @@ public abstract class SuggestBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(SuggestBase instance) {
+			this.length = instance.length;
+			this.offset = instance.offset;
+			this.text = instance.text;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

@@ -136,6 +136,7 @@ public class RateAggregation extends FormatMetricAggregationBase implements Aggr
 		public Builder() {
 		}
 		private Builder(RateAggregation instance) {
+			super(instance);
 			this.unit = instance.unit;
 			this.mode = instance.mode;
 

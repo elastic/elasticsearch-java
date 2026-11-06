@@ -92,6 +92,7 @@ public class LongRangeProperty extends RangePropertyBase implements PropertyVari
 		public Builder() {
 		}
 		private Builder(LongRangeProperty instance) {
+			super(instance);
 
 		}
 		@Override

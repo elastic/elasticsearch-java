@@ -115,6 +115,7 @@ public class ByteNumberProperty extends NumberPropertyBase implements PropertyVa
 		public Builder() {
 		}
 		private Builder(ByteNumberProperty instance) {
+			super(instance);
 			this.nullValue = instance.nullValue;
 
 		}

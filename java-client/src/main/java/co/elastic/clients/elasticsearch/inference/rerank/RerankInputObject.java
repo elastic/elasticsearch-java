@@ -96,9 +96,11 @@ public class RerankInputObject implements JsonpSerializable {
 	/**
 	 * The format of the input. For the <code>text</code> type this must be
 	 * <code>text</code>. For the <code>image</code> type this must be
-	 * <code>base64</code>. If not specified, this defaults to <code>text</code> for
-	 * the <code>text</code> type and <code>base64</code> for the <code>image</code>
-	 * type.
+	 * <code>base64</code> or <code>url</code>. If not specified, this defaults to
+	 * <code>text</code> for the <code>text</code> type and <code>base64</code> for
+	 * the <code>image</code> type. The <code>url</code> format is available in
+	 * Elasticsearch 9.6.0 and later. Not all services and models support all
+	 * formats.
 	 * <p>
 	 * API name: {@code format}
 	 */
@@ -108,8 +110,11 @@ public class RerankInputObject implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The value of the input. For images, this must be a base64-encoded
-	 * data URI, that is, &quot;data:content/type;base64,...&quot;.
+	 * Required - The value of the input. For the <code>base64</code> format, this
+	 * must be a base64-encoded data URI, that is,
+	 * &quot;data:content/type;base64,...&quot;. For the <code>url</code> format,
+	 * this must be a URL that points to the content, that is, &quot;<a href=
+	 * "https://example.com/image.jpg">https://example.com/image.jpg</a>&quot;.
 	 * <p>
 	 * API name: {@code value}
 	 */
@@ -180,9 +185,11 @@ public class RerankInputObject implements JsonpSerializable {
 		/**
 		 * The format of the input. For the <code>text</code> type this must be
 		 * <code>text</code>. For the <code>image</code> type this must be
-		 * <code>base64</code>. If not specified, this defaults to <code>text</code> for
-		 * the <code>text</code> type and <code>base64</code> for the <code>image</code>
-		 * type.
+		 * <code>base64</code> or <code>url</code>. If not specified, this defaults to
+		 * <code>text</code> for the <code>text</code> type and <code>base64</code> for
+		 * the <code>image</code> type. The <code>url</code> format is available in
+		 * Elasticsearch 9.6.0 and later. Not all services and models support all
+		 * formats.
 		 * <p>
 		 * API name: {@code format}
 		 */
@@ -192,8 +199,11 @@ public class RerankInputObject implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The value of the input. For images, this must be a base64-encoded
-		 * data URI, that is, &quot;data:content/type;base64,...&quot;.
+		 * Required - The value of the input. For the <code>base64</code> format, this
+		 * must be a base64-encoded data URI, that is,
+		 * &quot;data:content/type;base64,...&quot;. For the <code>url</code> format,
+		 * this must be a URL that points to the content, that is, &quot;<a href=
+		 * "https://example.com/image.jpg">https://example.com/image.jpg</a>&quot;.
 		 * <p>
 		 * API name: {@code value}
 		 */

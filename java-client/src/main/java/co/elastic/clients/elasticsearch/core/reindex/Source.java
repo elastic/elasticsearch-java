@@ -85,6 +85,9 @@ public class Source implements JsonpSerializable {
 	@Nullable
 	private final SlicedScroll slice;
 
+	@Nullable
+	private final String routeSlice;
+
 	private final List<SortOptions> sort;
 
 	@Nullable
@@ -102,6 +105,7 @@ public class Source implements JsonpSerializable {
 		this.projectRouting = builder.projectRouting;
 		this.size = builder.size;
 		this.slice = builder.slice;
+		this.routeSlice = builder.routeSlice;
 		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
 		this.sourceFields = builder.sourceFields;
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
@@ -177,6 +181,20 @@ public class Source implements JsonpSerializable {
 	@Nullable
 	public final SlicedScroll slice() {
 		return this.slice;
+	}
+
+	/**
+	 * The slice of a slice-enabled source index (<code>index.slice.enabled</code>
+	 * set to <code>true</code>) to read, or <code>_all</code> to read all slices.
+	 * The reindexed documents keep the slice they are read from, unless
+	 * <code>_slice</code> is set in <code>dest</code>. Not supported when
+	 * reindexing from a remote cluster.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
 	}
 
 	/**
@@ -263,6 +281,11 @@ public class Source implements JsonpSerializable {
 			this.slice.serialize(generator, mapper);
 
 		}
+		if (this.routeSlice != null) {
+			generator.writeKey("_slice");
+			generator.write(this.routeSlice);
+
+		}
 		if (ApiTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
@@ -322,6 +345,9 @@ public class Source implements JsonpSerializable {
 		private SlicedScroll slice;
 
 		@Nullable
+		private String routeSlice;
+
+		@Nullable
 		private List<SortOptions> sort;
 
 		@Nullable
@@ -339,6 +365,7 @@ public class Source implements JsonpSerializable {
 			this.projectRouting = instance.projectRouting;
 			this.size = instance.size;
 			this.slice = instance.slice;
+			this.routeSlice = instance.routeSlice;
 			this.sort = instance.sort;
 			this.sourceFields = instance.sourceFields;
 			this.runtimeMappings = instance.runtimeMappings;
@@ -463,6 +490,20 @@ public class Source implements JsonpSerializable {
 		 */
 		public final Builder slice(Function<SlicedScroll.Builder, ObjectBuilder<SlicedScroll>> fn) {
 			return this.slice(fn.apply(new SlicedScroll.Builder()).build());
+		}
+
+		/**
+		 * The slice of a slice-enabled source index (<code>index.slice.enabled</code>
+		 * set to <code>true</code>) to read, or <code>_all</code> to read all slices.
+		 * The reindexed documents keep the slice they are read from, unless
+		 * <code>_slice</code> is set in <code>dest</code>. Not supported when
+		 * reindexing from a remote cluster.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder routeSlice(@Nullable String value) {
+			this.routeSlice = value;
+			return this;
 		}
 
 		/**
@@ -624,6 +665,7 @@ public class Source implements JsonpSerializable {
 		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::slice, SlicedScroll._DESERIALIZER, "slice");
+		op.add(Builder::routeSlice, JsonpDeserializer.stringDeserializer(), "_slice");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
 		op.add(Builder::sourceFields, SourceConfig._DESERIALIZER, "_source");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),

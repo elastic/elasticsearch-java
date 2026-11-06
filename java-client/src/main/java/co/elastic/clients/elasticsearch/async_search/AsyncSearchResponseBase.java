@@ -396,6 +396,23 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 			return this.error(fn.apply(new ErrorCause.Builder()).build());
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(AsyncSearchResponseBase instance) {
+			this.id = instance.id;
+			this.isPartial = instance.isPartial;
+			this.isRunning = instance.isRunning;
+			this.expirationTime = instance.expirationTime;
+			this.expirationTimeInMillis = instance.expirationTimeInMillis;
+			this.startTime = instance.startTime;
+			this.startTimeInMillis = instance.startTimeInMillis;
+			this.completionTime = instance.completionTime;
+			this.completionTimeInMillis = instance.completionTimeInMillis;
+			this.error = instance.error;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

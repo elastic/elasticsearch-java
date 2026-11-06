@@ -84,6 +84,7 @@ public class MinAggregate extends SingleMetricAggregateBase implements Aggregate
 		public Builder() {
 		}
 		private Builder(MinAggregate instance) {
+			super(instance);
 
 		}
 		@Override

@@ -31,6 +31,7 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
@@ -84,6 +85,9 @@ public class GetServiceAccountsRequest extends RequestBase {
 
 	private final List<ServiceAccountType> type;
 
+	@Nullable
+	private final Boolean withProfileUid;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GetServiceAccountsRequest(Builder builder) {
@@ -91,6 +95,7 @@ public class GetServiceAccountsRequest extends RequestBase {
 		this.namespace = builder.namespace;
 		this.service = builder.service;
 		this.type = ApiTypeHelper.unmodifiable(builder.type);
+		this.withProfileUid = builder.withProfileUid;
 
 	}
 
@@ -132,6 +137,20 @@ public class GetServiceAccountsRequest extends RequestBase {
 		return this.type;
 	}
 
+	/**
+	 * If <code>true</code>, each user-managed service account also includes the
+	 * profile UIDs of the users who created and last replaced it, under the
+	 * <code>created_by_profile_uid</code> and <code>updated_by_profile_uid</code>
+	 * fields. A profile UID is included only for a user who has an activated user
+	 * profile.
+	 * <p>
+	 * API name: {@code with_profile_uid}
+	 */
+	@Nullable
+	public final Boolean withProfileUid() {
+		return this.withProfileUid;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -150,12 +169,16 @@ public class GetServiceAccountsRequest extends RequestBase {
 		@Nullable
 		private List<ServiceAccountType> type;
 
+		@Nullable
+		private Boolean withProfileUid;
+
 		public Builder() {
 		}
 		private Builder(GetServiceAccountsRequest instance) {
 			this.namespace = instance.namespace;
 			this.service = instance.service;
 			this.type = instance.type;
+			this.withProfileUid = instance.withProfileUid;
 
 		}
 		/**
@@ -206,6 +229,20 @@ public class GetServiceAccountsRequest extends RequestBase {
 		 */
 		public final Builder type(ServiceAccountType value, ServiceAccountType... values) {
 			this.type = _listAdd(this.type, value, values);
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, each user-managed service account also includes the
+		 * profile UIDs of the users who created and last replaced it, under the
+		 * <code>created_by_profile_uid</code> and <code>updated_by_profile_uid</code>
+		 * fields. A profile UID is included only for a user who has an activated user
+		 * profile.
+		 * <p>
+		 * API name: {@code with_profile_uid}
+		 */
+		public final Builder withProfileUid(@Nullable Boolean value) {
+			this.withProfileUid = value;
 			return this;
 		}
 
@@ -318,6 +355,9 @@ public class GetServiceAccountsRequest extends RequestBase {
 				if (ApiTypeHelper.isDefined(request.type)) {
 					params.put("type", request.type.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
+				}
+				if (request.withProfileUid != null) {
+					params.put("with_profile_uid", String.valueOf(request.withProfileUid));
 				}
 				return params;
 

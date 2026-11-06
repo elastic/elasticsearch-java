@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
 // typedef: cluster.info.Request
 
 /**
- * Get cluster info.
+ * Get cluster subsystem info.
  * <p>
  * Returns basic information about the cluster.
  * 

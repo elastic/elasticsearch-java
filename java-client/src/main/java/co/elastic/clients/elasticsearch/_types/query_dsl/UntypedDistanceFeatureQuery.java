@@ -87,6 +87,7 @@ public class UntypedDistanceFeatureQuery extends DistanceFeatureQueryBase<JsonDa
 		public Builder() {
 		}
 		private Builder(UntypedDistanceFeatureQuery instance) {
+			super(instance);
 
 		}
 		@Override

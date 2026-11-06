@@ -164,6 +164,7 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 		public Builder() {
 		}
 		private Builder(DotExpanderProcessor instance) {
+			super(instance);
 			this.field = instance.field;
 			this.override = instance.override;
 			this.path = instance.path;

@@ -159,6 +159,7 @@ public class RegisteredDomainProcessor extends ProcessorBase implements Processo
 		public Builder() {
 		}
 		private Builder(RegisteredDomainProcessor instance) {
+			super(instance);
 			this.field = instance.field;
 			this.targetField = instance.targetField;
 			this.ignoreMissing = instance.ignoreMissing;

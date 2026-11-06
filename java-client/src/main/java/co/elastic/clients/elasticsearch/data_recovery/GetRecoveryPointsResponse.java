@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch.data_recovery;
 
-import co.elastic.clients.elasticsearch.data_recovery.get_recovery_points.RecoveryPoint;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -61,7 +60,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GetRecoveryPointsResponse implements JsonpSerializable {
-	private final List<RecoveryPoint> recoveryPoints;
+	private final List<Point> recoveryPoints;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -80,7 +79,7 @@ public class GetRecoveryPointsResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code recovery_points}
 	 */
-	public final List<RecoveryPoint> recoveryPoints() {
+	public final List<Point> recoveryPoints() {
 		return this.recoveryPoints;
 	}
 
@@ -98,7 +97,7 @@ public class GetRecoveryPointsResponse implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.recoveryPoints)) {
 			generator.writeKey("recovery_points");
 			generator.writeStartArray();
-			for (RecoveryPoint item0 : this.recoveryPoints) {
+			for (Point item0 : this.recoveryPoints) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -122,7 +121,7 @@ public class GetRecoveryPointsResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<GetRecoveryPointsResponse> {
-		private List<RecoveryPoint> recoveryPoints;
+		private List<Point> recoveryPoints;
 
 		/**
 		 * Required - Recovery points in descending order by end time.
@@ -131,7 +130,7 @@ public class GetRecoveryPointsResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>recoveryPoints</code>.
 		 */
-		public final Builder recoveryPoints(List<RecoveryPoint> list) {
+		public final Builder recoveryPoints(List<Point> list) {
 			this.recoveryPoints = _listAddAll(this.recoveryPoints, list);
 			return this;
 		}
@@ -143,7 +142,7 @@ public class GetRecoveryPointsResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>recoveryPoints</code>.
 		 */
-		public final Builder recoveryPoints(RecoveryPoint value, RecoveryPoint... values) {
+		public final Builder recoveryPoints(Point value, Point... values) {
 			this.recoveryPoints = _listAdd(this.recoveryPoints, value, values);
 			return this;
 		}
@@ -155,8 +154,8 @@ public class GetRecoveryPointsResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds a value to <code>recoveryPoints</code> using a builder lambda.
 		 */
-		public final Builder recoveryPoints(Function<RecoveryPoint.Builder, ObjectBuilder<RecoveryPoint>> fn) {
-			return recoveryPoints(fn.apply(new RecoveryPoint.Builder()).build());
+		public final Builder recoveryPoints(Function<Point.Builder, ObjectBuilder<Point>> fn) {
+			return recoveryPoints(fn.apply(new Point.Builder()).build());
 		}
 
 		@Override
@@ -188,8 +187,7 @@ public class GetRecoveryPointsResponse implements JsonpSerializable {
 	protected static void setupGetRecoveryPointsResponseDeserializer(
 			ObjectDeserializer<GetRecoveryPointsResponse.Builder> op) {
 
-		op.add(Builder::recoveryPoints, JsonpDeserializer.arrayDeserializer(RecoveryPoint._DESERIALIZER),
-				"recovery_points");
+		op.add(Builder::recoveryPoints, JsonpDeserializer.arrayDeserializer(Point._DESERIALIZER), "recovery_points");
 
 	}
 

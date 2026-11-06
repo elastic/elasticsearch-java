@@ -84,6 +84,7 @@ public class CumulativeSumAggregation extends PipelineAggregationBase implements
 		public Builder() {
 		}
 		private Builder(CumulativeSumAggregation instance) {
+			super(instance);
 
 		}
 		@Override

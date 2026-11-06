@@ -84,6 +84,7 @@ public class GeoTileGridAggregate extends MultiBucketAggregateBase<GeoTileGridBu
 		public Builder() {
 		}
 		private Builder(GeoTileGridAggregate instance) {
+			super(instance);
 
 		}
 		@Override

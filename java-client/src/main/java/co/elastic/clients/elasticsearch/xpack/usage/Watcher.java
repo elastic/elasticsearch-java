@@ -127,6 +127,7 @@ public class Watcher extends Base {
 		public Builder() {
 		}
 		private Builder(Watcher instance) {
+			super(instance);
 			this.execution = instance.execution;
 			this.watch = instance.watch;
 			this.count = instance.count;

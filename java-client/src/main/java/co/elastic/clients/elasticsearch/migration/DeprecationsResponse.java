@@ -76,6 +76,8 @@ public class DeprecationsResponse implements JsonpSerializable {
 
 	private final Map<String, List<Deprecation>> ilmPolicies;
 
+	private final Map<String, List<Deprecation>> repositories;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DeprecationsResponse(Builder builder) {
@@ -87,6 +89,7 @@ public class DeprecationsResponse implements JsonpSerializable {
 		this.mlSettings = ApiTypeHelper.unmodifiableRequired(builder.mlSettings, this, "mlSettings");
 		this.templates = ApiTypeHelper.unmodifiableRequired(builder.templates, this, "templates");
 		this.ilmPolicies = ApiTypeHelper.unmodifiableRequired(builder.ilmPolicies, this, "ilmPolicies");
+		this.repositories = ApiTypeHelper.unmodifiable(builder.repositories);
 
 	}
 
@@ -158,6 +161,15 @@ public class DeprecationsResponse implements JsonpSerializable {
 	 */
 	public final Map<String, List<Deprecation>> ilmPolicies() {
 		return this.ilmPolicies;
+	}
+
+	/**
+	 * Required - Snapshot repository warnings are sectioned off per repository.
+	 * <p>
+	 * API name: {@code repositories}
+	 */
+	public final Map<String, List<Deprecation>> repositories() {
+		return this.repositories;
 	}
 
 	/**
@@ -273,6 +285,24 @@ public class DeprecationsResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (ApiTypeHelper.isDefined(this.repositories)) {
+			generator.writeKey("repositories");
+			generator.writeStartObject();
+			for (Map.Entry<String, List<Deprecation>> item0 : this.repositories.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartArray();
+				if (item0.getValue() != null) {
+					for (Deprecation item1 : item0.getValue()) {
+						item1.serialize(generator, mapper);
+
+					}
+				}
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -303,6 +333,9 @@ public class DeprecationsResponse implements JsonpSerializable {
 		private Map<String, List<Deprecation>> templates;
 
 		private Map<String, List<Deprecation>> ilmPolicies;
+
+		@Nullable
+		private Map<String, List<Deprecation>> repositories;
 
 		/**
 		 * Required - Cluster-level deprecation warnings.
@@ -513,6 +546,30 @@ public class DeprecationsResponse implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * Required - Snapshot repository warnings are sectioned off per repository.
+		 * <p>
+		 * API name: {@code repositories}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>repositories</code>.
+		 */
+		public final Builder repositories(Map<String, List<Deprecation>> map) {
+			this.repositories = _mapPutAll(this.repositories, map);
+			return this;
+		}
+
+		/**
+		 * Required - Snapshot repository warnings are sectioned off per repository.
+		 * <p>
+		 * API name: {@code repositories}
+		 * <p>
+		 * Adds an entry to <code>repositories</code>.
+		 */
+		public final Builder repositories(String key, List<Deprecation> value) {
+			this.repositories = _mapPut(this.repositories, key, value);
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -557,6 +614,9 @@ public class DeprecationsResponse implements JsonpSerializable {
 		op.add(Builder::ilmPolicies,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(Deprecation._DESERIALIZER)),
 				"ilm_policies");
+		op.add(Builder::repositories,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(Deprecation._DESERIALIZER)),
+				"repositories");
 
 	}
 

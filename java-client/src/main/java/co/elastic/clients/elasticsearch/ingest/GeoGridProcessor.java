@@ -286,6 +286,7 @@ public class GeoGridProcessor extends ProcessorBase implements ProcessorVariant 
 		public Builder() {
 		}
 		private Builder(GeoGridProcessor instance) {
+			super(instance);
 			this.field = instance.field;
 			this.tileType = instance.tileType;
 			this.targetField = instance.targetField;

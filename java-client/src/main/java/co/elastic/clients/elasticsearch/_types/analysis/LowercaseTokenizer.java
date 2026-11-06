@@ -92,6 +92,7 @@ public class LowercaseTokenizer extends TokenizerBase implements TokenizerDefini
 		public Builder() {
 		}
 		private Builder(LowercaseTokenizer instance) {
+			super(instance);
 
 		}
 		@Override

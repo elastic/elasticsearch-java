@@ -57,7 +57,11 @@ import javax.annotation.Nullable;
 // typedef: _global.health_report.DlmFrozenTransitionsIndicatorDetails
 
 /**
- *
+ * An index is overdue when it has passed its <code>frozen_after</code> age by
+ * more than the configured threshold and has not yet completed its transition
+ * to the frozen tier. Indices with a running transition are making progress and
+ * are not counted as overdue.
+ * 
  * @see <a href=
  *      "../../doc-files/api-spec.html#_global.health_report.DlmFrozenTransitionsIndicatorDetails">API
  *      specification</a>
@@ -103,6 +107,9 @@ public class DlmFrozenTransitionsIndicatorDetails implements JsonpSerializable {
 	}
 
 	/**
+	 * Indicates whether frozen-tier transitions are enabled by the
+	 * <code>dlm.frozen_transitions.enabled</code> cluster setting.
+	 * <p>
 	 * API name: {@code transitions_enabled}
 	 */
 	@Nullable
@@ -111,6 +118,9 @@ public class DlmFrozenTransitionsIndicatorDetails implements JsonpSerializable {
 	}
 
 	/**
+	 * Indicates whether the frozen transition service is running on the current
+	 * master node.
+	 * <p>
 	 * API name: {@code service_running}
 	 */
 	@Nullable
@@ -119,6 +129,9 @@ public class DlmFrozenTransitionsIndicatorDetails implements JsonpSerializable {
 	}
 
 	/**
+	 * Indicates whether a default snapshot repository is configured with the
+	 * <code>repositories.default_repository</code> cluster setting.
+	 * <p>
 	 * API name: {@code default_repository_configured}
 	 */
 	@Nullable
@@ -127,6 +140,8 @@ public class DlmFrozenTransitionsIndicatorDetails implements JsonpSerializable {
 	}
 
 	/**
+	 * The total number of overdue indices in the cluster.
+	 * <p>
 	 * API name: {@code overdue_indices_count}
 	 */
 	@Nullable
@@ -135,6 +150,9 @@ public class DlmFrozenTransitionsIndicatorDetails implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of overdue indices in the cluster for each transition state. Only
+	 * present when there are overdue indices.
+	 * <p>
 	 * API name: {@code overdue_indices_count_by_state}
 	 */
 	public final Map<DlmFrozenTransitionState, Integer> overdueIndicesCountByState() {
@@ -142,6 +160,11 @@ public class DlmFrozenTransitionsIndicatorDetails implements JsonpSerializable {
 	}
 
 	/**
+	 * A sample of the overdue indices and their transition states, sorted by index
+	 * name. The sample is limited to 100 indices for each transition state, so it
+	 * can contain fewer indices than <code>overdue_indices_count</code>. Only
+	 * present when there are overdue indices.
+	 * <p>
 	 * API name: {@code overdue_indices_sample}
 	 */
 	public final List<DlmFrozenTransitionOverdueIndex> overdueIndicesSample() {
@@ -149,8 +172,9 @@ public class DlmFrozenTransitionsIndicatorDetails implements JsonpSerializable {
 	}
 
 	/**
-	 * Only present when the indicator status is <code>unknown</code>, meaning the
-	 * health snapshot is stale.
+	 * The time, in milliseconds since the Unix epoch, when the master node
+	 * generated the health snapshot. Only present when the indicator status is
+	 * <code>unknown</code>, meaning the health snapshot is stale.
 	 * <p>
 	 * API name: {@code generated_at_millis}
 	 */
@@ -267,6 +291,9 @@ public class DlmFrozenTransitionsIndicatorDetails implements JsonpSerializable {
 
 		}
 		/**
+		 * Indicates whether frozen-tier transitions are enabled by the
+		 * <code>dlm.frozen_transitions.enabled</code> cluster setting.
+		 * <p>
 		 * API name: {@code transitions_enabled}
 		 */
 		public final Builder transitionsEnabled(@Nullable Boolean value) {
@@ -275,6 +302,9 @@ public class DlmFrozenTransitionsIndicatorDetails implements JsonpSerializable {
 		}
 
 		/**
+		 * Indicates whether the frozen transition service is running on the current
+		 * master node.
+		 * <p>
 		 * API name: {@code service_running}
 		 */
 		public final Builder serviceRunning(@Nullable Boolean value) {
@@ -283,6 +313,9 @@ public class DlmFrozenTransitionsIndicatorDetails implements JsonpSerializable {
 		}
 
 		/**
+		 * Indicates whether a default snapshot repository is configured with the
+		 * <code>repositories.default_repository</code> cluster setting.
+		 * <p>
 		 * API name: {@code default_repository_configured}
 		 */
 		public final Builder defaultRepositoryConfigured(@Nullable Boolean value) {
@@ -291,6 +324,8 @@ public class DlmFrozenTransitionsIndicatorDetails implements JsonpSerializable {
 		}
 
 		/**
+		 * The total number of overdue indices in the cluster.
+		 * <p>
 		 * API name: {@code overdue_indices_count}
 		 */
 		public final Builder overdueIndicesCount(@Nullable Integer value) {
@@ -299,6 +334,9 @@ public class DlmFrozenTransitionsIndicatorDetails implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of overdue indices in the cluster for each transition state. Only
+		 * present when there are overdue indices.
+		 * <p>
 		 * API name: {@code overdue_indices_count_by_state}
 		 * <p>
 		 * Adds all entries of <code>map</code> to
@@ -310,6 +348,9 @@ public class DlmFrozenTransitionsIndicatorDetails implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of overdue indices in the cluster for each transition state. Only
+		 * present when there are overdue indices.
+		 * <p>
 		 * API name: {@code overdue_indices_count_by_state}
 		 * <p>
 		 * Adds an entry to <code>overdueIndicesCountByState</code>.
@@ -320,6 +361,11 @@ public class DlmFrozenTransitionsIndicatorDetails implements JsonpSerializable {
 		}
 
 		/**
+		 * A sample of the overdue indices and their transition states, sorted by index
+		 * name. The sample is limited to 100 indices for each transition state, so it
+		 * can contain fewer indices than <code>overdue_indices_count</code>. Only
+		 * present when there are overdue indices.
+		 * <p>
 		 * API name: {@code overdue_indices_sample}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>overdueIndicesSample</code>.
@@ -330,6 +376,11 @@ public class DlmFrozenTransitionsIndicatorDetails implements JsonpSerializable {
 		}
 
 		/**
+		 * A sample of the overdue indices and their transition states, sorted by index
+		 * name. The sample is limited to 100 indices for each transition state, so it
+		 * can contain fewer indices than <code>overdue_indices_count</code>. Only
+		 * present when there are overdue indices.
+		 * <p>
 		 * API name: {@code overdue_indices_sample}
 		 * <p>
 		 * Adds one or more values to <code>overdueIndicesSample</code>.
@@ -341,6 +392,11 @@ public class DlmFrozenTransitionsIndicatorDetails implements JsonpSerializable {
 		}
 
 		/**
+		 * A sample of the overdue indices and their transition states, sorted by index
+		 * name. The sample is limited to 100 indices for each transition state, so it
+		 * can contain fewer indices than <code>overdue_indices_count</code>. Only
+		 * present when there are overdue indices.
+		 * <p>
 		 * API name: {@code overdue_indices_sample}
 		 * <p>
 		 * Adds a value to <code>overdueIndicesSample</code> using a builder lambda.
@@ -351,8 +407,9 @@ public class DlmFrozenTransitionsIndicatorDetails implements JsonpSerializable {
 		}
 
 		/**
-		 * Only present when the indicator status is <code>unknown</code>, meaning the
-		 * health snapshot is stale.
+		 * The time, in milliseconds since the Unix epoch, when the master node
+		 * generated the health snapshot. Only present when the indicator status is
+		 * <code>unknown</code>, meaning the health snapshot is stale.
 		 * <p>
 		 * API name: {@code generated_at_millis}
 		 */

@@ -84,6 +84,9 @@ public class GetResult<TDocument> implements JsonpSerializable {
 	private final String routing;
 
 	@Nullable
+	private final String slice;
+
+	@Nullable
 	private final Long seqNo;
 
 	@Nullable
@@ -106,6 +109,7 @@ public class GetResult<TDocument> implements JsonpSerializable {
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.primaryTerm = builder.primaryTerm;
 		this.routing = builder.routing;
+		this.slice = builder.slice;
 		this.seqNo = builder.seqNo;
 		this.source = builder.source;
 		this.version = builder.version;
@@ -181,6 +185,17 @@ public class GetResult<TDocument> implements JsonpSerializable {
 	@Nullable
 	public final String routing() {
 		return this.routing;
+	}
+
+	/**
+	 * The slice the document belongs to, for a slice-enabled index
+	 * (<code>index.slice.enabled</code> set to <code>true</code>).
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String slice() {
+		return this.slice;
 	}
 
 	/**
@@ -269,6 +284,11 @@ public class GetResult<TDocument> implements JsonpSerializable {
 			generator.write(this.routing);
 
 		}
+		if (this.slice != null) {
+			generator.writeKey("_slice");
+			generator.write(this.slice);
+
+		}
 		if (this.seqNo != null) {
 			generator.writeKey("_seq_no");
 			generator.write(this.seqNo);
@@ -339,6 +359,9 @@ public class GetResult<TDocument> implements JsonpSerializable {
 
 		@Nullable
 		private String routing;
+
+		@Nullable
+		private String slice;
 
 		@Nullable
 		private Long seqNo;
@@ -451,6 +474,17 @@ public class GetResult<TDocument> implements JsonpSerializable {
 		}
 
 		/**
+		 * The slice the document belongs to, for a slice-enabled index
+		 * (<code>index.slice.enabled</code> set to <code>true</code>).
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final BuilderT slice(@Nullable String value) {
+			this.slice = value;
+			return self();
+		}
+
+		/**
 		 * The sequence number assigned to the document for the indexing operation.
 		 * Sequence numbers are used to ensure an older version of a document doesn't
 		 * overwrite a newer version.
@@ -494,6 +528,25 @@ public class GetResult<TDocument> implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(GetResult<TDocument> instance) {
+			this.index = instance.index;
+			this.fields = instance.fields;
+			this.ignored = instance.ignored;
+			this.found = instance.found;
+			this.id = instance.id;
+			this.primaryTerm = instance.primaryTerm;
+			this.routing = instance.routing;
+			this.slice = instance.slice;
+			this.seqNo = instance.seqNo;
+			this.source = instance.source;
+			this.version = instance.version;
+			this.tDocumentSerializer = instance.tDocumentSerializer;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}
@@ -528,6 +581,7 @@ public class GetResult<TDocument> implements JsonpSerializable {
 		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(AbstractBuilder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
 		op.add(AbstractBuilder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
+		op.add(AbstractBuilder::slice, JsonpDeserializer.stringDeserializer(), "_slice");
 		op.add(AbstractBuilder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 		op.add(AbstractBuilder::source, tDocumentDeserializer, "_source");
 		op.add(AbstractBuilder::version, JsonpDeserializer.longDeserializer(), "_version");

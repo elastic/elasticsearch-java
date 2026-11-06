@@ -144,6 +144,7 @@ public class TextReasoningDetail extends BaseReasoningDetail implements Reasonin
 		public Builder() {
 		}
 		private Builder(TextReasoningDetail instance) {
+			super(instance);
 			this.signature = instance.signature;
 			this.text = instance.text;
 

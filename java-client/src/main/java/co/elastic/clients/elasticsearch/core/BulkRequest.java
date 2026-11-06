@@ -426,11 +426,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	}
 
 	/**
-	 * The slice identifier used to route the operation to a specific slice. Use the
-	 * special value <code>_all</code> to target all slices without restricting to a
-	 * routing value. Required when <code>index.slice.enabled</code> is
-	 * <code>true</code> for the target index; not allowed when
-	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * The default slice identifier for a slice-enabled index
+	 * (<code>index.slice.enabled</code> set to <code>true</code>), applied to the
+	 * items that do not specify their own <code>_slice</code>.
 	 * <p>
 	 * API name: {@code _slice}
 	 */
@@ -734,11 +732,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 
 		/**
-		 * The slice identifier used to route the operation to a specific slice. Use the
-		 * special value <code>_all</code> to target all slices without restricting to a
-		 * routing value. Required when <code>index.slice.enabled</code> is
-		 * <code>true</code> for the target index; not allowed when
-		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * The default slice identifier for a slice-enabled index
+		 * (<code>index.slice.enabled</code> set to <code>true</code>), applied to the
+		 * items that do not specify their own <code>_slice</code>.
 		 * <p>
 		 * API name: {@code _slice}
 		 */
@@ -910,11 +906,14 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
+				final int _routeSlice = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
+				if (request.routeSlice() != null)
+					propsSet |= _routeSlice;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -928,6 +927,15 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 					buf.append("/_bulk");
 					return buf.toString();
 				}
+				if (propsSet == (_index | _routeSlice)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index, buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.routeSlice, buf);
+					buf.append("/_bulk");
+					return buf.toString();
+				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
@@ -936,16 +944,23 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				final int _index = 1 << 0;
+				final int _routeSlice = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
+				if (request.routeSlice() != null)
+					propsSet |= _routeSlice;
 
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_index)) {
 					params.put("index", request.index);
+				}
+				if (propsSet == (_index | _routeSlice)) {
+					params.put("index", request.index);
+					params.put("routeSlice", request.routeSlice);
 				}
 				return params;
 			},
@@ -953,24 +968,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.includeSourceOnError != null) {
-					params.put("include_source_on_error", String.valueOf(request.includeSourceOnError));
-				}
-				if (request.refresh != null) {
-					params.put("refresh", request.refresh.jsonValue());
-				}
-				if (request.routeSlice != null) {
-					params.put("_slice", request.routeSlice);
-				}
-				if (request.requireDataStream != null) {
-					params.put("require_data_stream", String.valueOf(request.requireDataStream));
-				}
-				if (request.listExecutedPipelines != null) {
-					params.put("list_executed_pipelines", String.valueOf(request.listExecutedPipelines));
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
-				}
 				if (request.pipeline != null) {
 					params.put("pipeline", request.pipeline);
 				}
@@ -978,8 +975,14 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
 				}
+				if (request.includeSourceOnError != null) {
+					params.put("include_source_on_error", String.valueOf(request.includeSourceOnError));
+				}
 				if (request.requireAlias != null) {
 					params.put("require_alias", String.valueOf(request.requireAlias));
+				}
+				if (request.refresh != null) {
+					params.put("refresh", request.refresh.jsonValue());
 				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
@@ -994,6 +997,15 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
 					params.put("_source_includes", request.sourceIncludes.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
+				}
+				if (request.requireDataStream != null) {
+					params.put("require_data_stream", String.valueOf(request.requireDataStream));
+				}
+				if (request.listExecutedPipelines != null) {
+					params.put("list_executed_pipelines", String.valueOf(request.listExecutedPipelines));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

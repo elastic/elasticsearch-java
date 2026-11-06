@@ -84,6 +84,7 @@ public class ParentAggregate extends SingleBucketAggregateBase implements Aggreg
 		public Builder() {
 		}
 		private Builder(ParentAggregate instance) {
+			super(instance);
 
 		}
 		@Override

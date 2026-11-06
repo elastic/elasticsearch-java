@@ -238,6 +238,7 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
 		public Builder() {
 		}
 		private Builder(ShingleTokenFilter instance) {
+			super(instance);
 			this.fillerToken = instance.fillerToken;
 			this.maxShingleSize = instance.maxShingleSize;
 			this.minShingleSize = instance.minShingleSize;

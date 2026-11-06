@@ -743,36 +743,6 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 		return createApiKey(fn.apply(new CreateApiKeyRequest.Builder()).build());
 	}
 
-	/**
-	 * Create an API key.
-	 * <p>
-	 * Create an API key for access without requiring basic authentication.
-	 * <p>
-	 * IMPORTANT: If the credential that is used to authenticate this request is an
-	 * API key, the derived API key cannot have any privileges. If you specify
-	 * privileges, the API returns an error.
-	 * <p>
-	 * A successful request returns a JSON structure that contains the API key, its
-	 * unique id, and its name. If applicable, it also returns expiration
-	 * information for the API key in milliseconds.
-	 * <p>
-	 * NOTE: By default, API keys never expire. You can specify expiration
-	 * information when you create the API keys.
-	 * <p>
-	 * The API keys are created by the Elasticsearch API key service, which is
-	 * automatically enabled. To configure or turn off the API key service, refer to
-	 * API key service setting documentation.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-create-api-key">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CreateApiKeyResponse createApiKey() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new CreateApiKeyRequest.Builder().build(), CreateApiKeyRequest._ENDPOINT,
-				this.transportOptions);
-	}
-
 	// ----- Endpoint: security.create_cross_cluster_api_key
 
 	/**
@@ -2279,11 +2249,13 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * <li>username and password</li>
 	 * <li>Elasticsearch access tokens</li>
 	 * <li>JWTs</li>
+	 * <li>service account tokens of user-managed service accounts</li>
 	 * </ul>
 	 * <p>
 	 * The user, for whom the authentication credentials is provided, can optionally
 	 * &quot;run as&quot; (impersonate) another user. In this case, the API key will
-	 * be created on behalf of the impersonated user.
+	 * be created on behalf of the impersonated user. Run as is not supported with
+	 * the <code>_user_managed_service_account</code> grant type.
 	 * <p>
 	 * This API is intended be used by applications that need to create and manage
 	 * API keys for end users, but cannot guarantee that those users have permission
@@ -2322,11 +2294,13 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * <li>username and password</li>
 	 * <li>Elasticsearch access tokens</li>
 	 * <li>JWTs</li>
+	 * <li>service account tokens of user-managed service accounts</li>
 	 * </ul>
 	 * <p>
 	 * The user, for whom the authentication credentials is provided, can optionally
 	 * &quot;run as&quot; (impersonate) another user. In this case, the API key will
-	 * be created on behalf of the impersonated user.
+	 * be created on behalf of the impersonated user. Run as is not supported with
+	 * the <code>_user_managed_service_account</code> grant type.
 	 * <p>
 	 * This API is intended be used by applications that need to create and manage
 	 * API keys for end users, but cannot guarantee that those users have permission
@@ -3408,6 +3382,66 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	public QueryRoleResponse queryRole() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new QueryRoleRequest.Builder().build(), QueryRoleRequest._ENDPOINT,
 				this.transportOptions);
+	}
+
+	// ----- Endpoint: security.query_service_accounts
+
+	/**
+	 * Find user-managed service accounts with a query.
+	 * <p>
+	 * Get a paginated list of user-managed service accounts and their information.
+	 * You can optionally filter the results with a query.
+	 * <p>
+	 * NOTE: Built-in service accounts are not stored in the security index, so this
+	 * API never returns them. Use the get service accounts API to list them.
+	 * 
+	 * @see <a href="null">Documentation on elastic.co</a>
+	 */
+
+	public QueryServiceAccountsResponse queryServiceAccounts(QueryServiceAccountsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<QueryServiceAccountsRequest, QueryServiceAccountsResponse, ErrorResponse> endpoint = (JsonEndpoint<QueryServiceAccountsRequest, QueryServiceAccountsResponse, ErrorResponse>) QueryServiceAccountsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Find user-managed service accounts with a query.
+	 * <p>
+	 * Get a paginated list of user-managed service accounts and their information.
+	 * You can optionally filter the results with a query.
+	 * <p>
+	 * NOTE: Built-in service accounts are not stored in the security index, so this
+	 * API never returns them. Use the get service accounts API to list them.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link QueryServiceAccountsRequest}
+	 * @see <a href="null">Documentation on elastic.co</a>
+	 */
+
+	public final QueryServiceAccountsResponse queryServiceAccounts(
+			Function<QueryServiceAccountsRequest.Builder, ObjectBuilder<QueryServiceAccountsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return queryServiceAccounts(fn.apply(new QueryServiceAccountsRequest.Builder()).build());
+	}
+
+	/**
+	 * Find user-managed service accounts with a query.
+	 * <p>
+	 * Get a paginated list of user-managed service accounts and their information.
+	 * You can optionally filter the results with a query.
+	 * <p>
+	 * NOTE: Built-in service accounts are not stored in the security index, so this
+	 * API never returns them. Use the get service accounts API to list them.
+	 * 
+	 * @see <a href="null">Documentation on elastic.co</a>
+	 */
+
+	public QueryServiceAccountsResponse queryServiceAccounts() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new QueryServiceAccountsRequest.Builder().build(),
+				QueryServiceAccountsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.query_user

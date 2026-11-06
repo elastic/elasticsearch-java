@@ -35,6 +35,7 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -68,7 +69,8 @@ public class Segment implements JsonpSerializable {
 
 	private final boolean committed;
 
-	private final boolean compound;
+	@Nullable
+	private final Boolean compound;
 
 	private final long deletedDocs;
 
@@ -76,25 +78,40 @@ public class Segment implements JsonpSerializable {
 
 	private final boolean search;
 
+	@Nullable
+	private final String mergeId;
+
+	private final List<SegmentSort> sort;
+
+	@Nullable
+	private final String size;
+
 	private final double sizeInBytes;
 
 	private final long numDocs;
 
+	@Nullable
 	private final String version;
+
+	private final Map<String, SegmentAutoCalibration> autoCalibration;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private Segment(Builder builder) {
 
-		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
+		this.attributes = ApiTypeHelper.unmodifiable(builder.attributes);
 		this.committed = ApiTypeHelper.requireNonNull(builder.committed, this, "committed", false);
-		this.compound = ApiTypeHelper.requireNonNull(builder.compound, this, "compound", false);
+		this.compound = builder.compound;
 		this.deletedDocs = ApiTypeHelper.requireNonNull(builder.deletedDocs, this, "deletedDocs", 0);
 		this.generation = ApiTypeHelper.requireNonNull(builder.generation, this, "generation", 0);
 		this.search = ApiTypeHelper.requireNonNull(builder.search, this, "search", false);
+		this.mergeId = builder.mergeId;
+		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
+		this.size = builder.size;
 		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes", 0);
 		this.numDocs = ApiTypeHelper.requireNonNull(builder.numDocs, this, "numDocs", 0);
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.version = builder.version;
+		this.autoCalibration = ApiTypeHelper.unmodifiable(builder.autoCalibration);
 
 	}
 
@@ -103,8 +120,8 @@ public class Segment implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Contains information about whether high compression was enabled
-	 * and per-field vector formats.
+	 * Contains information about whether high compression was enabled and per-field
+	 * vector formats.
 	 * <p>
 	 * API name: {@code attributes}
 	 */
@@ -125,12 +142,13 @@ public class Segment implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - If <code>true</code>, Lucene merged all files from the segment
-	 * into a single file to save file descriptors.
+	 * If <code>true</code>, Lucene merged all files from the segment into a single
+	 * file to save file descriptors.
 	 * <p>
 	 * API name: {@code compound}
 	 */
-	public final boolean compound() {
+	@Nullable
+	public final Boolean compound() {
 		return this.compound;
 	}
 
@@ -171,6 +189,36 @@ public class Segment implements JsonpSerializable {
 	}
 
 	/**
+	 * The ID of the merge the segment is part of. Only returned while the segment
+	 * is being merged.
+	 * <p>
+	 * API name: {@code merge_id}
+	 */
+	@Nullable
+	public final String mergeId() {
+		return this.mergeId;
+	}
+
+	/**
+	 * The index sort of the segment. Only returned when the index is sorted.
+	 * <p>
+	 * API name: {@code sort}
+	 */
+	public final List<SegmentSort> sort() {
+		return this.sort;
+	}
+
+	/**
+	 * Disk space used by the segment.
+	 * <p>
+	 * API name: {@code size}
+	 */
+	@Nullable
+	public final String size() {
+		return this.size;
+	}
+
+	/**
 	 * Required - Disk space used by the segment, in bytes.
 	 * <p>
 	 * API name: {@code size_in_bytes}
@@ -192,12 +240,24 @@ public class Segment implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Version of Lucene used to write the segment.
+	 * Version of Lucene used to write the segment.
 	 * <p>
 	 * API name: {@code version}
 	 */
+	@Nullable
 	public final String version() {
 		return this.version;
+	}
+
+	/**
+	 * The auto-calibration information of the segment, per
+	 * <code>dense_vector</code> field that supports auto-calibration. Only returned
+	 * when <code>include_auto_calibration</code> is <code>true</code>.
+	 * <p>
+	 * API name: {@code auto_calibration}
+	 */
+	public final Map<String, SegmentAutoCalibration> autoCalibration() {
+		return this.autoCalibration;
 	}
 
 	/**
@@ -225,9 +285,11 @@ public class Segment implements JsonpSerializable {
 		generator.writeKey("committed");
 		generator.write(this.committed);
 
-		generator.writeKey("compound");
-		generator.write(this.compound);
+		if (this.compound != null) {
+			generator.writeKey("compound");
+			generator.write(this.compound);
 
+		}
 		generator.writeKey("deleted_docs");
 		generator.write(this.deletedDocs);
 
@@ -237,14 +299,48 @@ public class Segment implements JsonpSerializable {
 		generator.writeKey("search");
 		generator.write(this.search);
 
+		if (this.mergeId != null) {
+			generator.writeKey("merge_id");
+			generator.write(this.mergeId);
+
+		}
+		if (ApiTypeHelper.isDefined(this.sort)) {
+			generator.writeKey("sort");
+			generator.writeStartArray();
+			for (SegmentSort item0 : this.sort) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.size != null) {
+			generator.writeKey("size");
+			generator.write(this.size);
+
+		}
 		generator.writeKey("size_in_bytes");
 		generator.write(this.sizeInBytes);
 
 		generator.writeKey("num_docs");
 		generator.write(this.numDocs);
 
-		generator.writeKey("version");
-		generator.write(this.version);
+		if (this.version != null) {
+			generator.writeKey("version");
+			generator.write(this.version);
+
+		}
+		if (ApiTypeHelper.isDefined(this.autoCalibration)) {
+			generator.writeKey("auto_calibration");
+			generator.writeStartObject();
+			for (Map.Entry<String, SegmentAutoCalibration> item0 : this.autoCalibration.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -260,10 +356,12 @@ public class Segment implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Segment> {
+		@Nullable
 		private Map<String, String> attributes;
 
 		private Boolean committed;
 
+		@Nullable
 		private Boolean compound;
 
 		private Long deletedDocs;
@@ -272,11 +370,24 @@ public class Segment implements JsonpSerializable {
 
 		private Boolean search;
 
+		@Nullable
+		private String mergeId;
+
+		@Nullable
+		private List<SegmentSort> sort;
+
+		@Nullable
+		private String size;
+
 		private Double sizeInBytes;
 
 		private Long numDocs;
 
+		@Nullable
 		private String version;
+
+		@Nullable
+		private Map<String, SegmentAutoCalibration> autoCalibration;
 
 		public Builder() {
 		}
@@ -287,14 +398,18 @@ public class Segment implements JsonpSerializable {
 			this.deletedDocs = instance.deletedDocs;
 			this.generation = instance.generation;
 			this.search = instance.search;
+			this.mergeId = instance.mergeId;
+			this.sort = instance.sort;
+			this.size = instance.size;
 			this.sizeInBytes = instance.sizeInBytes;
 			this.numDocs = instance.numDocs;
 			this.version = instance.version;
+			this.autoCalibration = instance.autoCalibration;
 
 		}
 		/**
-		 * Required - Contains information about whether high compression was enabled
-		 * and per-field vector formats.
+		 * Contains information about whether high compression was enabled and per-field
+		 * vector formats.
 		 * <p>
 		 * API name: {@code attributes}
 		 * <p>
@@ -306,8 +421,8 @@ public class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Contains information about whether high compression was enabled
-		 * and per-field vector formats.
+		 * Contains information about whether high compression was enabled and per-field
+		 * vector formats.
 		 * <p>
 		 * API name: {@code attributes}
 		 * <p>
@@ -332,12 +447,12 @@ public class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - If <code>true</code>, Lucene merged all files from the segment
-		 * into a single file to save file descriptors.
+		 * If <code>true</code>, Lucene merged all files from the segment into a single
+		 * file to save file descriptors.
 		 * <p>
 		 * API name: {@code compound}
 		 */
-		public final Builder compound(boolean value) {
+		public final Builder compound(@Nullable Boolean value) {
 			this.compound = value;
 			return this;
 		}
@@ -382,6 +497,62 @@ public class Segment implements JsonpSerializable {
 		}
 
 		/**
+		 * The ID of the merge the segment is part of. Only returned while the segment
+		 * is being merged.
+		 * <p>
+		 * API name: {@code merge_id}
+		 */
+		public final Builder mergeId(@Nullable String value) {
+			this.mergeId = value;
+			return this;
+		}
+
+		/**
+		 * The index sort of the segment. Only returned when the index is sorted.
+		 * <p>
+		 * API name: {@code sort}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
+		 */
+		public final Builder sort(List<SegmentSort> list) {
+			this.sort = _listAddAll(this.sort, list);
+			return this;
+		}
+
+		/**
+		 * The index sort of the segment. Only returned when the index is sorted.
+		 * <p>
+		 * API name: {@code sort}
+		 * <p>
+		 * Adds one or more values to <code>sort</code>.
+		 */
+		public final Builder sort(SegmentSort value, SegmentSort... values) {
+			this.sort = _listAdd(this.sort, value, values);
+			return this;
+		}
+
+		/**
+		 * The index sort of the segment. Only returned when the index is sorted.
+		 * <p>
+		 * API name: {@code sort}
+		 * <p>
+		 * Adds a value to <code>sort</code> using a builder lambda.
+		 */
+		public final Builder sort(Function<SegmentSort.Builder, ObjectBuilder<SegmentSort>> fn) {
+			return sort(fn.apply(new SegmentSort.Builder()).build());
+		}
+
+		/**
+		 * Disk space used by the segment.
+		 * <p>
+		 * API name: {@code size}
+		 */
+		public final Builder size(@Nullable String value) {
+			this.size = value;
+			return this;
+		}
+
+		/**
 		 * Required - Disk space used by the segment, in bytes.
 		 * <p>
 		 * API name: {@code size_in_bytes}
@@ -405,13 +576,55 @@ public class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Version of Lucene used to write the segment.
+		 * Version of Lucene used to write the segment.
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public final Builder version(String value) {
+		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
+		}
+
+		/**
+		 * The auto-calibration information of the segment, per
+		 * <code>dense_vector</code> field that supports auto-calibration. Only returned
+		 * when <code>include_auto_calibration</code> is <code>true</code>.
+		 * <p>
+		 * API name: {@code auto_calibration}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>autoCalibration</code>.
+		 */
+		public final Builder autoCalibration(Map<String, SegmentAutoCalibration> map) {
+			this.autoCalibration = _mapPutAll(this.autoCalibration, map);
+			return this;
+		}
+
+		/**
+		 * The auto-calibration information of the segment, per
+		 * <code>dense_vector</code> field that supports auto-calibration. Only returned
+		 * when <code>include_auto_calibration</code> is <code>true</code>.
+		 * <p>
+		 * API name: {@code auto_calibration}
+		 * <p>
+		 * Adds an entry to <code>autoCalibration</code>.
+		 */
+		public final Builder autoCalibration(String key, SegmentAutoCalibration value) {
+			this.autoCalibration = _mapPut(this.autoCalibration, key, value);
+			return this;
+		}
+
+		/**
+		 * The auto-calibration information of the segment, per
+		 * <code>dense_vector</code> field that supports auto-calibration. Only returned
+		 * when <code>include_auto_calibration</code> is <code>true</code>.
+		 * <p>
+		 * API name: {@code auto_calibration}
+		 * <p>
+		 * Adds an entry to <code>autoCalibration</code> using a builder lambda.
+		 */
+		public final Builder autoCalibration(String key,
+				Function<SegmentAutoCalibration.Builder, ObjectBuilder<SegmentAutoCalibration>> fn) {
+			return autoCalibration(key, fn.apply(new SegmentAutoCalibration.Builder()).build());
 		}
 
 		@Override
@@ -455,9 +668,14 @@ public class Segment implements JsonpSerializable {
 		op.add(Builder::deletedDocs, JsonpDeserializer.longDeserializer(), "deleted_docs");
 		op.add(Builder::generation, JsonpDeserializer.integerDeserializer(), "generation");
 		op.add(Builder::search, JsonpDeserializer.booleanDeserializer(), "search");
+		op.add(Builder::mergeId, JsonpDeserializer.stringDeserializer(), "merge_id");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SegmentSort._DESERIALIZER), "sort");
+		op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
 		op.add(Builder::sizeInBytes, JsonpDeserializer.doubleDeserializer(), "size_in_bytes");
 		op.add(Builder::numDocs, JsonpDeserializer.longDeserializer(), "num_docs");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
+		op.add(Builder::autoCalibration, JsonpDeserializer.stringMapDeserializer(SegmentAutoCalibration._DESERIALIZER),
+				"auto_calibration");
 
 	}
 

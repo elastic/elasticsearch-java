@@ -1344,6 +1344,7 @@ public class IndexSettings implements JsonpSerializable {
 			this.loadFixedBitsetFiltersEagerly = instance.loadFixedBitsetFiltersEagerly;
 			this.hidden = instance.hidden;
 			this.autoExpandReplicas = instance.autoExpandReplicas;
+			this.isExpNullAutoExpandReplicas = instance.isExpNullAutoExpandReplicas;
 			this.merge = instance.merge;
 			this.search = instance.search;
 			this.refreshInterval = instance.refreshInterval;

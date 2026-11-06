@@ -90,6 +90,9 @@ public class StartTransformRequest extends RequestBase {
 	private final String from;
 
 	@Nullable
+	private final Time initialDelay;
+
+	@Nullable
 	private final Time timeout;
 
 	private final String transformId;
@@ -99,6 +102,7 @@ public class StartTransformRequest extends RequestBase {
 	private StartTransformRequest(Builder builder) {
 
 		this.from = builder.from;
+		this.initialDelay = builder.initialDelay;
 		this.timeout = builder.timeout;
 		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
@@ -118,6 +122,19 @@ public class StartTransformRequest extends RequestBase {
 	@Nullable
 	public final String from() {
 		return this.from;
+	}
+
+	/**
+	 * A one-time, reduced sync delay that applies until the transform has processed
+	 * its first document. It then reverts to the <code>sync.time.delay</code> of
+	 * the transform. Only applicable for continuous transforms, and it can't be
+	 * greater than <code>sync.time.delay</code>.
+	 * <p>
+	 * API name: {@code initial_delay}
+	 */
+	@Nullable
+	public final Time initialDelay() {
+		return this.initialDelay;
 	}
 
 	/**
@@ -153,6 +170,9 @@ public class StartTransformRequest extends RequestBase {
 		private String from;
 
 		@Nullable
+		private Time initialDelay;
+
+		@Nullable
 		private Time timeout;
 
 		private String transformId;
@@ -161,6 +181,7 @@ public class StartTransformRequest extends RequestBase {
 		}
 		private Builder(StartTransformRequest instance) {
 			this.from = instance.from;
+			this.initialDelay = instance.initialDelay;
 			this.timeout = instance.timeout;
 			this.transformId = instance.transformId;
 
@@ -175,6 +196,31 @@ public class StartTransformRequest extends RequestBase {
 		public final Builder from(@Nullable String value) {
 			this.from = value;
 			return this;
+		}
+
+		/**
+		 * A one-time, reduced sync delay that applies until the transform has processed
+		 * its first document. It then reverts to the <code>sync.time.delay</code> of
+		 * the transform. Only applicable for continuous transforms, and it can't be
+		 * greater than <code>sync.time.delay</code>.
+		 * <p>
+		 * API name: {@code initial_delay}
+		 */
+		public final Builder initialDelay(@Nullable Time value) {
+			this.initialDelay = value;
+			return this;
+		}
+
+		/**
+		 * A one-time, reduced sync delay that applies until the transform has processed
+		 * its first document. It then reverts to the <code>sync.time.delay</code> of
+		 * the transform. Only applicable for continuous transforms, and it can't be
+		 * greater than <code>sync.time.delay</code>.
+		 * <p>
+		 * API name: {@code initial_delay}
+		 */
+		public final Builder initialDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.initialDelay(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -284,6 +330,9 @@ public class StartTransformRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.initialDelay != null) {
+					params.put("initial_delay", request.initialDelay._toJsonString());
+				}
 				if (request.from != null) {
 					params.put("from", request.from);
 				}

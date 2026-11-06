@@ -92,6 +92,7 @@ public class IndicNormalizationTokenFilter extends TokenFilterBase implements To
 		public Builder() {
 		}
 		private Builder(IndicNormalizationTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

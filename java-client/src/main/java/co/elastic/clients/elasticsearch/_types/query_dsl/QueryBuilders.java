@@ -132,6 +132,24 @@ public class QueryBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link DenseVectorQuery dense_vector} {@code Query}
+	 * variant.
+	 */
+	public static DenseVectorQuery.Builder denseVector() {
+		return new DenseVectorQuery.Builder();
+	}
+
+	/**
+	 * Creates a Query of the {@link DenseVectorQuery dense_vector} {@code Query}
+	 * variant.
+	 */
+	public static Query denseVector(Function<DenseVectorQuery.Builder, ObjectBuilder<DenseVectorQuery>> fn) {
+		Query.Builder builder = new Query.Builder();
+		builder.denseVector(fn.apply(new DenseVectorQuery.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link DisMaxQuery dis_max} {@code Query} variant.
 	 */
 	public static DisMaxQuery.Builder disMax() {

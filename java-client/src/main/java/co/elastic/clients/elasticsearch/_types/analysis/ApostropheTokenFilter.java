@@ -92,6 +92,7 @@ public class ApostropheTokenFilter extends TokenFilterBase implements TokenFilte
 		public Builder() {
 		}
 		private Builder(ApostropheTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

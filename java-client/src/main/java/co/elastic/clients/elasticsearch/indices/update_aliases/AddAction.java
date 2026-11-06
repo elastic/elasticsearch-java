@@ -156,6 +156,7 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 
 	/**
 	 * Data stream or index for the action. Supports wildcards (<code>*</code>).
+	 * Wildcard patterns that match both data streams and indices return an error.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -166,6 +167,7 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 
 	/**
 	 * Data streams or indices for the action. Supports wildcards (<code>*</code>).
+	 * Wildcard patterns that match both data streams and indices return an error.
 	 * <p>
 	 * API name: {@code indices}
 	 */
@@ -443,6 +445,7 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 
 		/**
 		 * Data stream or index for the action. Supports wildcards (<code>*</code>).
+		 * Wildcard patterns that match both data streams and indices return an error.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -453,6 +456,7 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 
 		/**
 		 * Data streams or indices for the action. Supports wildcards (<code>*</code>).
+		 * Wildcard patterns that match both data streams and indices return an error.
 		 * <p>
 		 * API name: {@code indices}
 		 * <p>
@@ -465,6 +469,7 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 
 		/**
 		 * Data streams or indices for the action. Supports wildcards (<code>*</code>).
+		 * Wildcard patterns that match both data streams and indices return an error.
 		 * <p>
 		 * API name: {@code indices}
 		 * <p>

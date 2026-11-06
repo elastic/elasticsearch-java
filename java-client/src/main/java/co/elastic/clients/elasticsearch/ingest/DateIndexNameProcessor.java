@@ -253,6 +253,7 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 		public Builder() {
 		}
 		private Builder(DateIndexNameProcessor instance) {
+			super(instance);
 			this.dateFormats = instance.dateFormats;
 			this.dateRounding = instance.dateRounding;
 			this.field = instance.field;

@@ -97,6 +97,7 @@ public class Flattened extends Base {
 		public Builder() {
 		}
 		private Builder(Flattened instance) {
+			super(instance);
 			this.fieldCount = instance.fieldCount;
 
 		}

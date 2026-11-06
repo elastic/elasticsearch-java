@@ -129,6 +129,16 @@ public abstract class TermsAggregateBase<TBucket> extends MultiBucketAggregateBa
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(TermsAggregateBase<TBucket> instance) {
+			super(instance);
+			this.docCountErrorUpperBound = instance.docCountErrorUpperBound;
+			this.sumOtherDocCount = instance.sumOtherDocCount;
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

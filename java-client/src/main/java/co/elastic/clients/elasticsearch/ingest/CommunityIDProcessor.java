@@ -344,6 +344,7 @@ public class CommunityIDProcessor extends ProcessorBase implements ProcessorVari
 		public Builder() {
 		}
 		private Builder(CommunityIDProcessor instance) {
+			super(instance);
 			this.sourceIp = instance.sourceIp;
 			this.sourcePort = instance.sourcePort;
 			this.destinationIp = instance.destinationIp;

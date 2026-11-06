@@ -142,6 +142,7 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 		public Builder() {
 		}
 		private Builder(ConditionTokenFilter instance) {
+			super(instance);
 			this.filter = instance.filter;
 			this.script = instance.script;
 

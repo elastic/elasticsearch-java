@@ -115,6 +115,7 @@ public class ConstantKeywordProperty extends PropertyBase implements PropertyVar
 		public Builder() {
 		}
 		private Builder(ConstantKeywordProperty instance) {
+			super(instance);
 			this.value = instance.value;
 
 		}

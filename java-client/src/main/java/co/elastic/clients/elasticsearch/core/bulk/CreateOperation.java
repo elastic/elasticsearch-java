@@ -123,6 +123,9 @@ public class CreateOperation<TDocument> extends WriteOperation implements NdJson
 		public Builder() {
 		}
 		private Builder(CreateOperation<TDocument> instance) {
+			super(instance);
+			this.tDocumentSerializer = instance.tDocumentSerializer;
+			this.document = instance.document;
 
 		}
 		/**

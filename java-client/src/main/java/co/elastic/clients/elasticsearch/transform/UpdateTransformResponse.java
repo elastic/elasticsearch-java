@@ -71,6 +71,7 @@ public class UpdateTransformResponse implements JsonpSerializable {
 
 	private final long createTime;
 
+	@Nullable
 	private final String description;
 
 	private final Destination dest;
@@ -106,7 +107,7 @@ public class UpdateTransformResponse implements JsonpSerializable {
 
 		this.authorization = builder.authorization;
 		this.createTime = ApiTypeHelper.requireNonNull(builder.createTime, this, "createTime", 0);
-		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.description = builder.description;
 		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
 		this.frequency = builder.frequency;
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
@@ -141,8 +142,9 @@ public class UpdateTransformResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code description}
+	 * API name: {@code description}
 	 */
+	@Nullable
 	public final String description() {
 		return this.description;
 	}
@@ -248,9 +250,11 @@ public class UpdateTransformResponse implements JsonpSerializable {
 		generator.writeKey("create_time");
 		generator.write(this.createTime);
 
-		generator.writeKey("description");
-		generator.write(this.description);
+		if (this.description != null) {
+			generator.writeKey("description");
+			generator.write(this.description);
 
+		}
 		generator.writeKey("dest");
 		this.dest.serialize(generator, mapper);
 
@@ -324,6 +328,7 @@ public class UpdateTransformResponse implements JsonpSerializable {
 
 		private Long createTime;
 
+		@Nullable
 		private String description;
 
 		private Destination dest;
@@ -379,9 +384,9 @@ public class UpdateTransformResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code description}
+		 * API name: {@code description}
 		 */
-		public final Builder description(String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}

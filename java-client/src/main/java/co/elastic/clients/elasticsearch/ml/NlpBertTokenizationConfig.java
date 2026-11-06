@@ -99,6 +99,8 @@ public class NlpBertTokenizationConfig extends CommonTokenizationConfig implemen
 		public Builder() {
 		}
 		private Builder(NlpBertTokenizationConfig instance) {
+			super(instance);
+			this._tokenizationConfigKind = instance._tokenizationConfigKind;
 
 		}
 		@Override

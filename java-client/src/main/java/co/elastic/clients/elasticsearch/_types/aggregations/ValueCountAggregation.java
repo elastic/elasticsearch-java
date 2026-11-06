@@ -97,6 +97,7 @@ public class ValueCountAggregation extends FormattableMetricAggregation
 		public Builder() {
 		}
 		private Builder(ValueCountAggregation instance) {
+			super(instance);
 
 		}
 		@Override

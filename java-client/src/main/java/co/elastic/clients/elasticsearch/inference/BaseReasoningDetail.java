@@ -188,6 +188,16 @@ public abstract class BaseReasoningDetail implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(BaseReasoningDetail instance) {
+			this.format = instance.format;
+			this.id = instance.id;
+			this.index = instance.index;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

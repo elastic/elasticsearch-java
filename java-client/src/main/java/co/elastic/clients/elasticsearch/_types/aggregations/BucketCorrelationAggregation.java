@@ -112,6 +112,7 @@ public class BucketCorrelationAggregation extends BucketPathAggregation implemen
 		public Builder() {
 		}
 		private Builder(BucketCorrelationAggregation instance) {
+			super(instance);
 			this.function = instance.function;
 
 		}

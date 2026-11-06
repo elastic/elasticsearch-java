@@ -192,6 +192,7 @@ public class ScriptProcessor extends ProcessorBase implements ProcessorVariant {
 		public Builder() {
 		}
 		private Builder(ScriptProcessor instance) {
+			super(instance);
 			this.id = instance.id;
 			this.lang = instance.lang;
 			this.params = instance.params;

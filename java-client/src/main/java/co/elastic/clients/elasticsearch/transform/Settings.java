@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -85,6 +86,9 @@ public class Settings implements JsonpSerializable {
 	@Nullable
 	private final Boolean unattended;
 
+	@Nullable
+	private final Time indexerRequestTimeout;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private Settings(Builder builder) {
@@ -97,6 +101,7 @@ public class Settings implements JsonpSerializable {
 		this.usePointInTime = builder.usePointInTime;
 		this.numFailureRetries = builder.numFailureRetries;
 		this.unattended = builder.unattended;
+		this.indexerRequestTimeout = builder.indexerRequestTimeout;
 
 	}
 
@@ -119,8 +124,8 @@ public class Settings implements JsonpSerializable {
 	}
 
 	/**
-	 * Defines if dates in the ouput should be written as ISO formatted string or as
-	 * millis since epoch. epoch_millis was the default for transforms created
+	 * Defines if dates in the output should be written as ISO formatted string or
+	 * as millis since epoch. epoch_millis was the default for transforms created
 	 * before version 7.11. For compatible output set this value to
 	 * <code>true</code>.
 	 * <p>
@@ -216,6 +221,19 @@ public class Settings implements JsonpSerializable {
 	}
 
 	/**
+	 * The initial timeout for the requests the transform sends to nodes to retrieve
+	 * checkpoint information. Each consecutive failure doubles the timeout, up to a
+	 * maximum of <code>12h</code>. The minimum value is <code>1ms</code> and the
+	 * maximum is <code>12h</code>. Defaults to <code>30s</code>.
+	 * <p>
+	 * API name: {@code indexer_request_timeout}
+	 */
+	@Nullable
+	public final Time indexerRequestTimeout() {
+		return this.indexerRequestTimeout;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -266,6 +284,11 @@ public class Settings implements JsonpSerializable {
 			generator.write(this.unattended);
 
 		}
+		if (this.indexerRequestTimeout != null) {
+			generator.writeKey("indexer_request_timeout");
+			this.indexerRequestTimeout.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -305,6 +328,9 @@ public class Settings implements JsonpSerializable {
 		@Nullable
 		private Boolean unattended;
 
+		@Nullable
+		private Time indexerRequestTimeout;
+
 		public Builder() {
 		}
 		private Builder(Settings instance) {
@@ -316,6 +342,7 @@ public class Settings implements JsonpSerializable {
 			this.usePointInTime = instance.usePointInTime;
 			this.numFailureRetries = instance.numFailureRetries;
 			this.unattended = instance.unattended;
+			this.indexerRequestTimeout = instance.indexerRequestTimeout;
 
 		}
 		/**
@@ -333,8 +360,8 @@ public class Settings implements JsonpSerializable {
 		}
 
 		/**
-		 * Defines if dates in the ouput should be written as ISO formatted string or as
-		 * millis since epoch. epoch_millis was the default for transforms created
+		 * Defines if dates in the output should be written as ISO formatted string or
+		 * as millis since epoch. epoch_millis was the default for transforms created
 		 * before version 7.11. For compatible output set this value to
 		 * <code>true</code>.
 		 * <p>
@@ -429,6 +456,31 @@ public class Settings implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * The initial timeout for the requests the transform sends to nodes to retrieve
+		 * checkpoint information. Each consecutive failure doubles the timeout, up to a
+		 * maximum of <code>12h</code>. The minimum value is <code>1ms</code> and the
+		 * maximum is <code>12h</code>. Defaults to <code>30s</code>.
+		 * <p>
+		 * API name: {@code indexer_request_timeout}
+		 */
+		public final Builder indexerRequestTimeout(@Nullable Time value) {
+			this.indexerRequestTimeout = value;
+			return this;
+		}
+
+		/**
+		 * The initial timeout for the requests the transform sends to nodes to retrieve
+		 * checkpoint information. Each consecutive failure doubles the timeout, up to a
+		 * maximum of <code>12h</code>. The minimum value is <code>1ms</code> and the
+		 * maximum is <code>12h</code>. Defaults to <code>30s</code>.
+		 * <p>
+		 * API name: {@code indexer_request_timeout}
+		 */
+		public final Builder indexerRequestTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.indexerRequestTimeout(fn.apply(new Time.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -471,6 +523,7 @@ public class Settings implements JsonpSerializable {
 		op.add(Builder::usePointInTime, JsonpDeserializer.booleanDeserializer(), "use_point_in_time");
 		op.add(Builder::numFailureRetries, JsonpDeserializer.integerDeserializer(), "num_failure_retries");
 		op.add(Builder::unattended, JsonpDeserializer.booleanDeserializer(), "unattended");
+		op.add(Builder::indexerRequestTimeout, Time._DESERIALIZER, "indexer_request_timeout");
 
 	}
 

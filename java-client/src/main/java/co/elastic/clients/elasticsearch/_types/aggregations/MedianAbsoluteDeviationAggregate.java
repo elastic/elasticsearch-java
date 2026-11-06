@@ -85,6 +85,7 @@ public class MedianAbsoluteDeviationAggregate extends SingleMetricAggregateBase 
 		public Builder() {
 		}
 		private Builder(MedianAbsoluteDeviationAggregate instance) {
+			super(instance);
 
 		}
 		@Override

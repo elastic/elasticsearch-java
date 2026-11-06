@@ -62,6 +62,12 @@ public class GlobalPrivilege implements JsonpSerializable {
 	@Nullable
 	private final ApplicationGlobalUserPrivileges application;
 
+	@Nullable
+	private final WriteProfileGlobalUserPrivileges profile;
+
+	@Nullable
+	private final ManageRolesGlobalUserPrivileges role;
+
 	private final List<DataSourcePrivileges> dataSource;
 
 	// ---------------------------------------------------------------------------------------------
@@ -69,6 +75,8 @@ public class GlobalPrivilege implements JsonpSerializable {
 	private GlobalPrivilege(Builder builder) {
 
 		this.application = builder.application;
+		this.profile = builder.profile;
+		this.role = builder.role;
 		this.dataSource = ApiTypeHelper.unmodifiable(builder.dataSource);
 
 	}
@@ -83,6 +91,28 @@ public class GlobalPrivilege implements JsonpSerializable {
 	@Nullable
 	public final ApplicationGlobalUserPrivileges application() {
 		return this.application;
+	}
+
+	/**
+	 * A privilege that grants the ability to write the <code>data</code> and
+	 * <code>access</code> sections of user profiles for the specified applications.
+	 * <p>
+	 * API name: {@code profile}
+	 */
+	@Nullable
+	public final WriteProfileGlobalUserPrivileges profile() {
+		return this.profile;
+	}
+
+	/**
+	 * A privilege that grants the ability to manage roles that are scoped to the
+	 * specified indices.
+	 * <p>
+	 * API name: {@code role}
+	 */
+	@Nullable
+	public final ManageRolesGlobalUserPrivileges role() {
+		return this.role;
 	}
 
 	/**
@@ -109,6 +139,16 @@ public class GlobalPrivilege implements JsonpSerializable {
 		if (this.application != null) {
 			generator.writeKey("application");
 			this.application.serialize(generator, mapper);
+
+		}
+		if (this.profile != null) {
+			generator.writeKey("profile");
+			this.profile.serialize(generator, mapper);
+
+		}
+		if (this.role != null) {
+			generator.writeKey("role");
+			this.role.serialize(generator, mapper);
 
 		}
 		if (ApiTypeHelper.isDefined(this.dataSource)) {
@@ -140,12 +180,20 @@ public class GlobalPrivilege implements JsonpSerializable {
 		private ApplicationGlobalUserPrivileges application;
 
 		@Nullable
+		private WriteProfileGlobalUserPrivileges profile;
+
+		@Nullable
+		private ManageRolesGlobalUserPrivileges role;
+
+		@Nullable
 		private List<DataSourcePrivileges> dataSource;
 
 		public Builder() {
 		}
 		private Builder(GlobalPrivilege instance) {
 			this.application = instance.application;
+			this.profile = instance.profile;
+			this.role = instance.role;
 			this.dataSource = instance.dataSource;
 
 		}
@@ -163,6 +211,50 @@ public class GlobalPrivilege implements JsonpSerializable {
 		public final Builder application(
 				Function<ApplicationGlobalUserPrivileges.Builder, ObjectBuilder<ApplicationGlobalUserPrivileges>> fn) {
 			return this.application(fn.apply(new ApplicationGlobalUserPrivileges.Builder()).build());
+		}
+
+		/**
+		 * A privilege that grants the ability to write the <code>data</code> and
+		 * <code>access</code> sections of user profiles for the specified applications.
+		 * <p>
+		 * API name: {@code profile}
+		 */
+		public final Builder profile(@Nullable WriteProfileGlobalUserPrivileges value) {
+			this.profile = value;
+			return this;
+		}
+
+		/**
+		 * A privilege that grants the ability to write the <code>data</code> and
+		 * <code>access</code> sections of user profiles for the specified applications.
+		 * <p>
+		 * API name: {@code profile}
+		 */
+		public final Builder profile(
+				Function<WriteProfileGlobalUserPrivileges.Builder, ObjectBuilder<WriteProfileGlobalUserPrivileges>> fn) {
+			return this.profile(fn.apply(new WriteProfileGlobalUserPrivileges.Builder()).build());
+		}
+
+		/**
+		 * A privilege that grants the ability to manage roles that are scoped to the
+		 * specified indices.
+		 * <p>
+		 * API name: {@code role}
+		 */
+		public final Builder role(@Nullable ManageRolesGlobalUserPrivileges value) {
+			this.role = value;
+			return this;
+		}
+
+		/**
+		 * A privilege that grants the ability to manage roles that are scoped to the
+		 * specified indices.
+		 * <p>
+		 * API name: {@code role}
+		 */
+		public final Builder role(
+				Function<ManageRolesGlobalUserPrivileges.Builder, ObjectBuilder<ManageRolesGlobalUserPrivileges>> fn) {
+			return this.role(fn.apply(new ManageRolesGlobalUserPrivileges.Builder()).build());
 		}
 
 		/**
@@ -239,6 +331,8 @@ public class GlobalPrivilege implements JsonpSerializable {
 	protected static void setupGlobalPrivilegeDeserializer(ObjectDeserializer<GlobalPrivilege.Builder> op) {
 
 		op.add(Builder::application, ApplicationGlobalUserPrivileges._DESERIALIZER, "application");
+		op.add(Builder::profile, WriteProfileGlobalUserPrivileges._DESERIALIZER, "profile");
+		op.add(Builder::role, ManageRolesGlobalUserPrivileges._DESERIALIZER, "role");
 		op.add(Builder::dataSource, JsonpDeserializer.arrayDeserializer(DataSourcePrivileges._DESERIALIZER),
 				"data_source");
 

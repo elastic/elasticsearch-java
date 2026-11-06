@@ -123,7 +123,7 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 	// ----- Endpoint: searchable_snapshots.clear_cache
 
 	/**
-	 * Clear the cache.
+	 * Clear the searchable snapshots shared cache.
 	 * <p>
 	 * Clear indices and data streams from the shared cache for partially mounted
 	 * indices.
@@ -141,7 +141,7 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 	}
 
 	/**
-	 * Clear the cache.
+	 * Clear the searchable snapshots shared cache.
 	 * <p>
 	 * Clear indices and data streams from the shared cache for partially mounted
 	 * indices.
@@ -160,7 +160,7 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 	}
 
 	/**
-	 * Clear the cache.
+	 * Clear the searchable snapshots shared cache.
 	 * <p>
 	 * Clear indices and data streams from the shared cache for partially mounted
 	 * indices.

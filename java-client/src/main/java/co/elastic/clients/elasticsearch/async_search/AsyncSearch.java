@@ -410,6 +410,7 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 			this.terminatedEarly = instance.terminatedEarly;
 			this.timedOut = instance.timedOut;
 			this.took = instance.took;
+			this.tDocumentSerializer = instance.tDocumentSerializer;
 
 		}
 		/**

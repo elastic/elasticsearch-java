@@ -233,6 +233,16 @@ public abstract class RetrieverBase implements JsonpSerializable {
 			return self();
 		}
 
+		protected AbstractBuilder() {
+		}
+
+		protected AbstractBuilder(RetrieverBase instance) {
+			this.filter = instance.filter;
+			this.minScore = instance.minScore;
+			this.name = instance.name;
+
+		}
+
 		protected abstract BuilderT self();
 
 	}

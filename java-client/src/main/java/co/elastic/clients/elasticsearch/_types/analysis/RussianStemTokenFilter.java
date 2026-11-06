@@ -92,6 +92,7 @@ public class RussianStemTokenFilter extends TokenFilterBase implements TokenFilt
 		public Builder() {
 		}
 		private Builder(RussianStemTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override

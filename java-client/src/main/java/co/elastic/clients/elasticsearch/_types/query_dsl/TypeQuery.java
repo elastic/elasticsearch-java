@@ -106,6 +106,7 @@ public class TypeQuery extends QueryBase implements QueryVariant {
 		public Builder() {
 		}
 		private Builder(TypeQuery instance) {
+			super(instance);
 			this.value = instance.value;
 
 		}

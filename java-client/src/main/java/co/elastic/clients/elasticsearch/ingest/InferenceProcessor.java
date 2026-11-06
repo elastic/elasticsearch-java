@@ -241,6 +241,7 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		public Builder() {
 		}
 		private Builder(InferenceProcessor instance) {
+			super(instance);
 			this.modelId = instance.modelId;
 			this.targetField = instance.targetField;
 			this.fieldMap = instance.fieldMap;

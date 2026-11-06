@@ -95,6 +95,7 @@ public class DictionaryDecompounderTokenFilter extends CompoundWordTokenFilterBa
 		public Builder() {
 		}
 		private Builder(DictionaryDecompounderTokenFilter instance) {
+			super(instance);
 
 		}
 		@Override
