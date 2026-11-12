@@ -894,6 +894,10 @@ public class Rest5Client implements Closeable {
                 .getHttpAsyncResponseConsumerFactory()
                 .createHttpAsyncResponseConsumer();
             this.context = HttpClientContext.create();
+            RequestConfig requestConfig = request.httpRequest.getConfig();
+            if (requestConfig != null) {
+                this.context.setRequestConfig(requestConfig);
+            }
         }
     }
 
