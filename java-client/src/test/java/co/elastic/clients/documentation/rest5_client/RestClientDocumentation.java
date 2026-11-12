@@ -19,6 +19,12 @@
 
 package co.elastic.clients.documentation.rest5_client;
 
+import co.elastic.clients.documentation.usage.Product;
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.json.jackson.JacksonJsonpMapper;
+import co.elastic.clients.transport.rest5_client.Rest5ClientOptions;
+import co.elastic.clients.transport.rest5_client.Rest5ClientTransport;
 import co.elastic.clients.transport.rest5_client.low_level.Cancellable;
 import co.elastic.clients.transport.rest5_client.low_level.HttpAsyncResponseConsumerFactory;
 import co.elastic.clients.transport.rest5_client.low_level.Node;
@@ -323,15 +329,22 @@ public class RestClientDocumentation {
             //end::rest-client-config-timeouts
         }
         {
+            ElasticsearchClient esClient = new ElasticsearchClient(new Rest5ClientTransport(
+                Rest5Client.builder(new HttpHost("localhost", 9200)).build(), new JacksonJsonpMapper()));
+
             //tag::rest-client-config-request-options-timeouts
             RequestConfig requestConfig = RequestConfig.custom()
-                .setConnectTimeout(Timeout.ofMilliseconds(5000))
-                .setConnectionRequestTimeout(Timeout.ofMilliseconds(60000))
+                .setResponseTimeout(Timeout.ofSeconds(60))
+                .setConnectionRequestTimeout(Timeout.ofSeconds(1))
                 .build();
 
-            RequestOptions options = RequestOptions.DEFAULT.toBuilder()
-                .setRequestConfig(requestConfig)
-                .build();
+            Rest5ClientOptions options = new Rest5ClientOptions.Builder(
+                RequestOptions.DEFAULT.toBuilder().setRequestConfig(requestConfig)
+            ).build();
+
+            SearchResponse<Product> response = esClient
+                .withTransportOptions(options) // <1>
+                .search(s -> s.index("products"), Product.class);
             //end::rest-client-config-request-options-timeouts
         }
         {
