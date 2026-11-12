@@ -7,6 +7,25 @@ navigation_title: "Known issues"
 
 For detailed issues, refer to the [Java client repo](https://github.com/elastic/elasticsearch-java/issues).
 
+## 9.x (up to 9.5.6) [known-issues-9-x-up-to-9-5-6]
+
+Original report on [GitHub](https://github.com/elastic/elasticsearch-java/issues/1378).  
+All 9.x versions of the client previous to, respectively, 9.4.10 and 9.5.7 ignore the `RequestConfig` set in per-request `RequestOptions`, such as response and connection request timeouts: requests always use the `RequestConfig` set when building the `Rest5Client`.
+The bug only concerns the `Rest5Client`, not the legacy `RestClient`.  
+This problem was fixed in 9.4.10, 9.5.7 and 9.6.0.
+Detailed version info:
+
+| Version | Affected Releases | Update to |
+|---------|------------------|-----------|
+| 9.0     | all              | 9.4.10    |
+| 9.1     | all              | 9.4.10    |
+| 9.2     | all              | 9.4.10    |
+| 9.3     | all              | 9.4.10    |
+| 9.4     | 9.4.0 -> 9.4.9   | 9.4.10    |
+| 9.5     | 9.5.0 -> 9.5.6   | 9.5.7     |
+
+To work around this issue in affected versions, set timeouts when building the `Rest5Client`, as described in [Timeouts](/reference/transport/rest5-client/config/timeouts.md).
+
 ## 9.x (up to 9.4.4) [known-issues-9-x-up-to-9-4-4]
 
 Original report on [GitHub](https://github.com/elastic/elasticsearch-java/issues/1289).  
