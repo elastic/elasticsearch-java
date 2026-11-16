@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class DenseVectorIndexOptions implements SemanticTextIndexOptionsVariant, JsonpSerializable {
+public class DenseVectorIndexOptions implements JsonpSerializable {
 	@Nullable
 	private final Float confidenceInterval;
 
@@ -85,14 +85,6 @@ public class DenseVectorIndexOptions implements SemanticTextIndexOptionsVariant,
 
 	public static DenseVectorIndexOptions of(Function<Builder, ObjectBuilder<DenseVectorIndexOptions>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * SemanticTextIndexOptions variant kind.
-	 */
-	@Override
-	public SemanticTextIndexOptions.Kind _semanticTextIndexOptionsKind() {
-		return SemanticTextIndexOptions.Kind.DenseVector;
 	}
 
 	/**
