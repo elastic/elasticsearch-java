@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -26,9 +27,13 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -57,15 +62,57 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class SemanticTextIndexOptions implements JsonpSerializable {
-	@Nullable
-	private final DenseVectorIndexOptions denseVector;
+public class SemanticTextIndexOptions implements TaggedUnion<SemanticTextIndexOptions.Kind, Object>, JsonpSerializable {
 
-	// ---------------------------------------------------------------------------------------------
+	/**
+	 * {@link SemanticTextIndexOptions} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../../doc-files/api-spec.html#_types.mapping.SemanticTextIndexOptions">API
+	 *      specification</a>
+	 */
+
+	public enum Kind implements JsonEnum {
+		DenseVector("dense_vector"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
+	private final Object _value;
+
+	@Override
+	public final Kind _kind() {
+		return _kind;
+	}
+
+	@Override
+	public final Object _get() {
+		return _value;
+	}
+
+	public SemanticTextIndexOptions(SemanticTextIndexOptionsVariant value) {
+
+		this._kind = ApiTypeHelper.requireNonNull(value._semanticTextIndexOptionsKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+
+	}
 
 	private SemanticTextIndexOptions(Builder builder) {
 
-		this.denseVector = builder.denseVector;
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
@@ -74,29 +121,34 @@ public class SemanticTextIndexOptions implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code dense_vector}
+	 * Is this variant instance of kind {@code dense_vector}?
 	 */
-	@Nullable
-	public final DenseVectorIndexOptions denseVector() {
-		return this.denseVector;
+	public boolean isDenseVector() {
+		return _kind == Kind.DenseVector;
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Get the {@code dense_vector} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code dense_vector} kind.
 	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
+	public DenseVectorIndexOptions denseVector() {
+		return TaggedUnionUtils.get(this, Kind.DenseVector);
 	}
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+	@Override
+	@SuppressWarnings("unchecked")
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.denseVector != null) {
-			generator.writeKey("dense_vector");
-			this.denseVector.serialize(generator, mapper);
+		generator.writeStartObject();
 
+		generator.writeKey(_kind.jsonValue());
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
+
+		generator.writeEnd();
 
 	}
 
@@ -105,77 +157,40 @@ public class SemanticTextIndexOptions implements JsonpSerializable {
 		return JsonpUtils.toString(this);
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Builder for {@link SemanticTextIndexOptions}.
-	 */
-
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<SemanticTextIndexOptions> {
-		@Nullable
-		private DenseVectorIndexOptions denseVector;
-
-		public Builder() {
-		}
-		private Builder(SemanticTextIndexOptions instance) {
-			this.denseVector = instance.denseVector;
-
-		}
-		/**
-		 * API name: {@code dense_vector}
-		 */
-		public final Builder denseVector(@Nullable DenseVectorIndexOptions value) {
-			this.denseVector = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code dense_vector}
-		 */
-		public final Builder denseVector(
-				Function<DenseVectorIndexOptions.Builder, ObjectBuilder<DenseVectorIndexOptions>> fn) {
-			return this.denseVector(fn.apply(new DenseVectorIndexOptions.Builder()).build());
-		}
+		private Kind _kind;
+		private Object _value;
 
 		@Override
 		protected Builder self() {
 			return this;
 		}
+		public ObjectBuilder<SemanticTextIndexOptions> denseVector(DenseVectorIndexOptions v) {
+			this._kind = Kind.DenseVector;
+			this._value = v;
+			return this;
+		}
 
-		/**
-		 * Builds a {@link SemanticTextIndexOptions}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
+		public ObjectBuilder<SemanticTextIndexOptions> denseVector(
+				Function<DenseVectorIndexOptions.Builder, ObjectBuilder<DenseVectorIndexOptions>> fn) {
+			return this.denseVector(fn.apply(new DenseVectorIndexOptions.Builder()).build());
+		}
+
 		public SemanticTextIndexOptions build() {
 			_checkSingleUse();
-
 			return new SemanticTextIndexOptions(this);
 		}
+
 	}
 
-	/**
-	 * @return New {@link Builder} initialized with field values of this instance
-	 */
-	public Builder rebuild() {
-		return new Builder(this);
-	}
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for {@link SemanticTextIndexOptions}
-	 */
-	public static final JsonpDeserializer<SemanticTextIndexOptions> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SemanticTextIndexOptions::setupSemanticTextIndexOptionsDeserializer);
-
-	protected static void setupSemanticTextIndexOptionsDeserializer(
-			ObjectDeserializer<SemanticTextIndexOptions.Builder> op) {
+	protected static void setupSemanticTextIndexOptionsDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::denseVector, DenseVectorIndexOptions._DESERIALIZER, "dense_vector");
 
 	}
 
+	public static final JsonpDeserializer<SemanticTextIndexOptions> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SemanticTextIndexOptions::setupSemanticTextIndexOptionsDeserializer, Builder::build);
 }

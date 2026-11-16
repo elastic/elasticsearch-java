@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -34,9 +35,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -69,6 +72,8 @@ import javax.annotation.Nullable;
  */
 
 public class ExplainLifecycleRequest extends RequestBase {
+	private final List<ExpandWildcard> expandWildcards;
+
 	private final String index;
 
 	@Nullable
@@ -84,6 +89,7 @@ public class ExplainLifecycleRequest extends RequestBase {
 
 	private ExplainLifecycleRequest(Builder builder) {
 
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
 		this.onlyErrors = builder.onlyErrors;
@@ -93,6 +99,18 @@ public class ExplainLifecycleRequest extends RequestBase {
 
 	public static ExplainLifecycleRequest of(Function<Builder, ObjectBuilder<ExplainLifecycleRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values, such as
+	 * <code>open,hidden</code>.
+	 * <p>
+	 * API name: {@code expand_wildcards}
+	 */
+	public final List<ExpandWildcard> expandWildcards() {
+		return this.expandWildcards;
 	}
 
 	/**
@@ -148,6 +166,9 @@ public class ExplainLifecycleRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ExplainLifecycleRequest> {
+		@Nullable
+		private List<ExpandWildcard> expandWildcards;
+
 		private String index;
 
 		@Nullable
@@ -162,12 +183,43 @@ public class ExplainLifecycleRequest extends RequestBase {
 		public Builder() {
 		}
 		private Builder(ExplainLifecycleRequest instance) {
+			this.expandWildcards = instance.expandWildcards;
 			this.index = instance.index;
 			this.masterTimeout = instance.masterTimeout;
 			this.onlyErrors = instance.onlyErrors;
 			this.onlyManaged = instance.onlyManaged;
 
 		}
+		/**
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
+			return this;
+		}
+
+		/**
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
+			return this;
+		}
+
 		/**
 		 * Required - Comma-separated list of data streams, indices, and aliases to
 		 * target. Supports wildcards (<code>*</code>). To target all data streams and
@@ -307,6 +359,10 @@ public class ExplainLifecycleRequest extends RequestBase {
 				}
 				if (request.onlyManaged != null) {
 					params.put("only_managed", String.valueOf(request.onlyManaged));
+				}
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				return params;
 

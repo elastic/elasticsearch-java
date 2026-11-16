@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -82,6 +83,12 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 	private final Boolean scriptedUpsert;
 
 	@Nullable
+	private final Long ifSeqNo;
+
+	@Nullable
+	private final Long ifPrimaryTerm;
+
+	@Nullable
 	private final SourceConfig source;
 
 	@Nullable
@@ -102,6 +109,8 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 		this.docAsUpsert = builder.docAsUpsert;
 		this.script = builder.script;
 		this.scriptedUpsert = builder.scriptedUpsert;
+		this.ifSeqNo = builder.ifSeqNo;
+		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.source = builder.source;
 		this.upsert = builder.upsert;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
@@ -168,6 +177,26 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 	}
 
 	/**
+	 * Only perform the update if the document has this sequence number.
+	 * <p>
+	 * API name: {@code if_seq_no}
+	 */
+	@Nullable
+	public final Long ifSeqNo() {
+		return this.ifSeqNo;
+	}
+
+	/**
+	 * Only perform the update if the document has this primary term.
+	 * <p>
+	 * API name: {@code if_primary_term}
+	 */
+	@Nullable
+	public final Long ifPrimaryTerm() {
+		return this.ifPrimaryTerm;
+	}
+
+	/**
 	 * If <code>false</code>, source retrieval is turned off. You can also specify a
 	 * comma-separated list of the fields you want to retrieve.
 	 * <p>
@@ -226,6 +255,16 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 			generator.write(this.scriptedUpsert);
 
 		}
+		if (this.ifSeqNo != null) {
+			generator.writeKey("if_seq_no");
+			generator.write(this.ifSeqNo);
+
+		}
+		if (this.ifPrimaryTerm != null) {
+			generator.writeKey("if_primary_term");
+			generator.write(this.ifPrimaryTerm);
+
+		}
 		if (this.source != null) {
 			generator.writeKey("_source");
 			this.source.serialize(generator, mapper);
@@ -271,6 +310,12 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 		private Boolean scriptedUpsert;
 
 		@Nullable
+		private Long ifSeqNo;
+
+		@Nullable
+		private Long ifPrimaryTerm;
+
+		@Nullable
 		private SourceConfig source;
 
 		@Nullable
@@ -290,6 +335,8 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 			this.docAsUpsert = instance.docAsUpsert;
 			this.script = instance.script;
 			this.scriptedUpsert = instance.scriptedUpsert;
+			this.ifSeqNo = instance.ifSeqNo;
+			this.ifPrimaryTerm = instance.ifPrimaryTerm;
 			this.source = instance.source;
 			this.upsert = instance.upsert;
 			this.tDocumentSerializer = instance.tDocumentSerializer;
@@ -355,6 +402,26 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 		 */
 		public final Builder<TDocument, TPartialDocument> scriptedUpsert(@Nullable Boolean value) {
 			this.scriptedUpsert = value;
+			return this;
+		}
+
+		/**
+		 * Only perform the update if the document has this sequence number.
+		 * <p>
+		 * API name: {@code if_seq_no}
+		 */
+		public final Builder<TDocument, TPartialDocument> ifSeqNo(@Nullable Long value) {
+			this.ifSeqNo = value;
+			return this;
+		}
+
+		/**
+		 * Only perform the update if the document has this primary term.
+		 * <p>
+		 * API name: {@code if_primary_term}
+		 */
+		public final Builder<TDocument, TPartialDocument> ifPrimaryTerm(@Nullable Long value) {
+			this.ifPrimaryTerm = value;
 			return this;
 		}
 
@@ -469,6 +536,8 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 		op.add(Builder::docAsUpsert, JsonpDeserializer.booleanDeserializer(), "doc_as_upsert");
 		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::scriptedUpsert, JsonpDeserializer.booleanDeserializer(), "scripted_upsert");
+		op.add(Builder::ifSeqNo, JsonpDeserializer.longDeserializer(), "if_seq_no");
+		op.add(Builder::ifPrimaryTerm, JsonpDeserializer.longDeserializer(), "if_primary_term");
 		op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
 		op.add(Builder::upsert, tDocumentDeserializer, "upsert");
 
