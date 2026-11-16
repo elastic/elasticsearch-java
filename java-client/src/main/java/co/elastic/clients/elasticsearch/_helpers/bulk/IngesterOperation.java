@@ -166,9 +166,7 @@ class IngesterOperation<Context> {
             .index(op.index())
             .ifPrimaryTerm(op.ifPrimaryTerm())
             .ifSeqNo(op.ifSeqNo())
-            .routing(op.routing())
-            .version(op.version())
-            .versionType(op.versionType());
+            .routing(op.routing());
     }
 
     private static void copyIndexProperties(IndexOperation<?> op, IndexOperation.Builder<?> builder) {
@@ -253,8 +251,6 @@ class IngesterOperation<Context> {
                 size("if_primary_term", op.ifPrimaryTerm()) +
                 size("if_seq_no", op.ifSeqNo()) +
                 size("routing", op.routing()) +
-                size("version", op.version()) +
-                size("version_type", op.versionType()) +
                 4; // Open/closing brace, 2 newlines
     }
 }
