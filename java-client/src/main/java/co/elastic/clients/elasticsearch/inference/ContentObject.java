@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.inference;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -28,9 +29,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -53,29 +55,68 @@ import javax.annotation.Nullable;
 // typedef: inference._types.ContentObject
 
 /**
- * An object style representation of a single portion of a conversation.
+ * One part of a chat message. The <code>type</code> field selects which
+ * property is present. Not all services and models support content types other
+ * than <code>text</code>.
  * 
  * @see <a href="../doc-files/api-spec.html#inference._types.ContentObject">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class ContentObject implements JsonpSerializable {
-	private final ContentType type;
+public class ContentObject implements TaggedUnion<ContentObject.Kind, ContentObjectVariant>, JsonpSerializable {
 
-	private final String text;
+	/**
+	 * {@link ContentObject} variant kinds.
+	 * 
+	 * @see <a href="../doc-files/api-spec.html#inference._types.ContentObject">API
+	 *      specification</a>
+	 */
 
-	private final ImageUrl imageUrl;
+	public enum Kind implements JsonEnum {
+		File("file"),
 
-	private final FileContent file;
+		ImageUrl("image_url"),
 
-	// ---------------------------------------------------------------------------------------------
+		Text("text"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
+	private final ContentObjectVariant _value;
+
+	@Override
+	public final Kind _kind() {
+		return _kind;
+	}
+
+	@Override
+	public final ContentObjectVariant _get() {
+		return _value;
+	}
+
+	public ContentObject(ContentObjectVariant value) {
+
+		this._kind = ApiTypeHelper.requireNonNull(value._contentObjectKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+
+	}
 
 	private ContentObject(Builder builder) {
 
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
-		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
-		this.imageUrl = ApiTypeHelper.requireNonNull(builder.imageUrl, this, "imageUrl");
-		this.file = ApiTypeHelper.requireNonNull(builder.file, this, "file");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
@@ -84,65 +125,60 @@ public class ContentObject implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The type of content. Must be one of <code>text</code>,
-	 * <code>image_url</code> or <code>file</code>. Not all services/models support
-	 * content types other than &quot;text&quot;
-	 * <p>
-	 * API name: {@code type}
+	 * Is this variant instance of kind {@code file}?
 	 */
-	public final ContentType type() {
-		return this.type;
+	public boolean isFile() {
+		return _kind == Kind.File;
 	}
 
 	/**
-	 * Required - The text content. Only applicable for the <code>text</code> type
-	 * <p>
-	 * API name: {@code text}
+	 * Get the {@code file} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code file} kind.
 	 */
-	public final String text() {
-		return this.text;
+	public FileContentPart file() {
+		return TaggedUnionUtils.get(this, Kind.File);
 	}
 
 	/**
-	 * Required - The image content. Only applicable for the <code>image_url</code>
-	 * type
-	 * <p>
-	 * API name: {@code image_url}
+	 * Is this variant instance of kind {@code image_url}?
 	 */
-	public final ImageUrl imageUrl() {
-		return this.imageUrl;
+	public boolean isImageUrl() {
+		return _kind == Kind.ImageUrl;
 	}
 
 	/**
-	 * Required - The file content. Only applicable for the <code>file</code> type
-	 * <p>
-	 * API name: {@code file}
+	 * Get the {@code image_url} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code image_url} kind.
 	 */
-	public final FileContent file() {
-		return this.file;
+	public ImageUrlContent imageUrl() {
+		return TaggedUnionUtils.get(this, Kind.ImageUrl);
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Is this variant instance of kind {@code text}?
 	 */
+	public boolean isText() {
+		return _kind == Kind.Text;
+	}
+
+	/**
+	 * Get the {@code text} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code text} kind.
+	 */
+	public TextContent text() {
+		return TaggedUnionUtils.get(this, Kind.Text);
+	}
+
+	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("type");
-		this.type.serialize(generator, mapper);
-		generator.writeKey("text");
-		generator.write(this.text);
-
-		generator.writeKey("image_url");
-		this.imageUrl.serialize(generator, mapper);
-
-		generator.writeKey("file");
-		this.file.serialize(generator, mapper);
+		mapper.serialize(_value, generator);
 
 	}
 
@@ -151,131 +187,62 @@ public class ContentObject implements JsonpSerializable {
 		return JsonpUtils.toString(this);
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Builder for {@link ContentObject}.
-	 */
-
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ContentObject> {
-		private ContentType type;
-
-		private String text;
-
-		private ImageUrl imageUrl;
-
-		private FileContent file;
-
-		public Builder() {
-		}
-		private Builder(ContentObject instance) {
-			this.type = instance.type;
-			this.text = instance.text;
-			this.imageUrl = instance.imageUrl;
-			this.file = instance.file;
-
-		}
-		/**
-		 * Required - The type of content. Must be one of <code>text</code>,
-		 * <code>image_url</code> or <code>file</code>. Not all services/models support
-		 * content types other than &quot;text&quot;
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public final Builder type(ContentType value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
-		 * Required - The text content. Only applicable for the <code>text</code> type
-		 * <p>
-		 * API name: {@code text}
-		 */
-		public final Builder text(String value) {
-			this.text = value;
-			return this;
-		}
-
-		/**
-		 * Required - The image content. Only applicable for the <code>image_url</code>
-		 * type
-		 * <p>
-		 * API name: {@code image_url}
-		 */
-		public final Builder imageUrl(ImageUrl value) {
-			this.imageUrl = value;
-			return this;
-		}
-
-		/**
-		 * Required - The image content. Only applicable for the <code>image_url</code>
-		 * type
-		 * <p>
-		 * API name: {@code image_url}
-		 */
-		public final Builder imageUrl(Function<ImageUrl.Builder, ObjectBuilder<ImageUrl>> fn) {
-			return this.imageUrl(fn.apply(new ImageUrl.Builder()).build());
-		}
-
-		/**
-		 * Required - The file content. Only applicable for the <code>file</code> type
-		 * <p>
-		 * API name: {@code file}
-		 */
-		public final Builder file(FileContent value) {
-			this.file = value;
-			return this;
-		}
-
-		/**
-		 * Required - The file content. Only applicable for the <code>file</code> type
-		 * <p>
-		 * API name: {@code file}
-		 */
-		public final Builder file(Function<FileContent.Builder, ObjectBuilder<FileContent>> fn) {
-			return this.file(fn.apply(new FileContent.Builder()).build());
-		}
+		private Kind _kind;
+		private ContentObjectVariant _value;
 
 		@Override
 		protected Builder self() {
 			return this;
 		}
+		public ObjectBuilder<ContentObject> file(FileContentPart v) {
+			this._kind = Kind.File;
+			this._value = v;
+			return this;
+		}
 
-		/**
-		 * Builds a {@link ContentObject}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
+		public ObjectBuilder<ContentObject> file(Function<FileContentPart.Builder, ObjectBuilder<FileContentPart>> fn) {
+			return this.file(fn.apply(new FileContentPart.Builder()).build());
+		}
+
+		public ObjectBuilder<ContentObject> imageUrl(ImageUrlContent v) {
+			this._kind = Kind.ImageUrl;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<ContentObject> imageUrl(
+				Function<ImageUrlContent.Builder, ObjectBuilder<ImageUrlContent>> fn) {
+			return this.imageUrl(fn.apply(new ImageUrlContent.Builder()).build());
+		}
+
+		public ObjectBuilder<ContentObject> text(TextContent v) {
+			this._kind = Kind.Text;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<ContentObject> text(Function<TextContent.Builder, ObjectBuilder<TextContent>> fn) {
+			return this.text(fn.apply(new TextContent.Builder()).build());
+		}
+
 		public ContentObject build() {
 			_checkSingleUse();
-
 			return new ContentObject(this);
 		}
+
 	}
 
-	/**
-	 * @return New {@link Builder} initialized with field values of this instance
-	 */
-	public Builder rebuild() {
-		return new Builder(this);
-	}
-	// ---------------------------------------------------------------------------------------------
+	protected static void setupContentObjectDeserializer(ObjectDeserializer<Builder> op) {
 
-	/**
-	 * Json deserializer for {@link ContentObject}
-	 */
+		op.add(Builder::file, FileContentPart._DESERIALIZER, "file");
+		op.add(Builder::imageUrl, ImageUrlContent._DESERIALIZER, "image_url");
+		op.add(Builder::text, TextContent._DESERIALIZER, "text");
+
+		op.setTypeProperty("type", null);
+
+	}
+
 	public static final JsonpDeserializer<ContentObject> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ContentObject::setupContentObjectDeserializer);
-
-	protected static void setupContentObjectDeserializer(ObjectDeserializer<ContentObject.Builder> op) {
-
-		op.add(Builder::type, ContentType._DESERIALIZER, "type");
-		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
-		op.add(Builder::imageUrl, ImageUrl._DESERIALIZER, "image_url");
-		op.add(Builder::file, FileContent._DESERIALIZER, "file");
-
-	}
-
+			ContentObject::setupContentObjectDeserializer, Builder::build);
 }

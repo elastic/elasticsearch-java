@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -93,6 +94,12 @@ public class DataStreamLifecycleExplain implements JsonpSerializable {
 	private final String frozenTransitionStatus;
 
 	@Nullable
+	private final Long tailMergeDateMillis;
+
+	@Nullable
+	private final DateTime tailMergeDate;
+
+	@Nullable
 	private final String unmanagedReason;
 
 	// ---------------------------------------------------------------------------------------------
@@ -110,6 +117,8 @@ public class DataStreamLifecycleExplain implements JsonpSerializable {
 		this.generationTime = builder.generationTime;
 		this.error = builder.error;
 		this.frozenTransitionStatus = builder.frozenTransitionStatus;
+		this.tailMergeDateMillis = builder.tailMergeDateMillis;
+		this.tailMergeDate = builder.tailMergeDate;
 		this.unmanagedReason = builder.unmanagedReason;
 
 	}
@@ -197,6 +206,27 @@ public class DataStreamLifecycleExplain implements JsonpSerializable {
 	}
 
 	/**
+	 * The date the index tail was last merged, in milliseconds since the epoch.
+	 * <p>
+	 * API name: {@code tail_merge_date_millis}
+	 */
+	@Nullable
+	public final Long tailMergeDateMillis() {
+		return this.tailMergeDateMillis;
+	}
+
+	/**
+	 * The date the index tail was last merged. Only returned if the
+	 * <code>human</code> query parameter is <code>true</code>.
+	 * <p>
+	 * API name: {@code tail_merge_date}
+	 */
+	@Nullable
+	public final DateTime tailMergeDate() {
+		return this.tailMergeDate;
+	}
+
+	/**
 	 * API name: {@code unmanaged_reason}
 	 */
 	@Nullable
@@ -261,6 +291,15 @@ public class DataStreamLifecycleExplain implements JsonpSerializable {
 			generator.write(this.frozenTransitionStatus);
 
 		}
+		if (this.tailMergeDateMillis != null) {
+			generator.writeKey("tail_merge_date_millis");
+			generator.write(this.tailMergeDateMillis);
+
+		}
+		if (this.tailMergeDate != null) {
+			generator.writeKey("tail_merge_date");
+			this.tailMergeDate.serialize(generator, mapper);
+		}
 		if (this.unmanagedReason != null) {
 			generator.writeKey("unmanaged_reason");
 			generator.write(this.unmanagedReason);
@@ -312,6 +351,12 @@ public class DataStreamLifecycleExplain implements JsonpSerializable {
 		private String frozenTransitionStatus;
 
 		@Nullable
+		private Long tailMergeDateMillis;
+
+		@Nullable
+		private DateTime tailMergeDate;
+
+		@Nullable
 		private String unmanagedReason;
 
 		public Builder() {
@@ -327,6 +372,8 @@ public class DataStreamLifecycleExplain implements JsonpSerializable {
 			this.generationTime = instance.generationTime;
 			this.error = instance.error;
 			this.frozenTransitionStatus = instance.frozenTransitionStatus;
+			this.tailMergeDateMillis = instance.tailMergeDateMillis;
+			this.tailMergeDate = instance.tailMergeDate;
 			this.unmanagedReason = instance.unmanagedReason;
 
 		}
@@ -440,6 +487,27 @@ public class DataStreamLifecycleExplain implements JsonpSerializable {
 		}
 
 		/**
+		 * The date the index tail was last merged, in milliseconds since the epoch.
+		 * <p>
+		 * API name: {@code tail_merge_date_millis}
+		 */
+		public final Builder tailMergeDateMillis(@Nullable Long value) {
+			this.tailMergeDateMillis = value;
+			return this;
+		}
+
+		/**
+		 * The date the index tail was last merged. Only returned if the
+		 * <code>human</code> query parameter is <code>true</code>.
+		 * <p>
+		 * API name: {@code tail_merge_date}
+		 */
+		public final Builder tailMergeDate(@Nullable DateTime value) {
+			this.tailMergeDate = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code unmanaged_reason}
 		 */
 		public final Builder unmanagedReason(@Nullable String value) {
@@ -492,6 +560,8 @@ public class DataStreamLifecycleExplain implements JsonpSerializable {
 		op.add(Builder::generationTime, Time._DESERIALIZER, "generation_time");
 		op.add(Builder::error, JsonpDeserializer.stringDeserializer(), "error");
 		op.add(Builder::frozenTransitionStatus, JsonpDeserializer.stringDeserializer(), "frozen_transition_status");
+		op.add(Builder::tailMergeDateMillis, JsonpDeserializer.longDeserializer(), "tail_merge_date_millis");
+		op.add(Builder::tailMergeDate, DateTime._DESERIALIZER, "tail_merge_date");
 		op.add(Builder::unmanagedReason, JsonpDeserializer.stringDeserializer(), "unmanaged_reason");
 
 	}

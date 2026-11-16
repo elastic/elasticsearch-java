@@ -69,6 +69,9 @@ public class SearchableSnapshotAction implements JsonpSerializable {
 	private final Boolean forceMergeIndex;
 
 	@Nullable
+	private final Boolean forceMergeOnClone;
+
+	@Nullable
 	private final Integer totalShardsPerNode;
 
 	@Nullable
@@ -80,6 +83,7 @@ public class SearchableSnapshotAction implements JsonpSerializable {
 
 		this.snapshotRepository = ApiTypeHelper.requireNonNull(builder.snapshotRepository, this, "snapshotRepository");
 		this.forceMergeIndex = builder.forceMergeIndex;
+		this.forceMergeOnClone = builder.forceMergeOnClone;
 		this.totalShardsPerNode = builder.totalShardsPerNode;
 		this.replicateFor = builder.replicateFor;
 
@@ -102,6 +106,20 @@ public class SearchableSnapshotAction implements JsonpSerializable {
 	@Nullable
 	public final Boolean forceMergeIndex() {
 		return this.forceMergeIndex;
+	}
+
+	/**
+	 * If <code>true</code>, and the index has replicas, ILM first clones the index
+	 * with zero replicas and force merges the clone, so that replicas are not
+	 * merged redundantly. If <code>false</code>, the managed index is force merged
+	 * directly. Not allowed when <code>force_merge_index</code> is
+	 * <code>false</code>.
+	 * <p>
+	 * API name: {@code force_merge_on_clone}
+	 */
+	@Nullable
+	public final Boolean forceMergeOnClone() {
+		return this.forceMergeOnClone;
 	}
 
 	/**
@@ -149,6 +167,11 @@ public class SearchableSnapshotAction implements JsonpSerializable {
 			generator.write(this.forceMergeIndex);
 
 		}
+		if (this.forceMergeOnClone != null) {
+			generator.writeKey("force_merge_on_clone");
+			generator.write(this.forceMergeOnClone);
+
+		}
 		if (this.totalShardsPerNode != null) {
 			generator.writeKey("total_shards_per_node");
 			generator.write(this.totalShardsPerNode);
@@ -182,6 +205,9 @@ public class SearchableSnapshotAction implements JsonpSerializable {
 		private Boolean forceMergeIndex;
 
 		@Nullable
+		private Boolean forceMergeOnClone;
+
+		@Nullable
 		private Integer totalShardsPerNode;
 
 		@Nullable
@@ -192,6 +218,7 @@ public class SearchableSnapshotAction implements JsonpSerializable {
 		private Builder(SearchableSnapshotAction instance) {
 			this.snapshotRepository = instance.snapshotRepository;
 			this.forceMergeIndex = instance.forceMergeIndex;
+			this.forceMergeOnClone = instance.forceMergeOnClone;
 			this.totalShardsPerNode = instance.totalShardsPerNode;
 			this.replicateFor = instance.replicateFor;
 
@@ -209,6 +236,20 @@ public class SearchableSnapshotAction implements JsonpSerializable {
 		 */
 		public final Builder forceMergeIndex(@Nullable Boolean value) {
 			this.forceMergeIndex = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, and the index has replicas, ILM first clones the index
+		 * with zero replicas and force merges the clone, so that replicas are not
+		 * merged redundantly. If <code>false</code>, the managed index is force merged
+		 * directly. Not allowed when <code>force_merge_index</code> is
+		 * <code>false</code>.
+		 * <p>
+		 * API name: {@code force_merge_on_clone}
+		 */
+		public final Builder forceMergeOnClone(@Nullable Boolean value) {
+			this.forceMergeOnClone = value;
 			return this;
 		}
 
@@ -289,6 +330,7 @@ public class SearchableSnapshotAction implements JsonpSerializable {
 
 		op.add(Builder::snapshotRepository, JsonpDeserializer.stringDeserializer(), "snapshot_repository");
 		op.add(Builder::forceMergeIndex, JsonpDeserializer.booleanDeserializer(), "force_merge_index");
+		op.add(Builder::forceMergeOnClone, JsonpDeserializer.booleanDeserializer(), "force_merge_on_clone");
 		op.add(Builder::totalShardsPerNode, JsonpDeserializer.integerDeserializer(), "total_shards_per_node");
 		op.add(Builder::replicateFor, Time._DESERIALIZER, "replicate_for");
 

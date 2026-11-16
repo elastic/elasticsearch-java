@@ -73,6 +73,9 @@ public class GetIndexTemplateRequest extends RequestBase {
 	private final Boolean includeDefaults;
 
 	@Nullable
+	private final Boolean includeManagedFields;
+
+	@Nullable
 	private final Boolean local;
 
 	@Nullable
@@ -87,6 +90,7 @@ public class GetIndexTemplateRequest extends RequestBase {
 
 		this.flatSettings = builder.flatSettings;
 		this.includeDefaults = builder.includeDefaults;
+		this.includeManagedFields = builder.includeManagedFields;
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = builder.name;
@@ -115,6 +119,17 @@ public class GetIndexTemplateRequest extends RequestBase {
 	@Nullable
 	public final Boolean includeDefaults() {
 		return this.includeDefaults;
+	}
+
+	/**
+	 * If true, the response includes internally managed fields, such as
+	 * <code>registry_installed</code>, that are hidden by default.
+	 * <p>
+	 * API name: {@code include_managed_fields}
+	 */
+	@Nullable
+	public final Boolean includeManagedFields() {
+		return this.includeManagedFields;
 	}
 
 	/**
@@ -169,6 +184,9 @@ public class GetIndexTemplateRequest extends RequestBase {
 		private Boolean includeDefaults;
 
 		@Nullable
+		private Boolean includeManagedFields;
+
+		@Nullable
 		private Boolean local;
 
 		@Nullable
@@ -182,6 +200,7 @@ public class GetIndexTemplateRequest extends RequestBase {
 		private Builder(GetIndexTemplateRequest instance) {
 			this.flatSettings = instance.flatSettings;
 			this.includeDefaults = instance.includeDefaults;
+			this.includeManagedFields = instance.includeManagedFields;
 			this.local = instance.local;
 			this.masterTimeout = instance.masterTimeout;
 			this.name = instance.name;
@@ -204,6 +223,17 @@ public class GetIndexTemplateRequest extends RequestBase {
 		 */
 		public final Builder includeDefaults(@Nullable Boolean value) {
 			this.includeDefaults = value;
+			return this;
+		}
+
+		/**
+		 * If true, the response includes internally managed fields, such as
+		 * <code>registry_installed</code>, that are hidden by default.
+		 * <p>
+		 * API name: {@code include_managed_fields}
+		 */
+		public final Builder includeManagedFields(@Nullable Boolean value) {
+			this.includeManagedFields = value;
 			return this;
 		}
 
@@ -339,6 +369,9 @@ public class GetIndexTemplateRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.includeManagedFields != null) {
+					params.put("include_managed_fields", String.valueOf(request.includeManagedFields));
 				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));

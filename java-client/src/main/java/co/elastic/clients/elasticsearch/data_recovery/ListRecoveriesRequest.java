@@ -66,9 +66,10 @@ import javax.annotation.Nullable;
  * List the recoveries that were started with the start recovery API, including
  * those that have finished. This API is intended for internal operator use.
  * Recoveries are ordered by start time, and the most recent are returned first
- * by default. To retrieve further pages, pass the start time and identifier of
- * the last recovery of a page as <code>search_after_started_at</code> and
- * <code>search_after_recovery_id</code>.
+ * by default. To retrieve further pages, pass the identifier of the last
+ * recovery of a page as <code>search_after_recovery_id</code>. To restrict the
+ * results to a period instead, use <code>started_at_gte</code> and
+ * <code>started_at_lt</code>.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#data_recovery.list_recoveries.Request">API
@@ -81,9 +82,6 @@ public class ListRecoveriesRequest extends RequestBase {
 
 	@Nullable
 	private final String searchAfterRecoveryId;
-
-	@Nullable
-	private final DateTime searchAfterStartedAt;
 
 	@Nullable
 	private final Integer size;
@@ -102,7 +100,6 @@ public class ListRecoveriesRequest extends RequestBase {
 
 		this.order = builder.order;
 		this.searchAfterRecoveryId = builder.searchAfterRecoveryId;
-		this.searchAfterStartedAt = builder.searchAfterStartedAt;
 		this.size = builder.size;
 		this.startedAtGte = builder.startedAtGte;
 		this.startedAtLt = builder.startedAtLt;
@@ -125,27 +122,18 @@ public class ListRecoveriesRequest extends RequestBase {
 	}
 
 	/**
-	 * Return only recoveries after this identifier in the sort order for recoveries
-	 * with the same start time, to retrieve the next page. It must be provided
-	 * together with <code>search_after_started_at</code>.
+	 * Return only the recoveries that follow this one in the sort order, to
+	 * retrieve the next page. Pass the identifier of the last recovery of the
+	 * previous page. The recovery it names must still be present in the recovery
+	 * history; if it is not, the request fails rather than returning the first page
+	 * again. To restrict the results to a period, use <code>started_at_gte</code>
+	 * and <code>started_at_lt</code> instead.
 	 * <p>
 	 * API name: {@code search_after_recovery_id}
 	 */
 	@Nullable
 	public final String searchAfterRecoveryId() {
 		return this.searchAfterRecoveryId;
-	}
-
-	/**
-	 * Return only recoveries after this start time in the sort order, to retrieve
-	 * the next page. It must be provided together with
-	 * <code>search_after_recovery_id</code>.
-	 * <p>
-	 * API name: {@code search_after_started_at}
-	 */
-	@Nullable
-	public final DateTime searchAfterStartedAt() {
-		return this.searchAfterStartedAt;
 	}
 
 	/**
@@ -207,9 +195,6 @@ public class ListRecoveriesRequest extends RequestBase {
 		private String searchAfterRecoveryId;
 
 		@Nullable
-		private DateTime searchAfterStartedAt;
-
-		@Nullable
 		private Integer size;
 
 		@Nullable
@@ -226,7 +211,6 @@ public class ListRecoveriesRequest extends RequestBase {
 		private Builder(ListRecoveriesRequest instance) {
 			this.order = instance.order;
 			this.searchAfterRecoveryId = instance.searchAfterRecoveryId;
-			this.searchAfterStartedAt = instance.searchAfterStartedAt;
 			this.size = instance.size;
 			this.startedAtGte = instance.startedAtGte;
 			this.startedAtLt = instance.startedAtLt;
@@ -244,26 +228,17 @@ public class ListRecoveriesRequest extends RequestBase {
 		}
 
 		/**
-		 * Return only recoveries after this identifier in the sort order for recoveries
-		 * with the same start time, to retrieve the next page. It must be provided
-		 * together with <code>search_after_started_at</code>.
+		 * Return only the recoveries that follow this one in the sort order, to
+		 * retrieve the next page. Pass the identifier of the last recovery of the
+		 * previous page. The recovery it names must still be present in the recovery
+		 * history; if it is not, the request fails rather than returning the first page
+		 * again. To restrict the results to a period, use <code>started_at_gte</code>
+		 * and <code>started_at_lt</code> instead.
 		 * <p>
 		 * API name: {@code search_after_recovery_id}
 		 */
 		public final Builder searchAfterRecoveryId(@Nullable String value) {
 			this.searchAfterRecoveryId = value;
-			return this;
-		}
-
-		/**
-		 * Return only recoveries after this start time in the sort order, to retrieve
-		 * the next page. It must be provided together with
-		 * <code>search_after_recovery_id</code>.
-		 * <p>
-		 * API name: {@code search_after_started_at}
-		 */
-		public final Builder searchAfterStartedAt(@Nullable DateTime value) {
-			this.searchAfterStartedAt = value;
 			return this;
 		}
 
@@ -386,9 +361,6 @@ public class ListRecoveriesRequest extends RequestBase {
 				}
 				if (request.searchAfterRecoveryId != null) {
 					params.put("search_after_recovery_id", request.searchAfterRecoveryId);
-				}
-				if (request.searchAfterStartedAt != null) {
-					params.put("search_after_started_at", request.searchAfterStartedAt.toString());
 				}
 				if (request.startedAtLt != null) {
 					params.put("started_at_lt", request.startedAtLt.toString());

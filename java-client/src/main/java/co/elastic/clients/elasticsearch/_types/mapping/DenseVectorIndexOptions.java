@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class DenseVectorIndexOptions implements JsonpSerializable {
+public class DenseVectorIndexOptions implements SemanticTextIndexOptionsVariant, JsonpSerializable {
 	@Nullable
 	private final Float confidenceInterval;
 
@@ -78,6 +78,9 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 
 	@Nullable
 	private final Boolean onDiskRescore;
+
+	@Nullable
+	private final Boolean onDiskMerge;
 
 	@Nullable
 	private final Integer flatIndexThreshold;
@@ -107,6 +110,7 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.rescoreVector = builder.rescoreVector;
 		this.onDiskRescore = builder.onDiskRescore;
+		this.onDiskMerge = builder.onDiskMerge;
 		this.flatIndexThreshold = builder.flatIndexThreshold;
 		this.clusterSize = builder.clusterSize;
 		this.defaultVisitPercentage = builder.defaultVisitPercentage;
@@ -118,6 +122,14 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 
 	public static DenseVectorIndexOptions of(Function<Builder, ObjectBuilder<DenseVectorIndexOptions>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * SemanticTextIndexOptions variant kind.
+	 */
+	@Override
+	public SemanticTextIndexOptions.Kind _semanticTextIndexOptionsKind() {
+		return SemanticTextIndexOptions.Kind.DenseVector;
 	}
 
 	/**
@@ -208,6 +220,19 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	@Nullable
 	public final Boolean onDiskRescore() {
 		return this.onDiskRescore;
+	}
+
+	/**
+	 * If <code>true</code>, direct I/O is used where possible while merging the
+	 * vector data of the field, so that a merge does not displace what searches
+	 * keep in memory. It can be changed with a mapping update, which applies to
+	 * later merges.
+	 * <p>
+	 * API name: {@code on_disk_merge}
+	 */
+	@Nullable
+	public final Boolean onDiskMerge() {
+		return this.onDiskMerge;
 	}
 
 	/**
@@ -331,6 +356,11 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 			generator.write(this.onDiskRescore);
 
 		}
+		if (this.onDiskMerge != null) {
+			generator.writeKey("on_disk_merge");
+			generator.write(this.onDiskMerge);
+
+		}
 		if (this.flatIndexThreshold != null) {
 			generator.writeKey("flat_index_threshold");
 			generator.write(this.flatIndexThreshold);
@@ -396,6 +426,9 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		private Boolean onDiskRescore;
 
 		@Nullable
+		private Boolean onDiskMerge;
+
+		@Nullable
 		private Integer flatIndexThreshold;
 
 		@Nullable
@@ -422,6 +455,7 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 			this.type = instance.type;
 			this.rescoreVector = instance.rescoreVector;
 			this.onDiskRescore = instance.onDiskRescore;
+			this.onDiskMerge = instance.onDiskMerge;
 			this.flatIndexThreshold = instance.flatIndexThreshold;
 			this.clusterSize = instance.clusterSize;
 			this.defaultVisitPercentage = instance.defaultVisitPercentage;
@@ -531,6 +565,19 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		 */
 		public final Builder onDiskRescore(@Nullable Boolean value) {
 			this.onDiskRescore = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, direct I/O is used where possible while merging the
+		 * vector data of the field, so that a merge does not displace what searches
+		 * keep in memory. It can be changed with a mapping update, which applies to
+		 * later merges.
+		 * <p>
+		 * API name: {@code on_disk_merge}
+		 */
+		public final Builder onDiskMerge(@Nullable Boolean value) {
+			this.onDiskMerge = value;
 			return this;
 		}
 
@@ -658,6 +705,7 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		op.add(Builder::type, DenseVectorIndexOptionsType._DESERIALIZER, "type");
 		op.add(Builder::rescoreVector, DenseVectorIndexOptionsRescoreVector._DESERIALIZER, "rescore_vector");
 		op.add(Builder::onDiskRescore, JsonpDeserializer.booleanDeserializer(), "on_disk_rescore");
+		op.add(Builder::onDiskMerge, JsonpDeserializer.booleanDeserializer(), "on_disk_merge");
 		op.add(Builder::flatIndexThreshold, JsonpDeserializer.integerDeserializer(), "flat_index_threshold");
 		op.add(Builder::clusterSize, JsonpDeserializer.integerDeserializer(), "cluster_size");
 		op.add(Builder::defaultVisitPercentage, JsonpDeserializer.floatDeserializer(), "default_visit_percentage");

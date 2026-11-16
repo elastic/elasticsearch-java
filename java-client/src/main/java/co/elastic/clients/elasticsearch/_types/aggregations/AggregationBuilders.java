@@ -1169,6 +1169,25 @@ public class AggregationBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link RoaringBitmapAggregation roaring_bitmap}
+	 * {@code Aggregation} variant.
+	 */
+	public static RoaringBitmapAggregation.Builder roaringBitmap() {
+		return new RoaringBitmapAggregation.Builder();
+	}
+
+	/**
+	 * Creates a Aggregation of the {@link RoaringBitmapAggregation roaring_bitmap}
+	 * {@code Aggregation} variant.
+	 */
+	public static Aggregation roaringBitmap(
+			Function<RoaringBitmapAggregation.Builder, ObjectBuilder<RoaringBitmapAggregation>> fn) {
+		Aggregation.Builder builder = new Aggregation.Builder();
+		builder.roaringBitmap(fn.apply(new RoaringBitmapAggregation.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link ReverseNestedAggregation reverse_nested}
 	 * {@code Aggregation} variant.
 	 */

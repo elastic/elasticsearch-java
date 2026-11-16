@@ -174,6 +174,8 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 
 		ReverseNested("reverse_nested"),
 
+		RoaringBitmap("roaring_bitmap"),
+
 		Sampler("sampler"),
 
 		ScriptedMetric("scripted_metric"),
@@ -1125,6 +1127,23 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 	 */
 	public ReverseNestedAggregate reverseNested() {
 		return TaggedUnionUtils.get(this, Kind.ReverseNested);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code roaring_bitmap}?
+	 */
+	public boolean isRoaringBitmap() {
+		return _kind == Kind.RoaringBitmap;
+	}
+
+	/**
+	 * Get the {@code roaring_bitmap} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code roaring_bitmap} kind.
+	 */
+	public RoaringBitmapAggregate roaringBitmap() {
+		return TaggedUnionUtils.get(this, Kind.RoaringBitmap);
 	}
 
 	/**
@@ -2116,6 +2135,17 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 			return this.reverseNested(fn.apply(new ReverseNestedAggregate.Builder()).build());
 		}
 
+		public ObjectBuilder<Aggregate> roaringBitmap(RoaringBitmapAggregate v) {
+			this._kind = Kind.RoaringBitmap;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Aggregate> roaringBitmap(
+				Function<RoaringBitmapAggregate.Builder, ObjectBuilder<RoaringBitmapAggregate>> fn) {
+			return this.roaringBitmap(fn.apply(new RoaringBitmapAggregate.Builder()).build());
+		}
+
 		public ObjectBuilder<Aggregate> sampler(SamplerAggregate v) {
 			this._kind = Kind.Sampler;
 			this._value = v;
@@ -2453,6 +2483,7 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 		deserializers.put("range", RangeAggregate._DESERIALIZER);
 		deserializers.put("rate", RateAggregate._DESERIALIZER);
 		deserializers.put("reverse_nested", ReverseNestedAggregate._DESERIALIZER);
+		deserializers.put("roaring_bitmap", RoaringBitmapAggregate._DESERIALIZER);
 		deserializers.put("sampler", SamplerAggregate._DESERIALIZER);
 		deserializers.put("scripted_metric", ScriptedMetricAggregate._DESERIALIZER);
 		deserializers.put("siglterms", SignificantLongTermsAggregate._DESERIALIZER);

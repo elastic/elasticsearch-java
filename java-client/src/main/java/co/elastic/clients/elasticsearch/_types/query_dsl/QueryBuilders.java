@@ -46,6 +46,24 @@ public class QueryBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link BitmapTermsQuery bitmap_terms} {@code Query}
+	 * variant.
+	 */
+	public static BitmapTermsQuery.Builder bitmapTerms() {
+		return new BitmapTermsQuery.Builder();
+	}
+
+	/**
+	 * Creates a Query of the {@link BitmapTermsQuery bitmap_terms} {@code Query}
+	 * variant.
+	 */
+	public static Query bitmapTerms(Function<BitmapTermsQuery.Builder, ObjectBuilder<BitmapTermsQuery>> fn) {
+		Query.Builder builder = new Query.Builder();
+		builder.bitmapTerms(fn.apply(new BitmapTermsQuery.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link BoolQuery bool} {@code Query} variant.
 	 */
 	public static BoolQuery.Builder bool() {

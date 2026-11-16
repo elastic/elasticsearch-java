@@ -92,7 +92,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 	@Nullable
 	private final Boolean positions;
 
-	private final List<String> routing;
+	@Nullable
+	private final String routing;
 
 	@Nullable
 	private final String routeSlice;
@@ -119,7 +120,7 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		this.offsets = builder.offsets;
 		this.payloads = builder.payloads;
 		this.positions = builder.positions;
-		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
+		this.routing = builder.routing;
 		this.routeSlice = builder.routeSlice;
 		this.termStatistics = builder.termStatistics;
 		this.version = builder.version;
@@ -232,7 +233,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	public final List<String> routing() {
+	@Nullable
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -339,14 +341,9 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 			generator.write(this.positions);
 
 		}
-		if (ApiTypeHelper.isDefined(this.routing)) {
+		if (this.routing != null) {
 			generator.writeKey("routing");
-			generator.writeStartArray();
-			for (String item0 : this.routing) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			generator.write(this.routing);
 
 		}
 		if (this.routeSlice != null) {
@@ -413,7 +410,7 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		private Boolean positions;
 
 		@Nullable
-		private List<String> routing;
+		private String routing;
 
 		@Nullable
 		private String routeSlice;
@@ -573,25 +570,9 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(List<String> list) {
-			this.routing = _listAddAll(this.routing, list);
-			return this;
-		}
-
-		/**
-		 * Custom value used to route operations to a specific shard. Not allowed when
-		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
-		 * use <code>_slice</code> instead.
-		 * <p>
-		 * API name: {@code routing}
-		 * <p>
-		 * Adds one or more values to <code>routing</code>.
-		 */
-		public final Builder routing(String value, String... values) {
-			this.routing = _listAdd(this.routing, value, values);
+		public final Builder routing(@Nullable String value) {
+			this.routing = value;
 			return this;
 		}
 
@@ -681,8 +662,7 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		op.add(Builder::offsets, JsonpDeserializer.booleanDeserializer(), "offsets");
 		op.add(Builder::payloads, JsonpDeserializer.booleanDeserializer(), "payloads");
 		op.add(Builder::positions, JsonpDeserializer.booleanDeserializer(), "positions");
-		op.add(Builder::routing, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"routing");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
 		op.add(Builder::routeSlice, JsonpDeserializer.stringDeserializer(), "_slice");
 		op.add(Builder::termStatistics, JsonpDeserializer.booleanDeserializer(), "term_statistics");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
