@@ -22,11 +22,14 @@ package co.elastic.clients.elasticsearch._helpers.bulk;
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.ElasticsearchTestServer;
+import co.elastic.clients.elasticsearch._types.OpType;
+import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.elasticsearch.core.BulkRequest;
 import co.elastic.clients.elasticsearch.core.BulkResponse;
 import co.elastic.clients.elasticsearch.core.bulk.BulkOperation;
 import co.elastic.clients.elasticsearch.core.bulk.BulkResponseItem;
 import co.elastic.clients.elasticsearch.core.bulk.OperationType;
+import co.elastic.clients.elasticsearch.core.bulk.UpdateOperation;
 import co.elastic.clients.elasticsearch.end_to_end.RequestTest;
 import co.elastic.clients.elasticsearch.indices.IndicesStatsResponse;
 import co.elastic.clients.json.JsonpMapper;
@@ -45,6 +48,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
@@ -456,6 +460,65 @@ class BulkIngesterTest extends Assertions {
 
         String create1Str = JsonpUtils.toJsonString(create1, mapper);
         assertEquals(json, create1Str);
+    }
+
+    @Test
+    public void allPropertiesKeptTest() {
+        JsonpMapper mapper = new SimpleJsonpMapper();
+
+        BulkOperation index = BulkOperation.of(o -> o.index(i -> i
+            .index("some_idx")
+            .id("some_id")
+            .routing("r")
+            .routeSlice("s")
+            .ifSeqNo(1L)
+            .ifPrimaryTerm(2L)
+            .version(3L)
+            .versionType(VersionType.External)
+            .dynamicTemplates("field", "template")
+            .dynamicTemplateParams("field", Map.of("unit", "cm"))
+            .pipeline("pipe")
+            .requireAlias(true)
+            .requireDataStream(false)
+            .listExecutedPipelines(true)
+            .opType(OpType.Create)
+            .document("Some doc")
+        ));
+
+        BulkOperation create = BulkOperation.of(o -> o.create(c -> c
+            .index("some_idx")
+            .id("some_id")
+            .version(3L)
+            .versionType(VersionType.External)
+            .dynamicTemplates("field", "template")
+            .requireDataStream(true)
+            .listExecutedPipelines(true)
+            .document("Some doc")
+        ));
+
+        BulkOperation update = BulkOperation.of(o -> o.update(u -> u
+            .index("some_idx")
+            .id("some_id")
+            .ifSeqNo(1L)
+            .ifPrimaryTerm(2L)
+            .retryOnConflict(3)
+            .requireAlias(true)
+            .pipeline("pipe")
+            .listExecutedPipelines(true)
+            .source(s -> s.fetch(false))
+            .action(a -> a.doc("Some doc"))
+        ));
+
+        for (BulkOperation op : List.of(index, create, update)) {
+            BulkOperation ingested = IngesterOperation.of(new RetryableBulkOperation<>(op, null, null), mapper)
+                .repeatableOperation().operation();
+            assertEquals(JsonpUtils.toJsonString(op, mapper), JsonpUtils.toJsonString(ingested, mapper));
+        }
+
+        UpdateOperation<?, ?> ingestedUpdate = IngesterOperation.of(new RetryableBulkOperation<>(update, null, null), mapper)
+            .repeatableOperation().operation().update();
+        assertNull(ingestedUpdate.action());
+        assertNotNull(ingestedUpdate.binaryAction());
     }
 
     @Test
