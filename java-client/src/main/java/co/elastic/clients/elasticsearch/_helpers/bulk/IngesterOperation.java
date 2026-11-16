@@ -234,6 +234,7 @@ class IngesterOperation<Context> {
                 size("if_primary_term", op.ifPrimaryTerm()) +
                 size("if_seq_no", op.ifSeqNo()) +
                 size("routing", op.routing()) +
+                size("_slice", op.routeSlice()) +
                 4; // Open/closing brace, 2 newlines
     }
 
@@ -241,6 +242,8 @@ class IngesterOperation<Context> {
         return basePropertiesSize(op) +
             size("version", op.version()) +
             size("version_type", op.versionType()) +
+            size("pipeline", op.pipeline()) +
+            size("require_alias", op.requireAlias()) +
             size("require_data_stream", op.requireDataStream()) +
             size("list_executed_pipelines", op.listExecutedPipelines());
     }
