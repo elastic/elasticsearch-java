@@ -63,6 +63,12 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 
 	private final String requiredNativeMemoryBytes;
 
+	@Nullable
+	private final String runtimeNativeMemoryBytes;
+
+	@Nullable
+	private final String peakRuntimeNativeMemoryBytes;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private TrainedModelSizeStats(Builder builder) {
@@ -70,6 +76,8 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 		this.modelSizeBytes = ApiTypeHelper.requireNonNull(builder.modelSizeBytes, this, "modelSizeBytes");
 		this.requiredNativeMemoryBytes = ApiTypeHelper.requireNonNull(builder.requiredNativeMemoryBytes, this,
 				"requiredNativeMemoryBytes");
+		this.runtimeNativeMemoryBytes = builder.runtimeNativeMemoryBytes;
+		this.peakRuntimeNativeMemoryBytes = builder.peakRuntimeNativeMemoryBytes;
 
 	}
 
@@ -96,6 +104,32 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 	}
 
 	/**
+	 * The sum, across the nodes the deployment runs on, of the average memory of
+	 * each node's inference process since it started. Unlike
+	 * <code>required_native_memory_bytes</code>, which is an estimate, this is a
+	 * measured value. It is returned only after the native process has reported a
+	 * measurement.
+	 * <p>
+	 * API name: {@code runtime_native_memory_bytes}
+	 */
+	@Nullable
+	public final String runtimeNativeMemoryBytes() {
+		return this.runtimeNativeMemoryBytes;
+	}
+
+	/**
+	 * The sum, across the nodes the deployment runs on, of the peak native memory
+	 * (resident set size) of each node's inference process since it started. It is
+	 * returned only after the native process has reported a measurement.
+	 * <p>
+	 * API name: {@code peak_runtime_native_memory_bytes}
+	 */
+	@Nullable
+	public final String peakRuntimeNativeMemoryBytes() {
+		return this.peakRuntimeNativeMemoryBytes;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -111,6 +145,17 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 
 		generator.writeKey("required_native_memory_bytes");
 		generator.write(this.requiredNativeMemoryBytes);
+
+		if (this.runtimeNativeMemoryBytes != null) {
+			generator.writeKey("runtime_native_memory_bytes");
+			generator.write(this.runtimeNativeMemoryBytes);
+
+		}
+		if (this.peakRuntimeNativeMemoryBytes != null) {
+			generator.writeKey("peak_runtime_native_memory_bytes");
+			generator.write(this.peakRuntimeNativeMemoryBytes);
+
+		}
 
 	}
 
@@ -132,11 +177,19 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 
 		private String requiredNativeMemoryBytes;
 
+		@Nullable
+		private String runtimeNativeMemoryBytes;
+
+		@Nullable
+		private String peakRuntimeNativeMemoryBytes;
+
 		public Builder() {
 		}
 		private Builder(TrainedModelSizeStats instance) {
 			this.modelSizeBytes = instance.modelSizeBytes;
 			this.requiredNativeMemoryBytes = instance.requiredNativeMemoryBytes;
+			this.runtimeNativeMemoryBytes = instance.runtimeNativeMemoryBytes;
+			this.peakRuntimeNativeMemoryBytes = instance.peakRuntimeNativeMemoryBytes;
 
 		}
 		/**
@@ -156,6 +209,32 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 		 */
 		public final Builder requiredNativeMemoryBytes(String value) {
 			this.requiredNativeMemoryBytes = value;
+			return this;
+		}
+
+		/**
+		 * The sum, across the nodes the deployment runs on, of the average memory of
+		 * each node's inference process since it started. Unlike
+		 * <code>required_native_memory_bytes</code>, which is an estimate, this is a
+		 * measured value. It is returned only after the native process has reported a
+		 * measurement.
+		 * <p>
+		 * API name: {@code runtime_native_memory_bytes}
+		 */
+		public final Builder runtimeNativeMemoryBytes(@Nullable String value) {
+			this.runtimeNativeMemoryBytes = value;
+			return this;
+		}
+
+		/**
+		 * The sum, across the nodes the deployment runs on, of the peak native memory
+		 * (resident set size) of each node's inference process since it started. It is
+		 * returned only after the native process has reported a measurement.
+		 * <p>
+		 * API name: {@code peak_runtime_native_memory_bytes}
+		 */
+		public final Builder peakRuntimeNativeMemoryBytes(@Nullable String value) {
+			this.peakRuntimeNativeMemoryBytes = value;
 			return this;
 		}
 
@@ -196,6 +275,10 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 		op.add(Builder::modelSizeBytes, JsonpDeserializer.stringDeserializer(), "model_size_bytes");
 		op.add(Builder::requiredNativeMemoryBytes, JsonpDeserializer.stringDeserializer(),
 				"required_native_memory_bytes");
+		op.add(Builder::runtimeNativeMemoryBytes, JsonpDeserializer.stringDeserializer(),
+				"runtime_native_memory_bytes");
+		op.add(Builder::peakRuntimeNativeMemoryBytes, JsonpDeserializer.stringDeserializer(),
+				"peak_runtime_native_memory_bytes");
 
 	}
 

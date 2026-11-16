@@ -138,6 +138,7 @@ import co.elastic.clients.elasticsearch.ml.ElasticsearchMlClient;
 import co.elastic.clients.elasticsearch.monitoring.ElasticsearchMonitoringClient;
 import co.elastic.clients.elasticsearch.nodes.ElasticsearchNodesClient;
 import co.elastic.clients.elasticsearch.project.ElasticsearchProjectClient;
+import co.elastic.clients.elasticsearch.prometheus.ElasticsearchPrometheusClient;
 import co.elastic.clients.elasticsearch.query_rules.ElasticsearchQueryRulesClient;
 import co.elastic.clients.elasticsearch.rollup.ElasticsearchRollupClient;
 import co.elastic.clients.elasticsearch.search_application.ElasticsearchSearchApplicationClient;
@@ -324,6 +325,10 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public ElasticsearchProjectClient project() {
 		return new ElasticsearchProjectClient(this.transport, this.transportOptions);
+	}
+
+	public ElasticsearchPrometheusClient prometheus() {
+		return new ElasticsearchPrometheusClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchQueryRulesClient queryRules() {
