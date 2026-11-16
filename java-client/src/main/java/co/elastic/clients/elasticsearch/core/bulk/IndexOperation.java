@@ -19,8 +19,10 @@
 
 package co.elastic.clients.elasticsearch.core.bulk;
 
+import co.elastic.clients.elasticsearch._types.OpType;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -61,6 +63,9 @@ public class IndexOperation<TDocument> extends WriteOperation implements NdJsonp
 	private final TDocument document;
 
 	@Nullable
+	private final OpType opType;
+
+	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
 
 	// ---------------------------------------------------------------------------------------------
@@ -69,6 +74,7 @@ public class IndexOperation<TDocument> extends WriteOperation implements NdJsonp
 		super(builder);
 		this.document = ApiTypeHelper.requireNonNull(builder.document, this, "document");
 
+		this.opType = builder.opType;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -98,6 +104,27 @@ public class IndexOperation<TDocument> extends WriteOperation implements NdJsonp
 		return Arrays.asList(this, this.document).iterator();
 	}
 
+	/**
+	 * Set to <code>create</code> to only index the document if it does not already
+	 * exist.
+	 * <p>
+	 * API name: {@code op_type}
+	 */
+	@Nullable
+	public final OpType opType() {
+		return this.opType;
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
+		if (this.opType != null) {
+			generator.writeKey("op_type");
+			this.opType.serialize(generator, mapper);
+		}
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -118,16 +145,31 @@ public class IndexOperation<TDocument> extends WriteOperation implements NdJsonp
 		}
 
 		@Nullable
+		private OpType opType;
+
+		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		public Builder() {
 		}
 		private Builder(IndexOperation<TDocument> instance) {
 			super(instance);
+			this.opType = instance.opType;
 			this.tDocumentSerializer = instance.tDocumentSerializer;
 			this.document = instance.document;
 
 		}
+		/**
+		 * Set to <code>create</code> to only index the document if it does not already
+		 * exist.
+		 * <p>
+		 * API name: {@code op_type}
+		 */
+		public final Builder<TDocument> opType(@Nullable OpType value) {
+			this.opType = value;
+			return this;
+		}
+
 		/**
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.

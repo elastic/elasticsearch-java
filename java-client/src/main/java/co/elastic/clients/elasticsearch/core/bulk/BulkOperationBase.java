@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch.core.bulk;
 
-import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -74,12 +73,6 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 	@Nullable
 	private final Long ifSeqNo;
 
-	@Nullable
-	private final Long version;
-
-	@Nullable
-	private final VersionType versionType;
-
 	// ---------------------------------------------------------------------------------------------
 
 	protected BulkOperationBase(AbstractBuilder<?> builder) {
@@ -89,8 +82,6 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 		this.routing = builder.routing;
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
-		this.version = builder.version;
-		this.versionType = builder.versionType;
 
 	}
 
@@ -142,22 +133,6 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code version}
-	 */
-	@Nullable
-	public final Long version() {
-		return this.version;
-	}
-
-	/**
-	 * API name: {@code version_type}
-	 */
-	@Nullable
-	public final VersionType versionType() {
-		return this.versionType;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -193,15 +168,6 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 			generator.write(this.ifSeqNo);
 
 		}
-		if (this.version != null) {
-			generator.writeKey("version");
-			generator.write(this.version);
-
-		}
-		if (this.versionType != null) {
-			generator.writeKey("version_type");
-			this.versionType.serialize(generator, mapper);
-		}
 
 	}
 
@@ -227,12 +193,6 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 
 		@Nullable
 		private Long ifSeqNo;
-
-		@Nullable
-		private Long version;
-
-		@Nullable
-		private VersionType versionType;
 
 		/**
 		 * The document ID.
@@ -281,22 +241,6 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 			return self();
 		}
 
-		/**
-		 * API name: {@code version}
-		 */
-		public final BuilderT version(@Nullable Long value) {
-			this.version = value;
-			return self();
-		}
-
-		/**
-		 * API name: {@code version_type}
-		 */
-		public final BuilderT versionType(@Nullable VersionType value) {
-			this.versionType = value;
-			return self();
-		}
-
 		protected AbstractBuilder() {
 		}
 
@@ -306,8 +250,6 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 			this.routing = instance.routing;
 			this.ifPrimaryTerm = instance.ifPrimaryTerm;
 			this.ifSeqNo = instance.ifSeqNo;
-			this.version = instance.version;
-			this.versionType = instance.versionType;
 
 		}
 
@@ -324,8 +266,6 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 		op.add(AbstractBuilder::routing, JsonpDeserializer.stringDeserializer(), "routing");
 		op.add(AbstractBuilder::ifPrimaryTerm, JsonpDeserializer.longDeserializer(), "if_primary_term");
 		op.add(AbstractBuilder::ifSeqNo, JsonpDeserializer.longDeserializer(), "if_seq_no");
-		op.add(AbstractBuilder::version, JsonpDeserializer.longDeserializer(), "version");
-		op.add(AbstractBuilder::versionType, VersionType._DESERIALIZER, "version_type");
 
 	}
 
