@@ -24,7 +24,9 @@ import co.elastic.clients.elasticsearch.core.bulk.BulkOperationBase;
 import co.elastic.clients.elasticsearch.core.bulk.CreateOperation;
 import co.elastic.clients.elasticsearch.core.bulk.DeleteOperation;
 import co.elastic.clients.elasticsearch.core.bulk.IndexOperation;
+import co.elastic.clients.elasticsearch.core.bulk.UpdateAction;
 import co.elastic.clients.elasticsearch.core.bulk.UpdateOperation;
+import co.elastic.clients.elasticsearch.core.bulk.WriteOperation;
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.util.BinaryData;
@@ -83,11 +85,12 @@ class IngesterOperation<Context> {
         return repeatableOp.canRetry();
     }
 
+    @SuppressWarnings("unchecked")
     private static <Context> IngesterOperation<Context> createOperation(RetryableBulkOperation<Context> repeatableOp, JsonpMapper mapper) {
         CreateOperation<?> create = repeatableOp.operation().create();
         RetryableBulkOperation<Context> newOperation;
 
-        long size = basePropertiesSize(create);
+        long size = writePropertiesSize(create);
 
         if (create.document() instanceof BinaryData) {
             newOperation = repeatableOp;
@@ -96,20 +99,20 @@ class IngesterOperation<Context> {
         } else {
             BinaryData binaryDoc = BinaryData.of(create.document(), mapper);
             size += binaryDoc.size();
-            newOperation = new RetryableBulkOperation<>(BulkOperation.of(bo -> bo.create(idx -> {
-                copyCreateProperties(create, idx);
-                return idx.document(binaryDoc);
-            })),repeatableOp.context(),repeatableOp.retries());
+            newOperation = new RetryableBulkOperation<>(
+                BulkOperation.of(bo -> bo.create(create.rebuild().document(binaryDoc).build())),
+                repeatableOp.context(), repeatableOp.retries());
         }
 
         return new IngesterOperation<>(newOperation, size);
     }
 
+    @SuppressWarnings("unchecked")
     private static <Context> IngesterOperation<Context> indexOperation(RetryableBulkOperation<Context> repeatableOp, JsonpMapper mapper) {
         IndexOperation<?> index = repeatableOp.operation().index();
         RetryableBulkOperation<Context> newOperation;
 
-        long size = basePropertiesSize(index);
+        long size = writePropertiesSize(index);
 
         if (index.document() instanceof BinaryData) {
             newOperation = repeatableOp;
@@ -118,15 +121,15 @@ class IngesterOperation<Context> {
         } else {
             BinaryData binaryDoc = BinaryData.of(index.document(), mapper);
             size += binaryDoc.size();
-            newOperation = new RetryableBulkOperation<>(BulkOperation.of(bo -> bo.index(idx -> {
-                copyIndexProperties(index, idx);
-                return idx.document(binaryDoc);
-            })),repeatableOp.context(),repeatableOp.retries());
+            newOperation = new RetryableBulkOperation<>(
+                BulkOperation.of(bo -> bo.index(index.rebuild().document(binaryDoc).build())),
+                repeatableOp.context(), repeatableOp.retries());
         }
 
         return new IngesterOperation<>(newOperation, size);
     }
 
+    @SuppressWarnings("unchecked")
     private static <Context> IngesterOperation<Context> updateOperation(RetryableBulkOperation<Context> repeatableOp, JsonpMapper mapper) {
         UpdateOperation<?, ?> update = repeatableOp.operation().update();
         RetryableBulkOperation<Context> newOperation;
@@ -142,13 +145,9 @@ class IngesterOperation<Context> {
         } else {
             BinaryData action = BinaryData.of(update.action(), mapper);
             size += action.size();
-            newOperation = new RetryableBulkOperation<>(BulkOperation.of(bo -> bo.update(u -> {
-                copyBaseProperties(update, u);
-                return u
-                    .binaryAction(action)
-                    .requireAlias(update.requireAlias())
-                    .retryOnConflict(update.retryOnConflict());
-            })),repeatableOp.context(),repeatableOp.retries());
+            newOperation = new RetryableBulkOperation<>(
+                BulkOperation.of(bo -> bo.update(update.rebuild().action((UpdateAction<?, ?>) null).binaryAction(action).build())),
+                repeatableOp.context(), repeatableOp.retries());
         }
 
         return new IngesterOperation<>(newOperation, size);
@@ -157,30 +156,6 @@ class IngesterOperation<Context> {
     private static <Context> IngesterOperation<Context> deleteOperation(RetryableBulkOperation<Context> repeatableOp) {
         DeleteOperation delete = repeatableOp.operation().delete();
         return new IngesterOperation<>(repeatableOp, basePropertiesSize(delete));
-    }
-
-
-    private static void copyBaseProperties(BulkOperationBase op, BulkOperationBase.AbstractBuilder<?> builder) {
-        builder
-            .id(op.id())
-            .index(op.index())
-            .ifPrimaryTerm(op.ifPrimaryTerm())
-            .ifSeqNo(op.ifSeqNo())
-            .routing(op.routing())
-            .version(op.version())
-            .versionType(op.versionType());
-    }
-
-    private static void copyIndexProperties(IndexOperation<?> op, IndexOperation.Builder<?> builder) {
-        copyBaseProperties(op, builder);
-        builder.pipeline(op.pipeline());
-        builder.requireAlias(op.requireAlias());
-    }
-
-    private static void copyCreateProperties(CreateOperation<?> op, CreateOperation.Builder<?> builder) {
-        copyBaseProperties(op, builder);
-        builder.pipeline(op.pipeline());
-        builder.requireAlias(op.requireAlias());
     }
 
     private static int size(String name, @Nullable Boolean value) {
@@ -256,5 +231,11 @@ class IngesterOperation<Context> {
                 size("version", op.version()) +
                 size("version_type", op.versionType()) +
                 4; // Open/closing brace, 2 newlines
+    }
+
+    private static int writePropertiesSize(WriteOperation op) {
+        return basePropertiesSize(op) +
+            size("pipeline", op.pipeline()) +
+            size("require_alias", op.requireAlias());
     }
 }
