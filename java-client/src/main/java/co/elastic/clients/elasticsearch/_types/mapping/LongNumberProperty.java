@@ -26,6 +26,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
@@ -59,12 +60,16 @@ public class LongNumberProperty extends NumberPropertyBase implements PropertyVa
 	@Nullable
 	private final Long nullValue;
 
+	@Nullable
+	private final Boolean indexTerms;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private LongNumberProperty(Builder builder) {
 		super(builder);
 
 		this.nullValue = builder.nullValue;
+		this.indexTerms = builder.indexTerms;
 
 	}
 
@@ -88,6 +93,20 @@ public class LongNumberProperty extends NumberPropertyBase implements PropertyVa
 		return this.nullValue;
 	}
 
+	/**
+	 * If <code>true</code>, the field's values are indexed in an inverted index
+	 * instead of a BKD tree. This speeds up queries that match a field against many
+	 * values, such as <code>terms</code> queries, but wide range queries are
+	 * typically slower than on a BKD tree. Requires <code>index</code> to be
+	 * <code>true</code>.
+	 * <p>
+	 * API name: {@code index_terms}
+	 */
+	@Nullable
+	public final Boolean indexTerms() {
+		return this.indexTerms;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.write("type", "long");
@@ -95,6 +114,11 @@ public class LongNumberProperty extends NumberPropertyBase implements PropertyVa
 		if (this.nullValue != null) {
 			generator.writeKey("null_value");
 			generator.write(this.nullValue);
+
+		}
+		if (this.indexTerms != null) {
+			generator.writeKey("index_terms");
+			generator.write(this.indexTerms);
 
 		}
 
@@ -112,11 +136,15 @@ public class LongNumberProperty extends NumberPropertyBase implements PropertyVa
 		@Nullable
 		private Long nullValue;
 
+		@Nullable
+		private Boolean indexTerms;
+
 		public Builder() {
 		}
 		private Builder(LongNumberProperty instance) {
 			super(instance);
 			this.nullValue = instance.nullValue;
+			this.indexTerms = instance.indexTerms;
 
 		}
 		/**
@@ -124,6 +152,20 @@ public class LongNumberProperty extends NumberPropertyBase implements PropertyVa
 		 */
 		public final Builder nullValue(@Nullable Long value) {
 			this.nullValue = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, the field's values are indexed in an inverted index
+		 * instead of a BKD tree. This speeds up queries that match a field against many
+		 * values, such as <code>terms</code> queries, but wide range queries are
+		 * typically slower than on a BKD tree. Requires <code>index</code> to be
+		 * <code>true</code>.
+		 * <p>
+		 * API name: {@code index_terms}
+		 */
+		public final Builder indexTerms(@Nullable Boolean value) {
+			this.indexTerms = value;
 			return this;
 		}
 
@@ -162,6 +204,7 @@ public class LongNumberProperty extends NumberPropertyBase implements PropertyVa
 	protected static void setupLongNumberPropertyDeserializer(ObjectDeserializer<LongNumberProperty.Builder> op) {
 		NumberPropertyBase.setupNumberPropertyBaseDeserializer(op);
 		op.add(Builder::nullValue, JsonpDeserializer.longDeserializer(), "null_value");
+		op.add(Builder::indexTerms, JsonpDeserializer.booleanDeserializer(), "index_terms");
 
 		op.ignore("type");
 	}

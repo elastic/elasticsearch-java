@@ -243,6 +243,9 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 
 	private final List<Long> waitForCheckpoints;
 
+	@Nullable
+	private final Time waitForCheckpointsTimeout;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private FleetSearchRequest(Builder builder) {
@@ -301,6 +304,7 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		this.trackTotalHits = builder.trackTotalHits;
 		this.version = builder.version;
 		this.waitForCheckpoints = ApiTypeHelper.unmodifiable(builder.waitForCheckpoints);
+		this.waitForCheckpointsTimeout = builder.waitForCheckpointsTimeout;
 
 	}
 
@@ -829,6 +833,17 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * The maximum time to wait for the checkpoints specified in
+	 * <code>wait_for_checkpoints</code> to become visible for search.
+	 * <p>
+	 * API name: {@code wait_for_checkpoints_timeout}
+	 */
+	@Nullable
+	public final Time waitForCheckpointsTimeout() {
+		return this.waitForCheckpointsTimeout;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -1241,6 +1256,9 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		@Nullable
 		private List<Long> waitForCheckpoints;
 
+		@Nullable
+		private Time waitForCheckpointsTimeout;
+
 		public Builder() {
 		}
 		private Builder(FleetSearchRequest instance) {
@@ -1298,6 +1316,7 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 			this.trackTotalHits = instance.trackTotalHits;
 			this.version = instance.version;
 			this.waitForCheckpoints = instance.waitForCheckpoints;
+			this.waitForCheckpointsTimeout = instance.waitForCheckpointsTimeout;
 
 		}
 		/**
@@ -2330,6 +2349,27 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 			return this;
 		}
 
+		/**
+		 * The maximum time to wait for the checkpoints specified in
+		 * <code>wait_for_checkpoints</code> to become visible for search.
+		 * <p>
+		 * API name: {@code wait_for_checkpoints_timeout}
+		 */
+		public final Builder waitForCheckpointsTimeout(@Nullable Time value) {
+			this.waitForCheckpointsTimeout = value;
+			return this;
+		}
+
+		/**
+		 * The maximum time to wait for the checkpoints specified in
+		 * <code>wait_for_checkpoints</code> to become visible for search.
+		 * <p>
+		 * API name: {@code wait_for_checkpoints_timeout}
+		 */
+		public final Builder waitForCheckpointsTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.waitForCheckpointsTimeout(fn.apply(new Time.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -2505,6 +2545,9 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 				}
 				if (request.maxConcurrentShardRequests != null) {
 					params.put("max_concurrent_shard_requests", String.valueOf(request.maxConcurrentShardRequests));
+				}
+				if (request.waitForCheckpointsTimeout != null) {
+					params.put("wait_for_checkpoints_timeout", request.waitForCheckpointsTimeout._toJsonString());
 				}
 				if (request.allowPartialSearchResults != null) {
 					params.put("allow_partial_search_results", String.valueOf(request.allowPartialSearchResults));

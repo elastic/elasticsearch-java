@@ -29,6 +29,8 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.BinaryEndpoint;
+import co.elastic.clients.transport.endpoints.BinaryResponse;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
@@ -56,43 +58,31 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: inference.non_streaming_chat_completion.Request
+// typedef: inference.chat_completion_streaming.Request
 
 /**
- * Perform non-streaming chat completion inference on the service.
+ * Perform streaming chat completion inference on the service.
  * <p>
- * The chat completion inference API enables rich responses for chat completion
- * tasks. It only works with the <code>chat_completion</code> task type.
+ * The chat completion inference API enables real-time responses for chat
+ * completion tasks by delivering answers incrementally, reducing response times
+ * during computation. It only works with the <code>chat_completion</code> task
+ * type.
  * <p>
  * NOTE: The <code>chat_completion</code> task type supports both streaming and
- * non-streaming. The Chat completion inference API provides more comprehensive
- * customization options through more fields and function calling support. To
- * determine whether a given inference service supports this task type, please
- * see the page for that service.
- * <p>
- * These services support non-streaming chat completion inference:
- * <ul>
- * <li>AI21</li>
- * <li>Azure OpenAI</li>
- * <li>Deepseek</li>
- * <li>Elastic</li>
- * <li>FireworksAI</li>
- * <li>Groq</li>
- * <li>Huggingface</li>
- * <li>IBMWatsonX</li>
- * <li>Llama</li>
- * <li>Mistral</li>
- * <li>NVIDIA</li>
- * <li>OpenAI</li>
- * <li>OpenShiftAI</li>
- * </ul>
- *
+ * non-streaming. For a single, non-streamed response, use the chat completion
+ * API (<code>POST _inference/chat_completion/{inference_id}</code>). The Chat
+ * completion inference API and the Stream inference API differ in their
+ * response structure and capabilities. The Chat completion inference API
+ * provides more comprehensive customization options through more fields and
+ * function calling support. To determine whether a given inference service
+ * supports this task type, please see the page for that service.
+ * 
  * @see <a href=
- *      "../doc-files/api-spec.html#inference.non_streaming_chat_completion.Request">API
+ *      "../doc-files/api-spec.html#inference.chat_completion_streaming.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class NonStreamingChatCompletionRequest extends RequestBase implements JsonpSerializable {
+public class ChatCompletionStreamingRequest extends RequestBase implements JsonpSerializable {
 	private final String inferenceId;
 
 	@Nullable
@@ -102,7 +92,7 @@ public class NonStreamingChatCompletionRequest extends RequestBase implements Js
 
 	// ---------------------------------------------------------------------------------------------
 
-	private NonStreamingChatCompletionRequest(Builder builder) {
+	private ChatCompletionStreamingRequest(Builder builder) {
 
 		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 		this.timeout = builder.timeout;
@@ -111,8 +101,8 @@ public class NonStreamingChatCompletionRequest extends RequestBase implements Js
 
 	}
 
-	public static NonStreamingChatCompletionRequest of(
-			Function<Builder, ObjectBuilder<NonStreamingChatCompletionRequest>> fn) {
+	public static ChatCompletionStreamingRequest of(
+			Function<Builder, ObjectBuilder<ChatCompletionStreamingRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -153,12 +143,12 @@ public class NonStreamingChatCompletionRequest extends RequestBase implements Js
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link NonStreamingChatCompletionRequest}.
+	 * Builder for {@link ChatCompletionStreamingRequest}.
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<NonStreamingChatCompletionRequest> {
+				ObjectBuilder<ChatCompletionStreamingRequest> {
 		private String inferenceId;
 
 		@Nullable
@@ -168,7 +158,7 @@ public class NonStreamingChatCompletionRequest extends RequestBase implements Js
 
 		public Builder() {
 		}
-		private Builder(NonStreamingChatCompletionRequest instance) {
+		private Builder(ChatCompletionStreamingRequest instance) {
 			this.inferenceId = instance.inferenceId;
 			this.timeout = instance.timeout;
 			this.chatCompletionRequest = instance.chatCompletionRequest;
@@ -234,15 +224,15 @@ public class NonStreamingChatCompletionRequest extends RequestBase implements Js
 		}
 
 		/**
-		 * Builds a {@link NonStreamingChatCompletionRequest}.
+		 * Builds a {@link ChatCompletionStreamingRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public NonStreamingChatCompletionRequest build() {
+		public ChatCompletionStreamingRequest build() {
 			_checkSingleUse();
 
-			return new NonStreamingChatCompletionRequest(this);
+			return new ChatCompletionStreamingRequest(this);
 		}
 	}
 
@@ -252,8 +242,8 @@ public class NonStreamingChatCompletionRequest extends RequestBase implements Js
 	public Builder rebuild() {
 		return new Builder(this);
 	}
-	public static final JsonpDeserializer<NonStreamingChatCompletionRequest> _DESERIALIZER = createNonStreamingChatCompletionRequestDeserializer();
-	protected static JsonpDeserializer<NonStreamingChatCompletionRequest> createNonStreamingChatCompletionRequestDeserializer() {
+	public static final JsonpDeserializer<ChatCompletionStreamingRequest> _DESERIALIZER = createChatCompletionStreamingRequestDeserializer();
+	protected static JsonpDeserializer<ChatCompletionStreamingRequest> createChatCompletionStreamingRequestDeserializer() {
 
 		JsonpDeserializer<RequestChatCompletion> valueDeserializer = RequestChatCompletion._DESERIALIZER;
 
@@ -264,10 +254,10 @@ public class NonStreamingChatCompletionRequest extends RequestBase implements Js
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code inference.non_streaming_chat_completion}".
+	 * Endpoint "{@code inference.chat_completion_streaming}".
 	 */
-	public static final Endpoint<NonStreamingChatCompletionRequest, NonStreamingChatCompletionResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/inference.non_streaming_chat_completion",
+	public static final Endpoint<ChatCompletionStreamingRequest, BinaryResponse, ErrorResponse> _ENDPOINT = new BinaryEndpoint<>(
+			"es/inference.chat_completion_streaming",
 
 			// Request method
 			request -> {
@@ -289,6 +279,7 @@ public class NonStreamingChatCompletionRequest extends RequestBase implements Js
 					buf.append("/chat_completion");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.inferenceId, buf);
+					buf.append("/_stream");
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -318,5 +309,5 @@ public class NonStreamingChatCompletionRequest extends RequestBase implements Js
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, NonStreamingChatCompletionResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, null);
 }

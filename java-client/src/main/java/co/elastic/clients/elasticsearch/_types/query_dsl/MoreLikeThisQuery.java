@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,7 +30,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
-import java.lang.Long;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -100,18 +98,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final Integer minWordLength;
 
-	@Nullable
-	private final String routing;
-
 	private final List<String> stopWords;
 
 	private final List<Like> unlike;
-
-	@Nullable
-	private final Long version;
-
-	@Nullable
-	private final VersionType versionType;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -131,11 +120,8 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.minTermFreq = builder.minTermFreq;
 		this.minWordLength = builder.minWordLength;
-		this.routing = builder.routing;
 		this.stopWords = ApiTypeHelper.unmodifiable(builder.stopWords);
 		this.unlike = ApiTypeHelper.unmodifiable(builder.unlike);
-		this.version = builder.version;
-		this.versionType = builder.versionType;
 
 	}
 
@@ -294,14 +280,6 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * API name: {@code routing}
-	 */
-	@Nullable
-	public final String routing() {
-		return this.routing;
-	}
-
-	/**
 	 * An array of stop words. Any word in this set is ignored.
 	 * <p>
 	 * API name: {@code stop_words}
@@ -318,22 +296,6 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	 */
 	public final List<Like> unlike() {
 		return this.unlike;
-	}
-
-	/**
-	 * API name: {@code version}
-	 */
-	@Nullable
-	public final Long version() {
-		return this.version;
-	}
-
-	/**
-	 * API name: {@code version_type}
-	 */
-	@Nullable
-	public final VersionType versionType() {
-		return this.versionType;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -414,11 +376,6 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 			generator.write(this.minWordLength);
 
 		}
-		if (this.routing != null) {
-			generator.writeKey("routing");
-			generator.write(this.routing);
-
-		}
 		if (ApiTypeHelper.isDefined(this.stopWords)) {
 			generator.writeKey("stop_words");
 			generator.writeStartArray();
@@ -438,15 +395,6 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 			}
 			generator.writeEnd();
 
-		}
-		if (this.version != null) {
-			generator.writeKey("version");
-			generator.write(this.version);
-
-		}
-		if (this.versionType != null) {
-			generator.writeKey("version_type");
-			this.versionType.serialize(generator, mapper);
 		}
 
 	}
@@ -497,19 +445,10 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		private Integer minWordLength;
 
 		@Nullable
-		private String routing;
-
-		@Nullable
 		private List<String> stopWords;
 
 		@Nullable
 		private List<Like> unlike;
-
-		@Nullable
-		private Long version;
-
-		@Nullable
-		private VersionType versionType;
 
 		public Builder() {
 		}
@@ -528,11 +467,8 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 			this.minimumShouldMatch = instance.minimumShouldMatch;
 			this.minTermFreq = instance.minTermFreq;
 			this.minWordLength = instance.minWordLength;
-			this.routing = instance.routing;
 			this.stopWords = instance.stopWords;
 			this.unlike = instance.unlike;
-			this.version = instance.version;
-			this.versionType = instance.versionType;
 
 		}
 		/**
@@ -723,14 +659,6 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code routing}
-		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
-			return this;
-		}
-
-		/**
 		 * An array of stop words. Any word in this set is ignored.
 		 * <p>
 		 * API name: {@code stop_words}
@@ -792,22 +720,6 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 			return unlike(fn.apply(new Like.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code version}
-		 */
-		public final Builder version(@Nullable Long value) {
-			this.version = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code version_type}
-		 */
-		public final Builder versionType(@Nullable VersionType value) {
-			this.versionType = value;
-			return this;
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
@@ -855,12 +767,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		op.add(Builder::minimumShouldMatch, JsonpDeserializer.stringDeserializer(), "minimum_should_match");
 		op.add(Builder::minTermFreq, JsonpDeserializer.integerDeserializer(), "min_term_freq");
 		op.add(Builder::minWordLength, JsonpDeserializer.integerDeserializer(), "min_word_length");
-		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
 		op.add(Builder::stopWords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stop_words");
 		op.add(Builder::unlike, JsonpDeserializer.arrayDeserializer(Like._DESERIALIZER), "unlike");
-		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
-		op.add(Builder::versionType, VersionType._DESERIALIZER, "version_type");
 
 	}
 

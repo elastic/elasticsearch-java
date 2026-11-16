@@ -46,6 +46,8 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum HighlighterOrder implements JsonEnum {
+	None("none"),
+
 	Score("score"),
 
 	;

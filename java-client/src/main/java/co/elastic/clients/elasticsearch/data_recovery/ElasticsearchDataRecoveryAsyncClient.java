@@ -264,9 +264,10 @@ public class ElasticsearchDataRecoveryAsyncClient
 	 * List the recoveries that were started with the start recovery API, including
 	 * those that have finished. This API is intended for internal operator use.
 	 * Recoveries are ordered by start time, and the most recent are returned first
-	 * by default. To retrieve further pages, pass the start time and identifier of
-	 * the last recovery of a page as <code>search_after_started_at</code> and
-	 * <code>search_after_recovery_id</code>.
+	 * by default. To retrieve further pages, pass the identifier of the last
+	 * recovery of a page as <code>search_after_recovery_id</code>. To restrict the
+	 * results to a period instead, use <code>started_at_gte</code> and
+	 * <code>started_at_lt</code>.
 	 * 
 	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
 	 */
@@ -284,9 +285,10 @@ public class ElasticsearchDataRecoveryAsyncClient
 	 * List the recoveries that were started with the start recovery API, including
 	 * those that have finished. This API is intended for internal operator use.
 	 * Recoveries are ordered by start time, and the most recent are returned first
-	 * by default. To retrieve further pages, pass the start time and identifier of
-	 * the last recovery of a page as <code>search_after_started_at</code> and
-	 * <code>search_after_recovery_id</code>.
+	 * by default. To retrieve further pages, pass the identifier of the last
+	 * recovery of a page as <code>search_after_recovery_id</code>. To restrict the
+	 * results to a period instead, use <code>started_at_gte</code> and
+	 * <code>started_at_lt</code>.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -305,9 +307,10 @@ public class ElasticsearchDataRecoveryAsyncClient
 	 * List the recoveries that were started with the start recovery API, including
 	 * those that have finished. This API is intended for internal operator use.
 	 * Recoveries are ordered by start time, and the most recent are returned first
-	 * by default. To retrieve further pages, pass the start time and identifier of
-	 * the last recovery of a page as <code>search_after_started_at</code> and
-	 * <code>search_after_recovery_id</code>.
+	 * by default. To retrieve further pages, pass the identifier of the last
+	 * recovery of a page as <code>search_after_recovery_id</code>. To restrict the
+	 * results to a period instead, use <code>started_at_gte</code> and
+	 * <code>started_at_lt</code>.
 	 * 
 	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
 	 */

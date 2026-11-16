@@ -947,6 +947,25 @@ public class AggregateBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link RoaringBitmapAggregate roaring_bitmap}
+	 * {@code Aggregate} variant.
+	 */
+	public static RoaringBitmapAggregate.Builder roaringBitmap() {
+		return new RoaringBitmapAggregate.Builder();
+	}
+
+	/**
+	 * Creates a Aggregate of the {@link RoaringBitmapAggregate roaring_bitmap}
+	 * {@code Aggregate} variant.
+	 */
+	public static Aggregate roaringBitmap(
+			Function<RoaringBitmapAggregate.Builder, ObjectBuilder<RoaringBitmapAggregate>> fn) {
+		Aggregate.Builder builder = new Aggregate.Builder();
+		builder.roaringBitmap(fn.apply(new RoaringBitmapAggregate.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link SamplerAggregate sampler} {@code Aggregate}
 	 * variant.
 	 */
