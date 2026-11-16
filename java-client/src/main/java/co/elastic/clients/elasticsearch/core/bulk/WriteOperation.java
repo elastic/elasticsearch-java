@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch.core.bulk;
 
-import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -30,7 +29,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -60,12 +58,6 @@ import javax.annotation.Nullable;
  */
 
 public abstract class WriteOperation extends BulkOperationBase {
-	@Nullable
-	private final Long version;
-
-	@Nullable
-	private final VersionType versionType;
-
 	private final Map<String, String> dynamicTemplates;
 
 	private final Map<String, Map<String, String>> dynamicTemplateParams;
@@ -87,8 +79,6 @@ public abstract class WriteOperation extends BulkOperationBase {
 	protected WriteOperation(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.version = builder.version;
-		this.versionType = builder.versionType;
 		this.dynamicTemplates = ApiTypeHelper.unmodifiable(builder.dynamicTemplates);
 		this.dynamicTemplateParams = ApiTypeHelper.unmodifiable(builder.dynamicTemplateParams);
 		this.pipeline = builder.pipeline;
@@ -96,29 +86,6 @@ public abstract class WriteOperation extends BulkOperationBase {
 		this.requireDataStream = builder.requireDataStream;
 		this.listExecutedPipelines = builder.listExecutedPipelines;
 
-	}
-
-	/**
-	 * The explicit version number for concurrency control. It must be a
-	 * non-negative long number. This parameter is not supported for
-	 * <code>update</code> actions.
-	 * <p>
-	 * API name: {@code version}
-	 */
-	@Nullable
-	public final Long version() {
-		return this.version;
-	}
-
-	/**
-	 * The version type. This parameter is not supported for <code>update</code>
-	 * actions.
-	 * <p>
-	 * API name: {@code version_type}
-	 */
-	@Nullable
-	public final VersionType versionType() {
-		return this.versionType;
 	}
 
 	/**
@@ -196,15 +163,6 @@ public abstract class WriteOperation extends BulkOperationBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.version != null) {
-			generator.writeKey("version");
-			generator.write(this.version);
-
-		}
-		if (this.versionType != null) {
-			generator.writeKey("version_type");
-			this.versionType.serialize(generator, mapper);
-		}
 		if (ApiTypeHelper.isDefined(this.dynamicTemplates)) {
 			generator.writeKey("dynamic_templates");
 			generator.writeStartObject();
@@ -262,12 +220,6 @@ public abstract class WriteOperation extends BulkOperationBase {
 			extends
 				BulkOperationBase.AbstractBuilder<BuilderT> {
 		@Nullable
-		private Long version;
-
-		@Nullable
-		private VersionType versionType;
-
-		@Nullable
 		private Map<String, String> dynamicTemplates;
 
 		@Nullable
@@ -284,29 +236,6 @@ public abstract class WriteOperation extends BulkOperationBase {
 
 		@Nullable
 		private Boolean listExecutedPipelines;
-
-		/**
-		 * The explicit version number for concurrency control. It must be a
-		 * non-negative long number. This parameter is not supported for
-		 * <code>update</code> actions.
-		 * <p>
-		 * API name: {@code version}
-		 */
-		public final BuilderT version(@Nullable Long value) {
-			this.version = value;
-			return self();
-		}
-
-		/**
-		 * The version type. This parameter is not supported for <code>update</code>
-		 * actions.
-		 * <p>
-		 * API name: {@code version_type}
-		 */
-		public final BuilderT versionType(@Nullable VersionType value) {
-			this.versionType = value;
-			return self();
-		}
 
 		/**
 		 * A map from the full name of fields to the name of dynamic templates. It
@@ -423,8 +352,6 @@ public abstract class WriteOperation extends BulkOperationBase {
 
 		protected AbstractBuilder(WriteOperation instance) {
 			super(instance);
-			this.version = instance.version;
-			this.versionType = instance.versionType;
 			this.dynamicTemplates = instance.dynamicTemplates;
 			this.dynamicTemplateParams = instance.dynamicTemplateParams;
 			this.pipeline = instance.pipeline;
@@ -440,8 +367,6 @@ public abstract class WriteOperation extends BulkOperationBase {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupWriteOperationDeserializer(
 			ObjectDeserializer<BuilderT> op) {
 		BulkOperationBase.setupBulkOperationBaseDeserializer(op);
-		op.add(AbstractBuilder::version, JsonpDeserializer.longDeserializer(), "version");
-		op.add(AbstractBuilder::versionType, VersionType._DESERIALIZER, "version_type");
 		op.add(AbstractBuilder::dynamicTemplates,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "dynamic_templates");
 		op.add(AbstractBuilder::dynamicTemplateParams,
