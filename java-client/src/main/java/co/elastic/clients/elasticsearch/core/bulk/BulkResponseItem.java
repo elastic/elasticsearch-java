@@ -137,7 +137,15 @@ public class BulkResponseItem implements JsonpSerializable {
 	}
 
 	/**
-	 * The document ID associated with the operation.
+	 * The document ID associated with the operation. It is <code>null</code> when
+	 * an <code>index</code> or <code>create</code> operation without an explicit
+	 * <code>_id</code> fails before Elasticsearch generates an ID for the document.
+	 * Elasticsearch generates the ID when it routes the document to a shard, so the
+	 * ID is still <code>null</code> for failures that happen earlier, such as an
+	 * ingest pipeline error, a missing or closed target index, a failed
+	 * <code>require_alias</code> or <code>require_data_stream</code> check, or
+	 * missing required routing. <code>update</code> and <code>delete</code>
+	 * operations always include an ID.
 	 * <p>
 	 * API name: {@code _id}
 	 */
@@ -405,7 +413,15 @@ public class BulkResponseItem implements JsonpSerializable {
 
 		}
 		/**
-		 * The document ID associated with the operation.
+		 * The document ID associated with the operation. It is <code>null</code> when
+		 * an <code>index</code> or <code>create</code> operation without an explicit
+		 * <code>_id</code> fails before Elasticsearch generates an ID for the document.
+		 * Elasticsearch generates the ID when it routes the document to a shard, so the
+		 * ID is still <code>null</code> for failures that happen earlier, such as an
+		 * ingest pipeline error, a missing or closed target index, a failed
+		 * <code>require_alias</code> or <code>require_data_stream</code> check, or
+		 * missing required routing. <code>update</code> and <code>delete</code>
+		 * operations always include an ID.
 		 * <p>
 		 * API name: {@code _id}
 		 */

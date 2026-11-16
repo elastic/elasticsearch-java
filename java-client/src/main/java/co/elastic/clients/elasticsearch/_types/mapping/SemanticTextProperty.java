@@ -351,6 +351,17 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 		}
 
 		/**
+		 * Settings for index_options that override any defaults used by semantic_text,
+		 * for example specific quantization settings.
+		 * <p>
+		 * API name: {@code index_options}
+		 */
+		public final Builder indexOptions(SemanticTextIndexOptionsVariant value) {
+			this.indexOptions = value._toSemanticTextIndexOptions();
+			return this;
+		}
+
+		/**
 		 * Settings for chunking text into smaller passages. If specified, these will
 		 * override the chunking settings sent in the inference endpoint associated with
 		 * inference_id. If chunking settings are updated, they will not be applied to

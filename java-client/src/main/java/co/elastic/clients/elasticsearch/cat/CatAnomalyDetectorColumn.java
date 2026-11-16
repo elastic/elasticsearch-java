@@ -321,7 +321,7 @@ public enum CatAnomalyDetectorColumn implements JsonEnum {
 	 * track which specific categories failed to be created. Therefore, you cannot
 	 * use this value to determine the number of unique categories that were missed.
 	 */
-	ModelFailedCategoryCount("model.failed_category_count", "mdcc", "modelFailedCategoryCount"),
+	ModelFailedCategoryCount("model.failed_category_count", "mfcc", "modelFailedCategoryCount"),
 
 	/**
 	 * The number of categories that match more than 1% of categorized documents.
