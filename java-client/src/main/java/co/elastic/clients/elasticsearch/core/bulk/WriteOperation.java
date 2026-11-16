@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.core.bulk;
 
+import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -29,6 +30,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -58,6 +60,12 @@ import javax.annotation.Nullable;
  */
 
 public abstract class WriteOperation extends BulkOperationBase {
+	@Nullable
+	private final Long version;
+
+	@Nullable
+	private final VersionType versionType;
+
 	private final Map<String, String> dynamicTemplates;
 
 	@Nullable
@@ -66,15 +74,48 @@ public abstract class WriteOperation extends BulkOperationBase {
 	@Nullable
 	private final Boolean requireAlias;
 
+	@Nullable
+	private final Boolean requireDataStream;
+
+	@Nullable
+	private final Boolean listExecutedPipelines;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected WriteOperation(AbstractBuilder<?> builder) {
 		super(builder);
 
+		this.version = builder.version;
+		this.versionType = builder.versionType;
 		this.dynamicTemplates = ApiTypeHelper.unmodifiable(builder.dynamicTemplates);
 		this.pipeline = builder.pipeline;
 		this.requireAlias = builder.requireAlias;
+		this.requireDataStream = builder.requireDataStream;
+		this.listExecutedPipelines = builder.listExecutedPipelines;
 
+	}
+
+	/**
+	 * The explicit version number for concurrency control. It must be a
+	 * non-negative long number. This parameter is not supported for
+	 * <code>update</code> actions.
+	 * <p>
+	 * API name: {@code version}
+	 */
+	@Nullable
+	public final Long version() {
+		return this.version;
+	}
+
+	/**
+	 * The version type. This parameter is not supported for <code>update</code>
+	 * actions.
+	 * <p>
+	 * API name: {@code version_type}
+	 */
+	@Nullable
+	public final VersionType versionType() {
+		return this.versionType;
 	}
 
 	/**
@@ -114,9 +155,40 @@ public abstract class WriteOperation extends BulkOperationBase {
 		return this.requireAlias;
 	}
 
+	/**
+	 * If <code>true</code>, the action must target a data stream (existing or to be
+	 * created).
+	 * <p>
+	 * API name: {@code require_data_stream}
+	 */
+	@Nullable
+	public final Boolean requireDataStream() {
+		return this.requireDataStream;
+	}
+
+	/**
+	 * If <code>true</code>, the response includes the ingest pipelines that were
+	 * run for this action.
+	 * <p>
+	 * API name: {@code list_executed_pipelines}
+	 */
+	@Nullable
+	public final Boolean listExecutedPipelines() {
+		return this.listExecutedPipelines;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
+		if (this.version != null) {
+			generator.writeKey("version");
+			generator.write(this.version);
+
+		}
+		if (this.versionType != null) {
+			generator.writeKey("version_type");
+			this.versionType.serialize(generator, mapper);
+		}
 		if (ApiTypeHelper.isDefined(this.dynamicTemplates)) {
 			generator.writeKey("dynamic_templates");
 			generator.writeStartObject();
@@ -138,12 +210,28 @@ public abstract class WriteOperation extends BulkOperationBase {
 			generator.write(this.requireAlias);
 
 		}
+		if (this.requireDataStream != null) {
+			generator.writeKey("require_data_stream");
+			generator.write(this.requireDataStream);
+
+		}
+		if (this.listExecutedPipelines != null) {
+			generator.writeKey("list_executed_pipelines");
+			generator.write(this.listExecutedPipelines);
+
+		}
 
 	}
 
 	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				BulkOperationBase.AbstractBuilder<BuilderT> {
+		@Nullable
+		private Long version;
+
+		@Nullable
+		private VersionType versionType;
+
 		@Nullable
 		private Map<String, String> dynamicTemplates;
 
@@ -152,6 +240,35 @@ public abstract class WriteOperation extends BulkOperationBase {
 
 		@Nullable
 		private Boolean requireAlias;
+
+		@Nullable
+		private Boolean requireDataStream;
+
+		@Nullable
+		private Boolean listExecutedPipelines;
+
+		/**
+		 * The explicit version number for concurrency control. It must be a
+		 * non-negative long number. This parameter is not supported for
+		 * <code>update</code> actions.
+		 * <p>
+		 * API name: {@code version}
+		 */
+		public final BuilderT version(@Nullable Long value) {
+			this.version = value;
+			return self();
+		}
+
+		/**
+		 * The version type. This parameter is not supported for <code>update</code>
+		 * actions.
+		 * <p>
+		 * API name: {@code version_type}
+		 */
+		public final BuilderT versionType(@Nullable VersionType value) {
+			this.versionType = value;
+			return self();
+		}
 
 		/**
 		 * A map from the full name of fields to the name of dynamic templates. It
@@ -209,14 +326,40 @@ public abstract class WriteOperation extends BulkOperationBase {
 			return self();
 		}
 
+		/**
+		 * If <code>true</code>, the action must target a data stream (existing or to be
+		 * created).
+		 * <p>
+		 * API name: {@code require_data_stream}
+		 */
+		public final BuilderT requireDataStream(@Nullable Boolean value) {
+			this.requireDataStream = value;
+			return self();
+		}
+
+		/**
+		 * If <code>true</code>, the response includes the ingest pipelines that were
+		 * run for this action.
+		 * <p>
+		 * API name: {@code list_executed_pipelines}
+		 */
+		public final BuilderT listExecutedPipelines(@Nullable Boolean value) {
+			this.listExecutedPipelines = value;
+			return self();
+		}
+
 		protected AbstractBuilder() {
 		}
 
 		protected AbstractBuilder(WriteOperation instance) {
 			super(instance);
+			this.version = instance.version;
+			this.versionType = instance.versionType;
 			this.dynamicTemplates = instance.dynamicTemplates;
 			this.pipeline = instance.pipeline;
 			this.requireAlias = instance.requireAlias;
+			this.requireDataStream = instance.requireDataStream;
+			this.listExecutedPipelines = instance.listExecutedPipelines;
 
 		}
 
@@ -226,10 +369,15 @@ public abstract class WriteOperation extends BulkOperationBase {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupWriteOperationDeserializer(
 			ObjectDeserializer<BuilderT> op) {
 		BulkOperationBase.setupBulkOperationBaseDeserializer(op);
+		op.add(AbstractBuilder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(AbstractBuilder::versionType, VersionType._DESERIALIZER, "version_type");
 		op.add(AbstractBuilder::dynamicTemplates,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "dynamic_templates");
 		op.add(AbstractBuilder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
 		op.add(AbstractBuilder::requireAlias, JsonpDeserializer.booleanDeserializer(), "require_alias");
+		op.add(AbstractBuilder::requireDataStream, JsonpDeserializer.booleanDeserializer(), "require_data_stream");
+		op.add(AbstractBuilder::listExecutedPipelines, JsonpDeserializer.booleanDeserializer(),
+				"list_executed_pipelines");
 
 	}
 
