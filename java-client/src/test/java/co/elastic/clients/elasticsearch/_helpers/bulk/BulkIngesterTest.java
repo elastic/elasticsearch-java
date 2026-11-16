@@ -463,6 +463,24 @@ class BulkIngesterTest extends Assertions {
     }
 
     @Test
+    public void sizeIncludesPropertiesTest() {
+        JsonpMapper mapper = new SimpleJsonpMapper();
+
+        BulkOperation plain = BulkOperation.of(o -> o.index(i -> i.index("some_idx").document("Some doc")));
+        long plainSize = IngesterOperation.of(new RetryableBulkOperation<>(plain, null, null), mapper).size();
+
+        List<BulkOperation> withProperty = List.of(
+            BulkOperation.of(o -> o.index(i -> i.index("some_idx").pipeline("pipe").document("Some doc"))),
+            BulkOperation.of(o -> o.index(i -> i.index("some_idx").requireAlias(true).document("Some doc")))
+        );
+
+        for (BulkOperation op : withProperty) {
+            long size = IngesterOperation.of(new RetryableBulkOperation<>(op, null, null), mapper).size();
+            assertTrue(size > plainSize, JsonpUtils.toJsonString(op, mapper));
+        }
+    }
+
+    @Test
     public void allPropertiesKeptTest() {
         JsonpMapper mapper = new SimpleJsonpMapper();
 
