@@ -107,6 +107,7 @@ public class DataStream implements JsonpSerializable {
 	@Nullable
 	private final Boolean system;
 
+	@Nullable
 	private final String template;
 
 	private final DataStreamTimestampField timestampField;
@@ -136,7 +137,7 @@ public class DataStream implements JsonpSerializable {
 		this.mappings = builder.mappings;
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.system = builder.system;
-		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
+		this.template = builder.template;
 		this.timestampField = ApiTypeHelper.requireNonNull(builder.timestampField, this, "timestampField");
 		this.indexMode = builder.indexMode;
 
@@ -328,12 +329,18 @@ public class DataStream implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Name of the index template used to create the data stream’s
-	 * backing indices. The template’s index pattern must match the name of this
-	 * data stream.
+	 * Name of the index template used to create the data stream’s backing indices.
+	 * The template’s index pattern must match the name of this data stream. This
+	 * property is omitted if no index template currently matches the data stream,
+	 * for example on a cross-cluster replication follower cluster that has no
+	 * matching local template. For replicated data streams (<code>replicated</code>
+	 * is <code>true</code>), the value is the local index template that matches the
+	 * data stream name, which might not be the template that created the backing
+	 * indices on the leader cluster.
 	 * <p>
 	 * API name: {@code template}
 	 */
+	@Nullable
 	public final String template() {
 		return this.template;
 	}
@@ -448,9 +455,11 @@ public class DataStream implements JsonpSerializable {
 			generator.write(this.system);
 
 		}
-		generator.writeKey("template");
-		generator.write(this.template);
+		if (this.template != null) {
+			generator.writeKey("template");
+			generator.write(this.template);
 
+		}
 		generator.writeKey("timestamp_field");
 		this.timestampField.serialize(generator, mapper);
 
@@ -515,6 +524,7 @@ public class DataStream implements JsonpSerializable {
 		@Nullable
 		private Boolean system;
 
+		@Nullable
 		private String template;
 
 		private DataStreamTimestampField timestampField;
@@ -823,13 +833,18 @@ public class DataStream implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Name of the index template used to create the data stream’s
-		 * backing indices. The template’s index pattern must match the name of this
-		 * data stream.
+		 * Name of the index template used to create the data stream’s backing indices.
+		 * The template’s index pattern must match the name of this data stream. This
+		 * property is omitted if no index template currently matches the data stream,
+		 * for example on a cross-cluster replication follower cluster that has no
+		 * matching local template. For replicated data streams (<code>replicated</code>
+		 * is <code>true</code>), the value is the local index template that matches the
+		 * data stream name, which might not be the template that created the backing
+		 * indices on the leader cluster.
 		 * <p>
 		 * API name: {@code template}
 		 */
-		public final Builder template(String value) {
+		public final Builder template(@Nullable String value) {
 			this.template = value;
 			return this;
 		}

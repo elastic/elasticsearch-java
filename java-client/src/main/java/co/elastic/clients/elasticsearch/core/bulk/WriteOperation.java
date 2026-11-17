@@ -60,11 +60,19 @@ import javax.annotation.Nullable;
 public abstract class WriteOperation extends BulkOperationBase {
 	private final Map<String, String> dynamicTemplates;
 
+	private final Map<String, Map<String, String>> dynamicTemplateParams;
+
 	@Nullable
 	private final String pipeline;
 
 	@Nullable
 	private final Boolean requireAlias;
+
+	@Nullable
+	private final Boolean requireDataStream;
+
+	@Nullable
+	private final Boolean listExecutedPipelines;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -72,8 +80,11 @@ public abstract class WriteOperation extends BulkOperationBase {
 		super(builder);
 
 		this.dynamicTemplates = ApiTypeHelper.unmodifiable(builder.dynamicTemplates);
+		this.dynamicTemplateParams = ApiTypeHelper.unmodifiable(builder.dynamicTemplateParams);
 		this.pipeline = builder.pipeline;
 		this.requireAlias = builder.requireAlias;
+		this.requireDataStream = builder.requireDataStream;
+		this.listExecutedPipelines = builder.listExecutedPipelines;
 
 	}
 
@@ -88,6 +99,19 @@ public abstract class WriteOperation extends BulkOperationBase {
 	 */
 	public final Map<String, String> dynamicTemplates() {
 		return this.dynamicTemplates;
+	}
+
+	/**
+	 * A map from the full name of fields to the parameters to pass to the dynamic
+	 * template selected for that field in <code>dynamic_templates</code>. Each
+	 * value is a map from parameter names to parameter values. The dynamic template
+	 * can reference a parameter with a placeholder such as <code>{unit:}</code>,
+	 * where the text after the colon is the default value.
+	 * <p>
+	 * API name: {@code dynamic_template_params}
+	 */
+	public final Map<String, Map<String, String>> dynamicTemplateParams() {
+		return this.dynamicTemplateParams;
 	}
 
 	/**
@@ -114,6 +138,28 @@ public abstract class WriteOperation extends BulkOperationBase {
 		return this.requireAlias;
 	}
 
+	/**
+	 * If <code>true</code>, the action must target a data stream (existing or to be
+	 * created).
+	 * <p>
+	 * API name: {@code require_data_stream}
+	 */
+	@Nullable
+	public final Boolean requireDataStream() {
+		return this.requireDataStream;
+	}
+
+	/**
+	 * If <code>true</code>, the response includes the ingest pipelines that were
+	 * run for this action.
+	 * <p>
+	 * API name: {@code list_executed_pipelines}
+	 */
+	@Nullable
+	public final Boolean listExecutedPipelines() {
+		return this.listExecutedPipelines;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -123,6 +169,25 @@ public abstract class WriteOperation extends BulkOperationBase {
 			for (Map.Entry<String, String> item0 : this.dynamicTemplates.entrySet()) {
 				generator.writeKey(item0.getKey());
 				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.dynamicTemplateParams)) {
+			generator.writeKey("dynamic_template_params");
+			generator.writeStartObject();
+			for (Map.Entry<String, Map<String, String>> item0 : this.dynamicTemplateParams.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartObject();
+				if (item0.getValue() != null) {
+					for (Map.Entry<String, String> item1 : item0.getValue().entrySet()) {
+						generator.writeKey(item1.getKey());
+						generator.write(item1.getValue());
+
+					}
+				}
+				generator.writeEnd();
 
 			}
 			generator.writeEnd();
@@ -138,6 +203,16 @@ public abstract class WriteOperation extends BulkOperationBase {
 			generator.write(this.requireAlias);
 
 		}
+		if (this.requireDataStream != null) {
+			generator.writeKey("require_data_stream");
+			generator.write(this.requireDataStream);
+
+		}
+		if (this.listExecutedPipelines != null) {
+			generator.writeKey("list_executed_pipelines");
+			generator.write(this.listExecutedPipelines);
+
+		}
 
 	}
 
@@ -148,10 +223,19 @@ public abstract class WriteOperation extends BulkOperationBase {
 		private Map<String, String> dynamicTemplates;
 
 		@Nullable
+		private Map<String, Map<String, String>> dynamicTemplateParams;
+
+		@Nullable
 		private String pipeline;
 
 		@Nullable
 		private Boolean requireAlias;
+
+		@Nullable
+		private Boolean requireDataStream;
+
+		@Nullable
+		private Boolean listExecutedPipelines;
 
 		/**
 		 * A map from the full name of fields to the name of dynamic templates. It
@@ -186,6 +270,38 @@ public abstract class WriteOperation extends BulkOperationBase {
 		}
 
 		/**
+		 * A map from the full name of fields to the parameters to pass to the dynamic
+		 * template selected for that field in <code>dynamic_templates</code>. Each
+		 * value is a map from parameter names to parameter values. The dynamic template
+		 * can reference a parameter with a placeholder such as <code>{unit:}</code>,
+		 * where the text after the colon is the default value.
+		 * <p>
+		 * API name: {@code dynamic_template_params}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>dynamicTemplateParams</code>.
+		 */
+		public final BuilderT dynamicTemplateParams(Map<String, Map<String, String>> map) {
+			this.dynamicTemplateParams = _mapPutAll(this.dynamicTemplateParams, map);
+			return self();
+		}
+
+		/**
+		 * A map from the full name of fields to the parameters to pass to the dynamic
+		 * template selected for that field in <code>dynamic_templates</code>. Each
+		 * value is a map from parameter names to parameter values. The dynamic template
+		 * can reference a parameter with a placeholder such as <code>{unit:}</code>,
+		 * where the text after the colon is the default value.
+		 * <p>
+		 * API name: {@code dynamic_template_params}
+		 * <p>
+		 * Adds an entry to <code>dynamicTemplateParams</code>.
+		 */
+		public final BuilderT dynamicTemplateParams(String key, Map<String, String> value) {
+			this.dynamicTemplateParams = _mapPut(this.dynamicTemplateParams, key, value);
+			return self();
+		}
+
+		/**
 		 * The ID of the pipeline to use to preprocess incoming documents. If the index
 		 * has a default ingest pipeline specified, setting the value to
 		 * <code>_none</code> turns off the default ingest pipeline for this request. If
@@ -209,14 +325,39 @@ public abstract class WriteOperation extends BulkOperationBase {
 			return self();
 		}
 
+		/**
+		 * If <code>true</code>, the action must target a data stream (existing or to be
+		 * created).
+		 * <p>
+		 * API name: {@code require_data_stream}
+		 */
+		public final BuilderT requireDataStream(@Nullable Boolean value) {
+			this.requireDataStream = value;
+			return self();
+		}
+
+		/**
+		 * If <code>true</code>, the response includes the ingest pipelines that were
+		 * run for this action.
+		 * <p>
+		 * API name: {@code list_executed_pipelines}
+		 */
+		public final BuilderT listExecutedPipelines(@Nullable Boolean value) {
+			this.listExecutedPipelines = value;
+			return self();
+		}
+
 		protected AbstractBuilder() {
 		}
 
 		protected AbstractBuilder(WriteOperation instance) {
 			super(instance);
 			this.dynamicTemplates = instance.dynamicTemplates;
+			this.dynamicTemplateParams = instance.dynamicTemplateParams;
 			this.pipeline = instance.pipeline;
 			this.requireAlias = instance.requireAlias;
+			this.requireDataStream = instance.requireDataStream;
+			this.listExecutedPipelines = instance.listExecutedPipelines;
 
 		}
 
@@ -228,8 +369,15 @@ public abstract class WriteOperation extends BulkOperationBase {
 		BulkOperationBase.setupBulkOperationBaseDeserializer(op);
 		op.add(AbstractBuilder::dynamicTemplates,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "dynamic_templates");
+		op.add(AbstractBuilder::dynamicTemplateParams,
+				JsonpDeserializer.stringMapDeserializer(
+						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer())),
+				"dynamic_template_params");
 		op.add(AbstractBuilder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
 		op.add(AbstractBuilder::requireAlias, JsonpDeserializer.booleanDeserializer(), "require_alias");
+		op.add(AbstractBuilder::requireDataStream, JsonpDeserializer.booleanDeserializer(), "require_data_stream");
+		op.add(AbstractBuilder::listExecutedPipelines, JsonpDeserializer.booleanDeserializer(),
+				"list_executed_pipelines");
 
 	}
 

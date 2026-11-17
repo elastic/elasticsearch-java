@@ -142,6 +142,10 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The explicit version number for concurrency control. It must be a
+	 * non-negative long number. This parameter is not supported for
+	 * <code>update</code> actions.
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -150,6 +154,9 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The version type. This parameter is not supported for <code>update</code>
+	 * actions.
+	 * <p>
 	 * API name: {@code version_type}
 	 */
 	@Nullable
@@ -282,6 +289,10 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The explicit version number for concurrency control. It must be a
+		 * non-negative long number. This parameter is not supported for
+		 * <code>update</code> actions.
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public final BuilderT version(@Nullable Long value) {
@@ -290,6 +301,9 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The version type. This parameter is not supported for <code>update</code>
+		 * actions.
+		 * <p>
 		 * API name: {@code version_type}
 		 */
 		public final BuilderT versionType(@Nullable VersionType value) {

@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.core.bulk;
 
+import co.elastic.clients.elasticsearch.core.search.SourceConfig;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,6 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
+import java.lang.String;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Objects;
@@ -77,6 +79,15 @@ public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationB
 	private final Integer retryOnConflict;
 
 	@Nullable
+	private final String pipeline;
+
+	@Nullable
+	private final Boolean listExecutedPipelines;
+
+	@Nullable
+	private final SourceConfig source;
+
+	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
 
 	@Nullable
@@ -91,6 +102,9 @@ public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationB
 
 		this.requireAlias = builder.requireAlias;
 		this.retryOnConflict = builder.retryOnConflict;
+		this.pipeline = builder.pipeline;
+		this.listExecutedPipelines = builder.listExecutedPipelines;
+		this.source = builder.source;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 		this.tPartialDocumentSerializer = builder.tPartialDocumentSerializer;
 
@@ -157,6 +171,43 @@ public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationB
 		return this.retryOnConflict;
 	}
 
+	/**
+	 * The ID of the pipeline to use to preprocess the <code>upsert</code> document,
+	 * if one is created. If the index has a default ingest pipeline specified,
+	 * setting the value to <code>_none</code> turns off the default ingest pipeline
+	 * for this request. If a final pipeline is configured, it will always run
+	 * regardless of the value of this parameter.
+	 * <p>
+	 * API name: {@code pipeline}
+	 */
+	@Nullable
+	public final String pipeline() {
+		return this.pipeline;
+	}
+
+	/**
+	 * If <code>true</code>, the response includes the ingest pipelines that were
+	 * run for the <code>upsert</code> document, if one is created.
+	 * <p>
+	 * API name: {@code list_executed_pipelines}
+	 */
+	@Nullable
+	public final Boolean listExecutedPipelines() {
+		return this.listExecutedPipelines;
+	}
+
+	/**
+	 * If <code>false</code>, source retrieval is turned off. You can also specify a
+	 * comma-separated list of the fields you want to retrieve. If set, it overrides
+	 * the <code>_source</code> value in the update source line.
+	 * <p>
+	 * API name: {@code _source}
+	 */
+	@Nullable
+	public final SourceConfig source() {
+		return this.source;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -168,6 +219,21 @@ public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationB
 		if (this.retryOnConflict != null) {
 			generator.writeKey("retry_on_conflict");
 			generator.write(this.retryOnConflict);
+
+		}
+		if (this.pipeline != null) {
+			generator.writeKey("pipeline");
+			generator.write(this.pipeline);
+
+		}
+		if (this.listExecutedPipelines != null) {
+			generator.writeKey("list_executed_pipelines");
+			generator.write(this.listExecutedPipelines);
+
+		}
+		if (this.source != null) {
+			generator.writeKey("_source");
+			this.source.serialize(generator, mapper);
 
 		}
 
@@ -230,6 +296,15 @@ public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationB
 		private Integer retryOnConflict;
 
 		@Nullable
+		private String pipeline;
+
+		@Nullable
+		private Boolean listExecutedPipelines;
+
+		@Nullable
+		private SourceConfig source;
+
+		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		@Nullable
@@ -241,6 +316,9 @@ public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationB
 			super(instance);
 			this.requireAlias = instance.requireAlias;
 			this.retryOnConflict = instance.retryOnConflict;
+			this.pipeline = instance.pipeline;
+			this.listExecutedPipelines = instance.listExecutedPipelines;
+			this.source = instance.source;
 			this.tDocumentSerializer = instance.tDocumentSerializer;
 			this.tPartialDocumentSerializer = instance.tPartialDocumentSerializer;
 			this.action = instance.action;
@@ -266,6 +344,55 @@ public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationB
 		public final Builder<TDocument, TPartialDocument> retryOnConflict(@Nullable Integer value) {
 			this.retryOnConflict = value;
 			return this;
+		}
+
+		/**
+		 * The ID of the pipeline to use to preprocess the <code>upsert</code> document,
+		 * if one is created. If the index has a default ingest pipeline specified,
+		 * setting the value to <code>_none</code> turns off the default ingest pipeline
+		 * for this request. If a final pipeline is configured, it will always run
+		 * regardless of the value of this parameter.
+		 * <p>
+		 * API name: {@code pipeline}
+		 */
+		public final Builder<TDocument, TPartialDocument> pipeline(@Nullable String value) {
+			this.pipeline = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, the response includes the ingest pipelines that were
+		 * run for the <code>upsert</code> document, if one is created.
+		 * <p>
+		 * API name: {@code list_executed_pipelines}
+		 */
+		public final Builder<TDocument, TPartialDocument> listExecutedPipelines(@Nullable Boolean value) {
+			this.listExecutedPipelines = value;
+			return this;
+		}
+
+		/**
+		 * If <code>false</code>, source retrieval is turned off. You can also specify a
+		 * comma-separated list of the fields you want to retrieve. If set, it overrides
+		 * the <code>_source</code> value in the update source line.
+		 * <p>
+		 * API name: {@code _source}
+		 */
+		public final Builder<TDocument, TPartialDocument> source(@Nullable SourceConfig value) {
+			this.source = value;
+			return this;
+		}
+
+		/**
+		 * If <code>false</code>, source retrieval is turned off. You can also specify a
+		 * comma-separated list of the fields you want to retrieve. If set, it overrides
+		 * the <code>_source</code> value in the update source line.
+		 * <p>
+		 * API name: {@code _source}
+		 */
+		public final Builder<TDocument, TPartialDocument> source(
+				Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+			return this.source(fn.apply(new SourceConfig.Builder()).build());
 		}
 
 		/**

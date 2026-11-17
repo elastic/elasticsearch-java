@@ -19,9 +19,7 @@
 
 package co.elastic.clients.elasticsearch.inference;
 
-import co.elastic.clients.json.JsonEnum;
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpSerializable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -39,30 +37,14 @@ import co.elastic.clients.json.JsonpDeserializer;
 //----------------------------------------------------------------
 
 /**
- *
- * @see <a href="../doc-files/api-spec.html#inference._types.ContentType">API
- *      specification</a>
+ * Base interface for {@link ContentObject} variants.
  */
-@JsonpDeserializable
-public enum ContentType implements JsonEnum {
-	Text("text"),
+public interface ContentObjectVariant extends JsonpSerializable {
 
-	ImageUrl("image_url"),
+	ContentObject.Kind _contentObjectKind();
 
-	File("file"),
-
-	;
-
-	private final String jsonValue;
-
-	ContentType(String jsonValue) {
-		this.jsonValue = jsonValue;
+	default ContentObject _toContentObject() {
+		return new ContentObject(this);
 	}
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
-
-	public static final JsonEnum.Deserializer<ContentType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ContentType.values());
 }
