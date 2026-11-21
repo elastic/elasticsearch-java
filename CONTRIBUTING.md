@@ -6,8 +6,8 @@ There are many ways to contribute, from writing tutorials or blog posts, improvi
 
 ## Sign the Contributor License Agreement
 
-We do ask that you sign the [Contiributor License Agreement](https://www.elastic.co/contributor-agreement)
-before we can accept pull requests from you.
+Please sign the [Contiributor License Agreement](https://www.elastic.co/contributor-agreement)
+before you open a PR. We verify signatures in a GitHub workflow and will be unable to accept any PR from a contributor that has not signed the document.
 
 ## Development
 
