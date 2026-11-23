@@ -180,8 +180,8 @@ signing {
 
 dependencies {
     val elasticsearchVersion = "9.5.0"
-    val jacksonVersion = "2.22.2"
-    val jackson3Version = "3.1.0"
+    val jacksonVersion = "2.22.4"
+    val jackson3Version = "3.1.8"
     val openTelemetryVersion = "1.67.0"
 
     api(project(":rest5-client"))
