@@ -306,7 +306,8 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
                 // TODO: items that aren't already BinaryData could be serialized to ByteBuffers lazily
                 // to reduce the number of buffers to keep in memory
                 lines.add(BinaryData.of(item, this.mapper).asByteBuffer());
-                lines.add(NdJsonSeparator);
+                // Body readers may move the buffer's position: never expose the shared instance
+                lines.add(NdJsonSeparator.duplicate());
             }
         }
     }
