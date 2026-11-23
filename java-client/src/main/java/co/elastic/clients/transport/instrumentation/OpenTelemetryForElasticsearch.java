@@ -218,9 +218,7 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
                 if (body != null && shouldCaptureBody(span, endpointId)) {
                     StringBuilder sb = new StringBuilder();
                     for (ByteBuffer buf: body) {
-                        buf.mark();
-                        sb.append(StandardCharsets.UTF_8.decode(buf));
-                        buf.reset();
+                        sb.append(StandardCharsets.UTF_8.decode(buf.duplicate()));
                     }
                     span.setAttribute(ATTR_DB_STATEMENT, sb.toString());
                 }

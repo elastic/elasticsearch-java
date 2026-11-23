@@ -22,23 +22,30 @@ package co.elastic.clients.transport.instrumentation;
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch.core.MsearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
+import co.elastic.clients.transport.ElasticsearchTransportBase;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import com.sun.net.httpserver.HttpServer;
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.common.AttributeKey;
 import io.opentelemetry.api.common.Attributes;
+import io.opentelemetry.context.Context;
 import io.opentelemetry.sdk.OpenTelemetrySdk;
 import io.opentelemetry.sdk.common.CompletableResultCode;
 import io.opentelemetry.sdk.resources.Resource;
+import io.opentelemetry.sdk.trace.ReadWriteSpan;
+import io.opentelemetry.sdk.trace.ReadableSpan;
 import io.opentelemetry.sdk.trace.SdkTracerProvider;
+import io.opentelemetry.sdk.trace.SpanProcessor;
 import io.opentelemetry.sdk.trace.data.SpanData;
 import io.opentelemetry.sdk.trace.export.SimpleSpanProcessor;
 import io.opentelemetry.sdk.trace.export.SpanExporter;
 import io.opentelemetry.semconv.resource.attributes.ResourceAttributes;
 import io.opentelemetry.semconv.trace.attributes.SemanticAttributes;
+import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.AfterAll;
@@ -48,15 +55,22 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class OpenTelemetryForElasticsearchTest {
     private static final String INDEX = "test-index";
@@ -107,6 +121,16 @@ public class OpenTelemetryForElasticsearchTest {
     public static final String SERVER_PORT = "server.port";
     // has been renamed in 1.21 from http.method - see https://github.com/open-telemetry/semantic-conventions/blob/main/schemas/1.21.0
     public static final String HTTP_REQUEST_METHOD = "http.request.method";
+    private static final int MSEARCH_SEARCHES = 50;
+    private static final String MSEARCH_RESPONSE = "{\"took\":1,\"responses\":[" +
+            String.join(",", Collections.nCopies(MSEARCH_SEARCHES,
+                "{\"took\":1,\"timed_out\":false,\"_shards\":{\"total\":1,\"successful\":1,\"skipped\":0,\"failed\":0}," +
+                "\"hits\":{\"hits\":[]},\"status\":200}"
+            )) +
+            "]}";
+    private static final AtomicInteger validMsearchBodies = new AtomicInteger();
+    private static final List<String> invalidMsearchBodies = Collections.synchronizedList(new ArrayList<>());
+    private static ExecutorService serverExecutor;
     private static HttpServer httpServer;
     private static MockSpanExporter spanExporter;
     private static OpenTelemetry openTelemetry;
@@ -125,6 +149,7 @@ public class OpenTelemetryForElasticsearchTest {
     @AfterAll
     public static void cleanUp() throws IOException {
         httpServer.stop(0);
+        serverExecutor.shutdownNow();
         transport.close();
     }
 
@@ -142,6 +167,8 @@ public class OpenTelemetryForElasticsearchTest {
 
     private static void setupHttpServer() throws IOException {
         httpServer = HttpServer.create(new InetSocketAddress(InetAddress.getLoopbackAddress(), 0), 0);
+        serverExecutor = Executors.newFixedThreadPool(16);
+        httpServer.setExecutor(serverExecutor);
 
         // handler for GetRequest
         httpServer.createContext("/" + INDEX + "/_doc/" + DOC_ID, exchange -> {
@@ -158,6 +185,21 @@ public class OpenTelemetryForElasticsearchTest {
             exchange.getResponseHeaders().set("Content-Type", "application/json");
             exchange.sendResponseHeaders(200, 0);
             exchange.getResponseBody().write(SEARCH_RESPONSE.getBytes());
+            exchange.close();
+        });
+
+        // handler for MsearchRequest, checks that each line is terminated by a newline
+        httpServer.createContext("/_msearch", exchange -> {
+            String body = new String(IOUtils.toByteArray(exchange.getRequestBody()), StandardCharsets.UTF_8);
+            if (body.endsWith("\n") && body.split("\n", -1).length == 2 * MSEARCH_SEARCHES + 1) {
+                validMsearchBodies.incrementAndGet();
+            } else {
+                invalidMsearchBodies.add(body);
+            }
+            exchange.getResponseHeaders().set("X-Elastic-Product", "Elasticsearch");
+            exchange.getResponseHeaders().set("Content-Type", "application/json");
+            exchange.sendResponseHeaders(200, 0);
+            exchange.getResponseBody().write(MSEARCH_RESPONSE.getBytes(StandardCharsets.UTF_8));
             exchange.close();
         });
 
@@ -232,6 +274,85 @@ public class OpenTelemetryForElasticsearchTest {
 
         // We're not capturing bodies by default
         Assertions.assertNull(span.getAttributes().get(SemanticAttributes.DB_STATEMENT));
+    }
+
+    @Test
+    public void testConcurrentMsearchWithBodyCapture() throws Exception {
+        validMsearchBodies.set(0);
+        invalidMsearchBodies.clear();
+
+        // Dedicated tracer, as MockSpanExporter isn't thread-safe
+        AtomicInteger capturedBodies = new AtomicInteger();
+        SdkTracerProvider tracerProvider = SdkTracerProvider.builder()
+                .addSpanProcessor(new SpanProcessor() {
+                    @Override
+                    public void onStart(Context parentContext, ReadWriteSpan span) {
+                    }
+
+                    @Override
+                    public boolean isStartRequired() {
+                        return false;
+                    }
+
+                    @Override
+                    public void onEnd(ReadableSpan span) {
+                        if (span.getAttribute(SemanticAttributes.DB_STATEMENT) != null) {
+                            capturedBodies.incrementAndGet();
+                        }
+                    }
+
+                    @Override
+                    public boolean isEndRequired() {
+                        return true;
+                    }
+                })
+                .build();
+        OpenTelemetrySdk otel = OpenTelemetrySdk.builder().setTracerProvider(tracerProvider).build();
+
+        ElasticsearchClient msearchClient = new ElasticsearchClient(new RestClientTransport(
+            restClient, client._jsonpMapper(), null, new OpenTelemetryForElasticsearch(otel, true))
+        );
+
+        MsearchRequest.Builder builder = new MsearchRequest.Builder();
+        for (int i = 0; i < MSEARCH_SEARCHES; i++) {
+            String value = "value-" + i;
+            builder.searches(s -> s
+                    .header(h -> h.index(INDEX))
+                    .body(b -> b.query(q -> q.term(t -> t.field("x").value(value))))
+            );
+        }
+        MsearchRequest request = builder.build();
+
+        int threads = 16;
+        int requestsPerThread = 200;
+        ExecutorService executor = Executors.newFixedThreadPool(threads);
+        try {
+            List<Future<?>> futures = new ArrayList<>();
+            for (int i = 0; i < threads; i++) {
+                futures.add(executor.submit(() -> {
+                    for (int j = 0; j < requestsPerThread; j++) {
+                        msearchClient.msearch(request, Object.class);
+                    }
+                    return null;
+                }));
+            }
+            for (Future<?> future : futures) {
+                future.get();
+            }
+        } finally {
+            executor.shutdownNow();
+            tracerProvider.close();
+            // The separator is shared by all transports: restore it so that a failure doesn't affect other tests
+            Field field = ElasticsearchTransportBase.class.getDeclaredField("NdJsonSeparator");
+            field.setAccessible(true);
+            ((ByteBuffer) field.get(null)).clear();
+        }
+
+        int total = threads * requestsPerThread;
+        Assertions.assertTrue(capturedBodies.get() > 0, "No request body was captured");
+        Assertions.assertTrue(invalidMsearchBodies.isEmpty(), () -> invalidMsearchBodies.size() + "/" + total +
+                " bodies with missing newlines, first one: " + invalidMsearchBodies.get(0).replace("\n", "\\n"));
+        Assertions.assertEquals(total, validMsearchBodies.get());
     }
 
     private static class MockSpanExporter implements SpanExporter {
