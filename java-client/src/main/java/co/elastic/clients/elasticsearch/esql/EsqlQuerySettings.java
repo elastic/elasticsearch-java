@@ -76,6 +76,12 @@ public class EsqlQuerySettings implements JsonpSerializable {
 	@Nullable
 	private final String projectRouting;
 
+	@Nullable
+	private final Boolean wildcardsMatchViews;
+
+	@Nullable
+	private final Boolean wildcardsMatchDatasets;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private EsqlQuerySettings(Builder builder) {
@@ -84,6 +90,8 @@ public class EsqlQuerySettings implements JsonpSerializable {
 		this.approximation = builder.approximation;
 		this.columnMetadata = builder.columnMetadata;
 		this.projectRouting = builder.projectRouting;
+		this.wildcardsMatchViews = builder.wildcardsMatchViews;
+		this.wildcardsMatchDatasets = builder.wildcardsMatchDatasets;
 
 	}
 
@@ -142,6 +150,31 @@ public class EsqlQuerySettings implements JsonpSerializable {
 	}
 
 	/**
+	 * Whether a wildcard in <code>FROM</code> also matches views. When
+	 * <code>false</code>, a wildcard does not match a view, and a view is reached
+	 * by its exact name. Other abstractions that a wildcard matches are unaffected.
+	 * <p>
+	 * API name: {@code wildcards_match_views}
+	 */
+	@Nullable
+	public final Boolean wildcardsMatchViews() {
+		return this.wildcardsMatchViews;
+	}
+
+	/**
+	 * Whether a wildcard in <code>FROM</code> also matches datasets. When
+	 * <code>false</code>, a wildcard does not match a dataset, and a dataset is
+	 * reached by its exact name. Other abstractions that a wildcard matches are
+	 * unaffected.
+	 * <p>
+	 * API name: {@code wildcards_match_datasets}
+	 */
+	@Nullable
+	public final Boolean wildcardsMatchDatasets() {
+		return this.wildcardsMatchDatasets;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -172,6 +205,16 @@ public class EsqlQuerySettings implements JsonpSerializable {
 			generator.write(this.projectRouting);
 
 		}
+		if (this.wildcardsMatchViews != null) {
+			generator.writeKey("wildcards_match_views");
+			generator.write(this.wildcardsMatchViews);
+
+		}
+		if (this.wildcardsMatchDatasets != null) {
+			generator.writeKey("wildcards_match_datasets");
+			generator.write(this.wildcardsMatchDatasets);
+
+		}
 
 	}
 
@@ -199,6 +242,12 @@ public class EsqlQuerySettings implements JsonpSerializable {
 		@Nullable
 		private String projectRouting;
 
+		@Nullable
+		private Boolean wildcardsMatchViews;
+
+		@Nullable
+		private Boolean wildcardsMatchDatasets;
+
 		public Builder() {
 		}
 		private Builder(EsqlQuerySettings instance) {
@@ -206,6 +255,8 @@ public class EsqlQuerySettings implements JsonpSerializable {
 			this.approximation = instance.approximation;
 			this.columnMetadata = instance.columnMetadata;
 			this.projectRouting = instance.projectRouting;
+			this.wildcardsMatchViews = instance.wildcardsMatchViews;
+			this.wildcardsMatchDatasets = instance.wildcardsMatchDatasets;
 
 		}
 		/**
@@ -270,6 +321,31 @@ public class EsqlQuerySettings implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * Whether a wildcard in <code>FROM</code> also matches views. When
+		 * <code>false</code>, a wildcard does not match a view, and a view is reached
+		 * by its exact name. Other abstractions that a wildcard matches are unaffected.
+		 * <p>
+		 * API name: {@code wildcards_match_views}
+		 */
+		public final Builder wildcardsMatchViews(@Nullable Boolean value) {
+			this.wildcardsMatchViews = value;
+			return this;
+		}
+
+		/**
+		 * Whether a wildcard in <code>FROM</code> also matches datasets. When
+		 * <code>false</code>, a wildcard does not match a dataset, and a dataset is
+		 * reached by its exact name. Other abstractions that a wildcard matches are
+		 * unaffected.
+		 * <p>
+		 * API name: {@code wildcards_match_datasets}
+		 */
+		public final Builder wildcardsMatchDatasets(@Nullable Boolean value) {
+			this.wildcardsMatchDatasets = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -308,6 +384,8 @@ public class EsqlQuerySettings implements JsonpSerializable {
 		op.add(Builder::approximation, EsqlApproximation._DESERIALIZER, "approximation");
 		op.add(Builder::columnMetadata, JsonpDeserializer.booleanDeserializer(), "column_metadata");
 		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
+		op.add(Builder::wildcardsMatchViews, JsonpDeserializer.booleanDeserializer(), "wildcards_match_views");
+		op.add(Builder::wildcardsMatchDatasets, JsonpDeserializer.booleanDeserializer(), "wildcards_match_datasets");
 
 	}
 
