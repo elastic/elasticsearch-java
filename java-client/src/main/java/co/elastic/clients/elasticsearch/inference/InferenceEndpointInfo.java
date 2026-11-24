@@ -63,6 +63,9 @@ public class InferenceEndpointInfo extends InferenceEndpoint {
 
 	private final TaskType taskType;
 
+	@Nullable
+	private final EndpointMetadata metadata;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected InferenceEndpointInfo(AbstractBuilder<?> builder) {
@@ -70,6 +73,7 @@ public class InferenceEndpointInfo extends InferenceEndpoint {
 
 		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
+		this.metadata = builder.metadata;
 
 	}
 
@@ -96,6 +100,18 @@ public class InferenceEndpointInfo extends InferenceEndpoint {
 		return this.taskType;
 	}
 
+	/**
+	 * Metadata about the endpoint, such as the model it serves, where it is
+	 * available and what it supports. It is returned for the endpoints of the
+	 * Elastic Inference Service.
+	 * <p>
+	 * API name: {@code metadata}
+	 */
+	@Nullable
+	public final EndpointMetadata metadata() {
+		return this.metadata;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -104,6 +120,11 @@ public class InferenceEndpointInfo extends InferenceEndpoint {
 
 		generator.writeKey("task_type");
 		this.taskType.serialize(generator, mapper);
+		if (this.metadata != null) {
+			generator.writeKey("metadata");
+			this.metadata.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -141,6 +162,9 @@ public class InferenceEndpointInfo extends InferenceEndpoint {
 
 		private TaskType taskType;
 
+		@Nullable
+		private EndpointMetadata metadata;
+
 		/**
 		 * Required - The inference Id
 		 * <p>
@@ -161,6 +185,29 @@ public class InferenceEndpointInfo extends InferenceEndpoint {
 			return self();
 		}
 
+		/**
+		 * Metadata about the endpoint, such as the model it serves, where it is
+		 * available and what it supports. It is returned for the endpoints of the
+		 * Elastic Inference Service.
+		 * <p>
+		 * API name: {@code metadata}
+		 */
+		public final BuilderT metadata(@Nullable EndpointMetadata value) {
+			this.metadata = value;
+			return self();
+		}
+
+		/**
+		 * Metadata about the endpoint, such as the model it serves, where it is
+		 * available and what it supports. It is returned for the endpoints of the
+		 * Elastic Inference Service.
+		 * <p>
+		 * API name: {@code metadata}
+		 */
+		public final BuilderT metadata(Function<EndpointMetadata.Builder, ObjectBuilder<EndpointMetadata>> fn) {
+			return this.metadata(fn.apply(new EndpointMetadata.Builder()).build());
+		}
+
 		protected AbstractBuilder() {
 		}
 
@@ -168,6 +215,7 @@ public class InferenceEndpointInfo extends InferenceEndpoint {
 			super(instance);
 			this.inferenceId = instance.inferenceId;
 			this.taskType = instance.taskType;
+			this.metadata = instance.metadata;
 
 		}
 
@@ -186,6 +234,7 @@ public class InferenceEndpointInfo extends InferenceEndpoint {
 		InferenceEndpoint.setupInferenceEndpointDeserializer(op);
 		op.add(AbstractBuilder::inferenceId, JsonpDeserializer.stringDeserializer(), "inference_id");
 		op.add(AbstractBuilder::taskType, TaskType._DESERIALIZER, "task_type");
+		op.add(AbstractBuilder::metadata, EndpointMetadata._DESERIALIZER, "metadata");
 
 	}
 

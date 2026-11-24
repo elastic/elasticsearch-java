@@ -40,22 +40,25 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#inference._types.ContentType">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#inference._types.EndpointMetadataStatus">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum ContentType implements JsonEnum {
-	Text("text"),
+public enum EndpointMetadataStatus implements JsonEnum {
+	Beta("beta"),
 
-	ImageUrl("image_url"),
+	Preview("preview"),
 
-	File("file"),
+	Ga("ga"),
+
+	Deprecated("deprecated"),
 
 	;
 
 	private final String jsonValue;
 
-	ContentType(String jsonValue) {
+	EndpointMetadataStatus(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -63,6 +66,6 @@ public enum ContentType implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<ContentType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ContentType.values());
+	public static final JsonEnum.Deserializer<EndpointMetadataStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			EndpointMetadataStatus.values());
 }

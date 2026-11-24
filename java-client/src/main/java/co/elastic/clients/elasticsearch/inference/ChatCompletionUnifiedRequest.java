@@ -69,16 +69,21 @@ import javax.annotation.Nullable;
  * type.
  * <p>
  * NOTE: The <code>chat_completion</code> task type supports both streaming and
- * non-streaming. The Chat completion inference API and the Stream inference API
- * differ in their response structure and capabilities. The Chat completion
- * inference API provides more comprehensive customization options through more
- * fields and function calling support. To determine whether a given inference
- * service supports this task type, please see the page for that service.
+ * non-streaming. For a single, non-streamed response, use the chat completion
+ * API (<code>POST _inference/chat_completion/{inference_id}</code>). The Chat
+ * completion inference API and the Stream inference API differ in their
+ * response structure and capabilities. The Chat completion inference API
+ * provides more comprehensive customization options through more fields and
+ * function calling support. To determine whether a given inference service
+ * supports this task type, please see the page for that service.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#inference.chat_completion_unified.Request">API
  *      specification</a>
+ * @deprecated 9.6.0 Use <code>inference.chat_completion_streaming</code>
+ *             instead, which calls the same endpoint.
  */
+@Deprecated
 @JsonpDeserializable
 public class ChatCompletionUnifiedRequest extends RequestBase implements JsonpSerializable {
 	private final String inferenceId;
@@ -142,7 +147,7 @@ public class ChatCompletionUnifiedRequest extends RequestBase implements JsonpSe
 	/**
 	 * Builder for {@link ChatCompletionUnifiedRequest}.
 	 */
-
+	@Deprecated
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ChatCompletionUnifiedRequest> {

@@ -43,66 +43,64 @@ import java.util.function.Function;
 //
 //----------------------------------------------------------------
 
-// typedef: inference.non_streaming_chat_completion.Response
+// typedef: inference.chat_completion.Response
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#inference.non_streaming_chat_completion.Response">API
+ *      "../doc-files/api-spec.html#inference.chat_completion.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class NonStreamingChatCompletionResponse extends ChatCompletionInferenceResult {
+public class ChatCompletionResponse extends ChatCompletionInferenceResult {
 	// ---------------------------------------------------------------------------------------------
 
-	private NonStreamingChatCompletionResponse(Builder builder) {
+	private ChatCompletionResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public static NonStreamingChatCompletionResponse of(
-			Function<Builder, ObjectBuilder<NonStreamingChatCompletionResponse>> fn) {
+	public static ChatCompletionResponse of(Function<Builder, ObjectBuilder<ChatCompletionResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link NonStreamingChatCompletionResponse}.
+	 * Builder for {@link ChatCompletionResponse}.
 	 */
 
 	public static class Builder extends ChatCompletionInferenceResult.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<NonStreamingChatCompletionResponse> {
+				ObjectBuilder<ChatCompletionResponse> {
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link NonStreamingChatCompletionResponse}.
+		 * Builds a {@link ChatCompletionResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public NonStreamingChatCompletionResponse build() {
+		public ChatCompletionResponse build() {
 			_checkSingleUse();
 
-			return new NonStreamingChatCompletionResponse(this);
+			return new ChatCompletionResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link NonStreamingChatCompletionResponse}
+	 * Json deserializer for {@link ChatCompletionResponse}
 	 */
-	public static final JsonpDeserializer<NonStreamingChatCompletionResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new,
-					NonStreamingChatCompletionResponse::setupNonStreamingChatCompletionResponseDeserializer);
+	public static final JsonpDeserializer<ChatCompletionResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ChatCompletionResponse::setupChatCompletionResponseDeserializer);
 
-	protected static void setupNonStreamingChatCompletionResponseDeserializer(
-			ObjectDeserializer<NonStreamingChatCompletionResponse.Builder> op) {
+	protected static void setupChatCompletionResponseDeserializer(
+			ObjectDeserializer<ChatCompletionResponse.Builder> op) {
 		ChatCompletionInferenceResult.setupChatCompletionInferenceResultDeserializer(op);
 
 	}

@@ -26,6 +26,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -57,7 +58,6 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class Groupings implements JsonpSerializable {
-	@Nullable
 	private final DateHistogramGrouping dateHistogram;
 
 	@Nullable
@@ -70,7 +70,7 @@ public class Groupings implements JsonpSerializable {
 
 	private Groupings(Builder builder) {
 
-		this.dateHistogram = builder.dateHistogram;
+		this.dateHistogram = ApiTypeHelper.requireNonNull(builder.dateHistogram, this, "dateHistogram");
 		this.histogram = builder.histogram;
 		this.terms = builder.terms;
 
@@ -81,13 +81,12 @@ public class Groupings implements JsonpSerializable {
 	}
 
 	/**
-	 * A date histogram group aggregates a date field into time-based buckets. This
-	 * group is mandatory; you currently cannot roll up documents without a
-	 * timestamp and a <code>date_histogram</code> group.
+	 * Required - A date histogram group aggregates a date field into time-based
+	 * buckets. This group is mandatory; you currently cannot roll up documents
+	 * without a timestamp and a <code>date_histogram</code> group.
 	 * <p>
 	 * API name: {@code date_histogram}
 	 */
-	@Nullable
 	public final DateHistogramGrouping dateHistogram() {
 		return this.dateHistogram;
 	}
@@ -128,11 +127,9 @@ public class Groupings implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.dateHistogram != null) {
-			generator.writeKey("date_histogram");
-			this.dateHistogram.serialize(generator, mapper);
+		generator.writeKey("date_histogram");
+		this.dateHistogram.serialize(generator, mapper);
 
-		}
 		if (this.histogram != null) {
 			generator.writeKey("histogram");
 			this.histogram.serialize(generator, mapper);
@@ -158,7 +155,6 @@ public class Groupings implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Groupings> {
-		@Nullable
 		private DateHistogramGrouping dateHistogram;
 
 		@Nullable
@@ -176,21 +172,21 @@ public class Groupings implements JsonpSerializable {
 
 		}
 		/**
-		 * A date histogram group aggregates a date field into time-based buckets. This
-		 * group is mandatory; you currently cannot roll up documents without a
-		 * timestamp and a <code>date_histogram</code> group.
+		 * Required - A date histogram group aggregates a date field into time-based
+		 * buckets. This group is mandatory; you currently cannot roll up documents
+		 * without a timestamp and a <code>date_histogram</code> group.
 		 * <p>
 		 * API name: {@code date_histogram}
 		 */
-		public final Builder dateHistogram(@Nullable DateHistogramGrouping value) {
+		public final Builder dateHistogram(DateHistogramGrouping value) {
 			this.dateHistogram = value;
 			return this;
 		}
 
 		/**
-		 * A date histogram group aggregates a date field into time-based buckets. This
-		 * group is mandatory; you currently cannot roll up documents without a
-		 * timestamp and a <code>date_histogram</code> group.
+		 * Required - A date histogram group aggregates a date field into time-based
+		 * buckets. This group is mandatory; you currently cannot roll up documents
+		 * without a timestamp and a <code>date_histogram</code> group.
 		 * <p>
 		 * API name: {@code date_histogram}
 		 */

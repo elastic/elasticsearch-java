@@ -76,6 +76,9 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 	private final String averageInferenceProcessMemoryRssBytes;
 
 	@Nullable
+	private final String peakInferenceProcessMemoryRssBytes;
+
+	@Nullable
 	private final Integer errorCount;
 
 	@Nullable
@@ -125,6 +128,7 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		this.averageInferenceTimeMsLastMinute = builder.averageInferenceTimeMsLastMinute;
 		this.averageInferenceTimeMsExcludingCacheHits = builder.averageInferenceTimeMsExcludingCacheHits;
 		this.averageInferenceProcessMemoryRssBytes = builder.averageInferenceProcessMemoryRssBytes;
+		this.peakInferenceProcessMemoryRssBytes = builder.peakInferenceProcessMemoryRssBytes;
 		this.errorCount = builder.errorCount;
 		this.inferenceCount = builder.inferenceCount;
 		this.inferenceCacheHitCount = builder.inferenceCacheHitCount;
@@ -185,6 +189,17 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 	@Nullable
 	public final String averageInferenceProcessMemoryRssBytes() {
 		return this.averageInferenceProcessMemoryRssBytes;
+	}
+
+	/**
+	 * The peak native memory (resident set size) of the inference process on this
+	 * node.
+	 * <p>
+	 * API name: {@code peak_inference_process_memory_rss_bytes}
+	 */
+	@Nullable
+	public final String peakInferenceProcessMemoryRssBytes() {
+		return this.peakInferenceProcessMemoryRssBytes;
 	}
 
 	/**
@@ -359,6 +374,11 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 			generator.write(this.averageInferenceProcessMemoryRssBytes);
 
 		}
+		if (this.peakInferenceProcessMemoryRssBytes != null) {
+			generator.writeKey("peak_inference_process_memory_rss_bytes");
+			generator.write(this.peakInferenceProcessMemoryRssBytes);
+
+		}
 		if (this.errorCount != null) {
 			generator.writeKey("error_count");
 			generator.write(this.errorCount);
@@ -458,6 +478,9 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		private String averageInferenceProcessMemoryRssBytes;
 
 		@Nullable
+		private String peakInferenceProcessMemoryRssBytes;
+
+		@Nullable
 		private Integer errorCount;
 
 		@Nullable
@@ -506,6 +529,7 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 			this.averageInferenceTimeMsLastMinute = instance.averageInferenceTimeMsLastMinute;
 			this.averageInferenceTimeMsExcludingCacheHits = instance.averageInferenceTimeMsExcludingCacheHits;
 			this.averageInferenceProcessMemoryRssBytes = instance.averageInferenceProcessMemoryRssBytes;
+			this.peakInferenceProcessMemoryRssBytes = instance.peakInferenceProcessMemoryRssBytes;
 			this.errorCount = instance.errorCount;
 			this.inferenceCount = instance.inferenceCount;
 			this.inferenceCacheHitCount = instance.inferenceCacheHitCount;
@@ -557,6 +581,17 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		 */
 		public final Builder averageInferenceProcessMemoryRssBytes(@Nullable String value) {
 			this.averageInferenceProcessMemoryRssBytes = value;
+			return this;
+		}
+
+		/**
+		 * The peak native memory (resident set size) of the inference process on this
+		 * node.
+		 * <p>
+		 * API name: {@code peak_inference_process_memory_rss_bytes}
+		 */
+		public final Builder peakInferenceProcessMemoryRssBytes(@Nullable String value) {
+			this.peakInferenceProcessMemoryRssBytes = value;
 			return this;
 		}
 
@@ -766,6 +801,8 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 				"average_inference_time_ms_excluding_cache_hits");
 		op.add(Builder::averageInferenceProcessMemoryRssBytes, JsonpDeserializer.stringDeserializer(),
 				"average_inference_process_memory_rss_bytes");
+		op.add(Builder::peakInferenceProcessMemoryRssBytes, JsonpDeserializer.stringDeserializer(),
+				"peak_inference_process_memory_rss_bytes");
 		op.add(Builder::errorCount, JsonpDeserializer.integerDeserializer(), "error_count");
 		op.add(Builder::inferenceCount, JsonpDeserializer.longDeserializer(), "inference_count");
 		op.add(Builder::inferenceCacheHitCount, JsonpDeserializer.longDeserializer(), "inference_cache_hit_count");

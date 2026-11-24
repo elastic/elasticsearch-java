@@ -37,7 +37,6 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -80,7 +79,8 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 	@Nullable
 	private final Long primaryTerm;
 
-	private final List<String> routing;
+	@Nullable
+	private final String routing;
 
 	@Nullable
 	private final TDocument source;
@@ -98,7 +98,7 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found", false);
 		this.seqNo = builder.seqNo;
 		this.primaryTerm = builder.primaryTerm;
-		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
+		this.routing = builder.routing;
 		this.source = builder.source;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
@@ -149,7 +149,8 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 	/**
 	 * API name: {@code _routing}
 	 */
-	public final List<String> routing() {
+	@Nullable
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -202,14 +203,9 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 			generator.write(this.primaryTerm);
 
 		}
-		if (ApiTypeHelper.isDefined(this.routing)) {
+		if (this.routing != null) {
 			generator.writeKey("_routing");
-			generator.writeStartArray();
-			for (String item0 : this.routing) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			generator.write(this.routing);
 
 		}
 		if (this.source != null) {
@@ -269,7 +265,7 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 		private Long primaryTerm;
 
 		@Nullable
-		private List<String> routing;
+		private String routing;
 
 		@Nullable
 		private TDocument source;
@@ -336,21 +332,9 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 
 		/**
 		 * API name: {@code _routing}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder<TDocument> routing(List<String> list) {
-			this.routing = _listAddAll(this.routing, list);
-			return this;
-		}
-
-		/**
-		 * API name: {@code _routing}
-		 * <p>
-		 * Adds one or more values to <code>routing</code>.
-		 */
-		public final Builder<TDocument> routing(String value, String... values) {
-			this.routing = _listAdd(this.routing, value, values);
+		public final Builder<TDocument> routing(@Nullable String value) {
+			this.routing = value;
 			return this;
 		}
 
@@ -421,8 +405,7 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
 		op.add(Builder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 		op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
-		op.add(Builder::routing, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"_routing");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
 		op.add(Builder::source, tDocumentDeserializer, "_source");
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
