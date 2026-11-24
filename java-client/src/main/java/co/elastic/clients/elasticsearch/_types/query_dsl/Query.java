@@ -79,6 +79,8 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 	 */
 
 	public enum Kind implements JsonEnum {
+		BitmapTerms("bitmap_terms"),
+
 		Bool("bool"),
 
 		Boosting("boosting"),
@@ -261,6 +263,23 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 
 	public static Query of(Function<Builder, ObjectBuilder<Query>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code bitmap_terms}?
+	 */
+	public boolean isBitmapTerms() {
+		return _kind == Kind.BitmapTerms;
+	}
+
+	/**
+	 * Get the {@code bitmap_terms} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code bitmap_terms} kind.
+	 */
+	public BitmapTermsQuery bitmapTerms() {
+		return TaggedUnionUtils.get(this, Kind.BitmapTerms);
 	}
 
 	/**
@@ -1401,6 +1420,17 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 		protected Builder self() {
 			return this;
 		}
+		public ObjectBuilder<Query> bitmapTerms(BitmapTermsQuery v) {
+			this._kind = Kind.BitmapTerms;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Query> bitmapTerms(
+				Function<BitmapTermsQuery.Builder, ObjectBuilder<BitmapTermsQuery>> fn) {
+			return this.bitmapTerms(fn.apply(new BitmapTermsQuery.Builder()).build());
+		}
+
 		public ObjectBuilder<Query> bool(BoolQuery v) {
 			this._kind = Kind.Bool;
 			this._value = v;
@@ -2077,6 +2107,7 @@ public class Query implements OpenTaggedUnion<Query.Kind, Object>, AggregationVa
 
 	protected static void setupQueryDeserializer(ObjectDeserializer<Builder> op) {
 
+		op.add(Builder::bitmapTerms, BitmapTermsQuery._DESERIALIZER, "bitmap_terms");
 		op.add(Builder::bool, BoolQuery._DESERIALIZER, "bool");
 		op.add(Builder::boosting, BoostingQuery._DESERIALIZER, "boosting");
 		op.add(Builder::common, CommonTermsQuery._DESERIALIZER, "common");

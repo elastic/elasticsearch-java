@@ -230,6 +230,9 @@ public class IndexSettings implements JsonpSerializable {
 	@Nullable
 	private final Queries queries;
 
+	@Nullable
+	private final Requests requests;
+
 	private final Map<String, SettingsSimilarity> similarity;
 
 	@Nullable
@@ -303,6 +306,7 @@ public class IndexSettings implements JsonpSerializable {
 		this.settings = builder.settings;
 		this.timeSeries = builder.timeSeries;
 		this.queries = builder.queries;
+		this.requests = builder.requests;
 		this.similarity = ApiTypeHelper.unmodifiable(builder.similarity);
 		this.mapping = builder.mapping;
 		this.indexingSlowlog = builder.indexingSlowlog;
@@ -745,6 +749,14 @@ public class IndexSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code requests}
+	 */
+	@Nullable
+	public final Requests requests() {
+		return this.requests;
+	}
+
+	/**
 	 * Configure custom similarity settings to customize how search results are
 	 * scored.
 	 * <p>
@@ -1079,6 +1091,11 @@ public class IndexSettings implements JsonpSerializable {
 			this.queries.serialize(generator, mapper);
 
 		}
+		if (this.requests != null) {
+			generator.writeKey("requests");
+			this.requests.serialize(generator, mapper);
+
+		}
 		if (ApiTypeHelper.isDefined(this.similarity)) {
 			generator.writeKey("similarity");
 			generator.writeStartObject();
@@ -1313,6 +1330,9 @@ public class IndexSettings implements JsonpSerializable {
 		private Queries queries;
 
 		@Nullable
+		private Requests requests;
+
+		@Nullable
 		private Map<String, SettingsSimilarity> similarity;
 
 		@Nullable
@@ -1383,6 +1403,7 @@ public class IndexSettings implements JsonpSerializable {
 			this.settings = instance.settings;
 			this.timeSeries = instance.timeSeries;
 			this.queries = instance.queries;
+			this.requests = instance.requests;
 			this.similarity = instance.similarity;
 			this.mapping = instance.mapping;
 			this.indexingSlowlog = instance.indexingSlowlog;
@@ -1982,6 +2003,21 @@ public class IndexSettings implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code requests}
+		 */
+		public final Builder requests(@Nullable Requests value) {
+			this.requests = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code requests}
+		 */
+		public final Builder requests(Function<Requests.Builder, ObjectBuilder<Requests>> fn) {
+			return this.requests(fn.apply(new Requests.Builder()).build());
+		}
+
+		/**
 		 * Configure custom similarity settings to customize how search results are
 		 * scored.
 		 * <p>
@@ -2183,6 +2219,7 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
 		op.add(Builder::timeSeries, IndexSettingsTimeSeries._DESERIALIZER, "time_series");
 		op.add(Builder::queries, Queries._DESERIALIZER, "queries");
+		op.add(Builder::requests, Requests._DESERIALIZER, "requests");
 		op.add(Builder::similarity, JsonpDeserializer.stringMapDeserializer(SettingsSimilarity._DESERIALIZER),
 				"similarity");
 		op.add(Builder::mapping, MappingLimitSettings._DESERIALIZER, "mapping");

@@ -76,8 +76,6 @@ public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVari
 	 */
 
 	public enum Kind implements JsonEnum {
-		Timezone("timezone"),
-
 		Cron("cron"),
 
 		Daily("daily"),
@@ -127,10 +125,15 @@ public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVari
 		return _value;
 	}
 
+	@Nullable
+	private final String timezone;
+
 	public Schedule(ScheduleVariant value) {
 
 		this._kind = ApiTypeHelper.requireNonNull(value._scheduleKind(), this, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+
+		this.timezone = null;
 
 	}
 
@@ -139,6 +142,8 @@ public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVari
 		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
+		this.timezone = builder.timezone;
+
 	}
 
 	public static Schedule of(Function<Builder, ObjectBuilder<Schedule>> fn) {
@@ -146,20 +151,14 @@ public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVari
 	}
 
 	/**
-	 * Is this variant instance of kind {@code timezone}?
+	 * The time zone to use for the schedule. Not supported for
+	 * <code>interval</code> schedules.
+	 * <p>
+	 * API name: {@code timezone}
 	 */
-	public boolean isTimezone() {
-		return _kind == Kind.Timezone;
-	}
-
-	/**
-	 * Get the {@code timezone} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code timezone} kind.
-	 */
-	public String timezone() {
-		return TaggedUnionUtils.get(this, Kind.Timezone);
+	@Nullable
+	public final String timezone() {
+		return this.timezone;
 	}
 
 	/**
@@ -287,15 +286,17 @@ public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVari
 
 		generator.writeStartObject();
 
+		if (this.timezone != null) {
+			generator.writeKey("timezone");
+			generator.write(this.timezone);
+
+		}
+
 		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
 			switch (_kind) {
-				case Timezone :
-					generator.write(((String) this._value));
-
-					break;
 				case Cron :
 					generator.write(((String) this._value));
 
@@ -343,68 +344,76 @@ public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVari
 		private Kind _kind;
 		private Object _value;
 
+		@Nullable
+		private String timezone;
+
+		/**
+		 * The time zone to use for the schedule. Not supported for
+		 * <code>interval</code> schedules.
+		 * <p>
+		 * API name: {@code timezone}
+		 */
+		public final Builder timezone(@Nullable String value) {
+			this.timezone = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
 		}
-		public ObjectBuilder<Schedule> timezone(String v) {
-			this._kind = Kind.Timezone;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<Schedule> cron(String v) {
+		public ContainerBuilder cron(String v) {
 			this._kind = Kind.Cron;
 			this._value = v;
-			return this;
+			return new ContainerBuilder();
 		}
 
-		public ObjectBuilder<Schedule> daily(DailySchedule v) {
+		public ContainerBuilder daily(DailySchedule v) {
 			this._kind = Kind.Daily;
 			this._value = v;
-			return this;
+			return new ContainerBuilder();
 		}
 
-		public ObjectBuilder<Schedule> daily(Function<DailySchedule.Builder, ObjectBuilder<DailySchedule>> fn) {
+		public ContainerBuilder daily(Function<DailySchedule.Builder, ObjectBuilder<DailySchedule>> fn) {
 			return this.daily(fn.apply(new DailySchedule.Builder()).build());
 		}
 
-		public ObjectBuilder<Schedule> hourly(HourlySchedule v) {
+		public ContainerBuilder hourly(HourlySchedule v) {
 			this._kind = Kind.Hourly;
 			this._value = v;
-			return this;
+			return new ContainerBuilder();
 		}
 
-		public ObjectBuilder<Schedule> hourly(Function<HourlySchedule.Builder, ObjectBuilder<HourlySchedule>> fn) {
+		public ContainerBuilder hourly(Function<HourlySchedule.Builder, ObjectBuilder<HourlySchedule>> fn) {
 			return this.hourly(fn.apply(new HourlySchedule.Builder()).build());
 		}
 
-		public ObjectBuilder<Schedule> interval(Time v) {
+		public ContainerBuilder interval(Time v) {
 			this._kind = Kind.Interval;
 			this._value = v;
-			return this;
+			return new ContainerBuilder();
 		}
 
-		public ObjectBuilder<Schedule> interval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+		public ContainerBuilder interval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.interval(fn.apply(new Time.Builder()).build());
 		}
 
-		public ObjectBuilder<Schedule> monthly(List<TimeOfMonth> v) {
+		public ContainerBuilder monthly(List<TimeOfMonth> v) {
 			this._kind = Kind.Monthly;
 			this._value = v;
-			return this;
+			return new ContainerBuilder();
 		}
 
-		public ObjectBuilder<Schedule> weekly(List<TimeOfWeek> v) {
+		public ContainerBuilder weekly(List<TimeOfWeek> v) {
 			this._kind = Kind.Weekly;
 			this._value = v;
-			return this;
+			return new ContainerBuilder();
 		}
 
-		public ObjectBuilder<Schedule> yearly(List<TimeOfYear> v) {
+		public ContainerBuilder yearly(List<TimeOfYear> v) {
 			this._kind = Kind.Yearly;
 			this._value = v;
-			return this;
+			return new ContainerBuilder();
 		}
 
 		public Schedule build() {
@@ -412,6 +421,23 @@ public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVari
 			return new Schedule(this);
 		}
 
+		public class ContainerBuilder implements ObjectBuilder<Schedule> {
+
+			/**
+			 * The time zone to use for the schedule. Not supported for
+			 * <code>interval</code> schedules.
+			 * <p>
+			 * API name: {@code timezone}
+			 */
+			public final ContainerBuilder timezone(@Nullable String value) {
+				Builder.this.timezone = value;
+				return this;
+			}
+
+			public Schedule build() {
+				return Builder.this.build();
+			}
+		}
 	}
 
 	protected static void setupScheduleDeserializer(ObjectDeserializer<Builder> op) {

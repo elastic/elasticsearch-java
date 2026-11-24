@@ -79,6 +79,10 @@ public class KnnQueryProfileBreakdown implements JsonpSerializable {
 
 	private final long createWeightCount;
 
+	private final long intoBitSet;
+
+	private final long intoBitSetCount;
+
 	private final long match;
 
 	private final long matchCount;
@@ -114,6 +118,8 @@ public class KnnQueryProfileBreakdown implements JsonpSerializable {
 		this.countWeightCount = ApiTypeHelper.requireNonNull(builder.countWeightCount, this, "countWeightCount", 0);
 		this.createWeight = ApiTypeHelper.requireNonNull(builder.createWeight, this, "createWeight", 0);
 		this.createWeightCount = ApiTypeHelper.requireNonNull(builder.createWeightCount, this, "createWeightCount", 0);
+		this.intoBitSet = ApiTypeHelper.requireNonNull(builder.intoBitSet, this, "intoBitSet", 0);
+		this.intoBitSetCount = ApiTypeHelper.requireNonNull(builder.intoBitSetCount, this, "intoBitSetCount", 0);
 		this.match = ApiTypeHelper.requireNonNull(builder.match, this, "match", 0);
 		this.matchCount = ApiTypeHelper.requireNonNull(builder.matchCount, this, "matchCount", 0);
 		this.nextDoc = ApiTypeHelper.requireNonNull(builder.nextDoc, this, "nextDoc", 0);
@@ -202,6 +208,20 @@ public class KnnQueryProfileBreakdown implements JsonpSerializable {
 	 */
 	public final long createWeightCount() {
 		return this.createWeightCount;
+	}
+
+	/**
+	 * Required - API name: {@code into_bit_set}
+	 */
+	public final long intoBitSet() {
+		return this.intoBitSet;
+	}
+
+	/**
+	 * Required - API name: {@code into_bit_set_count}
+	 */
+	public final long intoBitSetCount() {
+		return this.intoBitSetCount;
 	}
 
 	/**
@@ -315,6 +335,12 @@ public class KnnQueryProfileBreakdown implements JsonpSerializable {
 		generator.writeKey("create_weight_count");
 		generator.write(this.createWeightCount);
 
+		generator.writeKey("into_bit_set");
+		generator.write(this.intoBitSet);
+
+		generator.writeKey("into_bit_set_count");
+		generator.write(this.intoBitSetCount);
+
 		generator.writeKey("match");
 		generator.write(this.match);
 
@@ -381,6 +407,10 @@ public class KnnQueryProfileBreakdown implements JsonpSerializable {
 
 		private Long createWeightCount;
 
+		private Long intoBitSet;
+
+		private Long intoBitSetCount;
+
 		private Long match;
 
 		private Long matchCount;
@@ -414,6 +444,8 @@ public class KnnQueryProfileBreakdown implements JsonpSerializable {
 			this.countWeightCount = instance.countWeightCount;
 			this.createWeight = instance.createWeight;
 			this.createWeightCount = instance.createWeightCount;
+			this.intoBitSet = instance.intoBitSet;
+			this.intoBitSetCount = instance.intoBitSetCount;
 			this.match = instance.match;
 			this.matchCount = instance.matchCount;
 			this.nextDoc = instance.nextDoc;
@@ -503,6 +535,22 @@ public class KnnQueryProfileBreakdown implements JsonpSerializable {
 		 */
 		public final Builder createWeightCount(long value) {
 			this.createWeightCount = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code into_bit_set}
+		 */
+		public final Builder intoBitSet(long value) {
+			this.intoBitSet = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code into_bit_set_count}
+		 */
+		public final Builder intoBitSetCount(long value) {
+			this.intoBitSetCount = value;
 			return this;
 		}
 
@@ -631,6 +679,8 @@ public class KnnQueryProfileBreakdown implements JsonpSerializable {
 		op.add(Builder::countWeightCount, JsonpDeserializer.longDeserializer(), "count_weight_count");
 		op.add(Builder::createWeight, JsonpDeserializer.longDeserializer(), "create_weight");
 		op.add(Builder::createWeightCount, JsonpDeserializer.longDeserializer(), "create_weight_count");
+		op.add(Builder::intoBitSet, JsonpDeserializer.longDeserializer(), "into_bit_set");
+		op.add(Builder::intoBitSetCount, JsonpDeserializer.longDeserializer(), "into_bit_set_count");
 		op.add(Builder::match, JsonpDeserializer.longDeserializer(), "match");
 		op.add(Builder::matchCount, JsonpDeserializer.longDeserializer(), "match_count");
 		op.add(Builder::nextDoc, JsonpDeserializer.longDeserializer(), "next_doc");

@@ -69,6 +69,9 @@ public class IndexTemplateWithRollover implements JsonpSerializable {
 	@Nullable
 	private final IndexTemplateSummaryWithRollover template;
 
+	@Nullable
+	private final Boolean registryInstalled;
+
 	private final List<String> indexPatterns;
 
 	private final List<String> composedOf;
@@ -109,6 +112,7 @@ public class IndexTemplateWithRollover implements JsonpSerializable {
 	private IndexTemplateWithRollover(Builder builder) {
 
 		this.template = builder.template;
+		this.registryInstalled = builder.registryInstalled;
 		this.indexPatterns = ApiTypeHelper.unmodifiableRequired(builder.indexPatterns, this, "indexPatterns");
 		this.composedOf = ApiTypeHelper.unmodifiableRequired(builder.composedOf, this, "composedOf");
 		this.version = builder.version;
@@ -138,6 +142,19 @@ public class IndexTemplateWithRollover implements JsonpSerializable {
 	@Nullable
 	public final IndexTemplateSummaryWithRollover template() {
 		return this.template;
+	}
+
+	/**
+	 * Marks an index template that was installed by one of the internal registries.
+	 * This field is returned only when the get index template API is called with
+	 * <code>include_managed_fields</code> set to <code>true</code>. It can't be set
+	 * in a request: the create and simulate index template APIs reject it.
+	 * <p>
+	 * API name: {@code registry_installed}
+	 */
+	@Nullable
+	public final Boolean registryInstalled() {
+		return this.registryInstalled;
 	}
 
 	/**
@@ -297,6 +314,11 @@ public class IndexTemplateWithRollover implements JsonpSerializable {
 			this.template.serialize(generator, mapper);
 
 		}
+		if (this.registryInstalled != null) {
+			generator.writeKey("registry_installed");
+			generator.write(this.registryInstalled);
+
+		}
 		if (ApiTypeHelper.isDefined(this.indexPatterns)) {
 			generator.writeKey("index_patterns");
 			generator.writeStartArray();
@@ -401,6 +423,9 @@ public class IndexTemplateWithRollover implements JsonpSerializable {
 		@Nullable
 		private IndexTemplateSummaryWithRollover template;
 
+		@Nullable
+		private Boolean registryInstalled;
+
 		private List<String> indexPatterns;
 
 		private List<String> composedOf;
@@ -442,6 +467,7 @@ public class IndexTemplateWithRollover implements JsonpSerializable {
 		}
 		private Builder(IndexTemplateWithRollover instance) {
 			this.template = instance.template;
+			this.registryInstalled = instance.registryInstalled;
 			this.indexPatterns = instance.indexPatterns;
 			this.composedOf = instance.composedOf;
 			this.version = instance.version;
@@ -477,6 +503,19 @@ public class IndexTemplateWithRollover implements JsonpSerializable {
 		public final Builder template(
 				Function<IndexTemplateSummaryWithRollover.Builder, ObjectBuilder<IndexTemplateSummaryWithRollover>> fn) {
 			return this.template(fn.apply(new IndexTemplateSummaryWithRollover.Builder()).build());
+		}
+
+		/**
+		 * Marks an index template that was installed by one of the internal registries.
+		 * This field is returned only when the get index template API is called with
+		 * <code>include_managed_fields</code> set to <code>true</code>. It can't be set
+		 * in a request: the create and simulate index template APIs reject it.
+		 * <p>
+		 * API name: {@code registry_installed}
+		 */
+		public final Builder registryInstalled(@Nullable Boolean value) {
+			this.registryInstalled = value;
+			return this;
 		}
 
 		/**
@@ -733,6 +772,7 @@ public class IndexTemplateWithRollover implements JsonpSerializable {
 			ObjectDeserializer<IndexTemplateWithRollover.Builder> op) {
 
 		op.add(Builder::template, IndexTemplateSummaryWithRollover._DESERIALIZER, "template");
+		op.add(Builder::registryInstalled, JsonpDeserializer.booleanDeserializer(), "registry_installed");
 		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"index_patterns");
 		op.add(Builder::composedOf, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

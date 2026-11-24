@@ -197,6 +197,8 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 
 		Rate("rate"),
 
+		RoaringBitmap("roaring_bitmap"),
+
 		ReverseNested("reverse_nested"),
 
 		RandomSampler("random_sampler"),
@@ -1356,6 +1358,23 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 	}
 
 	/**
+	 * Is this variant instance of kind {@code roaring_bitmap}?
+	 */
+	public boolean isRoaringBitmap() {
+		return _kind == Kind.RoaringBitmap;
+	}
+
+	/**
+	 * Get the {@code roaring_bitmap} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code roaring_bitmap} kind.
+	 */
+	public RoaringBitmapAggregation roaringBitmap() {
+		return TaggedUnionUtils.get(this, Kind.RoaringBitmap);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code reverse_nested}?
 	 */
 	public boolean isReverseNested() {
@@ -2497,6 +2516,17 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 			return this.rate(fn.apply(new RateAggregation.Builder()).build());
 		}
 
+		public ContainerBuilder roaringBitmap(RoaringBitmapAggregation v) {
+			this._kind = Kind.RoaringBitmap;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder roaringBitmap(
+				Function<RoaringBitmapAggregation.Builder, ObjectBuilder<RoaringBitmapAggregation>> fn) {
+			return this.roaringBitmap(fn.apply(new RoaringBitmapAggregation.Builder()).build());
+		}
+
 		public ContainerBuilder reverseNested(ReverseNestedAggregation v) {
 			this._kind = Kind.ReverseNested;
 			this._value = v;
@@ -2876,6 +2906,7 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 		op.add(Builder::range, RangeAggregation._DESERIALIZER, "range");
 		op.add(Builder::rareTerms, RareTermsAggregation._DESERIALIZER, "rare_terms");
 		op.add(Builder::rate, RateAggregation._DESERIALIZER, "rate");
+		op.add(Builder::roaringBitmap, RoaringBitmapAggregation._DESERIALIZER, "roaring_bitmap");
 		op.add(Builder::reverseNested, ReverseNestedAggregation._DESERIALIZER, "reverse_nested");
 		op.add(Builder::randomSampler, RandomSamplerAggregation._DESERIALIZER, "random_sampler");
 		op.add(Builder::sampler, SamplerAggregation._DESERIALIZER, "sampler");

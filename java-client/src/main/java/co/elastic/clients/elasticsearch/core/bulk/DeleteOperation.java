@@ -19,14 +19,18 @@
 
 package co.elastic.clients.elasticsearch.core.bulk;
 
+import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -52,10 +56,19 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class DeleteOperation extends BulkOperationBase implements BulkOperationVariant {
+	@Nullable
+	private final Long version;
+
+	@Nullable
+	private final VersionType versionType;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DeleteOperation(Builder builder) {
 		super(builder);
+
+		this.version = builder.version;
+		this.versionType = builder.versionType;
 
 	}
 
@@ -71,6 +84,44 @@ public class DeleteOperation extends BulkOperationBase implements BulkOperationV
 		return BulkOperation.Kind.Delete;
 	}
 
+	/**
+	 * The explicit version number for concurrency control. It must be a
+	 * non-negative long number. This parameter is not supported for
+	 * <code>update</code> actions.
+	 * <p>
+	 * API name: {@code version}
+	 */
+	@Nullable
+	public final Long version() {
+		return this.version;
+	}
+
+	/**
+	 * The version type. This parameter is not supported for <code>update</code>
+	 * actions.
+	 * <p>
+	 * API name: {@code version_type}
+	 */
+	@Nullable
+	public final VersionType versionType() {
+		return this.versionType;
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
+		if (this.version != null) {
+			generator.writeKey("version");
+			generator.write(this.version);
+
+		}
+		if (this.versionType != null) {
+			generator.writeKey("version_type");
+			this.versionType.serialize(generator, mapper);
+		}
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -80,12 +131,43 @@ public class DeleteOperation extends BulkOperationBase implements BulkOperationV
 	public static class Builder extends BulkOperationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteOperation> {
+		@Nullable
+		private Long version;
+
+		@Nullable
+		private VersionType versionType;
+
 		public Builder() {
 		}
 		private Builder(DeleteOperation instance) {
 			super(instance);
+			this.version = instance.version;
+			this.versionType = instance.versionType;
 
 		}
+		/**
+		 * The explicit version number for concurrency control. It must be a
+		 * non-negative long number. This parameter is not supported for
+		 * <code>update</code> actions.
+		 * <p>
+		 * API name: {@code version}
+		 */
+		public final Builder version(@Nullable Long value) {
+			this.version = value;
+			return this;
+		}
+
+		/**
+		 * The version type. This parameter is not supported for <code>update</code>
+		 * actions.
+		 * <p>
+		 * API name: {@code version_type}
+		 */
+		public final Builder versionType(@Nullable VersionType value) {
+			this.versionType = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -120,6 +202,8 @@ public class DeleteOperation extends BulkOperationBase implements BulkOperationV
 
 	protected static void setupDeleteOperationDeserializer(ObjectDeserializer<DeleteOperation.Builder> op) {
 		BulkOperationBase.setupBulkOperationBaseDeserializer(op);
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(Builder::versionType, VersionType._DESERIALIZER, "version_type");
 
 	}
 
