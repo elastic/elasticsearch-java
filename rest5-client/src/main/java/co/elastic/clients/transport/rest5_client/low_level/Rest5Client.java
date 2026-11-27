@@ -905,6 +905,7 @@ public class Rest5Client implements Closeable {
                 .getHttpAsyncResponseConsumerFactory()
                 .createHttpAsyncResponseConsumer();
             this.context = HttpClientContext.create();
+            this.context.setAuthCache(new PreemptiveAuthCache(node.getHost(), this.context));
             RequestConfig requestConfig = request.httpRequest.getConfig();
             if (requestConfig != null) {
                 this.context.setRequestConfig(requestConfig);
