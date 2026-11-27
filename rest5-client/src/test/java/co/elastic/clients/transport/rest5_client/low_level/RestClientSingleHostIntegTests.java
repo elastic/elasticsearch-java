@@ -25,11 +25,14 @@ import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import org.apache.hc.client5.http.async.methods.SimpleHttpRequest;
 import org.apache.hc.client5.http.async.methods.SimpleHttpResponse;
+import org.apache.hc.client5.http.auth.AuthScope;
+import org.apache.hc.client5.http.auth.UsernamePasswordCredentials;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.impl.DefaultAuthenticationStrategy;
 import org.apache.hc.client5.http.impl.async.CloseableHttpAsyncClient;
 import org.apache.hc.client5.http.impl.async.HttpAsyncClientBuilder;
 import org.apache.hc.client5.http.impl.async.HttpAsyncClients;
+import org.apache.hc.client5.http.impl.auth.BasicCredentialsProvider;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.HttpHost;
@@ -55,6 +58,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static co.elastic.clients.transport.rest5_client.low_level.RestClientTestUtil.getAllStatusCodes;
@@ -82,6 +86,7 @@ public class RestClientSingleHostIntegTests extends RestClientTestCase {
     private String pathPrefix;
     private Header[] defaultHeaders;
     private WaitForCancelHandler waitForCancelHandler;
+    private AuthChallengeHandler authChallengeHandler;
 
     @BeforeEach
     public void startHttpServer() throws Exception {
@@ -103,7 +108,31 @@ public class RestClientSingleHostIntegTests extends RestClientTestCase {
         }
         waitForCancelHandler = new WaitForCancelHandler();
         mockServer.createContext(pathPrefix + "/wait", waitForCancelHandler);
+        authChallengeHandler = new AuthChallengeHandler();
+        mockServer.createContext(pathPrefix + "/auth", authChallengeHandler);
         return mockServer;
+    }
+
+    /**
+     * Challenges requests without credentials, like Elasticsearch with security enabled.
+     */
+    private static class AuthChallengeHandler implements HttpHandler {
+
+        private final AtomicInteger challenges = new AtomicInteger();
+
+        @Override
+        public void handle(HttpExchange exchange) throws IOException {
+            exchange.getRequestBody().readAllBytes();
+            String expected = "Basic " + Base64.getEncoder().encodeToString("user:pass".getBytes(UTF_8));
+            if (expected.equals(exchange.getRequestHeaders().getFirst("Authorization"))) {
+                exchange.sendResponseHeaders(200, -1);
+            } else {
+                challenges.incrementAndGet();
+                exchange.getResponseHeaders().add("WWW-Authenticate", "Basic realm=\"security\"");
+                exchange.sendResponseHeaders(401, -1);
+            }
+            exchange.close();
+        }
     }
 
     private static class WaitForCancelHandler implements HttpHandler {
@@ -417,6 +446,34 @@ public class RestClientSingleHostIntegTests extends RestClientTestCase {
                 assertThat(response.getHeader("Authorization"), startsWith("Basic"));
             }
         }
+    }
+
+    /**
+     * Verify that credentials from a credentials provider are sent on every request, rather than after a 401
+     * challenge that would make the client send the request, and its body, a second time.
+     */
+    @Test
+    public void testCredentialsProviderAuthIsPreemptive() throws Exception {
+        HttpHost host = new HttpHost(httpServer.getAddress().getHostString(), httpServer.getAddress().getPort());
+        BasicCredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+        credentialsProvider.setCredentials(new AuthScope(host), new UsernamePasswordCredentials("user",
+            "pass".toCharArray()));
+
+        Rest5ClientBuilder builder = Rest5Client.builder(host)
+            .setHttpClientConfigCallback(hc -> hc.setDefaultCredentialsProvider(credentialsProvider));
+        if (pathPrefix.length() > 0) {
+            builder.setPathPrefix(pathPrefix);
+        }
+
+        try (Rest5Client restClient = builder.build()) {
+            for (int i = 0; i < 5; i++) {
+                Request request = new Request("POST", "/auth");
+                request.setJsonEntity("{ \"field\": \"value\" }");
+                assertEquals(200, RestClientSingleHostTests.performRequestSyncOrAsync(restClient, request)
+                    .getStatusCode());
+            }
+        }
+        assertEquals(0, authChallengeHandler.challenges.get());
     }
 
     private Response bodyTest(final String method) throws Exception {
